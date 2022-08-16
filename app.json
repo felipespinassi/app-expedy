@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "app-expedicao",
+    "name": "Expedy",
     "slug": "app-expedicao",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -12,7 +12,8 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/15fdc8b7-4139-4360-bc41-6bf97e9c59ff"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -24,10 +25,14 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "io.app.expedy"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
     }
   }
 }

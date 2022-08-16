@@ -1,10 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { useEffect } from "react";
+import * as Updates from "expo-updates";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function App() {
+  useEffect(() => {
+    reactUpdates();
+  }, []);
+
+  const reactUpdates = async () => {
+    Updates.addListener((event) => {
+      if (event.type === Updates.UpdateEventType.UPDATE_AVAILABLE) {
+        Updates.reloadAsync();
+      }
+    });
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <Text style={{ color: "orange" }}>Atualizando App.tsx!</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -13,8 +27,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "gray",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
