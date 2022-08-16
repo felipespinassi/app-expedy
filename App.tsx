@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import * as Updates from "expo-updates";
 import { StyleSheet, Text, View } from "react-native";
+import { Login } from "./src/screens/Login";
 
 export default function App() {
   useEffect(() => {
@@ -18,8 +19,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={{ color: "orange" }}>Atualizando App.tsx!</Text>
-      <StatusBar style="auto" />
+      <Login />
     </View>
   );
 }
@@ -27,8 +27,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "gray",
-    alignItems: "center",
+    backgroundColor: "#fff",
     justifyContent: "center",
   },
 });
