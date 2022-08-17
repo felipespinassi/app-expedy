@@ -1,50 +1,54 @@
-import { Button, TextInput } from "react-native-paper";
 import { Alert, Image, View } from "react-native";
 import { styles } from "./styles";
+import { Button, Input } from "native-base";
 
-export const Login = () => (
+export const Login = ({ navigation }: any) => (
   <View style={styles.container}>
     <View style={styles.containerInput}>
       <Image
         style={styles.image}
         source={require("../../../assets/logo-transparente.png")}
       />
-      <TextInput
-        underlineColor="red"
-        mode="flat"
-        selectionColor="red"
-        activeUnderlineColor="red"
-        style={styles.input}
-        keyboardType="numeric"
+      <Input
+        size={"lg"}
+        _focus={{ borderColor: "red.500", bg: "white" }}
+        marginTop={5}
+        w="80%"
         placeholder="Código"
         placeholderTextColor="#6b6b6b"
+        variant="rounded"
+        keyboardType="numeric"
       />
-      <TextInput
-        mode="flat"
-        underlineColor="red"
-        selectionColor="red"
-        activeUnderlineColor="red"
-        style={styles.input}
-        placeholder="Login"
+
+      <Input
+        autoCapitalize="none"
+        size={"lg"}
+        _focus={{ borderColor: "red.500", bg: "white" }}
+        marginTop={5}
+        w="80%"
+        placeholder="Usuário"
         placeholderTextColor="#6b6b6b"
+        variant="rounded"
       />
-      <TextInput
-        secureTextEntry={true}
-        mode="flat"
-        underlineColor="red"
-        selectionColor="red"
-        activeUnderlineColor="red"
-        style={styles.input}
+
+      <Input
+        size={"lg"}
+        _focus={{ borderColor: "red.500", bg: "white" }}
+        marginTop={5}
+        w="80%"
         placeholder="Senha"
         placeholderTextColor="#6b6b6b"
+        secureTextEntry={true}
+        variant="rounded"
+        autoCapitalize="none"
       />
     </View>
     <View style={styles.containerButton}>
       <Button
+        borderRadius={50}
         style={styles.button}
-        buttonColor="red"
-        mode="contained"
-        onPress={() => console.log("Logou")}
+        backgroundColor={"red.500"}
+        onPress={() => navigation.navigate("Dashboard")}
       >
         Login
       </Button>

@@ -9,11 +9,6 @@ export const styles = StyleSheet.create({
   containerInput: {
     alignItems: "center",
   },
-  input: {
-    marginTop: 20,
-    backgroundColor: "#eee",
-    width: "90%",
-  },
   containerButton: {
     alignItems: "center",
   },
