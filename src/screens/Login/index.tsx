@@ -1,10 +1,14 @@
 import { Button, TextInput } from "react-native-paper";
-import { Alert, View } from "react-native";
+import { Alert, Image, View } from "react-native";
 import { styles } from "./styles";
 
 export const Login = () => (
   <View style={styles.container}>
     <View style={styles.containerInput}>
+      <Image
+        style={styles.image}
+        source={require("../../../assets/logo-transparente.png")}
+      />
       <TextInput
         underlineColor="red"
         mode="flat"
