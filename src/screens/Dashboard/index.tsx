@@ -1,9 +1,10 @@
-import { Text, View } from "native-base";
+import { View } from "native-base";
+import { Text } from "react-native";
 
 export function Dashboard() {
   return (
-    <View>
-      <Text>opaa</Text>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text>Dashboard</Text>
     </View>
   );
 }
