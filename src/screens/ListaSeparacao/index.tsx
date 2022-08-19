@@ -1,5 +1,7 @@
+import axios from "axios";
 import { Avatar, Divider } from "native-base";
 import { Progress, View, Text } from "native-base";
+import { useEffect } from "react";
 import { StyleSheet } from "react-native";
 
 export function ListaSeparacao() {
