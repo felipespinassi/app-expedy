@@ -3,8 +3,8 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: "center", backgroundColor: "#fff" },
   image: {
-    width: 300,
-    height: 180,
+    width: 230,
+    height: 100,
   },
   containerInput: {
     alignItems: "center",

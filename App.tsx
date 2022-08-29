@@ -1,7 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import * as Updates from "expo-updates";
-import { StyleSheet, View } from "react-native";
 import { Login } from "./src/screens/Login";
 import { extendTheme, NativeBaseProvider, themeTools } from "native-base";
 import { NavigationContainer } from "@react-navigation/native";
@@ -12,18 +11,18 @@ import { DrawerNavigation } from "./Components/DrawerNavigation";
 
 const Stack = createNativeStackNavigator();
 
+const reactUpdates = async () => {
+  Updates.addListener((event) => {
+    if (event.type === Updates.UpdateEventType.UPDATE_AVAILABLE) {
+      Updates.reloadAsync();
+    }
+  });
+};
+
 export default function App() {
   useEffect(() => {
     reactUpdates();
   }, []);
-
-  const reactUpdates = async () => {
-    Updates.addListener((event) => {
-      if (event.type === Updates.UpdateEventType.UPDATE_AVAILABLE) {
-        Updates.reloadAsync();
-      }
-    });
-  };
 
   return (
     <NativeBaseProvider>
@@ -36,10 +35,3 @@ export default function App() {
     </NativeBaseProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-  },
-});
