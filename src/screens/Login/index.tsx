@@ -1,18 +1,11 @@
 import { Alert, Image, SafeAreaView, View } from "react-native";
 import { styles } from "./styles";
 import {
-  Box,
-  Text,
-  Heading,
-  VStack,
   FormControl,
   Input,
-  Link,
   Button,
-  HStack,
   Center,
   NativeBaseProvider,
-  ScrollView,
   WarningOutlineIcon,
 } from "native-base";
 import { useEffect } from "react";
