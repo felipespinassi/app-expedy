@@ -19,6 +19,17 @@ import { useEffect } from "react";
 import axios from "axios";
 
 export function Login({ navigation }: any) {
+  async function getUser() {
+    const response = await axios.post("https://api.expedy.com.br/auth", {
+      companyCode: "3",
+      login: "gvm",
+      password: "gvmgvm",
+    });
+    if (response.status === 200) {
+      navigation.navigate("Dashboard");
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.containerInput}>
@@ -73,7 +84,7 @@ export function Login({ navigation }: any) {
           borderRadius={30}
           style={styles.button}
           backgroundColor={"red.500"}
-          onPress={() => navigation.navigate("Dashboard")}
+          onPress={() => getUser()}
         >
           Login
         </Button>
