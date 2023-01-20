@@ -14,6 +14,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 export function Login({ navigation }: any) {
   const { register, setValue, handleSubmit } = useForm<Dataprops>();
+  const [accessToken, setAccessToken] = useState("");
 
   interface Dataprops {
     companyCode: string;
@@ -32,6 +33,8 @@ export function Login({ navigation }: any) {
     });
     if (response.status === 200) {
       navigation.navigate("Dashboard");
+      setAccessToken(response.data.access_token);
+      console.log(accessToken);
     }
   }
 
