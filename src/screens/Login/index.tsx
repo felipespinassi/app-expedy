@@ -14,18 +14,21 @@ import { useForm } from "react-hook-form";
 
 export function Login({ navigation }: any) {
   const { register, setValue, handleSubmit } = useForm();
-  async function getUser() {
+
+  async function onSubmit(data: any) {
+    const companyCode = data.companyCode;
+    const login = data.login;
+    const password = data.password;
     const response = await axios.post("https://api.expedy.com.br/auth", {
-      companyCode: "3",
-      login: "gvm",
-      password: "gvmgvm",
+      companyCode,
+      login,
+      password,
     });
     if (response.status === 200) {
       navigation.navigate("Dashboard");
     }
+    console.log(response);
   }
-  const onSubmit = (data: any) =>
-    Alert.alert(data.companyCode, data.login, data.password);
 
   useEffect(() => {
     register("companyCode");
