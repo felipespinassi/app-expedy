@@ -8,10 +8,12 @@ import {
   NativeBaseProvider,
   WarningOutlineIcon,
 } from "native-base";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { useForm } from "react-hook-form";
 
 export function Login({ navigation }: any) {
+  const { register, setValue, handleSubmit } = useForm();
   async function getUser() {
     const response = await axios.post("https://api.expedy.com.br/auth", {
       companyCode: "3",
@@ -22,7 +24,14 @@ export function Login({ navigation }: any) {
       navigation.navigate("Dashboard");
     }
   }
+  const onSubmit = (data: any) =>
+    Alert.alert(data.companyCode, data.login, data.password);
 
+  useEffect(() => {
+    register("companyCode");
+    register("login");
+    register("password");
+  }, [register]);
   return (
     <View style={styles.container}>
       <View style={styles.containerInput}>
@@ -33,6 +42,7 @@ export function Login({ navigation }: any) {
         <Center w={"80%"}>
           <FormControl isRequired>
             <Input
+              onChangeText={(text) => setValue("companyCode", text)}
               size={"lg"}
               _focus={{ borderColor: "red.500", bg: "white" }}
               marginTop={5}
@@ -44,6 +54,7 @@ export function Login({ navigation }: any) {
           </FormControl>
           <FormControl>
             <Input
+              onChangeText={(text) => setValue("login", text)}
               autoCapitalize="none"
               size={"lg"}
               _focus={{ borderColor: "red.500", bg: "white" }}
@@ -55,6 +66,7 @@ export function Login({ navigation }: any) {
           </FormControl>
           <FormControl>
             <Input
+              onChangeText={(text) => setValue("password", text)}
               size={"lg"}
               _focus={{ borderColor: "red.500", bg: "white" }}
               marginTop={5}
@@ -77,7 +89,7 @@ export function Login({ navigation }: any) {
           borderRadius={30}
           style={styles.button}
           backgroundColor={"red.500"}
-          onPress={() => getUser()}
+          onPress={handleSubmit(onSubmit)}
         >
           Login
         </Button>
