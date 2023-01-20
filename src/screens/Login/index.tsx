@@ -10,12 +10,18 @@ import {
 } from "native-base";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 export function Login({ navigation }: any) {
-  const { register, setValue, handleSubmit } = useForm();
+  const { register, setValue, handleSubmit } = useForm<Dataprops>();
 
-  async function onSubmit(data: any) {
+  interface Dataprops {
+    companyCode: string;
+    login: string;
+    password: string;
+  }
+
+  async function onSubmit(data: Dataprops) {
     const companyCode = data.companyCode;
     const login = data.login;
     const password = data.password;
@@ -27,7 +33,6 @@ export function Login({ navigation }: any) {
     if (response.status === 200) {
       navigation.navigate("Dashboard");
     }
-    console.log(response);
   }
 
   useEffect(() => {
