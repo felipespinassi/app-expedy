@@ -5,6 +5,10 @@ import { useEffect, useState } from "react";
 import { Lista } from "./Lista";
 import { getAccess_token } from "../../storage/getAccess_token";
 
+type Props = {
+  idERP_Lista: string;
+};
+
 export function ListaSeparacao() {
   const [listas, setListas] = useState([]);
   async function fetchData() {
@@ -32,8 +36,8 @@ export function ListaSeparacao() {
     <>
       <FlatList
         data={listas}
-        keyExtractor={(item: any) => item.idERP_Lista}
-        renderItem={({ item }: any) => <Lista item={item} />}
+        keyExtractor={(item: Props) => item.idERP_Lista}
+        renderItem={({ item }) => <Lista item={item} />}
       />
     </>
   );

@@ -1,10 +1,16 @@
 import { Avatar, Divider, Progress, Text, View } from "native-base";
-import { StyleSheet } from "react-native";
+import { styles } from "./styles";
 
-export function Lista({ item }: any) {
+type ItemProps = {
+  item: {
+    idERP_Lista: string;
+  };
+};
+
+export function Lista({ item }: ItemProps) {
   return (
     <>
-      <View key={item} style={styles.container}>
+      <View style={styles.container}>
         <View>
           <Text>ID</Text>
           <Text>{item.idERP_Lista}</Text>
@@ -31,14 +37,3 @@ export function Lista({ item }: any) {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: "space-around",
-    alignItems: "center",
-    flexDirection: "row",
-    marginTop: 20,
-    margin: 10,
-  },
-  row: {},
-});
