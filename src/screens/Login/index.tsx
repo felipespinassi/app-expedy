@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { createAccess_token } from "../../storage/createAccess_token";
+import { getAccess_token } from "../../storage/getAccess_token";
 
 export function Login({ navigation }: any) {
   const { register, setValue, handleSubmit } = useForm<Dataprops>();
@@ -21,6 +22,14 @@ export function Login({ navigation }: any) {
     companyCode: string;
     login: string;
     password: string;
+  }
+
+  async function verifyLogin() {
+    const acces_token = await getAccess_token();
+
+    if (acces_token) {
+      navigation.navigate("Dashboard");
+    }
   }
 
   async function onSubmit(data: Dataprops) {
@@ -48,7 +57,8 @@ export function Login({ navigation }: any) {
     register("companyCode");
     register("login");
     register("password");
-  }, [register]);
+    verifyLogin();
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.containerInput}>
