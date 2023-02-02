@@ -11,10 +11,11 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { createAccess_token } from "../../storage/createAccess_token";
 
 export function Login({ navigation }: any) {
   const { register, setValue, handleSubmit } = useForm<Dataprops>();
-  const [accessToken, setAccessToken] = useState("");
+  const [loading, setLoading] = useState(false);
 
   interface Dataprops {
     companyCode: string;
@@ -23,18 +24,23 @@ export function Login({ navigation }: any) {
   }
 
   async function onSubmit(data: Dataprops) {
+    setLoading(true);
     const companyCode = data.companyCode;
     const login = data.login;
     const password = data.password;
-    const response = await axios.post("https://api.expedy.com.br/auth", {
-      companyCode,
-      login,
-      password,
-    });
-    if (response.status === 200) {
+    try {
+      const response = await axios.post("https://api.expedy.com.br/auth", {
+        companyCode,
+        login,
+        password,
+      });
       navigation.navigate("Dashboard");
-      setAccessToken(response.data.access_token);
-      console.log(accessToken);
+      await createAccess_token(response.data.access_token);
+
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      alert("Usuário ou senha inválidos");
     }
   }
 
@@ -87,16 +93,12 @@ export function Login({ navigation }: any) {
               variant="rounded"
               autoCapitalize="none"
             />
-            <FormControl.ErrorMessage
-              leftIcon={<WarningOutlineIcon size="xs" />}
-            >
-              Atleast 6 characters are required.
-            </FormControl.ErrorMessage>
           </FormControl>
         </Center>
       </View>
       <View style={styles.containerButton}>
         <Button
+          isLoading={loading}
           borderRadius={30}
           style={styles.button}
           backgroundColor={"red.500"}
