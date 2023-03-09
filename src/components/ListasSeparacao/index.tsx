@@ -8,11 +8,11 @@ import { useNavigation } from "@react-navigation/native";
 
 type Props = {
   idERP_Lista: string;
+  usuario: string;
 };
 
 export function ListasSeparacao({ navigation }: any) {
   // const navigation = useNavigation();
-  console.log(navigation);
   const [listas, setListas] = useState([]);
   async function fetchData() {
     try {
@@ -48,10 +48,10 @@ export function ListasSeparacao({ navigation }: any) {
                 <Text>{item.idERP_Lista}</Text>
               </View>
               <View>
-                <Avatar bg="green.500">T</Avatar>
+                <Avatar bg="green.500">O</Avatar>
               </View>
               <View width={"50%"}>
-                <Text style={{ marginBottom: 5 }}>Tuccihome</Text>
+                <Text style={{ marginBottom: 5 }}>{item.usuario}</Text>
                 <Progress
                   bg="#fff"
                   value={100}
