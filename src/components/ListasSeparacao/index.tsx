@@ -8,7 +8,8 @@ import { useNavigation } from "@react-navigation/native";
 
 type Props = {
   idERP_Lista: string;
-  usuario: string;
+  pedidos: any;
+  usuario: any;
 };
 
 export function ListasSeparacao({ navigation }: any) {
@@ -35,26 +36,46 @@ export function ListasSeparacao({ navigation }: any) {
     fetchData();
   }, []);
   // onPress={() => navigation.navigate("Lista", item)}
+
+  const listProgress = (pedidos: any) => {
+    const pedidosParaExpedir = pedidos?.length;
+    const pedidosExpedidos = pedidos?.filter(
+      (pedido: any) => pedido.status_hub === "completo"
+    ).length;
+    const progress = pedidosExpedidos / pedidosParaExpedir;
+
+    return Math.round(progress * 100);
+  };
+
+  const firstLetterUserName = (item: any) => {
+    const firstLetter = item.usuario.split("")[0];
+
+    return firstLetter;
+  };
+
   return (
     <>
       <FlatList
         data={listas}
         keyExtractor={(item: Props) => item.idERP_Lista}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => navigation.navigate("Lista")}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Lista");
+            }}
+          >
             <View style={styles.container}>
               <View>
-                <Text>ID</Text>
                 <Text>{item.idERP_Lista}</Text>
               </View>
               <View>
-                <Avatar bg="green.500">O</Avatar>
+                <Avatar bg="yellow.500">{firstLetterUserName(item)}</Avatar>
               </View>
               <View width={"50%"}>
                 <Text style={{ marginBottom: 5 }}>{item.usuario}</Text>
                 <Progress
                   bg="#fff"
-                  value={100}
+                  value={listProgress(item.pedidos)}
                   mx="1"
                   _filledTrack={{
                     bg: "lime.500",
