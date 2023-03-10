@@ -61,7 +61,7 @@ export function ListasSeparacao({ navigation }: any) {
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("Lista");
+              navigation.navigate("Lista", item);
             }}
           >
             <View style={styles.container}>
