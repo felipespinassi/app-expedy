@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { Divider, FlatList, Text, View } from "native-base";
+import { Center, Divider, FlatList, Text, View, VStack } from "native-base";
 import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { getAccess_token } from "../../../storage/getAccess_token";
@@ -33,12 +33,15 @@ export function Lista(item: any) {
           <>
             <View
               style={{
-                padding: 10,
+                padding: 15,
                 flexDirection: "row",
                 justifyContent: "space-around",
                 alignItems: "center",
               }}
             >
+              <View style={{ width: "30%" }}>
+                <Text style={{ fontSize: 12 }}>{item.reference}</Text>
+              </View>
               <View style={{ width: "50%" }}>
                 <Text style={{ fontSize: 12 }}>{item.original_name}</Text>
               </View>
