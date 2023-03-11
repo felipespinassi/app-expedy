@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { getAccess_token } from "../../storage/getAccess_token";
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
+import { ListSkelleton } from "../ListSkelleton";
 
 type Props = {
   idERP_Lista: string;
@@ -115,17 +116,7 @@ export function ListasSeparacao({ navigation }: any) {
           )}
         />
       ) : (
-        <Center w="100%">
-          <VStack padding={3} w="100%" space={4}>
-            <Skeleton speed={2} h="24" />
-            <Skeleton speed={2} h="24" />
-            <Skeleton speed={2} h="24" />
-            <Skeleton speed={2} h="24" />
-            <Skeleton speed={2} h="24" />
-            <Skeleton speed={2} h="24" />
-            <Skeleton speed={2} h="24" />
-          </VStack>
-        </Center>
+        <ListSkelleton />
       )}
     </>
   );

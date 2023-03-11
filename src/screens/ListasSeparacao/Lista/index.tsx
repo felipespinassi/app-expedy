@@ -10,6 +10,7 @@ import {
 } from "native-base";
 import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { ListSkelleton } from "../../../components/ListSkelleton";
 import { getAccess_token } from "../../../storage/getAccess_token";
 
 export function Lista(item: any) {
@@ -77,17 +78,7 @@ export function Lista(item: any) {
           />
         </>
       ) : (
-        <Center w="100%">
-          <VStack w="100%" space={4}>
-            <Skeleton speed={2} h="24" />
-            <Skeleton speed={2} h="24" />
-            <Skeleton speed={2} h="24" />
-            <Skeleton speed={2} h="24" />
-            <Skeleton speed={2} h="24" />
-            <Skeleton speed={2} h="24" />
-            <Skeleton speed={2} h="24" />
-          </VStack>
-        </Center>
+        <ListSkelleton />
       )}
     </SafeAreaView>
   );
