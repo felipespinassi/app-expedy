@@ -18,8 +18,8 @@ import { useNavigation } from "@react-navigation/native";
 
 type Props = {
   idERP_Lista: string;
-  pedidos: any;
-  usuario: any;
+  pedidos: [];
+  usuario: string;
 };
 
 export function ListasSeparacao({ navigation }: any) {
@@ -70,6 +70,7 @@ export function ListasSeparacao({ navigation }: any) {
     <>
       {!loading ? (
         <FlatList
+          showsVerticalScrollIndicator={false}
           data={listas}
           keyExtractor={(item: Props) => item.idERP_Lista}
           renderItem={({ item }) => (
