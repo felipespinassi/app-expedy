@@ -1,21 +1,19 @@
-import axios from "axios";
 import {
   Avatar,
   Center,
-  Divider,
   FlatList,
   Progress,
-  Skeleton,
   Text,
   View,
   VStack,
 } from "native-base";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
-import { getAccess_token } from "../../storage/getAccess_token";
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { ListSkelleton } from "../ListSkelleton";
+import { getService } from "../../../services/getService";
+import { listProgress } from "./utils/listProgress";
 
 type Props = {
   idERP_Lista: string;
@@ -31,18 +29,10 @@ export function ListasSeparacao({ navigation }: any) {
     setLoading(true);
 
     try {
-      const access_token = await getAccess_token();
-      const response = await axios.get(
-        "https://api.expedy.com.br/expedicao/lista",
-        {
-          params: {
-            pageSize: 20,
-            access_token: access_token,
-          },
-        }
-      );
+      const response: any = await getService("expedicao/lista", {});
       setListas(response.data.listas);
       setLoading(false);
+      console.log(response.data);
     } catch (error) {
       alert(error);
     }
@@ -50,16 +40,6 @@ export function ListasSeparacao({ navigation }: any) {
   useEffect(() => {
     fetchData();
   }, []);
-
-  const listProgress = (pedidos: any) => {
-    const pedidosParaExpedir = pedidos?.length;
-    const pedidosExpedidos = pedidos?.filter(
-      (pedido: any) => pedido.status_hub === "completo"
-    ).length;
-    const progress = pedidosExpedidos / pedidosParaExpedir;
-
-    return Math.round(progress * 100);
-  };
 
   const firstLetterUserName = (item: any) => {
     const firstLetter = item.usuario.split("")[0];

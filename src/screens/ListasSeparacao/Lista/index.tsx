@@ -1,31 +1,19 @@
-import axios, { AxiosResponse } from "axios";
-import {
-  Center,
-  Divider,
-  FlatList,
-  Skeleton,
-  Text,
-  View,
-  VStack,
-} from "native-base";
+import { Center, FlatList, Text, View, VStack } from "native-base";
 import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { getService } from "../../../../services/getService";
 import { ListSkelleton } from "../../../components/ListSkelleton";
-import { getAccess_token } from "../../../storage/getAccess_token";
 
 export function Lista(item: any) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+
   async function fetchData() {
+    const listaSelecionada = item.route.params.idERP_Lista;
     setLoading(true);
-    const access_token = await getAccess_token();
-    const response: AxiosResponse = await axios.get(
-      `https://api.expedy.com.br/expedicao/lista/separacao/${item.route.params.idERP_Lista}/pedido`,
-      {
-        params: {
-          access_token: access_token,
-        },
-      }
+    const response: any = await getService(
+      `expedicao/lista/separacao/${listaSelecionada}/pedido`,
+      {}
     );
     setData(response.data.lista);
     setLoading(false);
