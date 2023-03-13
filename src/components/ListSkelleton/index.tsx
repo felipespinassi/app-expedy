@@ -11,6 +11,8 @@ export function ListSkelleton() {
         <Skeleton speed={2} h="24" />
         <Skeleton speed={2} h="24" />
         <Skeleton speed={2} h="24" />
+        <Skeleton speed={2} h="24" />
+        <Skeleton speed={2} h="24" />
       </VStack>
     </Center>
   );

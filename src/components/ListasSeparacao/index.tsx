@@ -32,7 +32,6 @@ export function ListasSeparacao({ navigation }: any) {
       const response: any = await getService("expedicao/lista", {});
       setListas(response.data.listas);
       setLoading(false);
-      console.log(response.data);
     } catch (error) {
       alert(error);
     }
