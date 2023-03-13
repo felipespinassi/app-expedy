@@ -5,8 +5,8 @@ export const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     flexDirection: "row",
-    marginTop: 20,
-    margin: 10,
+    marginHorizontal: 10,
+    marginVertical: 5,
   },
   row: {},
 });
