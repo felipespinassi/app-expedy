@@ -14,12 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import { ListSkelleton } from "../ListSkelleton";
 import { listProgress } from "./utils/listProgress";
 import { getService } from "../../services/getService";
-
-type Props = {
-  idERP_Lista: string;
-  pedidos: [];
-  usuario: string;
-};
+import { ListaProps } from "../../@types/ListaProps";
 
 export function Listas({ navigation }: any) {
   // const navigation = useNavigation();
@@ -42,8 +37,8 @@ export function Listas({ navigation }: any) {
     fetchData();
   }, []);
 
-  const firstLetterUserName = (item: any) => {
-    const firstLetter = item.usuario.split("")[0];
+  const firstLetterUserName = (Lista: ListaProps) => {
+    const firstLetter = Lista.usuario.split("")[0];
     return firstLetter;
   };
 
@@ -53,7 +48,7 @@ export function Listas({ navigation }: any) {
         <FlatList
           showsVerticalScrollIndicator={false}
           data={listas}
-          keyExtractor={(item: Props) => item.idERP_Lista}
+          keyExtractor={(item: ListaProps) => item.idERP_Lista}
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() => {

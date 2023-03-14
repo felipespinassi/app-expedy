@@ -1,6 +1,7 @@
 import { Center, FlatList, Text, View, VStack } from "native-base";
 import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { ListaProps } from "../../../../@types/ListaProps";
 import { getService } from "../../../../services/getService";
 import { ListSkelleton } from "../../../ListSkelleton";
 
@@ -34,7 +35,7 @@ export default function ListaSeparacao({ navigation }: any) {
           <FlatList
             showsVerticalScrollIndicator={false}
             data={data}
-            keyExtractor={(item: any) => item.product_id}
+            keyExtractor={(item: ListaProps) => item.product_id}
             renderItem={({ item }) => (
               <VStack style={{ marginVertical: 5 }}>
                 <Center padding={2} bg={"light.200"} w="100%" rounded="md">
