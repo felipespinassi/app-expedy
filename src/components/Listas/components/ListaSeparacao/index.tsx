@@ -1,7 +1,7 @@
 import { Center, FlatList, Text, View, VStack } from "native-base";
 import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { getService } from "../../../../../services/getService";
+import { getService } from "../../../../services/getService";
 import { ListSkelleton } from "../../../ListSkelleton";
 
 export default function ListaSeparacao({ navigation }: any) {

@@ -12,8 +12,8 @@ import { useEffect, useState } from "react";
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { ListSkelleton } from "../ListSkelleton";
-import { getService } from "../../../services/getService";
 import { listProgress } from "./utils/listProgress";
+import { getService } from "../../services/getService";
 
 type Props = {
   idERP_Lista: string;
@@ -29,7 +29,9 @@ export function Listas({ navigation }: any) {
     setLoading(true);
 
     try {
-      const response: any = await getService("expedicao/lista", {});
+      const response: any = await getService("expedicao/lista", {
+        pageSize: 50,
+      });
       setListas(response.data.listas);
       setLoading(false);
     } catch (error) {
