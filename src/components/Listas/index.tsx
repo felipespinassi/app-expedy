@@ -21,7 +21,7 @@ type Props = {
   usuario: string;
 };
 
-export function ListasSeparacao({ navigation }: any) {
+export function Listas({ navigation }: any) {
   // const navigation = useNavigation();
   const [listas, setListas] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -55,7 +55,7 @@ export function ListasSeparacao({ navigation }: any) {
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("Lista", item);
+                navigation.navigate("ListaSeparacao", item);
               }}
             >
               <VStack style={styles.container}>

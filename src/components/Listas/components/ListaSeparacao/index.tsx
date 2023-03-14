@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { getService } from "../../../../../services/getService";
 import { ListSkelleton } from "../../../ListSkelleton";
 
-export default function Lista({ navigation }: any) {
+export default function ListaSeparacao({ navigation }: any) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 

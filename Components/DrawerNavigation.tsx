@@ -1,8 +1,7 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import { Dashboard } from "../src/screens/Dashboard";
-import { Listas } from "../src/screens/ListasSeparacao";
-import { Lista } from "../src/screens/ListasSeparacao/Lista";
+import { Listas } from "../src/screens/Listas";
 
 const Drawer = createDrawerNavigator();
 
