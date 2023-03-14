@@ -38,7 +38,7 @@ export default function ListaSeparacao({ navigation }: any) {
             keyExtractor={(item: ListaProps) => item.product_id}
             renderItem={({ item }) => (
               <VStack style={{ marginVertical: 5 }}>
-                <Center padding={2} bg={"light.200"} w="100%" rounded="md">
+                <Center padding={3} bg={"light.200"} w="100%" rounded="md">
                   <View
                     style={{
                       flexDirection: "row",
@@ -46,19 +46,14 @@ export default function ListaSeparacao({ navigation }: any) {
                       maxWidth: "100%",
                     }}
                   >
-                    <View style={{ width: "20%", marginRight: 15 }}>
-                      <Text style={{ fontSize: 12 }}>{item.reference}</Text>
+                    <View style={{ width: "20%", alignItems: "center" }}>
+                      <Text style={{ fontSize: 16 }}>{item.quantity}</Text>
                     </View>
-                    <View style={{ width: "60%", marginRight: 10 }}>
+                    <View style={{ width: "80%" }}>
+                      <Text style={{ fontSize: 12, marginBottom: 10 }}>
+                        SKU: {item.reference}
+                      </Text>
                       <Text style={{ fontSize: 12 }}>{item.original_name}</Text>
-                    </View>
-                    <View
-                      style={{
-                        width: "20%",
-                        marginLeft: 10,
-                      }}
-                    >
-                      <Text style={{ fontSize: 12 }}>{item.quantity}</Text>
                     </View>
                   </View>
                 </Center>
