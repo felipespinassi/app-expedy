@@ -42,7 +42,6 @@ export function ListasSeparacao({ navigation }: any) {
 
   const firstLetterUserName = (item: any) => {
     const firstLetter = item.usuario.split("")[0];
-
     return firstLetter;
   };
 
