@@ -26,7 +26,7 @@ export function Dashboard() {
               </View>
               <View>
                 <Text>Escrito por expedy</Text>
-                <Text>16/03/2023</Text>
+                <Text>20/03/2023</Text>
               </View>
             </View>
             <View>
@@ -34,12 +34,23 @@ export function Dashboard() {
                 Novas funcionalidades e melhorias no layout
               </Heading>
               <View pt={3}>
-                <Text style={{ lineHeight: 20 }}>
+                <Text style={{ lineHeight: 20, marginBottom: 10 }}>
                   Segue as novas atualizações incríveis em nossa plataforma para
                   proporcionar uma experiência ainda mais fluida, rápida e
                   intuitiva #RápidoProdutivo.💙💙
                 </Text>
               </View>
+              <View style={{ marginBottom: 10 }}>
+                <Text style={{ lineHeight: 20 }}>
+                  🔥 Novo aplicativo da expedição
+                </Text>
+              </View>
+            </View>
+            <View>
+              <Text style={{ lineHeight: 20 }}>
+                🔥 Agora você pode verificar suas listas pelo celular, sem a
+                utilização de papeis para um mundo mais eco ♻️
+              </Text>
             </View>
           </View>
         </Center>

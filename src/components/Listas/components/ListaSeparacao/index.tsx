@@ -1,5 +1,6 @@
 import { Center, FlatList, Text, View, VStack } from "native-base";
 import { useEffect, useState } from "react";
+import { TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ListaProps } from "../../../../@types/ListaProps";
 import { getService } from "../../../../services/getService";
@@ -37,27 +38,31 @@ export default function ListaSeparacao({ navigation }: any) {
             data={data}
             keyExtractor={(item: ListaProps) => item.product_id}
             renderItem={({ item }) => (
-              <VStack style={{ marginVertical: 5 }}>
-                <Center padding={3} bg={"light.200"} w="100%" rounded="md">
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      alignItems: "center",
-                      maxWidth: "100%",
-                    }}
-                  >
-                    <View style={{ width: "20%", alignItems: "center" }}>
-                      <Text style={{ fontSize: 16 }}>{item.quantity}</Text>
+              <TouchableOpacity onPress={() => console.log(item.reference)}>
+                <VStack style={{ marginVertical: 5 }}>
+                  <Center padding={3} bg={"light.200"} w="100%" rounded="md">
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                        maxWidth: "100%",
+                      }}
+                    >
+                      <View style={{ width: "20%", alignItems: "center" }}>
+                        <Text style={{ fontSize: 16 }}>{item.quantity}</Text>
+                      </View>
+                      <View style={{ width: "80%" }}>
+                        <Text style={{ fontSize: 12, marginBottom: 10 }}>
+                          SKU: {item.reference}
+                        </Text>
+                        <Text style={{ fontSize: 12 }}>
+                          {item.original_name}
+                        </Text>
+                      </View>
                     </View>
-                    <View style={{ width: "80%" }}>
-                      <Text style={{ fontSize: 12, marginBottom: 10 }}>
-                        SKU: {item.reference}
-                      </Text>
-                      <Text style={{ fontSize: 12 }}>{item.original_name}</Text>
-                    </View>
-                  </View>
-                </Center>
-              </VStack>
+                  </Center>
+                </VStack>
+              </TouchableOpacity>
             )}
           />
         </>
