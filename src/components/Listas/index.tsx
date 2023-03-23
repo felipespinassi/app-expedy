@@ -16,7 +16,7 @@ import { listProgress } from "./utils/listProgress";
 import { getService } from "../../services/getService";
 import { ListaProps } from "../../@types/ListaProps";
 
-export function Listas({ navigation }: any) {
+export function Listas({ navigation, route }: any) {
   // const navigation = useNavigation();
   const [listas, setListas] = useState([]);
   const [loading, setLoading] = useState(false);

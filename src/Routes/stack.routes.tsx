@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Listas } from "../screens/Listas";
+import { ItemsToPick } from "../screens/Listas/ItemsToPick";
 import { ListaSeparacao } from "../screens/Listas/ListaSeparacao";
 import { Login } from "../screens/Login";
 import { DrawerRoutes } from "./drawer.routes";
@@ -13,6 +14,7 @@ export function StackRoutes() {
       <Screen name="Dashboard" component={DrawerRoutes} />
       <Screen name="Listas" component={Listas} />
       <Screen name="ListaSeparacao" component={ListaSeparacao} />
+      <Screen name="Produtos" component={ItemsToPick} />
     </Navigator>
   );
 }

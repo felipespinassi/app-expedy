@@ -6,12 +6,12 @@ import { ListaProps } from "../../../../@types/ListaProps";
 import { getService } from "../../../../services/getService";
 import { ListSkelleton } from "../../../ListSkelleton";
 
-export default function ListaSeparacao({ navigation }: any) {
+export default function ListaSeparacao({ navigation, route }: any) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   async function fetchData() {
-    const listaSelecionada = navigation.route.params.idERP_Lista;
+    const listaSelecionada = route.params.idERP_Lista;
     setLoading(true);
     const response: any = await getService(
       `expedicao/lista/separacao/${listaSelecionada}/pedido`,
@@ -28,17 +28,19 @@ export default function ListaSeparacao({ navigation }: any) {
     <SafeAreaView
       style={{ paddingTop: 10, marginHorizontal: 10, paddingBottom: 25 }}
     >
+      <Text style={{ marginBottom: 5 }}>
+        Lista numero: {route.params.idERP_Lista}
+      </Text>
       {!loading ? (
         <>
-          <Text style={{ marginBottom: 5 }}>
-            Lista numero: {navigation.route.params.idERP_Lista}
-          </Text>
           <FlatList
             showsVerticalScrollIndicator={false}
             data={data}
             keyExtractor={(item: ListaProps) => item.product_id}
             renderItem={({ item }) => (
-              <TouchableOpacity onPress={() => console.log(item.reference)}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Produtos", item)}
+              >
                 <VStack style={{ marginVertical: 5 }}>
                   <Center padding={3} bg={"light.200"} w="100%" rounded="md">
                     <View
