@@ -5,7 +5,7 @@ export function Dashboard() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <VStack>
-        <Center maxWidth={"90%"} padding={3} bg={"light.200"} rounded="md">
+        <Center maxWidth={"90%"} padding={8} bg={"light.200"} rounded="md">
           <View style={{ justifyContent: "flex-start" }}>
             <View style={{ padding: 15 }}>
               <Heading size={"md"}>Notas de atualização</Heading>
@@ -49,7 +49,7 @@ export function Dashboard() {
             <View>
               <Text style={{ lineHeight: 20 }}>
                 🔥 Agora você pode verificar suas listas pelo celular, sem a
-                utilização de papeis para um mundo mais eco ♻️
+                utilização de papeis para um mundo mais eco. ♻️
               </Text>
             </View>
           </View>

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import * as Updates from "expo-updates";
-import { NativeBaseProvider } from "native-base";
+import { NativeBaseProvider, StatusBar } from "native-base";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Routes } from "./src/Routes";
 
@@ -21,6 +21,11 @@ export default function App() {
 
   return (
     <NativeBaseProvider>
+      <StatusBar
+        barStyle={"light-content"}
+        backgroundColor="transparent"
+        translucent
+      />
       <Routes />
     </NativeBaseProvider>
   );

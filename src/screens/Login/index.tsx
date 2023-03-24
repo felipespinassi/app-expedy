@@ -111,7 +111,7 @@ export function Login({ navigation }: any) {
           isLoading={loading}
           borderRadius={30}
           style={styles.button}
-          backgroundColor={"red.500"}
+          backgroundColor={"primary.900"}
           onPress={handleSubmit(onSubmit)}
         >
           Login

@@ -24,7 +24,7 @@ export function ItemsToPick({ navigation, route }: any) {
       <VStack>
         <Center maxWidth={"100%"} padding={20} bg={"light.200"} rounded="md">
           <Heading style={{ paddingBottom: 10 }} size={"sm"}>
-            Separando itens
+            Digite a quantidade
           </Heading>
           <View
             style={{
@@ -35,24 +35,19 @@ export function ItemsToPick({ navigation, route }: any) {
               justifyContent: "center",
             }}
           >
-            <Heading size={"xl"} style={{ paddingRight: 20 }}>
-              -
-            </Heading>
             <Input
+              backgroundColor={"light.100"}
+              placeholder="0"
               fontSize={25}
               w={{
                 base: "35%",
               }}
-              defaultValue="0"
               keyboardType="numeric"
             />
-            <Heading size={"xl"} style={{ paddingLeft: 20 }}>
-              +
-            </Heading>
           </View>
         </Center>
       </VStack>
-      <Button size={"lg"} style={{ marginTop: 50 }}>
+      <Button bg={"primary.900"} size={"lg"} style={{ marginTop: 50 }}>
         Confirmar
       </Button>
     </SafeAreaView>
