@@ -71,7 +71,7 @@ export function Login({ navigation }: any) {
             <Input
               onChangeText={(text) => setValue("companyCode", text)}
               size={"lg"}
-              _focus={{ borderColor: "red.500", bg: "white" }}
+              _focus={{ borderColor: "primary.900", bg: "white" }}
               marginTop={5}
               placeholder="Código"
               placeholderTextColor="#6b6b6b"
@@ -84,7 +84,7 @@ export function Login({ navigation }: any) {
               onChangeText={(text) => setValue("login", text)}
               autoCapitalize="none"
               size={"lg"}
-              _focus={{ borderColor: "red.500", bg: "white" }}
+              _focus={{ borderColor: "primary.900", bg: "white" }}
               marginTop={5}
               placeholder="Usuário"
               placeholderTextColor="#6b6b6b"
@@ -95,7 +95,7 @@ export function Login({ navigation }: any) {
             <Input
               onChangeText={(text) => setValue("password", text)}
               size={"lg"}
-              _focus={{ borderColor: "red.500", bg: "white" }}
+              _focus={{ borderColor: "primary.900", bg: "white" }}
               marginTop={5}
               placeholder="Senha"
               placeholderTextColor="#6b6b6b"

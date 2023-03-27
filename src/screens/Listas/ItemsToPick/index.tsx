@@ -47,7 +47,12 @@ export function ItemsToPick({ navigation, route }: any) {
           </View>
         </Center>
       </VStack>
-      <Button bg={"primary.900"} size={"lg"} style={{ marginTop: 50 }}>
+      <Button
+        onPress={() => navigation.goBack()}
+        bg={"primary.900"}
+        size={"lg"}
+        style={{ marginTop: 50 }}
+      >
         Confirmar
       </Button>
     </SafeAreaView>
