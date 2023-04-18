@@ -13,9 +13,9 @@ import {
 import { useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ListaProps } from "../../../../@types/ListaProps";
-import { getService } from "../../../../services/getService";
-import { ListSkelleton } from "../../../ListSkelleton";
+import { ListaProps } from "../../@types/ListaProps";
+import { getService } from "../../services/getService";
+import { ListSkelleton } from "../ListSkelleton";
 
 export default function ListaSeparacao({ navigation, route }: any) {
   const [data, setData] = useState([]);

@@ -1,4 +1,4 @@
-import ListaSeparacaoComponent from "../../components/Listas/components/ListaSeparacao";
+import ListaSeparacaoComponent from "../../components/ListaSeparacao";
 
 export function ListaSeparacao({ navigation, route }: any) {
   return <ListaSeparacaoComponent navigation={navigation} route={route} />;
