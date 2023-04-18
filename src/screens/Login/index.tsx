@@ -14,6 +14,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { createAccess_token } from "../../storage/createAccess_token";
 import { getAccess_token } from "../../storage/getAccess_token";
 import { KeyboardAvoidingView } from "react-native";
+import { createCompanyName } from "../../storage/createCompanyName";
+import { getCompanyName } from "../../storage/getCompanyName";
 
 export function Login({ navigation }: any) {
   const { register, setValue, handleSubmit } = useForm<Dataprops>();
@@ -27,8 +29,9 @@ export function Login({ navigation }: any) {
 
   async function verifyLogin() {
     const acces_token = await getAccess_token();
+    const companyName = await getCompanyName();
 
-    if (acces_token) {
+    if (acces_token && companyName) {
       navigation.navigate("Dashboard");
     }
   }
@@ -46,6 +49,7 @@ export function Login({ navigation }: any) {
       });
       navigation.navigate("Dashboard");
       await createAccess_token(response.data.access_token);
+      await createCompanyName(response.data.usuario.companyName);
 
       setLoading(false);
     } catch (error) {
