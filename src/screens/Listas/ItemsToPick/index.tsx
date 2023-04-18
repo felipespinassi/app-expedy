@@ -1,13 +1,14 @@
-import { View, Text } from "react-native";
+import { View, Text, KeyboardAvoidingView, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import React, { useState } from "react";
 import { Button, Center, Heading, Input, VStack } from "native-base";
 
 export function ItemsToPick({ navigation, route }: any) {
   return (
-    <SafeAreaView
+    <KeyboardAvoidingView
+      behavior={Platform.OS == "ios" ? "padding" : "height"}
       style={{
-        paddingTop: 20,
+        paddingTop: 40,
         marginHorizontal: 10,
         flex: 1,
         justifyContent: "space-around",
@@ -55,6 +56,6 @@ export function ItemsToPick({ navigation, route }: any) {
       >
         Confirmar
       </Button>
-    </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 }

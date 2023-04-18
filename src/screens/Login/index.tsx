@@ -1,4 +1,4 @@
-import { Alert, Image, SafeAreaView, View } from "react-native";
+import { Alert, Image, Platform, SafeAreaView, View } from "react-native";
 import { styles } from "./styles";
 import {
   FormControl,
@@ -13,6 +13,7 @@ import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { createAccess_token } from "../../storage/createAccess_token";
 import { getAccess_token } from "../../storage/getAccess_token";
+import { KeyboardAvoidingView } from "react-native";
 
 export function Login({ navigation }: any) {
   const { register, setValue, handleSubmit } = useForm<Dataprops>();
@@ -60,7 +61,10 @@ export function Login({ navigation }: any) {
     verifyLogin();
   }, []);
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS == "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
       <View style={styles.containerInput}>
         <Image
           style={styles.image}
@@ -117,6 +121,6 @@ export function Login({ navigation }: any) {
           Login
         </Button>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
