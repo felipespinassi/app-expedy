@@ -1,14 +1,28 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Dashboard } from "../screens/Dashboard";
 import { Listas } from "../screens/Listas";
+import { CustomDrawer } from "../components/CustomDrawer/CustomDrawer";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const { Navigator, Screen } = createDrawerNavigator();
 
 export function DrawerRoutes() {
   return (
-    <Navigator>
-      <Screen name="Bem vindo" component={Dashboard} />
-      <Screen name="Listas" component={Listas} />
+    <Navigator drawerContent={(props) => <CustomDrawer {...props} />}>
+      <Screen
+        options={{
+          drawerIcon: () => <Ionicons name="home-outline" size={18} />,
+        }}
+        name="Bem vindo"
+        component={Dashboard}
+      />
+      <Screen
+        options={{
+          drawerIcon: () => <Ionicons name="reader-outline" size={18} />,
+        }}
+        name="Listas"
+        component={Listas}
+      />
     </Navigator>
   );
 }

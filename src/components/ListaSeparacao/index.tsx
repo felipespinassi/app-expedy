@@ -1,14 +1,26 @@
-import { Button, Center, FlatList, Text, View, VStack } from "native-base";
+import {
+  Box,
+  Button,
+  Center,
+  CheckIcon,
+  FlatList,
+  HStack,
+  Slide,
+  Text,
+  View,
+  VStack,
+} from "native-base";
 import { useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ListaProps } from "../../../../@types/ListaProps";
-import { getService } from "../../../../services/getService";
-import { ListSkelleton } from "../../../ListSkelleton";
+import { ListaProps } from "../../@types/ListaProps";
+import { getService } from "../../services/getService";
+import { ListSkelleton } from "../ListSkelleton";
 
 export default function ListaSeparacao({ navigation, route }: any) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   async function fetchData() {
     const listaSelecionada = route.params.idERP_Lista;
@@ -65,7 +77,11 @@ export default function ListaSeparacao({ navigation, route }: any) {
                       paddingTop: 10,
                     }}
                   >
-                    <Button bg={"primary.900"} size={"xs"}>
+                    <Button
+                      onPress={() => setIsOpen(!isOpen)}
+                      bg={"primary.900"}
+                      size={"xs"}
+                    >
                       Confirmar todos
                     </Button>
                     <Button
@@ -77,6 +93,33 @@ export default function ListaSeparacao({ navigation, route }: any) {
                     </Button>
                   </View>
                 </Center>
+
+                <Slide duration={500} in={isOpen} placement="top">
+                  <Box
+                    w="100%"
+                    position="absolute"
+                    p="2"
+                    borderRadius="xs"
+                    bg="emerald.100"
+                    alignItems="center"
+                    justifyContent="center"
+                    _dark={{
+                      bg: "emerald.200",
+                    }}
+                    safeArea
+                  >
+                    <HStack space={2}>
+                      <CheckIcon
+                        size="4"
+                        color="emerald.600"
+                        mt="1"
+                        _dark={{
+                          color: "emerald.700",
+                        }}
+                      />
+                    </HStack>
+                  </Box>
+                </Slide>
               </VStack>
             )}
           />

@@ -46,6 +46,7 @@ export function Listas({ navigation, route }: any) {
     <>
       {!loading ? (
         <FlatList
+          ListEmptyComponent={<Text>Nenhuma lista encontrada</Text>}
           showsVerticalScrollIndicator={false}
           data={listas}
           keyExtractor={(item: ListaProps) => item.idERP_Lista}

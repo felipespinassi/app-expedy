@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Listas } from "../screens/Listas";
-import { ItemsToPick } from "../screens/Listas/ItemsToPick";
-import { ListaSeparacao } from "../screens/Listas/ListaSeparacao";
+import { ItemsToPick } from "../screens/ItemsToPick";
+import { ListaSeparacao } from "../screens/ListaSeparacao";
 import { Login } from "../screens/Login";
 import { DrawerRoutes } from "./drawer.routes";
 
