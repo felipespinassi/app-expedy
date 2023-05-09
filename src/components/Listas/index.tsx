@@ -25,7 +25,7 @@ export function Listas({ navigation, route }: any) {
 
     try {
       const response: any = await getService("expedicao/lista", {
-        pageSize: 50,
+        pageSize: 10,
       });
       setListas(response.data.listas);
       setLoading(false);
