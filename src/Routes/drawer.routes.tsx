@@ -3,6 +3,7 @@ import { Dashboard } from "../screens/Dashboard";
 import { Listas } from "../screens/Listas";
 import { CustomDrawer } from "../components/CustomDrawer/CustomDrawer";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import Pedidos from "../screens/Pedidos/Pedidos";
 
 const { Navigator, Screen } = createDrawerNavigator();
 
@@ -18,9 +19,30 @@ export function DrawerRoutes() {
       />
       <Screen
         options={{
+          drawerIcon: () => <Ionicons name="share-social-outline" size={18} />,
+        }}
+        name="Integrações"
+        component={Pedidos}
+      />
+      <Screen
+        options={{
+          drawerIcon: () => <Ionicons name="cart-outline" size={18} />,
+        }}
+        name="Pedidos"
+        component={Pedidos}
+      />
+      <Screen
+        options={{
           drawerIcon: () => <Ionicons name="reader-outline" size={18} />,
         }}
-        name="Listas"
+        name="Notas fiscais"
+        component={Listas}
+      />
+      <Screen
+        options={{
+          drawerIcon: () => <Ionicons name="cube-outline" size={18} />,
+        }}
+        name="Piking "
         component={Listas}
       />
     </Navigator>
