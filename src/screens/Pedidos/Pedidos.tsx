@@ -1,8 +1,9 @@
 import { Text, TouchableOpacity } from "react-native";
 import React, { Component, useEffect, useState } from "react";
-import { Box, FlatList, Tag, View } from "native-base";
+import { Box, Divider, FlatList, Tag, View } from "native-base";
 import { getService } from "../../services/getService";
 import { Heading } from "native-base";
+import { statusHub } from "../../Objects/statusHub";
 
 export default function Pedidos() {
   const [pedidos, setPedidos] = useState([]);
@@ -17,16 +18,16 @@ export default function Pedidos() {
   useEffect(() => {
     fetchData();
   }, []);
-
   return (
     <FlatList
       showsVerticalScrollIndicator={false}
       style={{ width: "100%" }}
       data={pedidos}
       renderItem={({ item }: any) => (
-        <TouchableOpacity onPress={() => console.log(item)}>
+        <TouchableOpacity
+          onPress={() => console.log(statusHub[item.status_hub])}
+        >
           <View
-            backgroundColor={"light.200"}
             style={{
               height: 120,
               marginBottom: 5,
@@ -40,17 +41,8 @@ export default function Pedidos() {
               <Heading fontWeight={500} size="sm">
                 {item.integracao.name}
               </Heading>
-              <Box
-                px={2}
-                py={1}
-                rounded="xl"
-                _text={{
-                  color: "white",
-                }}
-                bg={"gray.500"}
-              >
-                {item.status_hub}
-              </Box>
+
+              {statusHub[item.status_hub]?.box}
             </View>
 
             <View
@@ -63,6 +55,7 @@ export default function Pedidos() {
               <Text>R$ {item.total}</Text>
             </View>
           </View>
+          <Divider />
         </TouchableOpacity>
       )}
     />
