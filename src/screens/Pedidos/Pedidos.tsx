@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity } from "react-native";
 import React, { Component, useEffect, useState } from "react";
-import { FlatList, View } from "native-base";
+import { Box, FlatList, Tag, View } from "native-base";
 import { getService } from "../../services/getService";
 import { Heading } from "native-base";
 
@@ -24,7 +24,7 @@ export default function Pedidos() {
       style={{ width: "100%" }}
       data={pedidos}
       renderItem={({ item }: any) => (
-        <TouchableOpacity onPress={() => console.log(item.total)}>
+        <TouchableOpacity onPress={() => console.log(item)}>
           <View
             backgroundColor={"light.200"}
             style={{
@@ -34,9 +34,22 @@ export default function Pedidos() {
               justifyContent: "space-around",
             }}
           >
-            <Heading fontWeight={500} size="sm">
-              {item.integracao.name}
-            </Heading>
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
+            >
+              <Heading fontWeight={500} size="sm">
+                {item.integracao.name}
+              </Heading>
+              <Box
+                _text={{
+                  color: "white",
+                }}
+                bg={"gray.500"}
+              >
+                {item.status_hub}
+              </Box>
+            </View>
+
             <View
               style={{
                 flexDirection: "row",
@@ -49,6 +62,6 @@ export default function Pedidos() {
           </View>
         </TouchableOpacity>
       )}
-    ></FlatList>
+    />
   );
 }
