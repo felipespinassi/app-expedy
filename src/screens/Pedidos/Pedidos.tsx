@@ -4,35 +4,23 @@ import { Box, Checkbox, Divider, FlatList, Tag, View } from "native-base";
 import { getService } from "../../services/getService";
 import { Heading } from "native-base";
 import AntDesign from "react-native-vector-icons/AntDesign";
-
+import { useQuery } from "react-query";
 import { statusHub } from "../../Objects/statusHub";
 import { OrderSkelleton } from "../../components/OrderSkelleton/OrderSkelleton";
 
 export default function Pedidos() {
-  const [pedidos, setPedidos] = useState([]);
-  const [loading, setLoading] = useState(false);
-  async function fetchData() {
-    try {
-      setLoading(true);
-      const response: any = await getService("front/orders/simples", {
-        pageSize: 100,
-      });
+  const { data, isLoading, error }: any = useQuery(
+    "Orders",
+    async () => await getService("front/orders/simples", {})
+  );
 
-      setPedidos(response.data.pedidos);
-      setLoading(false);
-    } catch (error) {}
-  }
-
-  useEffect(() => {
-    fetchData();
-  }, []);
   return (
     <View style={{ alignItems: "center" }}>
-      {!loading ? (
+      {!isLoading ? (
         <FlatList
           showsVerticalScrollIndicator={false}
           style={{ width: "90%" }}
-          data={pedidos}
+          data={data?.data?.pedidos}
           renderItem={({ item }: any) => (
             <TouchableOpacity>
               <View

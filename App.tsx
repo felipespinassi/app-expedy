@@ -3,7 +3,9 @@ import * as Updates from "expo-updates";
 import { NativeBaseProvider, StatusBar } from "native-base";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Routes } from "./src/Routes";
+import { QueryClient, QueryClientProvider } from "react-query";
 
+const queryClient = new QueryClient();
 const Stack = createNativeStackNavigator();
 
 const reactUpdates = async () => {
@@ -20,13 +22,15 @@ export default function App() {
   }, []);
 
   return (
-    <NativeBaseProvider>
-      <StatusBar
-        barStyle={"light-content"}
-        backgroundColor="transparent"
-        translucent
-      />
-      <Routes />
-    </NativeBaseProvider>
+    <QueryClientProvider client={queryClient}>
+      <NativeBaseProvider>
+        <StatusBar
+          barStyle={"light-content"}
+          backgroundColor="transparent"
+          translucent
+        />
+        <Routes />
+      </NativeBaseProvider>
+    </QueryClientProvider>
   );
 }
