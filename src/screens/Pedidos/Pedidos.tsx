@@ -35,45 +35,33 @@ export default function Pedidos() {
                 height: 120,
                 marginBottom: 5,
                 padding: 5,
-                justifyContent: "space-around",
+                justifyContent: "space-between",
+                flexDirection: "row",
               }}
             >
-              <Text>Data: {"26/06/2023"}</Text>
               <View
                 style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
+                  justifyContent: "space-around",
+                  width: "70%",
                 }}
               >
-                {/* <Checkbox
-                  onChange={(e) => console.log(e)}
-                  size={"md"}
-                  value={"pedidos"}
-                > */}
                 <Heading fontWeight={500} size="xs">
                   {item.integracao.name}
                 </Heading>
-                {/* </Checkbox> */}
-                {statusHub[item.status_hub]?.box}
+                <Text>Data: {"26/06/2023"}</Text>
+
+                <Text>{item.Customer.name}</Text>
               </View>
 
               <View
                 style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
+                  justifyContent: "space-around",
                   alignItems: "center",
                 }}
               >
-                <Text>{item.Customer.name}</Text>
-
+                {statusHub[item.status_hub]?.box}
                 <View style={{ flexDirection: "row" }}>
-                  <AntDesign
-                    style={{ marginRight: 15 }}
-                    color={"green"}
-                    name="exclefile1"
-                    size={22}
-                  />
+                  <AntDesign color={"green"} name="exclefile1" size={22} />
 
                   <AntDesign color={"green"} name="filetext1" size={22} />
                 </View>
