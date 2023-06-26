@@ -41,6 +41,9 @@ export default function Pedidos() {
                 {item.integracao.name}
               </Heading>
               <Box
+                px={2}
+                py={1}
+                rounded="xl"
                 _text={{
                   color: "white",
                 }}
