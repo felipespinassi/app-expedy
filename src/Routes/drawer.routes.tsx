@@ -17,13 +17,13 @@ export function DrawerRoutes() {
         name="Bem vindo"
         component={Dashboard}
       />
-      <Screen
+      {/* <Screen
         options={{
           drawerIcon: () => <Ionicons name="share-social-outline" size={18} />,
         }}
         name="Integrações"
         component={Pedidos}
-      />
+      /> */}
       <Screen
         options={{
           drawerIcon: () => <Ionicons name="cart-outline" size={18} />,
@@ -31,13 +31,13 @@ export function DrawerRoutes() {
         name="Pedidos"
         component={Pedidos}
       />
-      <Screen
+      {/* <Screen
         options={{
           drawerIcon: () => <Ionicons name="reader-outline" size={18} />,
         }}
         name="Notas fiscais"
         component={Listas}
-      />
+      /> */}
       <Screen
         options={{
           drawerIcon: () => <Ionicons name="cube-outline" size={18} />,

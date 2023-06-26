@@ -7,7 +7,7 @@ export const statusHub: any = {
     name: "Sem vinculo",
     box: (
       <Box
-        px={2}
+        px={3}
         py={1}
         rounded="xl"
         _text={{
@@ -25,7 +25,7 @@ export const statusHub: any = {
     name: "Aprovado",
     box: (
       <Box
-        px={2}
+        px={3}
         py={1}
         rounded="xl"
         _text={{
@@ -43,7 +43,7 @@ export const statusHub: any = {
     name: "Pendente",
     box: (
       <Box
-        px={2}
+        px={3}
         py={1}
         rounded="xl"
         _text={{
@@ -61,7 +61,7 @@ export const statusHub: any = {
     name: "Faturado",
     box: (
       <Box
-        px={2}
+        px={3}
         py={1}
         rounded="xl"
         _text={{
@@ -80,7 +80,7 @@ export const statusHub: any = {
     name: "Cancelado",
     box: (
       <Box
-        px={2}
+        px={3}
         py={1}
         rounded="xl"
         _text={{
@@ -98,7 +98,7 @@ export const statusHub: any = {
     name: "Em separação",
     box: (
       <Box
-        px={2}
+        px={3}
         py={1}
         rounded="xl"
         _text={{
@@ -116,7 +116,7 @@ export const statusHub: any = {
     name: "Tem mensagem",
     box: (
       <Box
-        px={2}
+        px={3}
         py={1}
         rounded="xl"
         _text={{
@@ -134,7 +134,7 @@ export const statusHub: any = {
     name: "Expedir",
     box: (
       <Box
-        px={2}
+        px={3}
         py={1}
         rounded="xl"
         _text={{
@@ -152,7 +152,7 @@ export const statusHub: any = {
     name: "Completo",
     box: (
       <Box
-        px={2}
+        px={3}
         py={1}
         rounded="xl"
         _text={{
