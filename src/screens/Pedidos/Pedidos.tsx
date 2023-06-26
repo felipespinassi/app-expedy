@@ -2,6 +2,7 @@ import { Text, TouchableOpacity } from "react-native";
 import React, { Component, useEffect, useState } from "react";
 import { FlatList, View } from "native-base";
 import { getService } from "../../services/getService";
+import { Heading } from "native-base";
 
 export default function Pedidos() {
   const [pedidos, setPedidos] = useState([]);
@@ -19,14 +20,32 @@ export default function Pedidos() {
 
   return (
     <FlatList
+      showsVerticalScrollIndicator={false}
+      style={{ width: "100%" }}
       data={pedidos}
-      renderItem={({ item }) => (
-        <TouchableOpacity onPress={() => console.log(item)}>
+      renderItem={({ item }: any) => (
+        <TouchableOpacity onPress={() => console.log(item.total)}>
           <View
             backgroundColor={"light.200"}
-            style={{ height: 100, marginBottom: 5 }}
+            style={{
+              height: 120,
+              marginBottom: 5,
+              padding: 5,
+              justifyContent: "space-around",
+            }}
           >
-            <Text>felipinho</Text>
+            <Heading fontWeight={500} size="sm">
+              {item.integracao.name}
+            </Heading>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <Text>{item.Customer.name}</Text>
+              <Text>R$ {item.total}</Text>
+            </View>
           </View>
         </TouchableOpacity>
       )}
