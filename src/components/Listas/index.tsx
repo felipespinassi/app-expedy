@@ -12,16 +12,11 @@ import { useEffect, useState } from "react";
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { ListSkelleton } from "../ListSkelleton";
-import { getService } from "../../../services/getService";
 import { listProgress } from "./utils/listProgress";
+import { getService } from "../../services/getService";
+import { ListaProps } from "../../@types/ListaProps";
 
-type Props = {
-  idERP_Lista: string;
-  pedidos: [];
-  usuario: string;
-};
-
-export function ListasSeparacao({ navigation }: any) {
+export function Listas({ navigation, route }: any) {
   // const navigation = useNavigation();
   const [listas, setListas] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -29,10 +24,11 @@ export function ListasSeparacao({ navigation }: any) {
     setLoading(true);
 
     try {
-      const response: any = await getService("expedicao/lista", {});
+      const response: any = await getService("expedicao/lista", {
+        pageSize: 10,
+      });
       setListas(response.data.listas);
       setLoading(false);
-      console.log(response.data);
     } catch (error) {
       alert(error);
     }
@@ -41,9 +37,8 @@ export function ListasSeparacao({ navigation }: any) {
     fetchData();
   }, []);
 
-  const firstLetterUserName = (item: any) => {
-    const firstLetter = item.usuario.split("")[0];
-
+  const firstLetterUserName = (Lista: ListaProps) => {
+    const firstLetter = Lista.usuario.split("")[0];
     return firstLetter;
   };
 
@@ -51,13 +46,14 @@ export function ListasSeparacao({ navigation }: any) {
     <>
       {!loading ? (
         <FlatList
+          ListEmptyComponent={<Text>Nenhuma lista encontrada</Text>}
           showsVerticalScrollIndicator={false}
           data={listas}
-          keyExtractor={(item: Props) => item.idERP_Lista}
+          keyExtractor={(item: ListaProps) => item.idERP_Lista}
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("Lista", item);
+                navigation.navigate("ListaSeparacao", item);
               }}
             >
               <VStack style={styles.container}>

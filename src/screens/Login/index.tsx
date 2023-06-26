@@ -1,4 +1,4 @@
-import { Alert, Image, SafeAreaView, View } from "react-native";
+import { Alert, Image, Platform, SafeAreaView, View } from "react-native";
 import { styles } from "./styles";
 import {
   FormControl,
@@ -13,6 +13,9 @@ import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { createAccess_token } from "../../storage/createAccess_token";
 import { getAccess_token } from "../../storage/getAccess_token";
+import { KeyboardAvoidingView } from "react-native";
+import { createCompanyName } from "../../storage/createCompanyName";
+import { getCompanyName } from "../../storage/getCompanyName";
 
 export function Login({ navigation }: any) {
   const { register, setValue, handleSubmit } = useForm<Dataprops>();
@@ -26,8 +29,9 @@ export function Login({ navigation }: any) {
 
   async function verifyLogin() {
     const acces_token = await getAccess_token();
+    const companyName = await getCompanyName();
 
-    if (acces_token) {
+    if (acces_token && companyName) {
       navigation.navigate("Dashboard");
     }
   }
@@ -45,6 +49,7 @@ export function Login({ navigation }: any) {
       });
       navigation.navigate("Dashboard");
       await createAccess_token(response.data.access_token);
+      await createCompanyName(response.data.usuario.companyName);
 
       setLoading(false);
     } catch (error) {
@@ -60,7 +65,10 @@ export function Login({ navigation }: any) {
     verifyLogin();
   }, []);
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS == "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
       <View style={styles.containerInput}>
         <Image
           style={styles.image}
@@ -71,7 +79,7 @@ export function Login({ navigation }: any) {
             <Input
               onChangeText={(text) => setValue("companyCode", text)}
               size={"lg"}
-              _focus={{ borderColor: "red.500", bg: "white" }}
+              _focus={{ borderColor: "primary.900", bg: "white" }}
               marginTop={5}
               placeholder="Código"
               placeholderTextColor="#6b6b6b"
@@ -84,7 +92,7 @@ export function Login({ navigation }: any) {
               onChangeText={(text) => setValue("login", text)}
               autoCapitalize="none"
               size={"lg"}
-              _focus={{ borderColor: "red.500", bg: "white" }}
+              _focus={{ borderColor: "primary.900", bg: "white" }}
               marginTop={5}
               placeholder="Usuário"
               placeholderTextColor="#6b6b6b"
@@ -95,7 +103,7 @@ export function Login({ navigation }: any) {
             <Input
               onChangeText={(text) => setValue("password", text)}
               size={"lg"}
-              _focus={{ borderColor: "red.500", bg: "white" }}
+              _focus={{ borderColor: "primary.900", bg: "white" }}
               marginTop={5}
               placeholder="Senha"
               placeholderTextColor="#6b6b6b"
@@ -111,12 +119,12 @@ export function Login({ navigation }: any) {
           isLoading={loading}
           borderRadius={30}
           style={styles.button}
-          backgroundColor={"red.500"}
+          backgroundColor={"primary.900"}
           onPress={handleSubmit(onSubmit)}
         >
           Login
         </Button>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }

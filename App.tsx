@@ -1,15 +1,8 @@
-import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import * as Updates from "expo-updates";
-import { Login } from "./src/screens/Login";
-import { extendTheme, NativeBaseProvider, themeTools } from "native-base";
-import { NavigationContainer } from "@react-navigation/native";
+import { NativeBaseProvider, StatusBar } from "native-base";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Dashboard } from "./src/screens/Dashboard";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import { DrawerNavigation } from "./Components/DrawerNavigation";
-import { Lista } from "./src/screens/ListasSeparacao/Lista";
-import { ListasSeparacao } from "./src/components/ListasSeparacao";
+import { Routes } from "./src/Routes";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,14 +21,12 @@ export default function App() {
 
   return (
     <NativeBaseProvider>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Dashboard" component={DrawerNavigation} />
-          <Stack.Screen name="ListasSeparacao" component={ListasSeparacao} />
-          <Stack.Screen name="Lista" component={Lista} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <StatusBar
+        barStyle={"light-content"}
+        backgroundColor="transparent"
+        translucent
+      />
+      <Routes />
     </NativeBaseProvider>
   );
 }
