@@ -4,12 +4,12 @@ import { Box, Checkbox, Divider, FlatList, Tag, View } from "native-base";
 import { getService } from "../../services/getService";
 import { Heading } from "native-base";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import { useQuery, useMutation } from "react-query";
+import { useQuery } from "react-query";
 import { statusHub } from "../../Objects/statusHub";
 import { OrderSkelleton } from "../../components/OrderSkelleton/OrderSkelleton";
 import moment from "moment-timezone";
 
-export default function Pedidos() {
+export default function Pedidos({ navigation }: any) {
   const { data, isLoading, refetch }: any = useQuery(
     "Orders",
     async () => await getService("front/orders/simples", { pageSize: 100 })
@@ -24,7 +24,11 @@ export default function Pedidos() {
           style={{ width: "90%" }}
           data={data?.data?.pedidos}
           renderItem={({ item }: any) => (
-            <TouchableOpacity onPress={() => console.log(item.createdAt)}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("PedidoId", item.id);
+              }}
+            >
               <View
                 style={{
                   height: 120,

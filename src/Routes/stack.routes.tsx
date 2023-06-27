@@ -4,6 +4,7 @@ import { ItemsToPick } from "../screens/ItemsToPick";
 import { ListaSeparacao } from "../screens/ListaSeparacao";
 import { Login } from "../screens/Login";
 import { DrawerRoutes } from "./drawer.routes";
+import { PedidoId } from "../screens/Pedidos/PedidoId/PedidoId";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -15,6 +16,7 @@ export function StackRoutes() {
       <Screen name="Listas" component={Listas} />
       <Screen name="ListaSeparacao" component={ListaSeparacao} />
       <Screen name="Produtos" component={ItemsToPick} />
+      <Screen name="PedidoId" component={PedidoId} />
     </Navigator>
   );
 }
