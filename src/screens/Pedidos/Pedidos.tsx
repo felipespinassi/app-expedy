@@ -4,20 +4,21 @@ import { Box, Checkbox, Divider, FlatList, Tag, View } from "native-base";
 import { getService } from "../../services/getService";
 import { Heading } from "native-base";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import { useQuery } from "react-query";
+import { useQuery, useMutation } from "react-query";
 import { statusHub } from "../../Objects/statusHub";
 import { OrderSkelleton } from "../../components/OrderSkelleton/OrderSkelleton";
 
 export default function Pedidos() {
-  const { data, isLoading, error }: any = useQuery(
+  const { data, isLoading, refetch }: any = useQuery(
     "Orders",
-    async () => await getService("front/orders/simples", {})
+    async () => await getService("front/orders/simples", { pageSize: 100 })
   );
-
   return (
     <View style={{ alignItems: "center" }}>
       {!isLoading ? (
         <FlatList
+          refreshing={isLoading}
+          onRefresh={() => refetch()}
           showsVerticalScrollIndicator={false}
           style={{ width: "90%" }}
           data={data?.data?.pedidos}
@@ -41,7 +42,7 @@ export default function Pedidos() {
                   <Heading fontWeight={500} size="xs">
                     {item.integracao.name}
                   </Heading>
-                  <Text>Data: {"26/06/2023"}</Text>
+                  <Text>Data: {item.createdAt}</Text>
 
                   <Text>{item.Customer.name}</Text>
                 </View>
