@@ -7,6 +7,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import { useQuery, useMutation } from "react-query";
 import { statusHub } from "../../Objects/statusHub";
 import { OrderSkelleton } from "../../components/OrderSkelleton/OrderSkelleton";
+import moment from "moment-timezone";
 
 export default function Pedidos() {
   const { data, isLoading, refetch }: any = useQuery(
@@ -23,7 +24,7 @@ export default function Pedidos() {
           style={{ width: "90%" }}
           data={data?.data?.pedidos}
           renderItem={({ item }: any) => (
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => console.log(item.createdAt)}>
               <View
                 style={{
                   height: 120,
@@ -42,7 +43,11 @@ export default function Pedidos() {
                   <Heading fontWeight={500} size="xs">
                     {item.integracao.name}
                   </Heading>
-                  <Text>Data: {item.createdAt}</Text>
+                  <Text>
+                    Data:
+                    {moment(item.date).utc(true).format("DD/MM/YYYY")}:
+                    {moment(item.date).utc(true).format("HH:mm")}
+                  </Text>
 
                   <Text>{item.Customer.name}</Text>
                 </View>

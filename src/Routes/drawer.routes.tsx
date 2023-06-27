@@ -42,7 +42,7 @@ export function DrawerRoutes() {
         options={{
           drawerIcon: () => <Ionicons name="cube-outline" size={18} />,
         }}
-        name="Piking "
+        name="Picking "
         component={Listas}
       />
     </Navigator>
