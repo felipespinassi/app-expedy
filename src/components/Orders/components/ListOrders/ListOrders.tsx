@@ -43,7 +43,7 @@ export default function ListOrders({ navigation, item }: any) {
           style={{
             justifyContent: "space-around",
             alignItems: "center",
-            width: 140,
+            width: 150,
           }}
         >
           {statusHub[item.status_hub]?.box}

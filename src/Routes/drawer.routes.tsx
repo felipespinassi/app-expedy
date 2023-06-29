@@ -4,6 +4,8 @@ import { Listas } from "../screens/Listas";
 import { CustomDrawer } from "../components/CustomDrawer/CustomDrawer";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Pedidos from "../screens/Pedidos/Pedidos";
+import { Button, Text } from "native-base";
+import { TouchableOpacity } from "react-native";
 
 const { Navigator, Screen } = createDrawerNavigator();
 
