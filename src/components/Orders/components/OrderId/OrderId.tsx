@@ -26,11 +26,11 @@ export function OrderId({ route }: any) {
     <SafeAreaView
       style={{
         alignItems: "center",
-        justifyContent: "space-around",
+        marginTop: 10,
         flex: 1,
       }}
     >
-      <Heading style={{ marginBottom: 20 }} fontWeight={500} size={"md"}>
+      <Heading style={{ marginBottom: 10 }} fontWeight={500} size={"md"}>
         Pedido:
         {route.params}
       </Heading>
