@@ -5,12 +5,17 @@ import { ListaSeparacao } from "../screens/ListaSeparacao";
 import { Login } from "../screens/Login";
 import { DrawerRoutes } from "./drawer.routes";
 import { PedidoId } from "../screens/Pedidos/PedidoId/PedidoId";
+import FiltersDrawer from "../components/Orders/components/OrderId/components/FiltersDrawer/FiltersDrawer";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
 export function StackRoutes() {
   return (
-    <Navigator screenOptions={{ headerShown: false }}>
+    <Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Screen name="Login" component={Login} />
       <Screen name="Dashboard" component={DrawerRoutes} />
       <Screen name="Listas" component={Listas} />

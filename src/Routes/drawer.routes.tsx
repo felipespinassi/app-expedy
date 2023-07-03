@@ -6,6 +6,8 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import Pedidos from "../screens/Pedidos/Pedidos";
 import { Button, Text } from "native-base";
 import { TouchableOpacity } from "react-native";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import FiltersDrawer from "../components/Orders/components/OrderId/components/FiltersDrawer/FiltersDrawer";
 
 const { Navigator, Screen } = createDrawerNavigator();
 
@@ -29,6 +31,18 @@ export function DrawerRoutes() {
       <Screen
         options={{
           drawerIcon: () => <Ionicons name="cart-outline" size={18} />,
+          headerRight: () => (
+            <TouchableOpacity
+              style={{
+                paddingRight: 20,
+                flexDirection: "row",
+                paddingVertical: 10,
+              }}
+            >
+              <Text>Filtros</Text>
+              <AntDesign name="filter" size={22} />
+            </TouchableOpacity>
+          ),
         }}
         name="Pedidos"
         component={Pedidos}
@@ -50,3 +64,15 @@ export function DrawerRoutes() {
     </Navigator>
   );
 }
+
+const RightDrawer = createDrawerNavigator();
+
+export const RightDrawerScreen = () => {
+  return (
+    <RightDrawer.Navigator
+      screenOptions={{ drawerPosition: "right", headerShown: true }}
+    >
+      <RightDrawer.Screen name="HomeDrawer" component={FiltersDrawer} />
+    </RightDrawer.Navigator>
+  );
+};
