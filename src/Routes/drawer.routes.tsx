@@ -8,6 +8,7 @@ import { Button, Text } from "native-base";
 import { TouchableOpacity } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import FiltersDrawer from "../components/Orders/components/OrderId/components/FiltersDrawer/FiltersDrawer";
+import TabRoutes from "./tab.routes";
 
 const { Navigator, Screen } = createDrawerNavigator();
 
@@ -15,11 +16,12 @@ export function DrawerRoutes() {
   return (
     <Navigator drawerContent={(props) => <CustomDrawer {...props} />}>
       <Screen
+      
         options={{
           drawerIcon: () => <Ionicons name="home-outline" size={18} />,
         }}
         name="Bem vindo"
-        component={Dashboard}
+        component={TabRoutes}
       />
       {/* <Screen
         options={{

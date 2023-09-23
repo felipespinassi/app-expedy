@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList, View, Text } from "native-base";
+import { FlatList, View, Text, Input } from "native-base";
 import { getService } from "../../services/getService";
 import { useQuery } from "react-query";
 import { OrderSkelleton } from "../../components/OrderSkelleton/OrderSkelleton";
@@ -14,6 +14,12 @@ export default function Orders({ navigation }: any) {
   );
   return (
     <View style={{ alignItems: "center" }}>
+      <Input
+        marginY={2}
+        width={"80"}
+        size={"lg"}
+        placeholder="Buscar pedido..."
+      />
       {!isLoading ? (
         <FlatList
           refreshing={isLoading}

@@ -6,6 +6,7 @@ import { Login } from "../screens/Login";
 import { DrawerRoutes } from "./drawer.routes";
 import { PedidoId } from "../screens/Pedidos/PedidoId/PedidoId";
 import FiltersDrawer from "../components/Orders/components/OrderId/components/FiltersDrawer/FiltersDrawer";
+import TabRoutes from "./tab.routes";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
