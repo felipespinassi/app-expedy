@@ -21,7 +21,7 @@ export function DrawerRoutes() {
           drawerIcon: () => <Ionicons name="home-outline" size={18} />,
         }}
         name="Bem vindo"
-        component={TabRoutes}
+        component={Dashboard}
       />
       {/* <Screen
         options={{

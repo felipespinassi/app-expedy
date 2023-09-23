@@ -18,7 +18,7 @@ export function StackRoutes() {
       }}
     >
       <Screen name="Login" component={Login} />
-      <Screen name="Dashboard" component={DrawerRoutes} />
+      <Screen name="Dashboard" component={TabRoutes} />
       <Screen name="Listas" component={Listas} />
       <Screen name="ListaSeparacao" component={ListaSeparacao} />
       <Screen name="Produtos" component={ItemsToPick} />

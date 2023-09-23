@@ -29,6 +29,7 @@ export default function TabRoutes() {
         component={Pedidos}
       />
       <Tab.Screen name="Listas" component={Listas} />
+      <Tab.Screen name="Mais" component={DrawerRoutes} />
     </Tab.Navigator>
   );
 }
