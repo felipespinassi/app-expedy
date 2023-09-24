@@ -6,6 +6,7 @@ import { OrderSkelleton } from "../../components/OrderSkelleton/OrderSkelleton";
 import ListOrders from "./components/ListOrders/ListOrders";
 import { TouchableOpacity } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Orders({ navigation }: any) {
   const { data, isLoading, refetch }: any = useQuery(
@@ -13,7 +14,7 @@ export default function Orders({ navigation }: any) {
     async () => await getService("front/orders/simples", { pageSize: 100 })
   );
   return (
-    <View style={{ alignItems: "center" }}>
+    <SafeAreaView style={{ alignItems: "center" }}>
       <Input
         marginY={2}
         width={"80"}
@@ -34,6 +35,6 @@ export default function Orders({ navigation }: any) {
       ) : (
         <OrderSkelleton />
       )}
-    </View>
+    </SafeAreaView>
   );
 }
