@@ -7,10 +7,9 @@ import {
   View,
   VStack,
 } from "native-base";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { SafeAreaView, TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
 import { styles } from "./styles";
-import { useNavigation } from "@react-navigation/native";
 import { ListSkelleton } from "../ListSkelleton";
 import { listProgress } from "./utils/listProgress";
 import { getService } from "../../services/getService";
@@ -43,7 +42,7 @@ export function Listas({ navigation, route }: any) {
   };
 
   return (
-    <>
+    <SafeAreaView>
       {!loading ? (
         <FlatList
           ListEmptyComponent={<Text>Nenhuma lista encontrada</Text>}
@@ -94,6 +93,6 @@ export function Listas({ navigation, route }: any) {
       ) : (
         <ListSkelleton />
       )}
-    </>
+    </SafeAreaView>
   );
 }

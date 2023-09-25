@@ -16,6 +16,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { ListaProps } from "../../@types/ListaProps";
 import { getService } from "../../services/getService";
 import { ListSkelleton } from "../ListSkelleton";
+import ArrowBack from "../ArrowBack/ArrowBack";
 
 export default function ListaSeparacao({ navigation, route }: any) {
   const [data, setData] = useState([]);
@@ -40,9 +41,14 @@ export default function ListaSeparacao({ navigation, route }: any) {
     <SafeAreaView
       style={{ paddingTop: 10, marginHorizontal: 10, paddingBottom: 25 }}
     >
-      <Text style={{ marginBottom: 5 }}>
-        Lista numero: {route.params.idERP_Lista}
-      </Text>
+      <View style={{ justifyContent: "space-between" }}>
+        <ArrowBack navigation={navigation} />
+
+        <Text style={{ marginBottom: 5, textAlign: "center" }}>
+          Lista numero: {route.params.idERP_Lista}
+        </Text>
+      </View>
+
       {!loading ? (
         <>
           <FlatList

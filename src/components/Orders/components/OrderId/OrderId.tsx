@@ -7,8 +7,11 @@ import { getService } from "../../../../services/getService";
 import { OrderSkelleton } from "../../../OrderSkelleton/OrderSkelleton";
 import DataCustomer from "./components/DataCustomer/DataCustomer";
 import DataProductsSold from "./components/DataProductsSold/DataProductsSold";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import ArrowBack from "../../../ArrowBack/ArrowBack";
 
-export function OrderId({ route }: any) {
+export function OrderId({ route, navigation }: any) {
   const { data, isLoading, refetch, isFetching }: any = useQuery(
     "OrderComplete",
     async () => await getService(`front/orders/complete/${route.params}`, {})
@@ -30,6 +33,7 @@ export function OrderId({ route }: any) {
         flex: 1,
       }}
     >
+      <ArrowBack navigation={navigation} />
       <Heading style={{ marginBottom: 10 }} fontWeight={500} size={"md"}>
         Pedido:
         {route.params}
