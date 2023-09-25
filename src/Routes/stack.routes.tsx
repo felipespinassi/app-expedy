@@ -4,7 +4,7 @@ import { ItemsToPick } from "../screens/ItemsToPick";
 import { ListaSeparacao } from "../screens/ListaSeparacao";
 import { Login } from "../screens/Login";
 import { DrawerRoutes } from "./drawer.routes";
-import { PedidoId } from "../screens/Pedidos/PedidoId/PedidoId";
+import { PedidoId } from "../screens/PedidoId/PedidoId";
 import FiltersDrawer from "../components/Orders/components/OrderId/components/FiltersDrawer/FiltersDrawer";
 import TabRoutes from "./tab.routes";
 

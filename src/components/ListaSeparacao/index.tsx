@@ -56,8 +56,8 @@ export default function ListaSeparacao({ navigation, route }: any) {
             data={data}
             keyExtractor={(item: ListaProps) => item.product_id}
             renderItem={({ item }) => (
-              <VStack style={{ marginVertical: 5 }}>
-                <Center padding={3} bg={"light.200"} w="100%" rounded="md">
+              <VStack style={{ marginVertical: 5 }} shadow={1}>
+                <Center padding={3} bg={"light.50"} w="100%" rounded="md">
                   <View
                     style={{
                       flexDirection: "row",

@@ -14,18 +14,27 @@ export default function Orders({ navigation }: any) {
   );
   return (
     <SafeAreaView style={{ alignItems: "center" }}>
-      <Input
-        marginY={2}
-        width={"80"}
-        size={"lg"}
-        placeholder="Buscar pedido..."
-      />
+      <TouchableOpacity>
+        <View
+          style={{
+            justifyContent: "flex-end",
+            width: "90%",
+            marginVertical: 5,
+            alignItems: "center",
+          }}
+          flexDirection={"row"}
+        >
+          <Text>Filtrar</Text>
+          <AntDesign name="filter" size={22} />
+        </View>
+      </TouchableOpacity>
+
       {!isLoading ? (
         <FlatList
           refreshing={isLoading}
           onRefresh={() => refetch()}
           showsVerticalScrollIndicator={false}
-          style={{ width: "90%" }}
+          style={{ width: "95%" }}
           data={data?.data?.pedidos}
           renderItem={({ item }: any) => (
             <ListOrders navigation={navigation} item={item} />

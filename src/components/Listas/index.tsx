@@ -55,8 +55,8 @@ export function Listas({ navigation, route }: any) {
                 navigation.navigate("ListaSeparacao", item);
               }}
             >
-              <VStack style={styles.container}>
-                <Center bg={"light.200"} w="100%" h="24" rounded="md">
+              <VStack style={styles.container} shadow={1}>
+                <Center bg={"light.50"} w="100%" h="24" rounded="md">
                   <View
                     style={{
                       flexDirection: "row",
