@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { FlatList, View, Text, Input } from "native-base";
+import {
+  FlatList,
+  View,
+  Text,
+  Input,
+  useDisclose,
+  Actionsheet,
+  Box,
+} from "native-base";
 import { getService } from "../../services/getService";
 import { useQuery } from "react-query";
 import { OrderSkelleton } from "../../components/OrderSkelleton/OrderSkelleton";
@@ -14,7 +22,15 @@ export default function Orders({ navigation }: any) {
   );
   return (
     <SafeAreaView style={{ alignItems: "center" }}>
-      <TouchableOpacity>
+      {/* <View
+        style={{
+          width: "90%",
+          marginVertical: 5,
+        }}
+      >
+        <Input placeholder="Buscar Pedido Pelo ID" rounded={"full"} />
+      </View> */}
+      {/* <TouchableOpacity>
         <View
           style={{
             justifyContent: "flex-end",
@@ -27,7 +43,7 @@ export default function Orders({ navigation }: any) {
           <Text>Filtrar</Text>
           <AntDesign name="filter" size={22} />
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       {!isLoading ? (
         <FlatList
@@ -37,7 +53,9 @@ export default function Orders({ navigation }: any) {
           style={{ width: "95%" }}
           data={data?.data?.pedidos}
           renderItem={({ item }: any) => (
-            <ListOrders navigation={navigation} item={item} />
+            <>
+              <ListOrders navigation={navigation} item={item} />
+            </>
           )}
         />
       ) : (
