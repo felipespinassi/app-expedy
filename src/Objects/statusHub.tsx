@@ -8,7 +8,7 @@ export const statusHub: any = {
     box: (
       <Box
         px={3}
-        py={1}
+        py={"0.2"}
         rounded="xl"
         _text={{
           color: "orange.500",
@@ -26,7 +26,7 @@ export const statusHub: any = {
     box: (
       <Box
         px={3}
-        py={1}
+        py={"0.2"}
         rounded="xl"
         _text={{
           color: "cyan.600",
@@ -44,7 +44,7 @@ export const statusHub: any = {
     box: (
       <Box
         px={3}
-        py={1}
+        py={"0.2"}
         rounded="xl"
         _text={{
           color: "muted.600",
@@ -62,7 +62,7 @@ export const statusHub: any = {
     box: (
       <Box
         px={3}
-        py={1}
+        py={"0.2"}
         rounded="xl"
         _text={{
           color: "lightBlue.600",
@@ -81,7 +81,7 @@ export const statusHub: any = {
     box: (
       <Box
         px={3}
-        py={1}
+        py={"0.2"}
         rounded="xl"
         _text={{
           color: "red.600",
@@ -99,7 +99,7 @@ export const statusHub: any = {
     box: (
       <Box
         px={3}
-        py={1}
+        py={"0.2"}
         rounded="xl"
         _text={{
           color: "amber.500",
@@ -117,7 +117,7 @@ export const statusHub: any = {
     box: (
       <Box
         px={3}
-        py={1}
+        py={"0.2"}
         rounded="xl"
         _text={{
           color: "green.600",
@@ -135,7 +135,7 @@ export const statusHub: any = {
     box: (
       <Box
         px={3}
-        py={1}
+        py={"0.2"}
         rounded="xl"
         _text={{
           color: "danger.600",
@@ -153,7 +153,7 @@ export const statusHub: any = {
     box: (
       <Box
         px={3}
-        py={1}
+        py={"0.2"}
         rounded="xl"
         _text={{
           color: "lime.700",

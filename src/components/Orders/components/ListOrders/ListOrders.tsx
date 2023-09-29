@@ -22,7 +22,6 @@ export default function ListOrders({ navigation, item }: any) {
             style={{
               height: 120,
               marginBottom: 10,
-              padding: 5,
               justifyContent: "space-between",
               flexDirection: "row",
             }}
@@ -30,45 +29,70 @@ export default function ListOrders({ navigation, item }: any) {
             <View
               style={{
                 justifyContent: "space-evenly",
-                width: 210,
+                width: "100%",
                 height: "100%",
                 marginLeft: 5,
+                borderWidth: 1,
               }}
             >
-              <Text>{item.orderid}</Text>
-              <Heading fontWeight={500} size="xs">
-                {item.integracao.name}
-              </Heading>
-              <Text>
-                {moment(item.date).utc(true).format("DD/MM/YYYY")}:
-                {moment(item.date).utc(true).format("HH:mm")}
-              </Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  width: "100%",
+                  paddingRight: 15,
+                }}
+              >
+                <Text>{item.orderid}</Text>
+                <Text>
+                  {moment(item.date).utc(true).format("DD/MM")}-
+                  {moment(item.date).utc(true).format("HH:mm")}
+                </Text>
+              </View>
+              <Divider />
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  width: "100%",
+                  paddingRight: 15,
 
-              <Text>{item.Customer.name}</Text>
-            </View>
+                  height: 70,
+                }}
+              >
+                <View
+                  style={{ justifyContent: "space-around", height: "100%" }}
+                >
+                  <Heading fontWeight={500} size="xs">
+                    {item.integracao.name}
+                  </Heading>
+                  <Text>{item.Customer.name}</Text>
+                </View>
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "space-around",
+                    height: "100%",
+                  }}
+                >
+                  {statusHub[item.status_hub]?.box}
 
-            <View
-              style={{
-                justifyContent: "space-around",
-                alignItems: "center",
-                width: 150,
-                height: "100%",
-              }}
-            >
-              {statusHub[item.status_hub]?.box}
-              <View style={{ flexDirection: "row" }}>
-                {item.erroNota && (
-                  <AntDesign color={"red"} name="exclefile1" size={22} />
-                )}
-                {item.erroEtiqueta && (
-                  <AntDesign color={"red"} name="filetext1" size={22} />
-                )}
-                {item.statusNota && !item.erroNota && (
-                  <AntDesign color={"green"} name="exclefile1" size={22} />
-                )}
-                {item.etiqueta && !item.erroEtiqueta && (
-                  <AntDesign color={"green"} name="filetext1" size={22} />
-                )}
+                  <View style={{ flexDirection: "row" }}>
+                    {item.erroNota && (
+                      <AntDesign color={"red"} name="exclefile1" size={22} />
+                    )}
+                    {item.erroEtiqueta && (
+                      <AntDesign color={"red"} name="filetext1" size={22} />
+                    )}
+                    {item.statusNota && !item.erroNota && (
+                      <AntDesign color={"green"} name="exclefile1" size={22} />
+                    )}
+                    {item.etiqueta && !item.erroEtiqueta && (
+                      <AntDesign color={"green"} name="filetext1" size={22} />
+                    )}
+                  </View>
+                </View>
               </View>
             </View>
           </Center>
