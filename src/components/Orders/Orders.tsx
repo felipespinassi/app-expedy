@@ -18,7 +18,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 export default function Orders({ navigation }: any) {
   const { data, isLoading, refetch }: any = useQuery(
     "Orders",
-    async () => await getService("front/orders/simples", { pageSize: 100 })
+    async () => await getService("front/orders/simples", { pageSize: 50 })
   );
   return (
     <SafeAreaView style={{ alignItems: "center" }}>
