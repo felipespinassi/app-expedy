@@ -20,16 +20,22 @@ export default function Orders({ navigation }: any) {
   const [total, setTotal] = useState(0);
   const [pedidos, setPedidos] = useState<any>([]);
   const [loading, setLoading] = useState(false);
+  const [hasMoreData, setHasMoreData] = useState(true);
 
   async function onScrollScreen() {
+    if (!hasMoreData) return;
     const response: any = await getService("front/orders/simples", {
       page,
       pageSize: 20,
     });
+
     if (response?.data) {
       setPedidos((prev: any) => [...prev, ...response?.data.pedidos]);
       setTotal(response?.data.paging.total);
       setPage(page + 1);
+    }
+    if (response.data.paging.total === pedidos.length) {
+      setHasMoreData(false);
     }
   }
 
