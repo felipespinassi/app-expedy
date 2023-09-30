@@ -5,7 +5,6 @@ import { Heading, Divider, Center, VStack } from "native-base";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { statusHub } from "../../../../Objects/statusHub";
 import ArrowBack from "../../../ArrowBack/ArrowBack";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function ListOrders({ navigation, item }: any) {
   return (

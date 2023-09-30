@@ -6,6 +6,7 @@ import { OrderSkelleton } from "../../components/OrderSkelleton/OrderSkelleton";
 import ListOrders from "./components/ListOrders/ListOrders";
 import {
   ActivityIndicator,
+  Alert,
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
@@ -18,10 +19,10 @@ export default function Orders({ navigation }: any) {
   // );
   const [page, setPage] = useState(1);
   const [pedidos, setPedidos] = useState<any>([]);
+  const [loading, setLoading] = useState(false);
   const [hasMoreData, setHasMoreData] = useState(true);
 
-  async function onScrollScreen() {
-    if (!hasMoreData) return;
+  async function fetchData() {
     try {
       const response: any = await getService("front/orders/simples", {
         page,
@@ -34,14 +35,35 @@ export default function Orders({ navigation }: any) {
         return !pedidos.some((item: any) => item.id === newItem.id);
       });
 
-      setPedidos((prevData: any) => [...prevData, ...filteredData]);
-      setPage(page + 1);
-    } catch (error) {}
+      if (page === 1) {
+        setPedidos(newData);
+        console.log("aqui");
+      } else {
+        setPedidos((prevData: any) => [...prevData, ...filteredData]);
+      }
+    } catch (error) {
+      Alert.alert("ERRO");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function onScrollScreen() {
+    if (!loading) {
+      setPage((prevPage) => prevPage + 1);
+      fetchData();
+    }
+  }
+
+  function onRefresh() {
+    setLoading(true);
+    setPage(1);
+    fetchData();
   }
 
   useEffect(() => {
-    onScrollScreen();
-  }, []);
+    fetchData();
+  }, [page]);
 
   return (
     <SafeAreaView style={{ alignItems: "center" }}>
@@ -49,6 +71,8 @@ export default function Orders({ navigation }: any) {
         onEndReachedThreshold={0.4}
         keyExtractor={(item: any) => item.id}
         onEndReached={onScrollScreen}
+        refreshing={loading}
+        onRefresh={onRefresh}
         showsVerticalScrollIndicator={false}
         style={{ width: "95%", marginBottom: 120 }}
         data={pedidos}
