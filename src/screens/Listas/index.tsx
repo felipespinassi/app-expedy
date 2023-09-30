@@ -1,4 +1,4 @@
-import { View } from "native-base";
+import { Heading, View } from "native-base";
 import { Listas as ListaComponent } from "../../components/Listas";
 
 export function Listas({ navigation, route }: any) {
@@ -12,7 +12,11 @@ export function Listas({ navigation, route }: any) {
           alignItems: "center",
           paddingBottom: 15,
         }}
-      />
+      >
+        <Heading fontWeight={500} size={"md"} color={"white"}>
+          Listas
+        </Heading>
+      </View>
       <ListaComponent navigation={navigation} route={route} />
     </>
   );

@@ -4,7 +4,6 @@ import { NativeBaseProvider, StatusBar } from "native-base";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Routes } from "./src/Routes";
 import { QueryClient, QueryClientProvider } from "react-query";
-import Header from "./src/components/Header/Header";
 
 const queryClient = new QueryClient();
 const Stack = createNativeStackNavigator();

@@ -38,25 +38,6 @@ export default function ListaSeparacao({ navigation, route }: any) {
   }, []);
   return (
     <>
-      <View
-        style={{
-          height: "15%",
-          backgroundColor: "#002851",
-          justifyContent: "flex-end",
-          alignItems: "center",
-          paddingBottom: 15,
-        }}
-      >
-        <ArrowBack navigation={navigation} />
-
-        <View style={{ justifyContent: "space-between" }}>
-          <Text
-            style={{ marginBottom: 5, textAlign: "center", color: "white" }}
-          >
-            Lista numero: {route.params.idERP_Lista}
-          </Text>
-        </View>
-      </View>
       <SafeAreaView
         style={{ paddingTop: 10, marginHorizontal: 10, paddingBottom: 25 }}
       >

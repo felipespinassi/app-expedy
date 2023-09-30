@@ -17,7 +17,7 @@ export default function Orders({ navigation }: any) {
   //     await getService("front/orders/simples", { pageSize: 10, page: page })
   // );
   const [page, setPage] = useState(1);
-  const [total, setTotal] = useState(0);
+  // const [total, setTotal] = useState(0);
   const [pedidos, setPedidos] = useState<any>([]);
   const [loading, setLoading] = useState(false);
   const [hasMoreData, setHasMoreData] = useState(true);
@@ -31,7 +31,7 @@ export default function Orders({ navigation }: any) {
 
     if (response?.data) {
       setPedidos((prev: any) => [...prev, ...response?.data.pedidos]);
-      setTotal(response?.data.paging.total);
+      // setTotal(response?.data.paging.total);
       setPage(page + 1);
     }
     if (response.data.paging.total === pedidos.length) {
@@ -45,29 +45,6 @@ export default function Orders({ navigation }: any) {
 
   return (
     <SafeAreaView style={{ alignItems: "center" }}>
-      {/* <View
-        style={{
-          width: "90%",
-          marginVertical: 5,
-        }}
-      >
-        <Input placeholder="Buscar Pedido Pelo ID" rounded={"full"} />
-      </View> */}
-      {/* <TouchableOpacity>
-        <View
-          style={{
-            justifyContent: "flex-end",
-            width: "90%",
-            marginVertical: 5,
-            alignItems: "center",
-          }}
-          flexDirection={"row"}
-        >
-          <Text>Filtrar</Text>
-          <AntDesign name="filter" size={22} />
-        </View>
-      </TouchableOpacity> */}
-
       {!loading ? (
         <FlatList
           onEndReachedThreshold={0.4}
@@ -76,7 +53,7 @@ export default function Orders({ navigation }: any) {
           refreshing={loading}
           onRefresh={() => onScrollScreen()}
           showsVerticalScrollIndicator={false}
-          style={{ width: "95%", marginBottom: 120 }}
+          style={{ width: "95%" }}
           data={pedidos}
           renderItem={({ item }: any) => (
             <>

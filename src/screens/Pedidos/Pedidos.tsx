@@ -1,5 +1,6 @@
-import { Input, View } from "native-base";
+import { Heading, Input, View } from "native-base";
 import Orders from "../../components/Orders/Orders";
+import { KeyboardAvoidingView } from "react-native";
 
 export default function Pedidos({ navigation }: any) {
   return (
@@ -13,12 +14,9 @@ export default function Pedidos({ navigation }: any) {
           paddingBottom: 15,
         }}
       >
-        <Input
-          width={"90%"}
-          backgroundColor={"white"}
-          placeholder="Buscar Pedido Pelo ID"
-          rounded={"full"}
-        />
+        <Heading fontWeight={500} size={"md"} color={"white"}>
+          Pedidos
+        </Heading>
       </View>
       <Orders navigation={navigation} />
     </>

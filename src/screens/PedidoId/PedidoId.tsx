@@ -16,12 +16,7 @@ export function PedidoId({ route, navigation }: any) {
         }}
       >
         <ArrowBack navigation={navigation} />
-        <Heading
-          style={{ marginBottom: 10 }}
-          fontWeight={500}
-          size={"md"}
-          color={"white"}
-        >
+        <Heading fontWeight={500} size={"md"} color={"white"}>
           Pedido:
           {route.params}
         </Heading>

@@ -5,6 +5,7 @@ import { Heading, Divider, Center, VStack } from "native-base";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { statusHub } from "../../../../Objects/statusHub";
 import ArrowBack from "../../../ArrowBack/ArrowBack";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function ListOrders({ navigation, item }: any) {
   return (
@@ -24,6 +25,7 @@ export default function ListOrders({ navigation, item }: any) {
               marginBottom: 10,
               justifyContent: "space-between",
               flexDirection: "row",
+              paddingHorizontal: 5,
             }}
           >
             <View
@@ -31,8 +33,6 @@ export default function ListOrders({ navigation, item }: any) {
                 justifyContent: "space-evenly",
                 width: "100%",
                 height: "100%",
-                marginLeft: 5,
-                borderWidth: 1,
               }}
             >
               <View
@@ -40,7 +40,7 @@ export default function ListOrders({ navigation, item }: any) {
                   flexDirection: "row",
                   justifyContent: "space-between",
                   width: "100%",
-                  paddingRight: 15,
+                  paddingRight: 20,
                 }}
               >
                 <Text>{item.orderid}</Text>
@@ -56,13 +56,17 @@ export default function ListOrders({ navigation, item }: any) {
                   justifyContent: "space-between",
                   alignItems: "center",
                   width: "100%",
-                  paddingRight: 15,
+                  paddingRight: 20,
 
                   height: 70,
                 }}
               >
                 <View
-                  style={{ justifyContent: "space-around", height: "100%" }}
+                  style={{
+                    justifyContent: "space-around",
+                    height: "100%",
+                    width: "70%",
+                  }}
                 >
                   <Heading fontWeight={500} size="xs">
                     {item.integracao.name}

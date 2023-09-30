@@ -12,7 +12,11 @@ export function Dashboard() {
           alignItems: "center",
           paddingBottom: 15,
         }}
-      />
+      >
+        <Heading fontWeight={500} size={"md"} color={"white"}>
+          Início
+        </Heading>
+      </View>
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Image
           style={{ width: "80%", height: 200 }}
