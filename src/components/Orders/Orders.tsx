@@ -30,8 +30,13 @@ export default function Orders({ navigation }: any) {
     });
 
     if (response?.data) {
-      setPedidos((prev: any) => [...prev, ...response?.data.pedidos]);
-      // setTotal(response?.data.paging.total);
+      const array = [...pedidos, ...response?.data.pedidos];
+
+      const arraySemDuplicatas = array.filter((valor, indice, self) => {
+        return self.indexOf(valor) === indice;
+      });
+
+      setPedidos(arraySemDuplicatas);
       setPage(page + 1);
     }
     if (response.data.paging.total === pedidos.length) {
@@ -45,28 +50,24 @@ export default function Orders({ navigation }: any) {
 
   return (
     <SafeAreaView style={{ alignItems: "center" }}>
-      {!loading ? (
-        <FlatList
-          onEndReachedThreshold={0.4}
-          keyExtractor={(item: any) => item.id}
-          onEndReached={onScrollScreen}
-          refreshing={loading}
-          onRefresh={() => onScrollScreen()}
-          showsVerticalScrollIndicator={false}
-          style={{ width: "95%" }}
-          data={pedidos}
-          renderItem={({ item }: any) => (
-            <>
-              <ListOrders navigation={navigation} item={item} />
-            </>
-          )}
-          ListFooterComponent={
-            <ActivityIndicator style={{ paddingTop: 10 }} size={"large"} />
-          }
-        />
-      ) : (
-        <OrderSkelleton />
-      )}
+      <FlatList
+        onEndReachedThreshold={0.4}
+        keyExtractor={(item: any) => item.id}
+        onEndReached={onScrollScreen}
+        refreshing={loading}
+        onRefresh={() => onScrollScreen()}
+        showsVerticalScrollIndicator={false}
+        style={{ width: "95%", marginBottom: 120 }}
+        data={pedidos}
+        renderItem={({ item }: any) => (
+          <>
+            <ListOrders navigation={navigation} item={item} />
+          </>
+        )}
+        ListFooterComponent={
+          <ActivityIndicator style={{ paddingTop: 10 }} size={"large"} />
+        }
+      />
     </SafeAreaView>
   );
 }
