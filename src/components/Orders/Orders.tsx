@@ -17,31 +17,26 @@ export default function Orders({ navigation }: any) {
   //     await getService("front/orders/simples", { pageSize: 10, page: page })
   // );
   const [page, setPage] = useState(1);
-  // const [total, setTotal] = useState(0);
   const [pedidos, setPedidos] = useState<any>([]);
-  const [loading, setLoading] = useState(false);
   const [hasMoreData, setHasMoreData] = useState(true);
 
   async function onScrollScreen() {
     if (!hasMoreData) return;
-    const response: any = await getService("front/orders/simples", {
-      page,
-      pageSize: 20,
-    });
-
-    if (response?.data) {
-      const array = [...pedidos, ...response?.data.pedidos];
-
-      const arraySemDuplicatas = array.filter((valor, indice, self) => {
-        return self.indexOf(valor) === indice;
+    try {
+      const response: any = await getService("front/orders/simples", {
+        page,
+        pageSize: 20,
       });
 
-      setPedidos(arraySemDuplicatas);
+      const newData = response.data.pedidos;
+
+      const filteredData = newData.filter((newItem: any) => {
+        return !pedidos.some((item: any) => item.id === newItem.id);
+      });
+
+      setPedidos((prevData: any) => [...prevData, ...filteredData]);
       setPage(page + 1);
-    }
-    if (response.data.paging.total === pedidos.length) {
-      setHasMoreData(false);
-    }
+    } catch (error) {}
   }
 
   useEffect(() => {
@@ -54,8 +49,6 @@ export default function Orders({ navigation }: any) {
         onEndReachedThreshold={0.4}
         keyExtractor={(item: any) => item.id}
         onEndReached={onScrollScreen}
-        refreshing={loading}
-        onRefresh={() => onScrollScreen()}
         showsVerticalScrollIndicator={false}
         style={{ width: "95%", marginBottom: 120 }}
         data={pedidos}
