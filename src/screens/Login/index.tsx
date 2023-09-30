@@ -16,6 +16,7 @@ import { getAccess_token } from "../../storage/getAccess_token";
 import { KeyboardAvoidingView } from "react-native";
 import { createCompanyName } from "../../storage/createCompanyName";
 import { getCompanyName } from "../../storage/getCompanyName";
+import { removeAccess_token } from "../../storage/removeAccess_token";
 
 export function Login({ navigation }: any) {
   const { register, setValue, handleSubmit } = useForm<Dataprops>();
@@ -28,12 +29,7 @@ export function Login({ navigation }: any) {
   }
 
   async function verifyLogin() {
-    const acces_token = await getAccess_token();
-    const companyName = await getCompanyName();
-
-    if (acces_token && companyName) {
-      navigation.navigate("Dashboard");
-    }
+    removeAccess_token(navigation);
   }
 
   async function onSubmit(data: Dataprops) {
@@ -54,7 +50,7 @@ export function Login({ navigation }: any) {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      alert("Usuário ou senha inválidos");
+      Alert.alert("Usuário ou senha inválidos");
     }
   }
 

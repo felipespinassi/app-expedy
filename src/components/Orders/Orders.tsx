@@ -12,11 +12,6 @@ import {
 } from "react-native";
 
 export default function Orders({ navigation }: any) {
-  // const { data, isLoading, refetch }: any = useQuery(
-  //   "Orders",
-  //   async () =>
-  //     await getService("front/orders/simples", { pageSize: 10, page: page })
-  // );
   const [page, setPage] = useState(1);
   const [pedidos, setPedidos] = useState<any>([]);
   const [loading, setLoading] = useState(false);
