@@ -17,12 +17,48 @@ export function StackRoutes() {
         headerShown: false,
       }}
     >
-      <Screen name="Login" component={Login} />
-      <Screen name="Dashboard" component={TabRoutes} />
-      <Screen name="Listas" component={Listas} />
-      <Screen name="ListaSeparacao" component={ListaSeparacao} />
-      <Screen name="Produtos" component={ItemsToPick} />
-      <Screen name="PedidoId" component={PedidoId} />
+      <Screen
+        options={{
+          gestureEnabled: false,
+        }}
+        name="Login"
+        component={Login}
+      />
+      <Screen
+        options={{
+          gestureEnabled: false,
+        }}
+        name="Dashboard"
+        component={TabRoutes}
+      />
+      <Screen
+        options={{
+          gestureEnabled: false,
+        }}
+        name="Listas"
+        component={Listas}
+      />
+      <Screen
+        options={{
+          gestureEnabled: false,
+        }}
+        name="ListaSeparacao"
+        component={ListaSeparacao}
+      />
+      <Screen
+        options={{
+          gestureEnabled: false,
+        }}
+        name="Produtos"
+        component={ItemsToPick}
+      />
+      <Screen
+        options={{
+          gestureEnabled: false,
+        }}
+        name="PedidoId"
+        component={PedidoId}
+      />
     </Navigator>
   );
 }
