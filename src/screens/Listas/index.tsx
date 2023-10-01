@@ -1,5 +1,9 @@
-import { Heading, View } from "native-base";
+import { Avatar, Heading, Text, View } from "native-base";
+import React, { useState } from "react";
+
 import { Listas as ListaComponent } from "../../components/Listas";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { COMPANY_NAME } from "../../storage/storageConfig";
 
 export function Listas({ navigation, route }: any) {
   return (

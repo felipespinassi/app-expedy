@@ -14,6 +14,7 @@ import { ListSkelleton } from "../ListSkelleton";
 import { listProgress } from "./utils/listProgress";
 import { getService } from "../../services/getService";
 import { ListaProps } from "../../@types/ListaProps";
+import ListEmptyComponent from "../ListEmptyComponent/ListEmptyComponent";
 
 export function Listas({ navigation, route }: any) {
   // const navigation = useNavigation();
@@ -45,7 +46,7 @@ export function Listas({ navigation, route }: any) {
     <SafeAreaView>
       {!loading ? (
         <FlatList
-          ListEmptyComponent={<Text>Nenhuma lista encontrada</Text>}
+          ListEmptyComponent={<ListEmptyComponent />}
           showsVerticalScrollIndicator={false}
           data={listas}
           keyExtractor={(item: ListaProps) => item.idERP_Lista}
