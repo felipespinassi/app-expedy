@@ -12,6 +12,8 @@ import { Avatar, Heading } from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { COMPANY_NAME } from "../../storage/storageConfig";
+import { removeCompanyName } from "../../storage/removeCompanyName";
+import { removeAccess_token } from "../../storage/removeAccess_token";
 
 export default function Mais({ navigation }: any) {
   const [companyName, setCompanyName] = useState("");
@@ -107,7 +109,11 @@ export default function Mais({ navigation }: any) {
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate("Login")}
+          onPress={() => {
+            removeAccess_token(),
+              removeCompanyName(),
+              navigation.navigate("Login");
+          }}
           style={{ flexDirection: "row", padding: 10 }}
         >
           <Ionicons name="log-out-outline" size={20} />

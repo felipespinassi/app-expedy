@@ -8,12 +8,13 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { removeAccess_token } from "../../storage/removeAccess_token";
+
 import axios from "axios";
 import { createAccess_token } from "../../storage/createAccess_token";
 import { createCompanyName } from "../../storage/createCompanyName";
 import { styles } from "../../screens/Login/styles";
 import { Button, Center, FormControl, Image, Input } from "native-base";
+import { verifyInactiveAccess_token } from "../../storage/verifyInactiveAccess_token";
 
 export default function Login({ navigation }: any) {
   const { register, setValue, handleSubmit } = useForm<Dataprops>();
@@ -26,7 +27,7 @@ export default function Login({ navigation }: any) {
   }
 
   async function verifyLogin() {
-    removeAccess_token(navigation);
+    verifyInactiveAccess_token(navigation);
   }
 
   async function onSubmit(data: Dataprops) {

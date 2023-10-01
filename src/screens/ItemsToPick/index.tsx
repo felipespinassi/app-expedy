@@ -2,6 +2,7 @@ import { View, Text, KeyboardAvoidingView, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import React, { useState } from "react";
 import { Button, Center, Heading, Input, VStack } from "native-base";
+import ArrowBack from "../../components/ArrowBack/ArrowBack";
 
 export function ItemsToPick({ navigation, route }: any) {
   return (
@@ -14,7 +15,12 @@ export function ItemsToPick({ navigation, route }: any) {
           alignItems: "center",
           paddingBottom: 15,
         }}
-      />
+      >
+        <ArrowBack navigation={navigation} />
+        <Heading fontWeight={500} size={"md"} color={"white"}>
+          Itens à separar
+        </Heading>
+      </View>
       <KeyboardAvoidingView
         behavior={Platform.OS == "ios" ? "padding" : "height"}
         style={{
