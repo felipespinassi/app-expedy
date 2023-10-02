@@ -50,11 +50,12 @@ export default function Orders({ navigation }: any) {
     }
   }
 
-  function onRefresh() {
-    setLoading(true);
-    setPage(1);
-    fetchData();
-  }
+  // function onRefresh() {
+  //   setLoading(true);
+  //   setPedidos([]);
+  //   setPage(1);
+  //   fetchData();
+  // }
 
   useEffect(() => {
     fetchData();
@@ -66,8 +67,8 @@ export default function Orders({ navigation }: any) {
         onEndReachedThreshold={0.4}
         keyExtractor={(item: any) => item.id}
         onEndReached={onScrollScreen}
-        refreshing={loading}
-        onRefresh={onRefresh}
+        // refreshing={loading}
+        // onRefresh={onRefresh}
         showsVerticalScrollIndicator={false}
         style={{ width: "95%", marginBottom: 120 }}
         data={pedidos}
