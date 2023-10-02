@@ -42,11 +42,11 @@ export default function Orders({ navigation }: any) {
       setLoading(false);
     }
   }
+  console.log(page);
 
   async function onScrollScreen() {
     if (!loading) {
       setPage((prevPage) => prevPage + 1);
-      fetchData();
     }
   }
 
