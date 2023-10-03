@@ -7,6 +7,7 @@ import { DrawerRoutes } from "./drawer.routes";
 import Mais from "../screens/Mais";
 import { useEffect } from "react";
 import { BackHandler } from "react-native";
+import ExpedicaoRapida from "../screens/ExpedicaoRapida";
 
 const Tab = createBottomTabNavigator();
 
@@ -43,6 +44,15 @@ export default function TabRoutes() {
       <Tab.Screen
         name="Listas"
         component={Listas}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="cube-outline" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Expedição 2.0"
+        component={ExpedicaoRapida}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="cube-outline" color={color} size={size} />
