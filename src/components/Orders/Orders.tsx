@@ -21,7 +21,7 @@ export default function Orders({ navigation }: any) {
     try {
       const response: any = await getService("front/orders/simples", {
         page,
-        pageSize: 20,
+        pageSize: 50,
       });
 
       const newData = response.data.pedidos;
@@ -46,16 +46,16 @@ export default function Orders({ navigation }: any) {
 
   async function onScrollScreen() {
     if (!loading) {
-      setPage((prevPage) => prevPage + 1);
+      setPage(page + 1);
     }
   }
 
-  // function onRefresh() {
-  //   setLoading(true);
-  //   setPedidos([]);
-  //   setPage(1);
-  //   fetchData();
-  // }
+  function onRefresh() {
+    if (page != 1) {
+      setLoading(true);
+      setPage(1);
+    }
+  }
 
   useEffect(() => {
     fetchData();
@@ -67,8 +67,8 @@ export default function Orders({ navigation }: any) {
         onEndReachedThreshold={0.4}
         keyExtractor={(item: any) => item.id}
         onEndReached={onScrollScreen}
-        // refreshing={loading}
-        // onRefresh={onRefresh}
+        refreshing={loading}
+        onRefresh={onRefresh}
         showsVerticalScrollIndicator={false}
         style={{ width: "95%", marginBottom: 120 }}
         data={pedidos}
