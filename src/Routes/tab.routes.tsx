@@ -5,10 +5,17 @@ import { Listas } from "../screens/Listas";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { DrawerRoutes } from "./drawer.routes";
 import Mais from "../screens/Mais";
+import { useEffect } from "react";
+import { BackHandler } from "react-native";
 
 const Tab = createBottomTabNavigator();
 
 export default function TabRoutes() {
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", () => true);
+    return () =>
+      BackHandler.removeEventListener("hardwareBackPress", () => true);
+  }, []);
   return (
     <Tab.Navigator
       screenOptions={{
