@@ -15,7 +15,7 @@ export default function DataCustomer({ pedido }: any) {
       <View style={{ flexDirection: "row" }}>
         <Box
           width={"50%"}
-          height={100}
+          height={70}
           rounded="lg"
           borderColor="coolGray.200"
           borderWidth="1"
@@ -30,7 +30,7 @@ export default function DataCustomer({ pedido }: any) {
           py={1}
           style={{ marginBottom: 1, justifyContent: "space-around" }}
         >
-          <Heading fontWeight={500} size={"md"}>
+          <Heading fontWeight={500} size={"sm"}>
             Cliente
           </Heading>
           <Text>{pedido?.Customer.name}</Text>
@@ -38,7 +38,7 @@ export default function DataCustomer({ pedido }: any) {
         <Box
           rounded="lg"
           width={"50%"}
-          height={100}
+          height={70}
           borderColor="coolGray.200"
           borderWidth="1"
           _dark={{
@@ -52,7 +52,7 @@ export default function DataCustomer({ pedido }: any) {
           py={1}
           style={{ marginBottom: 1, justifyContent: "space-around" }}
         >
-          <Heading fontWeight={500} size={"md"}>
+          <Heading fontWeight={500} size={"sm"}>
             Pedido
           </Heading>
           <Text>{pedido?.id}</Text>
@@ -61,7 +61,7 @@ export default function DataCustomer({ pedido }: any) {
       <View style={{ flexDirection: "row" }}>
         <Box
           width={"50%"}
-          height={100}
+          height={70}
           rounded="lg"
           borderColor="coolGray.200"
           borderWidth="1"
@@ -76,7 +76,7 @@ export default function DataCustomer({ pedido }: any) {
           py={1}
           style={{ marginBottom: 1, justifyContent: "space-around" }}
         >
-          <Heading fontWeight={500} size={"md"}>
+          <Heading fontWeight={500} size={"sm"}>
             Status Hub
           </Heading>
           <Text>{pedido?.status_hub}</Text>
@@ -84,7 +84,7 @@ export default function DataCustomer({ pedido }: any) {
         <Box
           rounded="lg"
           width={"50%"}
-          height={100}
+          height={70}
           borderColor="coolGray.200"
           borderWidth="1"
           _dark={{
@@ -98,7 +98,7 @@ export default function DataCustomer({ pedido }: any) {
           py={1}
           style={{ marginBottom: 1, justifyContent: "space-around" }}
         >
-          <Heading fontWeight={500} size={"md"}>
+          <Heading fontWeight={500} size={"sm"}>
             Status MP
           </Heading>
           <Text>{pedido?.status}</Text>
@@ -107,7 +107,7 @@ export default function DataCustomer({ pedido }: any) {
       <View style={{ flexDirection: "row" }}>
         <Box
           width={"50%"}
-          height={100}
+          height={70}
           rounded="lg"
           borderColor="coolGray.200"
           borderWidth="1"
@@ -122,7 +122,7 @@ export default function DataCustomer({ pedido }: any) {
           py={1}
           style={{ marginBottom: 1, justifyContent: "space-around" }}
         >
-          <Heading fontWeight={500} size={"md"}>
+          <Heading fontWeight={500} size={"sm"}>
             ID MP
           </Heading>
           <Text>{pedido?.orderid}</Text>
@@ -130,7 +130,7 @@ export default function DataCustomer({ pedido }: any) {
         <Box
           rounded="lg"
           width={"50%"}
-          height={100}
+          height={70}
           borderColor="coolGray.200"
           borderWidth="1"
           _dark={{
@@ -144,7 +144,7 @@ export default function DataCustomer({ pedido }: any) {
           py={1}
           style={{ marginBottom: 1, justifyContent: "space-around" }}
         >
-          <Heading fontWeight={500} size={"md"}>
+          <Heading fontWeight={500} size={"sm"}>
             Total do pedido
           </Heading>
           <Text>{pedido?.total}</Text>
@@ -156,7 +156,7 @@ export default function DataCustomer({ pedido }: any) {
             <View style={{ flexDirection: "row" }}>
               <Box
                 width={"50%"}
-                height={100}
+                height={70}
                 rounded="lg"
                 borderColor="coolGray.200"
                 borderWidth="1"
@@ -171,7 +171,7 @@ export default function DataCustomer({ pedido }: any) {
                 py={1}
                 style={{ marginBottom: 1, justifyContent: "space-around" }}
               >
-                <Heading fontWeight={500} size={"md"}>
+                <Heading fontWeight={500} size={"sm"}>
                   Loja
                 </Heading>
                 <Text>{pedido?.integracao.name}</Text>
@@ -179,7 +179,7 @@ export default function DataCustomer({ pedido }: any) {
               <Box
                 rounded="lg"
                 width={"50%"}
-                height={100}
+                height={70}
                 borderColor="coolGray.200"
                 borderWidth="1"
                 _dark={{
@@ -193,7 +193,7 @@ export default function DataCustomer({ pedido }: any) {
                 py={1}
                 style={{ marginBottom: 1, justifyContent: "space-around" }}
               >
-                <Heading fontWeight={500} size={"md"}>
+                <Heading fontWeight={500} size={"sm"}>
                   Endereço/N°
                 </Heading>
                 <Text>
@@ -206,7 +206,7 @@ export default function DataCustomer({ pedido }: any) {
             <View style={{ flexDirection: "row" }}>
               <Box
                 width={"50%"}
-                height={100}
+                height={70}
                 rounded="lg"
                 overflow="hidden"
                 borderColor="coolGray.200"
@@ -222,7 +222,7 @@ export default function DataCustomer({ pedido }: any) {
                 py={1}
                 style={{ marginBottom: 1, justifyContent: "space-around" }}
               >
-                <Heading fontWeight={500} size={"md"}>
+                <Heading fontWeight={500} size={"sm"}>
                   Cidade/Estado
                 </Heading>
                 <Text>
@@ -231,7 +231,7 @@ export default function DataCustomer({ pedido }: any) {
               </Box>
               <Box
                 width={"50%"}
-                height={100}
+                height={70}
                 rounded="lg"
                 overflow="hidden"
                 borderColor="coolGray.200"
@@ -247,7 +247,7 @@ export default function DataCustomer({ pedido }: any) {
                 py={1}
                 style={{ marginBottom: 1, justifyContent: "space-around" }}
               >
-                <Heading fontWeight={500} size={"md"}>
+                <Heading fontWeight={500} size={"sm"}>
                   CEP
                 </Heading>
                 <Text>{element.CustomerAddress.zip_code}</Text>

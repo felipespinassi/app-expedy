@@ -37,9 +37,11 @@ export function OrderId({ route, navigation }: any) {
           <View>
             <DataCustomer pedido={pedido} />
 
-            <View style={{ marginVertical: 20 }}>
-              <Button>Atualizar informações</Button>
-            </View>
+            <TouchableOpacity style={{ marginVertical: 20 }}>
+              <Button style={{ backgroundColor: "#002851" }}>
+                Atualizar informações
+              </Button>
+            </TouchableOpacity>
 
             <DataProductsSold pedido={pedido} />
           </View>
