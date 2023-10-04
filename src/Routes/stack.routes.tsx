@@ -1,10 +1,10 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Listas } from "../screens/Listas";
-import { ItemsToPick } from "../screens/ItemsToPick";
-import { ListaSeparacao } from "../screens/ListaSeparacao";
+import { ItemsToPick } from "../screens/Listas/ItemsToPick";
+import { ListaSeparacao } from "../screens/Listas/ListaSeparacao";
 import { Login } from "../screens/Login";
 import { DrawerRoutes } from "./drawer.routes";
-import { PedidoId } from "../screens/PedidoId/PedidoId";
+import { PedidoId } from "../screens/Pedidos/PedidoId/PedidoId";
 import FiltersDrawer from "../components/Orders/components/OrderId/components/FiltersDrawer/FiltersDrawer";
 import TabRoutes from "./tab.routes";
 
@@ -28,16 +28,16 @@ export function StackRoutes() {
         options={{
           gestureEnabled: false,
         }}
-        name="Dashboard"
+        name="Tabs"
         component={TabRoutes}
       />
-      <Screen
+      {/* <Screen
         options={{
           gestureEnabled: false,
         }}
         name="Listas"
         component={Listas}
-      />
+      /> */}
       <Screen
         options={{
           gestureEnabled: false,

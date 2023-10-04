@@ -12,12 +12,12 @@ import {
 } from "native-base";
 import { useEffect, useState } from "react";
 import { SafeAreaView, TouchableOpacity } from "react-native";
-import { ListaProps } from "../../@types/ListaProps";
-import { getService } from "../../services/getService";
-import { ListSkelleton } from "../ListSkelleton";
-import ArrowBack from "../ArrowBack/ArrowBack";
+import { ListaProps } from "../../../../@types/ListaProps";
+import { getService } from "../../../../services/getService";
+import { ListSkelleton } from "../../../ListSkelleton";
+import ArrowBack from "../../../ArrowBack/ArrowBack";
 
-export default function ListaSeparacao({ navigation, route }: any) {
+export default function ListaSeparacaoComponent({ navigation, route }: any) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);

@@ -1,6 +1,6 @@
 import { Heading, Text, View } from "native-base";
-import ListaSeparacaoComponent from "../../components/ListaSeparacao";
-import ArrowBack from "../../components/ArrowBack/ArrowBack";
+import ArrowBack from "../../../components/ArrowBack/ArrowBack";
+import ListaSeparacaoComponent from "../../../components/Listas/components/ListaSeparacao";
 
 export function ListaSeparacao({ navigation, route }: any) {
   return (
@@ -19,7 +19,7 @@ export function ListaSeparacao({ navigation, route }: any) {
           Lista numero: {route.params.idERP_Lista}
         </Heading>
       </View>
-      <ListaSeparacaoComponent navigation={navigation} route={route} />
+      {/* <ListaSeparacaoComponent navigation={navigation} route={route} /> */}
     </>
   );
 }

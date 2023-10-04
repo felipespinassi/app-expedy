@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Dashboard } from "../screens/Dashboard";
+import { Home } from "../screens/Home";
 import Pedidos from "../screens/Pedidos/Pedidos";
 import { Listas } from "../screens/Listas";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -30,7 +30,7 @@ export default function TabRoutes() {
           ),
         }}
         name="Home"
-        component={Dashboard}
+        component={Home}
       />
       <Tab.Screen
         options={{

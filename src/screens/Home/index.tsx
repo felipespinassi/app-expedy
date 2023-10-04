@@ -1,7 +1,7 @@
 import { Avatar, Center, Heading, View, VStack } from "native-base";
 import { Image, Text } from "react-native";
 
-export function Dashboard() {
+export function Home() {
   return (
     <>
       <View

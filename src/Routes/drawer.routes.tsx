@@ -1,5 +1,5 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { Dashboard } from "../screens/Dashboard";
+import { Dashboard } from "../screens/Home";
 import { Listas } from "../screens/Listas";
 import { CustomDrawer } from "../components/CustomDrawer/CustomDrawer";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -16,7 +16,6 @@ export function DrawerRoutes() {
   return (
     <Navigator drawerContent={(props) => <CustomDrawer {...props} />}>
       <Screen
-      
         options={{
           drawerIcon: () => <Ionicons name="home-outline" size={18} />,
         }}

@@ -1,7 +1,7 @@
 import React from "react";
-import { OrderId } from "../../components/Orders/components/OrderId/OrderId";
+import { OrderId } from "../../../components/Orders/components/OrderId/OrderId";
 import { Heading, View } from "native-base";
-import ArrowBack from "../../components/ArrowBack/ArrowBack";
+import ArrowBack from "../../../components/ArrowBack/ArrowBack";
 
 export function PedidoId({ route, navigation }: any) {
   return (

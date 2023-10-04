@@ -19,7 +19,7 @@ export async function verifyInactiveAccess_token(navigation: any) {
         );
         // navigation.navigate("Login");
       } else {
-        navigation.navigate("Dashboard");
+        navigation.navigate("Tabs");
       }
     }
   } catch (error) {}

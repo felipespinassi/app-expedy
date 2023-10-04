@@ -2,7 +2,7 @@ import { View, Text, KeyboardAvoidingView, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import React, { useState } from "react";
 import { Button, Center, Heading, Input, VStack } from "native-base";
-import ArrowBack from "../../components/ArrowBack/ArrowBack";
+import ArrowBack from "../../../components/ArrowBack/ArrowBack";
 
 export function ItemsToPick({ navigation, route }: any) {
   return (
