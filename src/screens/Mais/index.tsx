@@ -98,7 +98,7 @@ export default function Mais({ navigation }: any) {
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate("Listas")}
+          onPress={() => navigation.navigate("Expedicao")}
           style={{ flexDirection: "row", padding: 10 }}
         >
           <Ionicons name="cube-outline" size={20} />

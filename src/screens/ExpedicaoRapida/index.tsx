@@ -1,6 +1,7 @@
-import { View, Text, SafeAreaView } from "react-native";
+import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
 import React from "react";
-import { Heading } from "native-base";
+import { Box, Heading } from "native-base";
+import ExpedicaoRapidaComponent from "../../components/ExpedicaoRapida";
 
 export default function ExpedicaoRapida() {
   return (
@@ -15,13 +16,11 @@ export default function ExpedicaoRapida() {
         }}
       >
         <Heading fontWeight={500} size={"md"} color={"white"}>
-          Expedição 2.0
+          Expedição
         </Heading>
       </View>
 
-      <SafeAreaView>
-        <Text>index</Text>
-      </SafeAreaView>
+      <ExpedicaoRapidaComponent />
     </>
   );
 }

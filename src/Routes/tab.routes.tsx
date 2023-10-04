@@ -41,7 +41,7 @@ export default function TabRoutes() {
         name="Pedidos"
         component={Pedidos}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Listas"
         component={Listas}
         options={{
@@ -49,9 +49,9 @@ export default function TabRoutes() {
             <Ionicons name="cube-outline" color={color} size={size} />
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
-        name="Expedição 2.0"
+        name="Expedicao"
         component={ExpedicaoRapida}
         options={{
           tabBarIcon: ({ color, size }) => (
