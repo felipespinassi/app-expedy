@@ -1,6 +1,6 @@
 import { Heading, Input, View } from "native-base";
 import Orders from "../../components/Orders/Orders";
-import { KeyboardAvoidingView } from "react-native";
+import { KeyboardAvoidingView, SafeAreaView } from "react-native";
 
 export default function Pedidos({ navigation }: any) {
   return (

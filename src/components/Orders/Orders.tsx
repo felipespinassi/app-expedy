@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { FlatList } from "native-base";
+import React, { useState, useEffect, useRef } from "react";
+import { Button, FlatList, View } from "native-base";
 import { getService } from "../../services/getService";
 import { useQuery } from "react-query";
 import { OrderSkelleton } from "../../components/OrderSkelleton/OrderSkelleton";
@@ -8,14 +8,23 @@ import {
   ActivityIndicator,
   Alert,
   SafeAreaView,
+  Text,
   TouchableOpacity,
 } from "react-native";
+import ModalFilterPedidos from "./components/ModalFilterPedidos/ModalFilterPedidos";
+import { Modalize } from "react-native-modalize";
+import AntDesign from "react-native-vector-icons/AntDesign";
 
 export default function Orders({ navigation }: any) {
   const [page, setPage] = useState(1);
   const [pedidos, setPedidos] = useState<any>([]);
   const [loading, setLoading] = useState(false);
-  const [hasMoreData, setHasMoreData] = useState(true);
+  const [openModal, setOpenModal] = useState(true);
+  const modalizeRef = useRef<Modalize>(null);
+
+  const onOpen = () => {
+    modalizeRef.current?.open();
+  };
 
   async function fetchData() {
     try {
@@ -62,7 +71,20 @@ export default function Orders({ navigation }: any) {
   }, [page]);
 
   return (
-    <SafeAreaView style={{ alignItems: "center" }}>
+    <SafeAreaView style={{ alignItems: "center", flex: 1 }}>
+      <View width={"95%"}>
+        <TouchableOpacity
+          onPress={() => onOpen()}
+          style={{
+            flexDirection: "row",
+            justifyContent: "flex-end",
+          }}
+        >
+          <Text style={{ fontSize: 18 }}>Filtrar</Text>
+          <AntDesign name="filter" size={24} />
+        </TouchableOpacity>
+      </View>
+
       <FlatList
         onEndReachedThreshold={0.4}
         keyExtractor={(item: any) => item.id}
@@ -70,7 +92,7 @@ export default function Orders({ navigation }: any) {
         refreshing={loading}
         onRefresh={onRefresh}
         showsVerticalScrollIndicator={false}
-        style={{ width: "95%", marginBottom: 120 }}
+        style={{ width: "95%" }}
         data={pedidos}
         renderItem={({ item }: any) => (
           <>
@@ -80,6 +102,11 @@ export default function Orders({ navigation }: any) {
         ListFooterComponent={
           <ActivityIndicator style={{ paddingTop: 10 }} size={"large"} />
         }
+      />
+      <ModalFilterPedidos
+        modalizeRef={modalizeRef}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
       />
     </SafeAreaView>
   );
