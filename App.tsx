@@ -4,6 +4,7 @@ import { NativeBaseProvider, StatusBar } from "native-base";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Routes } from "./src/Routes";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const queryClient = new QueryClient();
 const Stack = createNativeStackNavigator();
@@ -22,15 +23,17 @@ export default function App() {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <NativeBaseProvider>
-        <StatusBar
-          barStyle={"light-content"}
-          backgroundColor="transparent"
-          translucent
-        />
-        <Routes />
-      </NativeBaseProvider>
-    </QueryClientProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <QueryClientProvider client={queryClient}>
+        <NativeBaseProvider>
+          <StatusBar
+            barStyle={"light-content"}
+            backgroundColor="transparent"
+            translucent
+          />
+          <Routes />
+        </NativeBaseProvider>
+      </QueryClientProvider>
+    </GestureHandlerRootView>
   );
 }

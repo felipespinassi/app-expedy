@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   FlatList,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { getService } from "../../../../services/getService";
@@ -13,11 +14,15 @@ import { Box, Center, VStack } from "native-base";
 
 export default function ArquivosGerados() {
   const [Files, setFiles] = useState();
+
+  const [loading, setLoading] = useState(false);
   async function fetchData() {
     try {
+      setLoading(true);
       const response: any = await getService("orders/file", {});
       setFiles(response.data.files);
     } catch (error) {}
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -92,12 +97,15 @@ export default function ArquivosGerados() {
                   {/* {moment(item.date).utc(true).format("HH:mm")} */}
                 </Text>
                 <TouchableOpacity style={{ paddingTop: 5 }}>
-                  <AntDesign name="printer" size={24} />
+                  <AntDesign name="printer" size={28} />
                 </TouchableOpacity>
               </Center>
             </VStack>
           </View>
         )}
+        ListFooterComponent={
+          <ActivityIndicator style={{ paddingTop: 10 }} size={"large"} />
+        }
       />
     </SafeAreaView>
   );

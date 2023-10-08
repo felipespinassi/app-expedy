@@ -25,7 +25,11 @@ export default function ModalFilterPedidos({
   modalizeRef,
 }: any) {
   return (
-    <Modalize modalHeight={700} snapPoint={700} ref={modalizeRef}>
+    <Modalize
+      adjustToContentHeight
+      childrenStyle={{ height: "90%" }}
+      ref={modalizeRef}
+    >
       <View
         style={{
           padding: 5,
