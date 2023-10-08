@@ -12,11 +12,6 @@ import ExpedicaoRapida from "../screens/ExpedicaoRapida";
 const Tab = createBottomTabNavigator();
 
 export default function TabRoutes() {
-  useEffect(() => {
-    BackHandler.addEventListener("hardwareBackPress", () => true);
-    return () =>
-      BackHandler.removeEventListener("hardwareBackPress", () => true);
-  }, []);
   return (
     <Tab.Navigator
       screenOptions={{

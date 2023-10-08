@@ -7,6 +7,7 @@ import { DrawerRoutes } from "./drawer.routes";
 import { PedidoId } from "../screens/Pedidos/PedidoId/PedidoId";
 import FiltersDrawer from "../components/Orders/components/OrderId/components/FiltersDrawer/FiltersDrawer";
 import TabRoutes from "./tab.routes";
+import ArquivosGerados from "../screens/ExpedicaoRapida/ArquivosGerados";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -17,48 +18,17 @@ export function StackRoutes() {
         headerShown: false,
       }}
     >
-      <Screen
-        options={{
-          gestureEnabled: false,
-        }}
-        name="Login"
-        component={Login}
-      />
-      <Screen
-        options={{
-          gestureEnabled: false,
-        }}
-        name="Tabs"
-        component={TabRoutes}
-      />
+      <Screen name="Login" component={Login} />
+      <Screen name="Tabs" component={TabRoutes} />
       {/* <Screen
-        options={{
-          gestureEnabled: false,
-        }}
+       
         name="Listas"
         component={Listas}
       /> */}
-      <Screen
-        options={{
-          gestureEnabled: false,
-        }}
-        name="ListaSeparacao"
-        component={ListaSeparacao}
-      />
-      <Screen
-        options={{
-          gestureEnabled: false,
-        }}
-        name="Produtos"
-        component={ItemsToPick}
-      />
-      <Screen
-        options={{
-          gestureEnabled: false,
-        }}
-        name="PedidoId"
-        component={PedidoId}
-      />
+      <Screen name="ListaSeparacao" component={ListaSeparacao} />
+      <Screen name="Produtos" component={ItemsToPick} />
+      <Screen name="PedidoId" component={PedidoId} />
+      <Screen name="ArquivosGerados" component={ArquivosGerados} />
     </Navigator>
   );
 }
