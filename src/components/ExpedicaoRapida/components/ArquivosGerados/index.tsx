@@ -5,6 +5,7 @@ import {
   FlatList,
   TouchableOpacity,
   ActivityIndicator,
+  Alert,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { getService } from "../../../../services/getService";
@@ -28,6 +29,22 @@ export default function ArquivosGerados() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  async function handlePrintFile(item: any) {
+    console.log(item.id);
+    const response: any = await getService(
+      `orders/file/print?id=${item.id}&usuario=Expedy`
+    );
+    if (response.status === 200) {
+      console.log(response);
+
+      return Alert.alert("Imprimindo");
+    } else {
+      console.log(response);
+
+      return Alert.alert("deu ruim");
+    }
+  }
 
   return (
     <SafeAreaView>
@@ -96,7 +113,10 @@ export default function ArquivosGerados() {
                   {moment(item.createdAt).utc(true).format("DD/MM")}
                   {/* {moment(item.date).utc(true).format("HH:mm")} */}
                 </Text>
-                <TouchableOpacity style={{ paddingTop: 5 }}>
+                <TouchableOpacity
+                  onPress={() => handlePrintFile(item)}
+                  style={{ paddingTop: 5 }}
+                >
                   <AntDesign name="printer" size={28} />
                 </TouchableOpacity>
               </Center>
