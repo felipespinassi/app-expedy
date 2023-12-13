@@ -3,6 +3,7 @@ import React from "react";
 import { Box, Heading } from "native-base";
 import Feather from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
+import PickingList from "./components/PickingList";
 
 export default function ExpedicaoRapida() {
   const navigation: any = useNavigation();
@@ -67,6 +68,8 @@ export default function ExpedicaoRapida() {
             </View>
           </Box>
         </TouchableOpacity>
+
+        <PickingList/>
       </SafeAreaView>
     </>
   );
