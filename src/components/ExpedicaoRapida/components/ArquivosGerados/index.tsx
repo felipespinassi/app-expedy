@@ -13,8 +13,19 @@ import moment from "moment";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { Box, Center, VStack } from "native-base";
 
+// interface FilesProps {
+//   files:{
+//     idERP_File:number,
+//     status:string,
+//     usuario:string
+//     createdAt: string
+//     id:string
+//   }
+
+// }
+
 export default function ArquivosGerados() {
-  const [Files, setFiles] = useState();
+  const [Files, setFiles] = useState ([]);
 
   const [loading, setLoading] = useState(false);
   async function fetchData() {
@@ -22,6 +33,7 @@ export default function ArquivosGerados() {
       setLoading(true);
       const response: any = await getService("orders/file", {});
       setFiles(response.data.files);
+
     } catch (error) {}
     setLoading(false);
   }
@@ -31,7 +43,6 @@ export default function ArquivosGerados() {
   }, []);
 
   async function handlePrintFile(item: any) {
-    console.log(item.id);
     const response: any = await getService(
       `orders/file/print?id=${item.id}&usuario=Expedy`
     );
@@ -42,16 +53,17 @@ export default function ArquivosGerados() {
     } else {
       console.log(response);
 
-      return Alert.alert("deu ruim");
+      return Alert.alert("Falha ao imprimir");
     }
   }
+
 
   return (
     <SafeAreaView>
       <FlatList
         data={Files}
         renderItem={({ item }: any) => (
-          <View style={{ paddingHorizontal: 10 }}>
+          <TouchableOpacity style={{ paddingHorizontal: 10 }}>
             <VStack>
               <Center
                 shadow={1}
@@ -65,9 +77,12 @@ export default function ArquivosGerados() {
                   paddingHorizontal: 25,
                 }}
               >
-                <Text>
+                <Text style={{fontSize:12}}>{item.idERP_File}</Text>
+
+                <Text >
                   {item.status === "impresso" && (
                     <Box
+                    
                       rounded="sm"
                       px={3}
                       borderWidth={1}
@@ -109,19 +124,20 @@ export default function ArquivosGerados() {
                     </Box>
                   )}
                 </Text>
-                <Text>
+                <Text style={{fontSize:12}}>{item.usuario}</Text>
+                <Text style={{fontSize:12}}>
                   {moment(item.createdAt).utc(true).format("DD/MM")}
                   {/* {moment(item.date).utc(true).format("HH:mm")} */}
                 </Text>
-                <TouchableOpacity
+                {/* <TouchableOpacity
                   onPress={() => handlePrintFile(item)}
                   style={{ paddingTop: 5 }}
                 >
                   <AntDesign name="printer" size={28} />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </Center>
             </VStack>
-          </View>
+          </TouchableOpacity>
         )}
         ListFooterComponent={
           <ActivityIndicator style={{ paddingTop: 10 }} size={"large"} />
