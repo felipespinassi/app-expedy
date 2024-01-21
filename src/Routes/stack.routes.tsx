@@ -8,6 +8,7 @@ import { PedidoId } from "../screens/Pedidos/PedidoId/PedidoId";
 import FiltersDrawer from "../components/Orders/components/OrderId/components/FiltersDrawer/FiltersDrawer";
 import TabRoutes from "./tab.routes";
 import ArquivosGerados from "../screens/ExpedicaoRapida/ArquivosGerados";
+import ArquivoGerado from "../screens/ExpedicaoRapida/ArquivoGerado";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -29,6 +30,7 @@ export function StackRoutes() {
       <Screen name="Produtos" component={ItemsToPick} />
       <Screen name="PedidoId" component={PedidoId} />
       <Screen name="ArquivosGerados" component={ArquivosGerados} />
+      <Screen name="ArquivoGerado" component={ArquivoGerado} />
     </Navigator>
   );
 }

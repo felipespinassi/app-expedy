@@ -10,8 +10,8 @@ import {
 import React, { useEffect, useState } from "react";
 import { getService } from "../../../../services/getService";
 import moment from "moment";
-import AntDesign from "react-native-vector-icons/AntDesign";
 import { Box, Center, VStack } from "native-base";
+import { useNavigation } from "@react-navigation/native";
 
 // interface FilesProps {
 //   files:{
@@ -25,6 +25,8 @@ import { Box, Center, VStack } from "native-base";
 // }
 
 export default function ArquivosGerados() {
+
+  const navigation:any = useNavigation()
   const [Files, setFiles] = useState ([]);
 
   const [loading, setLoading] = useState(false);
@@ -42,20 +44,7 @@ export default function ArquivosGerados() {
     fetchData();
   }, []);
 
-  async function handlePrintFile(item: any) {
-    const response: any = await getService(
-      `orders/file/print?id=${item.id}&usuario=Expedy`
-    );
-    if (response.status === 200) {
-      console.log(response);
-
-      return Alert.alert("Imprimindo");
-    } else {
-      console.log(response);
-
-      return Alert.alert("Falha ao imprimir");
-    }
-  }
+ 
 
 
   return (
@@ -63,7 +52,7 @@ export default function ArquivosGerados() {
       <FlatList
         data={Files}
         renderItem={({ item }: any) => (
-          <TouchableOpacity style={{ paddingHorizontal: 10 }}>
+          <TouchableOpacity onPress={() => navigation.navigate('ArquivoGerado',item)} style={{ paddingHorizontal: 10 }}>
             <VStack>
               <Center
                 shadow={1}
@@ -124,17 +113,12 @@ export default function ArquivosGerados() {
                     </Box>
                   )}
                 </Text>
-                <Text style={{fontSize:12}}>{item.usuario}</Text>
+                <Text style={{fontSize:12, maxWidth:140}}>{item.usuario}</Text>
                 <Text style={{fontSize:12}}>
                   {moment(item.createdAt).utc(true).format("DD/MM")}
                   {/* {moment(item.date).utc(true).format("HH:mm")} */}
                 </Text>
-                {/* <TouchableOpacity
-                  onPress={() => handlePrintFile(item)}
-                  style={{ paddingTop: 5 }}
-                >
-                  <AntDesign name="printer" size={28} />
-                </TouchableOpacity> */}
+               
               </Center>
             </VStack>
           </TouchableOpacity>
