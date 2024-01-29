@@ -26,11 +26,7 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <QueryClientProvider client={queryClient}>
         <NativeBaseProvider>
-          <StatusBar
-            barStyle={"light-content"}
-            backgroundColor="transparent"
-            translucent
-          />
+          <StatusBar barStyle={"light-content"} backgroundColor="transparent" translucent />
           <Routes />
         </NativeBaseProvider>
       </QueryClientProvider>

@@ -9,10 +9,8 @@ export default function ExpedicaoRapida() {
   const navigation: any = useNavigation();
   return (
     <>
-      <SafeAreaView
-        style={{ alignItems: "center", width: "100%", marginTop: 20 }}
-      >
-        {/* <TouchableOpacity style={{ width: "90%" }}>
+      <SafeAreaView style={{ alignItems: "center", width: "100%", marginTop: 20 }}>
+        <TouchableOpacity style={{ width: "90%" }}>
           <Box
             height={100}
             rounded="lg"
@@ -37,7 +35,7 @@ export default function ExpedicaoRapida() {
               </Heading>
             </View>
           </Box>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
 
         <TouchableOpacity
           onPress={() => navigation.navigate("ArquivosGerados")}
@@ -69,7 +67,7 @@ export default function ExpedicaoRapida() {
           </Box>
         </TouchableOpacity>
 
-        {/* <PickingList/> */}
+        <PickingList />
       </SafeAreaView>
     </>
   );

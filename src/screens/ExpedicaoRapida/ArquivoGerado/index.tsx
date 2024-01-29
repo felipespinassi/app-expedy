@@ -59,6 +59,7 @@ export default function ArquivoGerado(props: any) {
                   bg={"light.50"}
                   style={{
                     marginBottom: 10,
+                    paddingBottom: 10,
                   }}
                 >
                   <View
@@ -77,6 +78,16 @@ export default function ArquivoGerado(props: any) {
                     <Text style={{ width: "40%" }}>{produto.database_name}</Text>
                     <Text>{produto.quantity}</Text>
                   </View>
+                  {/* <View
+                    style={{ flexDirection: "row", justifyContent: "space-around", width: "100%" }}
+                  >
+                    <Button style={{ backgroundColor: "#002851" }} size={"xs"}>
+                      Confirmar todos
+                    </Button>
+                    <Button style={{ backgroundColor: "#002851" }} size={"xs"}>
+                      Selecionar quantidade
+                    </Button>
+                  </View> */}
                 </Center>
               </VStack>
             );
@@ -84,7 +95,7 @@ export default function ArquivoGerado(props: any) {
         </ScrollView>
       )}
 
-      <View
+      {/* <View
         style={{
           paddingTop: 5,
           display: "flex",
@@ -95,7 +106,7 @@ export default function ArquivoGerado(props: any) {
         <TouchableOpacity onPress={() => handlePrintFile(item)}>
           <Button style={{ backgroundColor: "#002851" }}>Imprimir Arquivo</Button>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </>
   );
 }
