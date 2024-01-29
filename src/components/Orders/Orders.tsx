@@ -4,13 +4,7 @@ import { getService } from "../../services/getService";
 import { useQuery } from "react-query";
 import { OrderSkelleton } from "../../components/OrderSkelleton/OrderSkelleton";
 import ListOrders from "./components/ListOrders/ListOrders";
-import {
-  ActivityIndicator,
-  Alert,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { ActivityIndicator, Alert, SafeAreaView, Text, TouchableOpacity } from "react-native";
 import ModalFilterPedidos from "./components/ModalFilterPedidos/ModalFilterPedidos";
 import { Modalize } from "react-native-modalize";
 import AntDesign from "react-native-vector-icons/AntDesign";
@@ -41,7 +35,6 @@ export default function Orders({ navigation }: any) {
 
       if (page === 1) {
         setPedidos(newData);
-        console.log("aqui");
       } else {
         setPedidos((prevData: any) => [...prevData, ...filteredData]);
       }
@@ -51,7 +44,6 @@ export default function Orders({ navigation }: any) {
       setLoading(false);
     }
   }
-  console.log(page);
 
   async function onScrollScreen() {
     if (!loading) {
@@ -99,9 +91,7 @@ export default function Orders({ navigation }: any) {
             <ListOrders navigation={navigation} item={item} />
           </>
         )}
-        ListFooterComponent={
-          <ActivityIndicator style={{ paddingTop: 10 }} size={"large"} />
-        }
+        ListFooterComponent={<ActivityIndicator style={{ paddingTop: 10 }} size={"large"} />}
       />
       <ModalFilterPedidos
         modalizeRef={modalizeRef}
