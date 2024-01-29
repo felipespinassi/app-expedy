@@ -1,15 +1,32 @@
-import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
+import { View, Text } from "react-native";
 import React from "react";
-import { Box, Heading } from "native-base";
+import { Box, Button, Heading } from "native-base";
 import Feather from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
+import ArrowBack from "../../../components/ArrowBack/ArrowBack";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default function ExpedicaoRapida() {
+export default function ArquivoId(props: any) {
+  const item = props.route.params._id;
   const navigation: any = useNavigation();
   return (
     <>
-      <SafeAreaView style={{ alignItems: "center", width: "100%", marginTop: 20 }}>
-        <TouchableOpacity style={{ width: "90%" }}>
+      <View
+        style={{
+          height: "15%",
+          backgroundColor: "#002851",
+          justifyContent: "flex-end",
+          alignItems: "center",
+          paddingBottom: 15,
+        }}
+      >
+        <ArrowBack navigation={navigation} />
+        <Heading fontWeight={500} size={"md"} color={"white"}>
+          Arquivo
+        </Heading>
+      </View>
+      <View style={{ paddingHorizontal: 5 }}>
+        <TouchableOpacity onPress={() => navigation.navigate("ListaSeparacao", item)}>
           <Box
             height={100}
             rounded="lg"
@@ -24,21 +41,19 @@ export default function ExpedicaoRapida() {
             }}
             px={3}
             py={1}
-            style={{ marginBottom: 20, justifyContent: "space-around" }}
+            style={{ marginBottom: 10, justifyContent: "space-around" }}
           >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Feather name="package" size={24} />
+              <Feather name="file-text" size={24} />
 
               <Heading style={{ marginLeft: 10 }} fontWeight={500} size={"sm"}>
-                Expedir
+                Lista de Picking
               </Heading>
             </View>
           </Box>
         </TouchableOpacity>
-
         <TouchableOpacity
-          onPress={() => navigation.navigate("ArquivosGerados")}
-          style={{ width: "90%" }}
+        //   onPress={() => navigation.navigate("ArquivosGerados")}
         >
           <Box
             height={100}
@@ -60,12 +75,16 @@ export default function ExpedicaoRapida() {
               <Feather name="file-text" size={24} />
 
               <Heading style={{ marginLeft: 10 }} fontWeight={500} size={"sm"}>
-                Arquivos Gerados
+                Pedidos
               </Heading>
             </View>
           </Box>
         </TouchableOpacity>
-      </SafeAreaView>
+
+        <TouchableOpacity>
+          <Button style={{ backgroundColor: "#002851" }}>Imprimir Arquivo</Button>
+        </TouchableOpacity>
+      </View>
     </>
   );
 }

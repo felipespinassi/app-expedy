@@ -25,9 +25,8 @@ import { useNavigation } from "@react-navigation/native";
 // }
 
 export default function ArquivosGerados() {
-
-  const navigation:any = useNavigation()
-  const [Files, setFiles] = useState ([]);
+  const navigation: any = useNavigation();
+  const [Files, setFiles] = useState([]);
 
   const [loading, setLoading] = useState(false);
   async function fetchData() {
@@ -35,7 +34,6 @@ export default function ArquivosGerados() {
       setLoading(true);
       const response: any = await getService("orders/file", {});
       setFiles(response.data.files);
-
     } catch (error) {}
     setLoading(false);
   }
@@ -44,15 +42,15 @@ export default function ArquivosGerados() {
     fetchData();
   }, []);
 
- 
-
-
   return (
     <SafeAreaView>
       <FlatList
         data={Files}
         renderItem={({ item }: any) => (
-          <TouchableOpacity onPress={() => navigation.navigate('ArquivoGerado',item)} style={{ paddingHorizontal: 10 }}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("ArquivoId", item)}
+            style={{ paddingHorizontal: 10 }}
+          >
             <VStack>
               <Center
                 shadow={1}
@@ -66,12 +64,11 @@ export default function ArquivosGerados() {
                   paddingHorizontal: 25,
                 }}
               >
-                <Text style={{fontSize:12}}>{item.idERP_File}</Text>
+                <Text style={{ fontSize: 12 }}>{item.idERP_File}</Text>
 
-                <Text >
+                <Text>
                   {item.status === "impresso" && (
                     <Box
-                    
                       rounded="sm"
                       px={3}
                       borderWidth={1}
@@ -113,19 +110,16 @@ export default function ArquivosGerados() {
                     </Box>
                   )}
                 </Text>
-                <Text style={{fontSize:12, maxWidth:140}}>{item.usuario}</Text>
-                <Text style={{fontSize:12}}>
+                <Text style={{ fontSize: 12, maxWidth: 140 }}>{item.usuario}</Text>
+                <Text style={{ fontSize: 12 }}>
                   {moment(item.createdAt).utc(true).format("DD/MM")}
                   {/* {moment(item.date).utc(true).format("HH:mm")} */}
                 </Text>
-               
               </Center>
             </VStack>
           </TouchableOpacity>
         )}
-        ListFooterComponent={
-          <ActivityIndicator style={{ paddingTop: 10 }} size={"large"} />
-        }
+        ListFooterComponent={<ActivityIndicator style={{ paddingTop: 10 }} size={"large"} />}
       />
     </SafeAreaView>
   );

@@ -8,8 +8,8 @@ import { useNavigation } from "@react-navigation/native";
 import { getService } from "../../../services/getService";
 import { useQuery } from "react-query";
 
-export default function ArquivoGerado(props: any) {
-  const item = props.route.params._id;
+export default function ListaSeparacao(props: any) {
+  const item = props.route.params;
   const navigation: any = useNavigation();
   const {
     data: response,
@@ -42,7 +42,7 @@ export default function ArquivoGerado(props: any) {
       >
         <ArrowBack navigation={navigation} />
         <Heading fontWeight={500} size={"md"} color={"white"}>
-          Arquivo Gerado
+          Lista de Picking
         </Heading>
       </View>
 
@@ -78,16 +78,16 @@ export default function ArquivoGerado(props: any) {
                     <Text style={{ width: "40%" }}>{produto.database_name}</Text>
                     <Text>{produto.quantity}</Text>
                   </View>
-                  {/* <View
+                  <View
                     style={{ flexDirection: "row", justifyContent: "space-around", width: "100%" }}
                   >
-                    <Button style={{ backgroundColor: "#002851" }} size={"xs"}>
+                    {/* <Button style={{ backgroundColor: "#002851" }} size={"xs"}>
                       Confirmar todos
                     </Button>
                     <Button style={{ backgroundColor: "#002851" }} size={"xs"}>
                       Selecionar quantidade
-                    </Button>
-                  </View> */}
+                    </Button> */}
+                  </View>
                 </Center>
               </VStack>
             );

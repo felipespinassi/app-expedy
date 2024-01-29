@@ -1,14 +1,11 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Listas } from "../screens/Listas";
 import { ItemsToPick } from "../screens/Listas/ItemsToPick";
-import { ListaSeparacao } from "../screens/Listas/ListaSeparacao";
 import { Login } from "../screens/Login";
-import { DrawerRoutes } from "./drawer.routes";
 import { PedidoId } from "../screens/Pedidos/PedidoId/PedidoId";
-import FiltersDrawer from "../components/Orders/components/OrderId/components/FiltersDrawer/FiltersDrawer";
 import TabRoutes from "./tab.routes";
 import ArquivosGerados from "../screens/ExpedicaoRapida/ArquivosGerados";
-import ArquivoGerado from "../screens/ExpedicaoRapida/ArquivoGerado";
+import ListaSeparacao from "../screens/ExpedicaoRapida/ListaSeparacao";
+import ArquivoId from "../screens/ExpedicaoRapida/ArquivoId";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -21,16 +18,11 @@ export function StackRoutes() {
     >
       <Screen name="Login" component={Login} />
       <Screen name="Tabs" component={TabRoutes} />
-      {/* <Screen
-       
-        name="Listas"
-        component={Listas}
-      /> */}
-      <Screen name="ListaSeparacao" component={ListaSeparacao} />
       <Screen name="Produtos" component={ItemsToPick} />
       <Screen name="PedidoId" component={PedidoId} />
       <Screen name="ArquivosGerados" component={ArquivosGerados} />
-      <Screen name="ArquivoGerado" component={ArquivoGerado} />
+      <Screen name="ListaSeparacao" component={ListaSeparacao} />
+      <Screen name="ArquivoId" component={ArquivoId} />
     </Navigator>
   );
 }
