@@ -21,14 +21,6 @@ export default function ListaSeparacao(props: any) {
     async () => await getService(`orders/file/picking/${item}`, {})
   );
 
-  async function handlePrintFile(item: any) {
-    const response: any = await getService(`orders/file/print?id=${item}&usuario=Expedy`);
-    if (response.status === 200) {
-      return Alert.alert("Imprimindo");
-    } else {
-      return Alert.alert("Falha ao imprimir");
-    }
-  }
   return (
     <>
       <View

@@ -1,14 +1,25 @@
-import { View, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 import React from "react";
 import { Box, Button, Heading } from "native-base";
 import Feather from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
 import ArrowBack from "../../../components/ArrowBack/ArrowBack";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { getService } from "../../../services/getService";
 
 export default function ArquivoId(props: any) {
-  const item = props.route.params._id;
+  const item: string = props.route.params._id;
   const navigation: any = useNavigation();
+
+  async function handlePrintFile(item: string) {
+    console.log(item);
+    const response: any = await getService(`orders/file/print?id=${item}&usuario=Expedy`);
+    if (response.status === 200) {
+      return Alert.alert("Imprimindo");
+    } else {
+      return Alert.alert("Falha ao imprimir");
+    }
+  }
   return (
     <>
       <View
@@ -81,7 +92,7 @@ export default function ArquivoId(props: any) {
           </Box>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => handlePrintFile(item)}>
           <Button style={{ backgroundColor: "#002851" }}>Imprimir Arquivo</Button>
         </TouchableOpacity>
       </View>
