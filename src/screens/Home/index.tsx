@@ -1,5 +1,5 @@
-import { Avatar, Center, Heading, View, VStack } from "native-base";
-import { Image, Text } from "react-native";
+import { Image, Text, View } from "react-native";
+import {  H4 } from "tamagui";
 
 export function Home() {
   return (
@@ -13,9 +13,9 @@ export function Home() {
           paddingBottom: 15,
         }}
       >
-        <Heading fontWeight={500} size={"md"} color={"white"}>
+        <H4  color={"white"}>
           Início
-        </Heading>
+        </H4>
       </View>
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Image
