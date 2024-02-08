@@ -1,13 +1,14 @@
-import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
+import { Text, SafeAreaView, TouchableOpacity } from "react-native";
 import React from "react";
 import { Box, Heading } from "native-base";
 import Feather from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
+import { View } from "tamagui";
 
 export default function ExpedicaoRapida() {
   const navigation: any = useNavigation();
   return (
-    <>
+    <View style={{ flex: 1 }}>
       <SafeAreaView style={{ alignItems: "center", width: "100%", marginTop: 20 }}>
         <TouchableOpacity style={{ width: "90%" }}>
           <Box
@@ -66,6 +67,6 @@ export default function ExpedicaoRapida() {
           </Box>
         </TouchableOpacity>
       </SafeAreaView>
-    </>
+    </View>
   );
 }

@@ -1,11 +1,12 @@
 import { View, Text, Alert } from "react-native";
 import React from "react";
-import { Box, Button, Heading } from "native-base";
+import { Box, Heading } from "native-base";
 import Feather from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
 import ArrowBack from "../../../components/ArrowBack/ArrowBack";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { getService } from "../../../services/getService";
+import { Button } from "tamagui";
 
 export default function ArquivoId(props: any) {
   const item: string = props.route.params._id;
@@ -93,7 +94,7 @@ export default function ArquivoId(props: any) {
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => handlePrintFile(item)}>
-          <Button style={{ backgroundColor: "#002851" }}>Imprimir Arquivo</Button>
+          <Button>Imprimir Arquivo</Button>
         </TouchableOpacity>
       </View>
     </>

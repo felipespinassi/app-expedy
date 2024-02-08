@@ -1,7 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Home } from "../screens/Home";
 import Pedidos from "../screens/Pedidos/Pedidos";
-import { Listas } from "../screens/Listas";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { DrawerRoutes } from "./drawer.routes";
 import Mais from "../screens/Mais";
