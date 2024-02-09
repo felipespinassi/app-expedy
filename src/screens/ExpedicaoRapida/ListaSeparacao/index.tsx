@@ -26,7 +26,8 @@ export default function ListaSeparacao(props: any) {
   const [openModal, setOpenModal] = useState(false);
   const produtoRef = useRef({} as any)
 
-  const item = props.route.params;
+  const file = props.route.params.file;
+
   const navigation: any = useNavigation();
   const {
     data: response,
@@ -35,7 +36,7 @@ export default function ListaSeparacao(props: any) {
     isFetching,
   }: any = useQuery(
     "OrderComplete",
-    async () => await getService(`orders/file/picking/${item}`, {})
+    async () => await getService(`orders/file/picking/${file}`, {})
   );
 
   return (
@@ -58,12 +59,12 @@ export default function ListaSeparacao(props: any) {
       ) : (
         <ScrollView style={{ paddingTop: 5 }}>
 
-          {response?.data.produtos.map((produto: any, index: any) => {
+          {response?.data.produtos?.map((produto: any, index: any) => {
 
             return (
               <TouchableOpacity onPress={() => { setOpenModal(true), produtoRef.current = produto }}>
 
-                <VStack key={index} style={{ paddingHorizontal: 5 }}>
+                <VStack  style={{ paddingHorizontal: 5 }}>
                   <Center
                     shadow={1}
                     rounded={"md"}
@@ -74,7 +75,7 @@ export default function ListaSeparacao(props: any) {
                     }}
                   >
                     <View
-                      key={index}
+                      key={produto.reference}
                       style={{
                         height: 90,
                         flexDirection: "row",

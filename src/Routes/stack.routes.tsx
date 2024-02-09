@@ -23,6 +23,7 @@ export function StackRoutes() {
       <Screen name="ArquivosGerados" component={ArquivosGerados} />
       <Screen name="ListaSeparacao" component={ListaSeparacao} />
       <Screen name="ArquivoId" component={ArquivoId} />
+      <Screen name="Produtos à separar " component={ItemsToPick} />
     </Navigator>
   );
 }
