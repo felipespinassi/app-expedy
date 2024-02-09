@@ -1,11 +1,11 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { ItemsToPick } from "../screens/Listas/ItemsToPick";
 import { Login } from "../screens/Login";
 import { PedidoId } from "../screens/Pedidos/PedidoId/PedidoId";
 import TabRoutes from "./tab.routes";
 import ArquivosGerados from "../screens/ExpedicaoRapida/ArquivosGerados";
 import ListaSeparacao from "../screens/ExpedicaoRapida/ListaSeparacao";
 import ArquivoId from "../screens/ExpedicaoRapida/ArquivoId";
+import ItemsToPick from "../screens/ExpedicaoRapida/ItemsToPick";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -18,12 +18,11 @@ export function StackRoutes() {
     >
       <Screen name="Login" component={Login} />
       <Screen name="Tabs" component={TabRoutes} />
-      <Screen name="Produtos" component={ItemsToPick} />
       <Screen name="PedidoId" component={PedidoId} />
       <Screen name="ArquivosGerados" component={ArquivosGerados} />
       <Screen name="ListaSeparacao" component={ListaSeparacao} />
       <Screen name="ArquivoId" component={ArquivoId} />
-      <Screen name="Produtos à separar " component={ItemsToPick} />
+      <Screen name="ItemsToPick" component={ItemsToPick} />
     </Navigator>
   );
 }

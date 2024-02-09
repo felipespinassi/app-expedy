@@ -1,27 +1,17 @@
 import { View, TouchableOpacity } from "react-native";
-import React, { useRef, useState } from "react";
+import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useQuery } from "react-query";
 import {
-  Adapt,
-  Button,
-  Dialog,
-  Fieldset,
-  H5,
-  Input,
-  Label,
+
   ScrollView,
-  Sheet,
   Text,
-  Unspaced,
-  XStack,
+
 } from "tamagui";
 import { Center, Spinner, VStack } from "native-base";
 import { getService } from "../../../../services/getService";
 
-export default function ListaSeparacao({file}: any) {
-  const [openModal, setOpenModal] = useState(false);
-  const produtoRef = useRef({} as any)
+export default function ListaSeparacao({ file }: any) {
 
 
   const navigation: any = useNavigation();
@@ -37,7 +27,7 @@ export default function ListaSeparacao({file}: any) {
 
   return (
     <>
-      
+
       {isFetching ? (
         <Spinner />
       ) : (
@@ -46,9 +36,9 @@ export default function ListaSeparacao({file}: any) {
           {response?.data.produtos?.map((produto: any, index: any) => {
 
             return (
-              <TouchableOpacity onPress={() => { setOpenModal(true), produtoRef.current = produto }}>
+              <TouchableOpacity onPress={() => { navigation.navigate('ItemsToPick', produto) }}>
 
-                <VStack  style={{ paddingHorizontal: 5 }}>
+                <VStack style={{ paddingHorizontal: 5 }}>
                   <Center
                     shadow={1}
                     rounded={"md"}
@@ -86,74 +76,8 @@ export default function ListaSeparacao({file}: any) {
           })}
         </ScrollView>
       )}
-     
-        <Dialog onOpenChange={() => setOpenModal(false)} modal open={openModal}>
-          <Adapt when="sm" platform="touch">
-            <Sheet zIndex={200000} modal dismissOnSnapToBottom>
-              <Sheet.Frame padding="$4" gap="$4">
-                <Adapt.Contents />
-              </Sheet.Frame>
-              <Sheet.Overlay enterStyle={{ opacity: 0 }} exitStyle={{ opacity: 0 }} />
-            </Sheet>
-          </Adapt>
 
-          <Dialog.Portal>
-            <Dialog.Overlay
-              key="overlay"
-              opacity={0.5}
-              enterStyle={{ opacity: 0 }}
-              exitStyle={{ opacity: 0 }}
-            />
 
-            <Dialog.Content
-              bordered
-              elevate
-              key="content"
-              animateOnly={["transform", "opacity"]}
-              enterStyle={{ x: 0, y: -20, opacity: 0, scale: 0.9 }}
-              exitStyle={{ x: 0, y: 10, opacity: 0, scale: 0.95 }}
-              gap="$4"
-            >
-              <View style={{ justifyContent: "center", alignItems: "center" }}>
-                <Dialog.Title textAlign='center' size={'$7'}>{produtoRef.current.database_name}</Dialog.Title>
-              </View>
-
-              <View style={{ justifyContent: "center", alignItems: "center" }}>
-                <Dialog.Description>
-                  <H5 style={{ color: "white" }}> </H5>
-                </Dialog.Description>
-              </View>
-              <Fieldset gap="$4">
-                <View style={{ justifyContent: "center", alignItems: "center" }}>
-                  <H5>SKU:{produtoRef.current.reference}</H5>
-                </View>
-              </Fieldset>
-
-              <Fieldset gap="$4">
-                <View style={{ justifyContent: "center", alignItems: "center" }}>
-                  <Label justifyContent="flex-end" htmlFor="quantity">
-                    Digite a quantidade
-                  </Label>
-                  <Input id="quantity" />
-                </View>
-              </Fieldset>
-
-              <XStack alignItems={"center"} justifyContent="center" gap="$4">
-                <Dialog.Close displayWhenAdapted asChild>
-                  <Button onPress={() => setOpenModal(false)} aria-label="Close">
-                    Confirmar
-                  </Button>
-                </Dialog.Close>
-              </XStack>
-
-              <Unspaced>
-                <Dialog.Close asChild>
-                  <Button position="absolute" top="$3" right="$3" />
-                </Dialog.Close>
-              </Unspaced>
-            </Dialog.Content>
-          </Dialog.Portal>
-        </Dialog>
     </>
   );
 }

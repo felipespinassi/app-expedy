@@ -1,7 +1,7 @@
 import React from "react";
 
 import ArquivoIdComponent from '../../../components/ExpedicaoRapida/components/ArquivoId/index'
-import { Heading, View } from "tamagui";
+import { Heading, Theme, View } from "tamagui";
 import ArrowBack from "../../../components/ArrowBack/ArrowBack";
 import { useNavigation } from "@react-navigation/native";
 
@@ -11,7 +11,7 @@ export default function ArquivoId(props: any) {
 
   
   return (
-    <>
+    <Theme name={'light'}>
     <View
         style={{
           height: "15%",
@@ -27,6 +27,6 @@ export default function ArquivoId(props: any) {
         </Heading>
       </View>
       <ArquivoIdComponent file={props.route.params._id} /> 
-    </>
+    </Theme>
   )
 }
