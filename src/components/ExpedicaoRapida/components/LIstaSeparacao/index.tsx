@@ -1,5 +1,4 @@
-import { View, Alert, TouchableOpacity, KeyboardAvoidingView, Platform } from "react-native";
-import { X } from "@tamagui/lucide-icons";
+import { View, TouchableOpacity } from "react-native";
 import React, { useRef, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useQuery } from "react-query";
@@ -9,7 +8,6 @@ import {
   Dialog,
   Fieldset,
   H5,
-  Heading,
   Input,
   Label,
   ScrollView,
@@ -20,7 +18,6 @@ import {
 } from "tamagui";
 import { Center, Spinner, VStack } from "native-base";
 import { getService } from "../../../../services/getService";
-import ArrowBack from "../../../ArrowBack/ArrowBack";
 
 export default function ListaSeparacao({file}: any) {
   const [openModal, setOpenModal] = useState(false);
@@ -40,19 +37,7 @@ export default function ListaSeparacao({file}: any) {
 
   return (
     <>
-      <View
-        style={{
-          height: "15%",
-          backgroundColor: "#002851",
-          justifyContent: "flex-end",
-          alignItems: "center",
-          paddingBottom: 15,
-        }}
-      >
-        <ArrowBack navigation={navigation} />
-        <Heading color={"white"}>Lista de Picking</Heading>
-      </View>
-
+      
       {isFetching ? (
         <Spinner />
       ) : (

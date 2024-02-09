@@ -1,12 +1,32 @@
 import React from "react";
 
 import ArquivoIdComponent from '../../../components/ExpedicaoRapida/components/ArquivoId/index'
+import { Heading, View } from "tamagui";
+import ArrowBack from "../../../components/ArrowBack/ArrowBack";
+import { useNavigation } from "@react-navigation/native";
 
 export default function ArquivoId(props: any) {
 
-  console.log(props.route.params._id)
+  const navigation: any = useNavigation();
+
   
   return (
-   <ArquivoIdComponent file={props.route.params._id} /> 
+    <>
+    <View
+        style={{
+          height: "15%",
+          backgroundColor: "#002851",
+          justifyContent: "flex-end",
+          alignItems: "center",
+          paddingBottom: 15,
+        }}
+      >
+        <ArrowBack navigation={navigation} />
+        <Heading color={"white"}>
+          Arquivo
+        </Heading>
+      </View>
+      <ArquivoIdComponent file={props.route.params._id} /> 
+    </>
   )
 }

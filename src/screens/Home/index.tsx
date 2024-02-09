@@ -1,5 +1,5 @@
 import { Image, Text } from "react-native";
-import { H4, Theme, View } from "tamagui";
+import { H4, View } from "tamagui";
 
 export function Home() {
   return (
