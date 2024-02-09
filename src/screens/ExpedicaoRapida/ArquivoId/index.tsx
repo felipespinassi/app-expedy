@@ -11,7 +11,7 @@ export default function ArquivoId(props: any) {
 
   
   return (
-    <Theme name={'light'}>
+    <>
     <View
         style={{
           height: "15%",
@@ -27,6 +27,6 @@ export default function ArquivoId(props: any) {
         </Heading>
       </View>
       <ArquivoIdComponent file={props.route.params._id} /> 
-    </Theme>
+    </>
   )
 }

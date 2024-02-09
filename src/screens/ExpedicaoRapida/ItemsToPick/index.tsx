@@ -12,7 +12,7 @@ export default function ItemsToPick(props:any) {
 const produto = props.route.params
  
   return (
-    <Theme name={'light'}>
+    <>
         <View
         style={{
           height: "15%",
@@ -28,6 +28,6 @@ const produto = props.route.params
         </Heading>
       </View>
       <ItemsToPickComponent produto={produto} />
-    </Theme>
+    </>
   )
 }
