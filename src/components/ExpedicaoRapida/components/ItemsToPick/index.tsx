@@ -1,6 +1,6 @@
 import { KeyboardAvoidingView } from 'react-native'
 import React from 'react'
-import { Button, H4, H5, Input, Theme, View } from 'tamagui'
+import { Button, Card,  H4, H5, Input, Theme, View } from 'tamagui'
 import { Platform } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 
@@ -11,7 +11,7 @@ export default function ItemsToPick({ produto }: any) {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
 
         >
-            <View jc={'space-around'} h={'80%'} >
+            <View jc={'space-around'} h={'90%'} padding={5} >
 
 
                 <View alignItems='center' >
@@ -23,8 +23,23 @@ export default function ItemsToPick({ produto }: any) {
 
                     <H5 >SKU: {produto.reference}</H5>
                 </View>
-                <View alignItems='center'>
-                    <Input borderWidth={2} keyboardType='numeric' w={'$6'} />
+
+
+                <View alignItems='center' >
+                    <Card justifyContent='center' gap={50} w={'85%'} h={'$15'} elevate size="$4" bordered>
+                        <View alignItems='center'  >
+
+                            <H5 >Quantidade necessária: {produto.quantity}</H5>
+                        </View>
+
+
+                        <View alignItems='center' justifyContent='center' >
+                            <Input borderWidth={2} keyboardType='numeric' w={'$6'} />
+
+                        </View>
+
+
+                    </Card>
 
                 </View>
 
