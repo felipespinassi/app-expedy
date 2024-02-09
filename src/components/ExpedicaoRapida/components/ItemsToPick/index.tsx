@@ -11,10 +11,10 @@ export default function ItemsToPick({ produto }: any) {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
 
         >
-            <View  jc={'space-around'} h={'80%'} >
+            <View jc={'space-around'} h={'80%'} >
 
 
-                <View  alignItems='center' >
+                <View alignItems='center' >
 
                     <H4 textAlign='center'>{produto.database_name}</H4>
                 </View>
@@ -23,14 +23,18 @@ export default function ItemsToPick({ produto }: any) {
 
                     <H5 >SKU: {produto.reference}</H5>
                 </View>
-                {/* <Text>{produto.quantity}</Text> */}
                 <View alignItems='center'>
-                    <Input keyboardType='numeric' w={'$6'} />
+                    <Input borderWidth={2} keyboardType='numeric' w={'$6'} />
 
                 </View>
 
-                <Theme >
-                    <Button onPress={() => navigation.navigate('ListaSeparacao')}>Confirmar</Button>
+
+
+                <Theme inverse >
+                    <View alignItems='center'>
+
+                        <Button onPress={() => navigation.navigate('ListaSeparacao')}>Confirmar</Button>
+                    </View>
                 </Theme>
             </View>
 
