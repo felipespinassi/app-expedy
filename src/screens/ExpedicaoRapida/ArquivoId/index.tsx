@@ -11,7 +11,7 @@ export default function ArquivoId(props: any) {
 
   
   return (
-    <Theme name={'pink'}>
+    <Theme name={'light'}>
     <View
        backgroundColor={'#002851'}
        height={'15%'}
