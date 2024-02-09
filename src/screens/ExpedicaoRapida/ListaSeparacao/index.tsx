@@ -1,4 +1,4 @@
-import { Heading, View } from "tamagui";
+import { Heading, Theme, View } from "tamagui";
 import ListaSeparacaoComponent from "../../../components/ExpedicaoRapida/components/LIstaSeparacao";
 import ArrowBack from "../../../components/ArrowBack/ArrowBack";
 import { useNavigation } from "@react-navigation/native";
@@ -11,15 +11,14 @@ export default function ListaSeparacao(props: any) {
 
 
   return (
-    <>
+    <Theme name={'light'}>
      <View
-        style={{
-          height: "15%",
-          backgroundColor: "#002851",
-          justifyContent: "flex-end",
-          alignItems: "center",
-          paddingBottom: 15,
-        }}
+      backgroundColor={'#002851'}
+      height={'15%'}
+      justifyContent="flex-end"
+      alignItems="center"
+      paddingBottom={15}
+      
       >
         <ArrowBack navigation={navigation} />
         <Heading color={"white"}>Lista de Picking</Heading>
@@ -28,6 +27,6 @@ export default function ListaSeparacao(props: any) {
 
       <ListaSeparacaoComponent file={file} />
 
-    </>
+    </Theme>
   );
 }

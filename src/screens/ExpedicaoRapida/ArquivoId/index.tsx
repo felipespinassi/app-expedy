@@ -11,15 +11,13 @@ export default function ArquivoId(props: any) {
 
   
   return (
-    <>
+    <Theme name={'pink'}>
     <View
-        style={{
-          height: "15%",
-          backgroundColor: "#002851",
-          justifyContent: "flex-end",
-          alignItems: "center",
-          paddingBottom: 15,
-        }}
+       backgroundColor={'#002851'}
+       height={'15%'}
+       justifyContent="flex-end"
+       alignItems="center"
+       paddingBottom={15}
       >
         <ArrowBack navigation={navigation} />
         <Heading color={"white"}>
@@ -27,6 +25,6 @@ export default function ArquivoId(props: any) {
         </Heading>
       </View>
       <ArquivoIdComponent file={props.route.params._id} /> 
-    </>
+    </Theme>
   )
 }

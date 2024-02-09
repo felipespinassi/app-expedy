@@ -1,33 +1,31 @@
-import { View, Text } from 'react-native'
+import { Text } from 'react-native'
 import React from 'react'
-import { Heading, Theme } from 'tamagui'
+import { Heading, Theme, View } from 'tamagui'
 import ArrowBack from '../../../components/ArrowBack/ArrowBack'
 import { useNavigation } from '@react-navigation/native';
 
 import ItemsToPickComponent from '../../../components/ExpedicaoRapida/components/ItemsToPick';
 
-export default function ItemsToPick(props:any) {
+export default function ItemsToPick(props: any) {
   const navigation: any = useNavigation();
 
-const produto = props.route.params
- 
+  const produto = props.route.params
+
   return (
-    <>
-        <View
-        style={{
-          height: "15%",
-          backgroundColor: "#002851",
-          justifyContent: "flex-end",
-          alignItems: "center",
-          paddingBottom: 15,
-        }}
+    <Theme  name={'light'}>
+      <View
+        backgroundColor={'#002851'}
+        height={'15%'}
+        justifyContent="flex-end"
+        alignItems="center"
+        paddingBottom={15}
       >
         <ArrowBack navigation={navigation} />
         <Heading color={"white"}>
-            Produtos
+          Produtos
         </Heading>
       </View>
       <ItemsToPickComponent produto={produto} />
-    </>
+    </Theme>
   )
 }

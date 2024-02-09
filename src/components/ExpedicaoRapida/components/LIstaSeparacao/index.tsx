@@ -6,6 +6,7 @@ import {
 
   ScrollView,
   Text,
+  Theme,
 
 } from "tamagui";
 import { Center, Spinner, VStack } from "native-base";
@@ -26,7 +27,7 @@ export default function ListaSeparacao({ file }: any) {
   );
 
   return (
-    <>
+    <Theme name={'light'}>
 
       {isFetching ? (
         <Spinner />
@@ -58,11 +59,11 @@ export default function ListaSeparacao({ file }: any) {
                         paddingLeft: 20
                       }}
                     >
-                      <Text style={{ width: "20%" }} fontSize={'$6'} color={'$background'}> {produto.quantity}</Text>
+                      <Text style={{ width: "20%" }} fontSize={'$6'} > {produto.quantity}</Text>
 
                       <View style={{ width: "80%", gap: 7 }}>
-                        <Text fontSize={'$4'} color={'$background'}><Text color={'$gray10'} >SKU: </Text>{produto.reference}</Text>
-                        <Text fontSize={'$4'} color={'$background'}  ><Text color={'$gray10'} >Descricao: </Text>  {produto.database_name}</Text>
+                        <Text fontSize={'$4'} ><Text color={'$gray10'} >SKU: </Text>{produto.reference}</Text>
+                        <Text fontSize={'$4'}   ><Text color={'$gray10'} >Descricao: </Text>  {produto.database_name}</Text>
 
                       </View>
                     </View>
@@ -78,6 +79,6 @@ export default function ListaSeparacao({ file }: any) {
       )}
 
 
-    </>
+    </Theme>
   );
 }

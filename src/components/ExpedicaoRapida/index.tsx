@@ -8,7 +8,7 @@ import { View } from "tamagui";
 export default function ExpedicaoRapida() {
   const navigation: any = useNavigation();
   return (
-    <View style={{ flex: 1 }}>
+    <View flex={1} >
       <SafeAreaView style={{ alignItems: "center", width: "100%", marginTop: 20 }}>
         <TouchableOpacity style={{ width: "90%" }}>
           <Box
