@@ -4,15 +4,13 @@ import { useNavigation } from '@react-navigation/native';
 import ArrowBack from '../../../ArrowBack/ArrowBack';
 import { Button, Heading, ListItem, Theme, YGroup } from 'tamagui';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Box } from 'native-base';
-import Feather from "react-native-vector-icons/Feather";
 import { View } from 'tamagui';
 import { Alert } from 'react-native';
-import { ListChecks } from '@tamagui/lucide-icons';
 
 
-export default function ArquivoId(file: any) {
+export default function ArquivoId({file}: any) {
     const navigation: any = useNavigation();
+
 
     async function handlePrintFile(item: string) {
         const response: any = await getService(`orders/file/print?id=${item}&usuario=Expedy`);
