@@ -1,16 +1,9 @@
-import {
-  Text,
-  SafeAreaView,
-  FlatList,
-  TouchableOpacity,
-  ActivityIndicator,
-  Alert,
-} from "react-native";
+import { FlatList, TouchableOpacity, ActivityIndicator } from "react-native";
 import React, { useEffect, useState } from "react";
 import { getService } from "../../../../services/getService";
 import moment from "moment";
-import { Box, Center, VStack } from "native-base";
 import { useNavigation } from "@react-navigation/native";
+import { Text, View, YStack } from "tamagui";
 
 // interface FilesProps {
 //   files:{
@@ -42,7 +35,7 @@ export default function ArquivosGerados() {
   }, []);
 
   return (
-    <SafeAreaView>
+    <View theme={"light"}>
       <FlatList
         data={Files}
         renderItem={({ item }: any) => (
@@ -50,80 +43,73 @@ export default function ArquivosGerados() {
             onPress={() => navigation.navigate("ArquivoId", item)}
             style={{ paddingHorizontal: 10 }}
           >
-            <VStack>
-              <Center
-                shadow={1}
-                height={20}
-                rounded={"md"}
-                bg={"light.50"}
-                style={{
-                  marginBottom: 10,
-                  justifyContent: "space-between",
-                  flexDirection: "row",
-                  paddingHorizontal: 25,
-                }}
+            <YStack>
+              <View
+                height={80}
+                backgroundColor={"white"}
+                borderRadius={5}
+                alignItems="center"
+                justifyContent={"space-between"}
+                marginBottom={10}
+                flexDirection="row"
+                paddingHorizontal={25}
               >
                 <Text style={{ fontSize: 12 }}>{item.idERP_File}</Text>
-
-                <Text>
+                <View>
                   {item.status === "impresso" && (
-                    <Box
-                      rounded="sm"
-                      px={3}
+                    <View
+                      borderRadius={5}
+                      backgroundColor={"#bbf7d0"}
+                      paddingHorizontal={5}
+                      paddingVertical={2}
                       borderWidth={1}
-                      borderColor={"green.500"}
-                      _text={{
-                        color: "green.500",
-                      }}
-                      bg={"green.200"}
+                      borderColor={"#22c55e"}
                     >
-                      Impresso
-                    </Box>
+                      <Text color={"#22c55e"}>Impresso</Text>
+                    </View>
                   )}
                   {item.status === "gerada" && (
-                    <Box
-                      rounded="sm"
-                      px={3}
+                    <View
+                      padding={3}
+                      borderRadius={5}
+                      backgroundColor={"#fef08a"}
+                      paddingHorizontal={5}
+                      paddingVertical={2}
                       borderWidth={1}
-                      borderColor={"yellow.500"}
-                      _text={{
-                        color: "yellow.500",
-                      }}
-                      bg={"yellow.200"}
+                      borderColor={"#eab308"}
                     >
-                      Gerado
-                    </Box>
+                      <Text color={"#eab308"}>Gerado</Text>
+                    </View>
                   )}
                   {item.status === "aguardando" && (
-                    <Box
-                      rounded="sm"
-                      px={3}
+                    <View
+                      paddingHorizontal={5}
+                      paddingVertical={2}
                       borderWidth={1}
-                      borderColor={"cyan.500"}
-                      _text={{
-                        color: "cyan.500",
-                      }}
-                      bg={"cyan.200"}
+                      backgroundColor={"#a5f3fc"}
+                      borderColor={"#06b6d4"}
+                      borderRadius={5}
                     >
-                      Gerando
-                    </Box>
+                      <Text color={"#06b6d4"}>Gerando</Text>
+                    </View>
                   )}
-                </Text>
-                <Text style={{ fontSize: 12, maxWidth: 140 }}>
+                </View>
+
+                <Text fontSize={12} maxWidth={140}>
                   {item.usuario}
                 </Text>
-                <Text style={{ fontSize: 12 }}>
+                <Text fontSize={12}>
                   {moment(item.createdAt).utc(true).format("DD/MM")}
                   {/* {moment(item.date).utc(true).format("HH:mm")} */}
                 </Text>
-              </Center>
-            </VStack>
+              </View>
+            </YStack>
           </TouchableOpacity>
         )}
         ListFooterComponent={
           <ActivityIndicator style={{ paddingTop: 10 }} size={"large"} />
         }
       />
-    </SafeAreaView>
+    </View>
   );
 }

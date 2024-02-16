@@ -1,9 +1,8 @@
-import { View, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useQuery } from "react-query";
-import { ScrollView, Text, Theme } from "tamagui";
-import { Center, Spinner, VStack } from "native-base";
+import { ScrollView, Spinner, Text, Theme, View, YStack } from "tamagui";
 import { getService } from "../../../../services/getService";
 
 export default function ListaSeparacao({ file }: any) {
@@ -32,44 +31,34 @@ export default function ListaSeparacao({ file }: any) {
                   navigation.navigate("ItemsToPick", produto);
                 }}
               >
-                <VStack style={{ paddingHorizontal: 5 }}>
-                  <Center
-                    shadow={1}
-                    rounded={"md"}
-                    bg={"light.50"}
-                    style={{
-                      marginBottom: 10,
-                      paddingBottom: 10,
-                    }}
+                <YStack style={{ paddingHorizontal: 5 }}>
+                  <View
+                    key={produto.reference}
+                    height={80}
+                    backgroundColor={"white"}
+                    borderRadius={5}
+                    alignItems="center"
+                    justifyContent={"space-between"}
+                    marginBottom={10}
+                    flexDirection="row"
+                    paddingHorizontal={25}
                   >
-                    <View
-                      key={produto.reference}
-                      style={{
-                        height: 90,
-                        flexDirection: "row",
-                        alignItems: "center",
-                        width: "100%",
-                        paddingLeft: 20,
-                      }}
-                    >
-                      <Text style={{ width: "20%" }} fontSize={"$6"}>
-                        {" "}
-                        {produto.quantity}
-                      </Text>
+                    <Text width={"20%"} fontSize={"$6"}>
+                      {produto.quantity}
+                    </Text>
 
-                      <View style={{ width: "80%", gap: 7 }}>
-                        <Text fontSize={"$4"}>
-                          <Text color={"$gray10"}>SKU: </Text>
-                          {produto.reference}
-                        </Text>
-                        <Text fontSize={"$4"}>
-                          <Text color={"$gray10"}>Descricao: </Text>{" "}
-                          {produto.database_name}
-                        </Text>
-                      </View>
+                    <View width={"80%"} gap={7}>
+                      <Text fontSize={"$4"}>
+                        <Text color={"$gray10"}>SKU: </Text>
+                        {produto.reference}
+                      </Text>
+                      <Text fontSize={"$4"}>
+                        <Text color={"$gray10"}>Descricao: </Text>
+                        {produto.database_name}
+                      </Text>
                     </View>
-                  </Center>
-                </VStack>
+                  </View>
+                </YStack>
               </TouchableOpacity>
             );
           })}

@@ -39,7 +39,7 @@ export default function ItemsToPick({ produto }: any) {
           </Card>
         </View>
 
-        <View alignItems="center">
+        <View theme={"dark"} alignItems="center">
           <Button onPress={() => navigation.navigate("ListaSeparacao")}>
             Confirmar
           </Button>
