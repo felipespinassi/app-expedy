@@ -2,19 +2,11 @@ import { View, TouchableOpacity } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useQuery } from "react-query";
-import {
-
-  ScrollView,
-  Text,
-  Theme,
-
-} from "tamagui";
+import { ScrollView, Text, Theme } from "tamagui";
 import { Center, Spinner, VStack } from "native-base";
 import { getService } from "../../../../services/getService";
 
 export default function ListaSeparacao({ file }: any) {
-
-
   const navigation: any = useNavigation();
   const {
     data: response,
@@ -27,18 +19,19 @@ export default function ListaSeparacao({ file }: any) {
   );
 
   return (
-    <Theme name={'light'}>
-
+    <Theme name={"light"}>
       {isFetching ? (
         <Spinner />
       ) : (
         <ScrollView style={{ paddingTop: 5 }}>
-
           {response?.data.produtos?.map((produto: any, index: any) => {
-
             return (
-              <TouchableOpacity onPress={() => { navigation.navigate('ItemsToPick', produto) }}>
-
+              <TouchableOpacity
+                key={index}
+                onPress={() => {
+                  navigation.navigate("ItemsToPick", produto);
+                }}
+              >
                 <VStack style={{ paddingHorizontal: 5 }}>
                   <Center
                     shadow={1}
@@ -56,29 +49,32 @@ export default function ListaSeparacao({ file }: any) {
                         flexDirection: "row",
                         alignItems: "center",
                         width: "100%",
-                        paddingLeft: 20
+                        paddingLeft: 20,
                       }}
                     >
-                      <Text style={{ width: "20%" }} fontSize={'$6'} > {produto.quantity}</Text>
+                      <Text style={{ width: "20%" }} fontSize={"$6"}>
+                        {" "}
+                        {produto.quantity}
+                      </Text>
 
                       <View style={{ width: "80%", gap: 7 }}>
-                        <Text fontSize={'$4'} ><Text color={'$gray10'} >SKU: </Text>{produto.reference}</Text>
-                        <Text fontSize={'$4'}   ><Text color={'$gray10'} >Descricao: </Text>  {produto.database_name}</Text>
-
+                        <Text fontSize={"$4"}>
+                          <Text color={"$gray10"}>SKU: </Text>
+                          {produto.reference}
+                        </Text>
+                        <Text fontSize={"$4"}>
+                          <Text color={"$gray10"}>Descricao: </Text>{" "}
+                          {produto.database_name}
+                        </Text>
                       </View>
                     </View>
-
-
                   </Center>
                 </VStack>
               </TouchableOpacity>
-
             );
           })}
         </ScrollView>
       )}
-
-
     </Theme>
   );
 }

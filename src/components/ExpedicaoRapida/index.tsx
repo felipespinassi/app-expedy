@@ -1,72 +1,54 @@
 import { Text, SafeAreaView, TouchableOpacity } from "react-native";
 import React from "react";
-import { Box, Heading } from "native-base";
 import Feather from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
-import { View } from "tamagui";
+import { ListItem, View, YGroup } from "tamagui";
 
 export default function ExpedicaoRapida() {
   const navigation: any = useNavigation();
   return (
-    <View flex={1} >
-      <SafeAreaView style={{ alignItems: "center", width: "100%", marginTop: 20 }}>
-        <TouchableOpacity style={{ width: "90%" }}>
-          <Box
-            height={100}
-            rounded="lg"
-            borderColor="coolGray.200"
-            borderWidth="1"
-            _dark={{
-              borderColor: "coolGray.600",
-              backgroundColor: "gray.700",
-            }}
-            _light={{
-              backgroundColor: "gray.50",
-            }}
-            px={3}
-            py={1}
-            style={{ marginBottom: 20, justifyContent: "space-around" }}
+    <View flex={1}>
+      <View alignItems="center" width={"100%"} marginTop={20} gap={10}>
+        <TouchableOpacity>
+          <YGroup
+            minWidth={"95%"}
+            alignSelf="center"
+            bordered
+            width={240}
+            size="$4"
           >
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Feather name="package" size={24} />
-
-              <Heading style={{ marginLeft: 10 }} fontWeight={500} size={"sm"}>
-                Expedir
-              </Heading>
-            </View>
-          </Box>
+            <YGroup.Item>
+              <ListItem
+                padding={30}
+                icon={<Feather name="package" size={24} />}
+                size={"$6"}
+                title="Expedir"
+              />
+            </YGroup.Item>
+          </YGroup>
         </TouchableOpacity>
 
         <TouchableOpacity
           onPress={() => navigation.navigate("ArquivosGerados")}
-          style={{ width: "90%" }}
         >
-          <Box
-            height={100}
-            rounded="lg"
-            borderColor="coolGray.200"
-            borderWidth="1"
-            _dark={{
-              borderColor: "coolGray.600",
-              backgroundColor: "gray.700",
-            }}
-            _light={{
-              backgroundColor: "gray.50",
-            }}
-            px={3}
-            py={1}
-            style={{ marginBottom: 10, justifyContent: "space-around" }}
+          <YGroup
+            minWidth={"95%"}
+            alignSelf="center"
+            bordered
+            width={240}
+            size="$4"
           >
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Feather name="file-text" size={24} />
-
-              <Heading style={{ marginLeft: 10 }} fontWeight={500} size={"sm"}>
-                Arquivos Gerados
-              </Heading>
-            </View>
-          </Box>
+            <YGroup.Item>
+              <ListItem
+                padding={30}
+                icon={<Feather name="file-text" size={24} />}
+                size={"$6"}
+                title="Arquivos Gerados"
+              />
+            </YGroup.Item>
+          </YGroup>
         </TouchableOpacity>
-      </SafeAreaView>
+      </View>
     </View>
   );
 }

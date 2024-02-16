@@ -1,5 +1,4 @@
 import {
-  View,
   Text,
   SafeAreaView,
   FlatList,
@@ -110,7 +109,9 @@ export default function ArquivosGerados() {
                     </Box>
                   )}
                 </Text>
-                <Text style={{ fontSize: 12, maxWidth: 140 }}>{item.usuario}</Text>
+                <Text style={{ fontSize: 12, maxWidth: 140 }}>
+                  {item.usuario}
+                </Text>
                 <Text style={{ fontSize: 12 }}>
                   {moment(item.createdAt).utc(true).format("DD/MM")}
                   {/* {moment(item.date).utc(true).format("HH:mm")} */}
@@ -119,7 +120,9 @@ export default function ArquivosGerados() {
             </VStack>
           </TouchableOpacity>
         )}
-        ListFooterComponent={<ActivityIndicator style={{ paddingTop: 10 }} size={"large"} />}
+        ListFooterComponent={
+          <ActivityIndicator style={{ paddingTop: 10 }} size={"large"} />
+        }
       />
     </SafeAreaView>
   );
