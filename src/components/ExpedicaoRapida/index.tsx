@@ -9,7 +9,7 @@ export default function ExpedicaoRapida() {
   return (
     <View flex={1}>
       <View alignItems="center" width={"100%"} marginTop={20} gap={10}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Expedir')}> 
           <YGroup
             minWidth={"95%"}
             alignSelf="center"
