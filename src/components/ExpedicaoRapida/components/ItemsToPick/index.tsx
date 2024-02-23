@@ -4,7 +4,23 @@ import { Button, Card, H4, H5, Input, Theme, View } from "tamagui";
 import { Platform } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-export default function ItemsToPick({ produto }: any) {
+export default function ItemsToPick({ produto, file }: any) {
+
+
+  async function onPickProduct(produto: any) {
+    const response = await fetch(`https://api.expedy.com.br/test/orders/file/putpicking/${file}`,
+      {
+        method: 'PUT',
+        body: JSON.stringify({
+          produto: {
+            id: produto.id,
+            quantidade: 1
+          }
+        })
+      })
+
+      console.log(response)
+  }
   const navigation: any = useNavigation();
   return (
     <KeyboardAvoidingView
@@ -40,7 +56,7 @@ export default function ItemsToPick({ produto }: any) {
         </View>
 
         <View theme={"dark"} alignItems="center">
-          <Button onPress={() => navigation.navigate("ListaSeparacao")}>
+          <Button onPress={() => onPickProduct(produto)}>
             Confirmar
           </Button>
         </View>

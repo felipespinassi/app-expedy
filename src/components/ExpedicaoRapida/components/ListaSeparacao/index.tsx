@@ -28,7 +28,7 @@ export default function ListaSeparacao({ file }: any) {
               <TouchableOpacity
                 key={index}
                 onPress={() => {
-                  navigation.navigate("ItemsToPick", produto);
+                  navigation.navigate("ItemsToPick", produto, file);
                 }}
               >
                 <YStack style={{ paddingHorizontal: 5 }}>
