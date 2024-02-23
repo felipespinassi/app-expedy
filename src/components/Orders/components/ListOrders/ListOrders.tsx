@@ -14,7 +14,7 @@ export default function ListOrders({ navigation, item }: any) {
           navigation.navigate("PedidoId", item.id);
         }}
       >
-        <VStack>
+        <VStack style={{ alignItems: "center" }}>
           <Center
             shadow={1}
             rounded={"md"}
@@ -22,7 +22,7 @@ export default function ListOrders({ navigation, item }: any) {
             style={{
               height: 120,
               marginBottom: 10,
-              justifyContent: "space-between",
+              maxWidth: 500,
               flexDirection: "row",
               paddingHorizontal: 5,
             }}
@@ -30,7 +30,7 @@ export default function ListOrders({ navigation, item }: any) {
             <View
               style={{
                 justifyContent: "space-evenly",
-                width: "100%",
+
                 height: "100%",
               }}
             >
@@ -38,7 +38,7 @@ export default function ListOrders({ navigation, item }: any) {
                 style={{
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  width: "100%",
+
                   paddingRight: 20,
                 }}
               >
