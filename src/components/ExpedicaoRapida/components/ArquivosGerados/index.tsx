@@ -1,44 +1,58 @@
-import { FlatList, TouchableOpacity, ActivityIndicator } from "react-native";
+import { FlatList, ActivityIndicator } from "react-native";
 import React, { useEffect, useState } from "react";
 import { getService } from "../../../../services/getService";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
-import { Text, View, YStack } from "tamagui";
+import { H1, Spinner, Text, View, YStack } from "tamagui";
+import { NavigationTypes } from "../../../../@types/NavigationTypes";
+import { UseQueryResult, useQuery } from "react-query";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-// interface FilesProps {
-//   files:{
-//     idERP_File:number,
-//     status:string,
-//     usuario:string
-//     createdAt: string
-//     id:string
-//   }
-
-// }
+interface FilesProps {
+  data: {
+    files: [
+      {
+        orders: [];
+        usuario: string;
+        status: string;
+        contains: [];
+        orders_errors: [];
+        company: string;
+        createdAt: string;
+        updatedAt: string;
+        idERP_File: number;
+        path: string;
+      }
+    ];
+  };
+}
 
 export default function ArquivosGerados() {
-  const navigation: any = useNavigation();
-  const [Files, setFiles] = useState([]);
+  const navigation = useNavigation<NavigationTypes>();
 
-  const [loading, setLoading] = useState(false);
-  async function fetchData() {
-    try {
-      setLoading(true);
-      const response: any = await getService("orders/file", {});
-      setFiles(response.data.files);
-    } catch (error) {}
-    setLoading(false);
+  const {
+    data: response,
+    isLoading,
+    refetch,
+    isFetching,
+  }: UseQueryResult<FilesProps> = useQuery(
+    "Files",
+    async () => await getService(`orders/file?limit=10`, {})
+  );
+
+  if (isLoading) {
+    return (
+      <View margin={20}>
+        <Spinner size={"large"} />
+      </View>
+    );
   }
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   return (
     <View theme={"light"}>
       <FlatList
-        data={Files}
-        renderItem={({ item }: any) => (
+        data={response?.data.files}
+        renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => navigation.navigate("ArquivoId", item)}
             style={{ paddingHorizontal: 10 }}
@@ -106,9 +120,9 @@ export default function ArquivosGerados() {
             </YStack>
           </TouchableOpacity>
         )}
-        ListFooterComponent={
-          <ActivityIndicator style={{ paddingTop: 10 }} size={"large"} />
-        }
+        // ListFooterComponent={
+        //   <ActivityIndicator style={{ paddingTop: 10 }} size={"large"} />
+        // }
       />
     </View>
   );
