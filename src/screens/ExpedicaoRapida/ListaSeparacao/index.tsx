@@ -20,7 +20,7 @@ export default function ListaSeparacao(props: any) {
         <Heading color={"white"}>Lista de Picking</Heading>
       </View>
 
-      <ListaSeparacaoComponent file={file} />
+      <ListaSeparacaoComponent fileId={file} />
     </Theme>
   );
 }

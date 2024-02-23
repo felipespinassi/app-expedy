@@ -3,25 +3,42 @@ import React from "react";
 import { Button, Card, H4, H5, Input, Theme, View } from "tamagui";
 import { Platform } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { NavigationTypes } from "../../../../@types/NavigationTypes";
 
-export default function ItemsToPick({ produto, file }: any) {
+interface Props {
+  produto: {
+    database_name: string;
+    id: string;
+    order_id: string;
+    original_name: string;
+    price: number;
+    product_id: string;
+    product_kit_id: string;
+    produtoAlterado: boolean;
+    quantity: number;
+    reference: string;
+    tax_name: string;
+    variacao: string;
+  };
+  file: string;
+}
 
+export default function ItemsToPick({ produto, file }: Props) {
+  // async function onPickProduct(produto: any) {
+  //   const response = await fetch(`https://api.expedy.com.br/test/orders/file/putpicking/${file}`,
+  //     {
+  //       method: 'PUT',
+  //       body: JSON.stringify({
+  //         produto: {
+  //           id: produto.id,
+  //           quantidade: 1
+  //         }
+  //       })
+  //     })
 
-  async function onPickProduct(produto: any) {
-    const response = await fetch(`https://api.expedy.com.br/test/orders/file/putpicking/${file}`,
-      {
-        method: 'PUT',
-        body: JSON.stringify({
-          produto: {
-            id: produto.id,
-            quantidade: 1
-          }
-        })
-      })
-
-      console.log(response)
-  }
-  const navigation: any = useNavigation();
+  //     console.log(response)
+  // }
+  const navigation = useNavigation<NavigationTypes>();
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -56,7 +73,9 @@ export default function ItemsToPick({ produto, file }: any) {
         </View>
 
         <View theme={"dark"} alignItems="center">
-          <Button onPress={() => onPickProduct(produto)}>
+          <Button
+          // onPress={() => onPickProduct(produto)}
+          >
             Confirmar
           </Button>
         </View>

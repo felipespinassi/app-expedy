@@ -1,9 +1,9 @@
-import { FlatList, ActivityIndicator } from "react-native";
-import React, { useEffect, useState } from "react";
+import { FlatList } from "react-native";
+import React from "react";
 import { getService } from "../../../../services/getService";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
-import { H1, Spinner, Text, View, YStack } from "tamagui";
+import { Spinner, Text, View, YStack } from "tamagui";
 import { NavigationTypes } from "../../../../@types/NavigationTypes";
 import { UseQueryResult, useQuery } from "react-query";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -30,14 +30,9 @@ interface FilesProps {
 export default function ArquivosGerados() {
   const navigation = useNavigation<NavigationTypes>();
 
-  const {
-    data: response,
-    isLoading,
-    refetch,
-    isFetching,
-  }: UseQueryResult<FilesProps> = useQuery(
+  const { data: response, isLoading }: UseQueryResult<FilesProps> = useQuery(
     "Files",
-    async () => await getService(`orders/file?limit=10`, {})
+    async () => await getService(`orders/file`, {})
   );
 
   if (isLoading) {
@@ -114,15 +109,11 @@ export default function ArquivosGerados() {
                 </Text>
                 <Text fontSize={12}>
                   {moment(item.createdAt).utc(true).format("DD/MM")}
-                  {/* {moment(item.date).utc(true).format("HH:mm")} */}
                 </Text>
               </View>
             </YStack>
           </TouchableOpacity>
         )}
-        // ListFooterComponent={
-        //   <ActivityIndicator style={{ paddingTop: 10 }} size={"large"} />
-        // }
       />
     </View>
   );

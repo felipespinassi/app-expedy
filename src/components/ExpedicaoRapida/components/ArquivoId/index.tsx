@@ -5,13 +5,15 @@ import { Button, ListItem, YGroup } from "tamagui";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { View } from "tamagui";
 import { Alert } from "react-native";
+import { NavigationTypes } from "../../../../@types/NavigationTypes";
+import { AxiosResponse } from "axios";
 
-export default function ArquivoId({ file }: any) {
-  const navigation: any = useNavigation();
+export default function ArquivoId({ fileId }: { fileId: string }) {
+  const navigation = useNavigation<NavigationTypes>();
 
-  async function handlePrintFile(item: string) {
+  async function handlePrintFile(fileSelected: string) {
     const response: any = await getService(
-      `orders/file/print?id=${item}&usuario=Expedy`
+      `orders/file/print?id=${fileSelected}&usuario=Expedy`
     );
     if (response.status === 200) {
       return Alert.alert("Imprimindo");
@@ -23,7 +25,7 @@ export default function ArquivoId({ file }: any) {
     <>
       <View paddingHorizontal={5} gap={10} marginTop={10}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("ListaSeparacao", file)}
+          onPress={() => navigation.navigate("ListaSeparacao", fileId)}
         >
           <YGroup
             minWidth={"95%"}
@@ -41,9 +43,7 @@ export default function ArquivoId({ file }: any) {
             </YGroup.Item>
           </YGroup>
         </TouchableOpacity>
-        <TouchableOpacity
-        //   onPress={() => navigation.navigate("ArquivosGerados")}
-        >
+        <TouchableOpacity>
           <YGroup
             minWidth={"95%"}
             alignSelf="center"
@@ -57,8 +57,10 @@ export default function ArquivoId({ file }: any) {
           </YGroup>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => handlePrintFile(file)}>
-          <Button>Imprimir Arquivo</Button>
+        <TouchableOpacity onPress={() => handlePrintFile(fileId)}>
+          <View theme={"dark"}>
+            <Button>Imprimir Arquivo</Button>
+          </View>
         </TouchableOpacity>
       </View>
     </>
