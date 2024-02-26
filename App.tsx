@@ -11,6 +11,12 @@ import config from "./tamagui.config";
 import { useFonts } from "expo-font";
 
 const queryClient = new QueryClient();
+const tamaguiConfig = createTamagui(config);
+
+type Conf = typeof tamaguiConfig;
+declare module "@tamagui/core" {
+  interface TamaguiCustomConfig extends Conf {}
+}
 
 export default function App() {
   const [loaded] = useFonts({
@@ -31,8 +37,12 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <QueryClientProvider client={queryClient}>
         <NativeBaseProvider>
-          <TamaguiProvider config={config}>
-            <StatusBar barStyle={"light-content"} backgroundColor="transparent" translucent />
+          <TamaguiProvider config={tamaguiConfig}>
+            <StatusBar
+              barStyle={"light-content"}
+              backgroundColor="transparent"
+              translucent
+            />
             <Routes />
           </TamaguiProvider>
         </NativeBaseProvider>

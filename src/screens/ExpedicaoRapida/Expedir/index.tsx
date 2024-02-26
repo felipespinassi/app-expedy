@@ -1,13 +1,14 @@
-import { useNavigation } from '@react-navigation/native';
-import React from 'react'
-import { Heading, Theme, View } from 'tamagui'
-import ArrowBack from '../../../components/ArrowBack/ArrowBack';
+import { useNavigation } from "@react-navigation/native";
+import React from "react";
+import { Heading, Theme, View } from "tamagui";
+import ArrowBack from "../../../components/ArrowBack/ArrowBack";
+import { SelectDemo } from "../../../components/ExpedicaoRapida/components/Expedir/Expedir";
 
 export default function Expedir() {
   const navigation: any = useNavigation();
 
   return (
-    <Theme name={'light'}>
+    <Theme name={"light"}>
       <View
         backgroundColor={"#002851"}
         height={"15%"}
@@ -18,6 +19,7 @@ export default function Expedir() {
         <ArrowBack navigation={navigation} />
         <Heading color={"white"}>Expedir</Heading>
       </View>
+      <SelectDemo />
     </Theme>
-  )
+  );
 }
