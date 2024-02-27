@@ -3,6 +3,7 @@ import React from "react";
 import { Heading, Theme } from "tamagui";
 import ArrowBack from "../../../components/ArrowBack/ArrowBack";
 import { View } from "tamagui";
+import { SelectDemo } from "../../../components/ExpedicaoRapida/components/Expedir/Expedir";
 
 export default function Expedir() {
   const navigation: any = useNavigation();
@@ -19,6 +20,7 @@ export default function Expedir() {
         <ArrowBack navigation={navigation} />
         <Heading color={"white"}>Expedir</Heading>
       </View>
+      <SelectDemo />
     </Theme>
   );
 }

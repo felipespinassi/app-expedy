@@ -1,14 +1,14 @@
-import { Check, ChevronDown, ChevronUp } from "@tamagui/lucide-icons";
-
 import { useMemo, useState } from "react";
 
 import type { FontSizeTokens, SelectProps } from "tamagui";
 
 import {
   Adapt,
+  Button,
   Label,
   Select,
   Sheet,
+  View,
   XStack,
   YStack,
   getFontSize,
@@ -16,7 +16,7 @@ import {
 
 export function SelectDemo() {
   return (
-    <YStack gap="$4">
+    <YStack padding={5} gap="$4">
       <XStack ai="center" gap="$4">
         <Label htmlFor="select-demo-1" f={1} miw={80}>
           Custom
@@ -31,6 +31,10 @@ export function SelectDemo() {
 
         <SelectDemoItem id="select-demo-2" native />
       </XStack>
+
+      <View theme={"dark"}>
+        <Button>Gerar Arquivo</Button>
+      </View>
     </YStack>
   );
 }
@@ -43,7 +47,7 @@ export function SelectDemoItem(props: SelectProps) {
       disablePreventBodyScroll
       {...props}
     >
-      <Select.Trigger width={220} iconAfter={ChevronDown}>
+      <Select.Trigger width={220}>
         <Select.Value placeholder="Something" />
       </Select.Trigger>
       <Adapt when="sm" platform="touch">
@@ -79,9 +83,7 @@ export function SelectDemoItem(props: SelectProps) {
           width="100%"
           height="$3"
         >
-          <YStack zIndex={10}>
-            <ChevronUp size={20} />
-          </YStack>
+          <YStack zIndex={10}></YStack>
         </Select.ScrollUpButton>
         <Select.Viewport minWidth={200}>
           <Select.Group>
@@ -98,9 +100,7 @@ export function SelectDemoItem(props: SelectProps) {
                     >
                       <Select.ItemText>{item.name}</Select.ItemText>
 
-                      <Select.ItemIndicator marginLeft="auto">
-                        <Check size={16} />
-                      </Select.ItemIndicator>
+                      <Select.ItemIndicator marginLeft="auto"></Select.ItemIndicator>
                     </Select.Item>
                   );
                 }),
@@ -119,11 +119,7 @@ export function SelectDemoItem(props: SelectProps) {
               justifyContent="center"
               width={"$4"}
               pointerEvents="none"
-            >
-              <ChevronDown
-                size={getFontSize((props.size as FontSizeTokens) ?? "$true")}
-              />
-            </YStack>
+            ></YStack>
           )}
         </Select.Viewport>
         <Select.ScrollDownButton
@@ -133,56 +129,10 @@ export function SelectDemoItem(props: SelectProps) {
           width="100%"
           height="$3"
         >
-          <YStack zIndex={10}>
-            <ChevronDown size={20} />
-          </YStack>
+          <YStack zIndex={10}></YStack>
         </Select.ScrollDownButton>
       </Select.Content>
     </Select>
   );
 }
-const items = [
-  { name: "Apple" },
-
-  { name: "Pear" },
-
-  { name: "Blackberry" },
-
-  { name: "Peach" },
-
-  { name: "Apricot" },
-
-  { name: "Melon" },
-
-  { name: "Honeydew" },
-
-  { name: "Starfruit" },
-
-  { name: "Blueberry" },
-
-  { name: "Raspberry" },
-
-  { name: "Strawberry" },
-
-  { name: "Mango" },
-
-  { name: "Pineapple" },
-
-  { name: "Lime" },
-
-  { name: "Lemon" },
-
-  { name: "Coconut" },
-
-  { name: "Guava" },
-
-  { name: "Papaya" },
-
-  { name: "Orange" },
-
-  { name: "Grape" },
-
-  { name: "Jackfruit" },
-
-  { name: "Durian" },
-];
+const items = [{ name: "Shopee" }];
