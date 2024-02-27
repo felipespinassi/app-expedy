@@ -19,6 +19,8 @@
     "@tamagui/config": "^1.88.18",
     "@tamagui/dialog": "^1.89.15",
     "@tamagui/lucide-icons": "^1.89.15",
+    "@tamagui/metro-plugin": "^1.88.18",
+    "@tamagui/select": "^1.90.9",
     "axios": "^1.6.5",
     "expo": "^50.0.2",
     "expo-status-bar": "~1.11.1",
