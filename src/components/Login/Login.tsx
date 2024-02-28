@@ -1,16 +1,10 @@
-import {
-  Alert,
-  KeyboardAvoidingView,
-  PlatformColor,
-  Platform,
-} from "react-native";
+import { Alert, KeyboardAvoidingView, Platform } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import axios from "axios";
 import { createAccess_token } from "../../storage/createAccess_token";
 import { createCompanyName } from "../../storage/createCompanyName";
-import { styles } from "../../screens/Login/styles";
 import { verifyInactiveAccess_token } from "../../storage/verifyInactiveAccess_token";
 import { Button, Image, Input, Spinner, View } from "tamagui";
 
@@ -59,39 +53,37 @@ export default function Login({ navigation }: any) {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS == "ios" ? "padding" : undefined}
-      style={styles.container}
+      style={{ flex: 1, justifyContent: "center", backgroundColor: "#19223E" }}
     >
-      <View gap={40} theme={"light"} style={styles.containerInput}>
-          <Image
+      <View gap={40} alignItems="center" theme={"light"}>
+        <Image
           resizeMode="contain"
           width={200}
           height={44}
-            alt="Logo Expedy"
-            source={{  uri: require("../../../assets/expedy-logo.png")  }}
-          />
+          alt="Logo Expedy"
+          source={{ uri: require("../../../assets/expedy-logo.png") }}
+        />
 
-
-
-        <View gap={10} w={"80%"}>
+        <View gap={10} width={"85%"}>
           <Input
+            height={50}
             onChangeText={(text) => setValue("companyCode", text)}
-            size={"lg"}
             marginTop={5}
             placeholder="Código"
             placeholderTextColor="#6b6b6b"
             keyboardType="numeric"
           />
           <Input
+            height={50}
             onChangeText={(text) => setValue("login", text)}
             autoCapitalize="none"
-            size={"lg"}
             marginTop={5}
             placeholder="Usuário"
             placeholderTextColor="#6b6b6b"
           />
           <Input
+            height={50}
             onChangeText={(text) => setValue("password", text)}
-            size={"lg"}
             marginTop={5}
             placeholder="Senha"
             placeholderTextColor="#6b6b6b"
@@ -100,19 +92,21 @@ export default function Login({ navigation }: any) {
           />
         </View>
       </View>
-      <View style={styles.containerButton}>
+      <View alignItems="center">
         {loading ? (
           <Button
             borderRadius={30}
-            style={styles.button}
+            marginTop={50}
+            width={"60%"}
             backgroundColor={"#EA582C"}
           >
             <Spinner />
           </Button>
         ) : (
           <Button
+            marginTop={50}
+            width={"60%"}
             borderRadius={30}
-            style={styles.button}
             backgroundColor={"#c2410c"}
             onPress={handleSubmit(onSubmit)}
           >
