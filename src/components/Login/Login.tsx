@@ -41,7 +41,7 @@ export default function Login({ navigation }: any) {
         login,
         password,
       });
-      navigation.navigate("Tabs");
+      navigation.navigate("Home");
       await createAccess_token(response.data.access_token);
       await createCompanyName(response.data.usuario.companyName);
 

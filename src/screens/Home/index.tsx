@@ -1,7 +1,9 @@
-import { Image, Text } from "react-native";
+import { Alert, BackHandler, Image, Text } from "react-native";
 import { H4, View } from "tamagui";
 
 export function Home() {
+
+ 
   return (
     <>
       <View

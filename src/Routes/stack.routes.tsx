@@ -17,7 +17,7 @@ export function StackRoutes() {
         headerShown: false,
       }}
     >
-      <Screen name="Login" component={Login} />
+      {/* <Screen name="Login" component={Login} /> */}
       <Screen name="Tabs" component={TabRoutes} />
       <Screen name="PedidoId" component={PedidoId} />
       <Screen name="ArquivosGerados" component={ArquivosGerados} />
