@@ -1,7 +1,6 @@
 import { Text, View } from "react-native";
 import React, { Component } from "react";
 import { AntDesign } from "@expo/vector-icons";
-import { Heading } from "native-base";
 
 export default class ListEmptyComponent extends Component {
   render() {
@@ -13,9 +12,7 @@ export default class ListEmptyComponent extends Component {
           paddingTop: 20,
         }}
       >
-        <Heading paddingBottom={5} fontWeight={500} size={"md"}>
-          Nenhum Item Encontrado
-        </Heading>
+        <Text>Nenhum Item Encontrado</Text>
         <AntDesign name="exclamationcircleo" size={40} color="black" />
       </View>
     );

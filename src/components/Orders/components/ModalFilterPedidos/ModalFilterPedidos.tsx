@@ -6,17 +6,7 @@ import {
   SafeAreaView,
 } from "react-native";
 import React from "react";
-import {
-  Box,
-  Button,
-  Divider,
-  FormControl,
-  Heading,
-  Input,
-  Modal,
-  ScrollView,
-  Select,
-} from "native-base";
+
 import { Modalize } from "react-native-modalize";
 
 export default function ModalFilterPedidos({
@@ -38,7 +28,7 @@ export default function ModalFilterPedidos({
           flexWrap: "wrap",
         }}
       >
-        <FormControl isRequired>
+        {/* <FormControl isRequired>
           <Input
             size={"lg"}
             _focus={{ borderColor: "primary.900", bg: "white" }}
@@ -171,7 +161,7 @@ export default function ModalFilterPedidos({
         </View>
         <Heading paddingTop={5} fontSize={20}>
           Suas Lojas
-        </Heading>
+        </Heading> */}
       </View>
     </Modalize>
   );

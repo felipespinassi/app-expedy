@@ -1,257 +1,120 @@
-import { View, Text } from "react-native";
 import React from "react";
-import {
-  Box,
-  Button,
-  Center,
-  Heading,
-  useColorMode,
-  useColorModeValue,
-} from "native-base";
+
+import { Text, View } from "tamagui";
 
 export default function DataCustomer({ pedido }: any) {
   return (
-    <View>
-      <View style={{ flexDirection: "row" }}>
-        <Box
+    <View gap={5} theme={"light"}>
+      <View flexDirection="row">
+        <View
           width={"50%"}
           height={70}
-          rounded="lg"
-          borderColor="coolGray.200"
-          borderWidth="1"
-          _dark={{
-            borderColor: "coolGray.600",
-            backgroundColor: "gray.700",
-          }}
-          _light={{
-            backgroundColor: "gray.50",
-          }}
-          px={3}
-          py={1}
-          style={{ marginBottom: 1, justifyContent: "space-around" }}
+          marginBottom={1}
+          justifyContent="space-around"
         >
-          <Heading fontWeight={500} size={"sm"}>
-            Cliente
-          </Heading>
+          <Text>Cliente</Text>
           <Text>{pedido?.Customer.name}</Text>
-        </Box>
-        <Box
-          rounded="lg"
+        </View>
+        <View
           width={"50%"}
           height={70}
-          borderColor="coolGray.200"
-          borderWidth="1"
-          _dark={{
-            borderColor: "coolGray.600",
-            backgroundColor: "gray.700",
-          }}
-          _light={{
-            backgroundColor: "gray.50",
-          }}
-          px={3}
-          py={1}
-          style={{ marginBottom: 1, justifyContent: "space-around" }}
+          marginBottom={1}
+          justifyContent="space-around"
         >
-          <Heading fontWeight={500} size={"sm"}>
-            Pedido
-          </Heading>
+          <Text>Pedido</Text>
           <Text>{pedido?.id}</Text>
-        </Box>
+        </View>
       </View>
-      <View style={{ flexDirection: "row" }}>
-        <Box
+      <View flexDirection="row">
+        <View
           width={"50%"}
           height={70}
-          rounded="lg"
-          borderColor="coolGray.200"
-          borderWidth="1"
-          _dark={{
-            borderColor: "coolGray.600",
-            backgroundColor: "gray.700",
-          }}
-          _light={{
-            backgroundColor: "gray.50",
-          }}
-          px={3}
-          py={1}
-          style={{ marginBottom: 1, justifyContent: "space-around" }}
+          marginBottom={1}
+          justifyContent="space-around"
         >
-          <Heading fontWeight={500} size={"sm"}>
-            Status Hub
-          </Heading>
+          <Text>Status Hub</Text>
           <Text>{pedido?.status_hub}</Text>
-        </Box>
-        <Box
-          rounded="lg"
+        </View>
+        <View
           width={"50%"}
           height={70}
-          borderColor="coolGray.200"
-          borderWidth="1"
-          _dark={{
-            borderColor: "coolGray.600",
-            backgroundColor: "gray.700",
-          }}
-          _light={{
-            backgroundColor: "gray.50",
-          }}
-          px={3}
-          py={1}
-          style={{ marginBottom: 1, justifyContent: "space-around" }}
+          marginBottom={1}
+          justifyContent="space-around"
         >
-          <Heading fontWeight={500} size={"sm"}>
-            Status MP
-          </Heading>
+          <Text>Status MP</Text>
           <Text>{pedido?.status}</Text>
-        </Box>
+        </View>
       </View>
-      <View style={{ flexDirection: "row" }}>
-        <Box
+      <View flexDirection="row">
+        <View
           width={"50%"}
           height={70}
-          rounded="lg"
-          borderColor="coolGray.200"
-          borderWidth="1"
-          _dark={{
-            borderColor: "coolGray.600",
-            backgroundColor: "gray.700",
-          }}
-          _light={{
-            backgroundColor: "gray.50",
-          }}
-          px={3}
-          py={1}
-          style={{ marginBottom: 1, justifyContent: "space-around" }}
+          marginBottom={1}
+          justifyContent="space-around"
         >
-          <Heading fontWeight={500} size={"sm"}>
-            ID MP
-          </Heading>
+          <Text>ID MP</Text>
           <Text>{pedido?.orderid}</Text>
-        </Box>
-        <Box
-          rounded="lg"
+        </View>
+        <View
           width={"50%"}
           height={70}
-          borderColor="coolGray.200"
-          borderWidth="1"
-          _dark={{
-            borderColor: "coolGray.600",
-            backgroundColor: "gray.700",
-          }}
-          _light={{
-            backgroundColor: "gray.50",
-          }}
-          px={3}
-          py={1}
-          style={{ marginBottom: 1, justifyContent: "space-around" }}
+          marginBottom={1}
+          justifyContent="space-around"
         >
-          <Heading fontWeight={500} size={"sm"}>
-            Total do pedido
-          </Heading>
+          <Text>Total do pedido</Text>
           <Text>{pedido?.total}</Text>
-        </Box>
+        </View>
       </View>
       {pedido?.Customer.CustomerAddresses.map((element: any) => {
         return (
           <View key={element}>
-            <View style={{ flexDirection: "row" }}>
-              <Box
+            <View flexDirection="row">
+              <View
                 width={"50%"}
                 height={70}
-                rounded="lg"
-                borderColor="coolGray.200"
-                borderWidth="1"
-                _dark={{
-                  borderColor: "coolGray.600",
-                  backgroundColor: "gray.700",
-                }}
-                _light={{
-                  backgroundColor: "gray.50",
-                }}
-                px={3}
-                py={1}
-                style={{ marginBottom: 1, justifyContent: "space-around" }}
+                marginBottom={1}
+                justifyContent="space-around"
               >
-                <Heading fontWeight={500} size={"sm"}>
-                  Loja
-                </Heading>
+                <Text>Loja</Text>
                 <Text>{pedido?.integracao.name}</Text>
-              </Box>
-              <Box
-                rounded="lg"
+              </View>
+              <View
                 width={"50%"}
                 height={70}
-                borderColor="coolGray.200"
-                borderWidth="1"
-                _dark={{
-                  borderColor: "coolGray.600",
-                  backgroundColor: "gray.700",
-                }}
-                _light={{
-                  backgroundColor: "gray.50",
-                }}
-                px={3}
-                py={1}
-                style={{ marginBottom: 1, justifyContent: "space-around" }}
+                marginBottom={1}
+                justifyContent="space-around"
               >
-                <Heading fontWeight={500} size={"sm"}>
-                  Endereço/N°
-                </Heading>
+                <Text>Endereço/N°</Text>
                 <Text>
                   {element.CustomerAddress.address}/
                   {element.CustomerAddress.number}/
                   {element.CustomerAddress.neighborhood}
                 </Text>
-              </Box>
+              </View>
             </View>
-            <View style={{ flexDirection: "row" }}>
-              <Box
+            <View flexDirection="row">
+              <View
                 width={"50%"}
                 height={70}
-                rounded="lg"
                 overflow="hidden"
-                borderColor="coolGray.200"
-                borderWidth="1"
-                _dark={{
-                  borderColor: "coolGray.600",
-                  backgroundColor: "gray.700",
-                }}
-                _light={{
-                  backgroundColor: "gray.50",
-                }}
-                px={3}
-                py={1}
-                style={{ marginBottom: 1, justifyContent: "space-around" }}
+                marginBottom={1}
+                justifyContent="space-around"
               >
-                <Heading fontWeight={500} size={"sm"}>
-                  Cidade/Estado
-                </Heading>
+                <Text>Cidade/Estado</Text>
                 <Text>
                   {element.CustomerAddress.city}/{element.CustomerAddress.state}
                 </Text>
-              </Box>
-              <Box
+              </View>
+              <View
                 width={"50%"}
                 height={70}
-                rounded="lg"
                 overflow="hidden"
-                borderColor="coolGray.200"
-                borderWidth="1"
-                _dark={{
-                  borderColor: "coolGray.600",
-                  backgroundColor: "gray.700",
-                }}
-                _light={{
-                  backgroundColor: "gray.50",
-                }}
-                px={3}
-                py={1}
-                style={{ marginBottom: 1, justifyContent: "space-around" }}
+                marginBottom={1}
+                justifyContent="space-around"
               >
-                <Heading fontWeight={500} size={"sm"}>
-                  CEP
-                </Heading>
+                <Text>CEP</Text>
                 <Text>{element.CustomerAddress.zip_code}</Text>
-              </Box>
+              </View>
             </View>
           </View>
         );

@@ -1,7 +1,6 @@
-import {  SafeAreaView } from "react-native";
+import { SafeAreaView } from "react-native";
 import React from "react";
 import { useQuery } from "react-query";
-import { Box, Button, Heading, ScrollView } from "native-base";
 import { getService } from "../../../../services/getService";
 import { OrderSkelleton } from "../../../OrderSkelleton/OrderSkelleton";
 import DataCustomer from "./components/DataCustomer/DataCustomer";
@@ -9,7 +8,7 @@ import DataProductsSold from "./components/DataProductsSold/DataProductsSold";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import ArrowBack from "../../../ArrowBack/ArrowBack";
-import { View } from "tamagui";
+import { Button, ScrollView, View } from "tamagui";
 
 export function OrderId({ route, navigation }: any) {
   const { data, isLoading, refetch, isFetching }: any = useQuery(
@@ -39,7 +38,9 @@ export function OrderId({ route, navigation }: any) {
             <DataCustomer pedido={pedido} />
 
             <TouchableOpacity style={{ marginVertical: 20 }}>
-              <Button style={{ backgroundColor: "#002851" }}>Atualizar informações</Button>
+              <Button color={"#fff"} backgroundColor={"#002851"}>
+                Atualizar informações
+              </Button>
             </TouchableOpacity>
 
             <DataProductsSold pedido={pedido} />

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import {
   DrawerContentScrollView,
   DrawerItemList,
@@ -7,9 +7,9 @@ import {
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ACCESS_TOKEN, COMPANY_NAME } from "../../storage/storageConfig";
-import { Avatar, Image, Text, View } from "native-base";
 import { removeAccess_token } from "../../storage/removeAccess_token";
 import { removeCompanyName } from "../../storage/removeCompanyName";
+import { Avatar } from "tamagui";
 
 export function CustomDrawer(props: any) {
   const [companyName, setCompanyName] = useState("");
@@ -27,7 +27,7 @@ export function CustomDrawer(props: any) {
         <View style={{ paddingLeft: 20, paddingBottom: 20 }}>
           <Avatar bg="primary.900">{companyName?.split("")[0]}</Avatar>
           <View style={{ paddingTop: 20, paddingBottom: 20 }}>
-            <Text fontSize={"md"}>{companyName}</Text>
+            <Text>{companyName}</Text>
           </View>
         </View>
 
