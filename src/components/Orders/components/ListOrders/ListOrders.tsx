@@ -1,87 +1,78 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import React from "react";
 import moment from "moment";
-import { Heading, Divider, Center, VStack } from "native-base";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { statusHub } from "../../../../Objects/statusHub";
 import ArrowBack from "../../../ArrowBack/ArrowBack";
+import { Heading, Text, View, YStack } from "tamagui";
+import { Center } from "native-base";
 
 export default function ListOrders({ navigation, item }: any) {
   return (
-    <>
+    <View theme={'light'}>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("PedidoId", item.id);
         }}
       >
-        <VStack style={{ alignItems: "center" }}>
-          <Center
-            shadow={1}
-            rounded={"md"}
-            bg={"light.50"}
-            style={{
-              height: 120,
-              marginBottom: 10,
-              maxWidth: 500,
-              flexDirection: "row",
-              paddingHorizontal: 5,
-            }}
+        <YStack alignItems="center" >
+          <View
+            height={100}
+            backgroundColor={"white"}
+            borderRadius={5}
+            alignItems="center"
+            justifyContent={"space-between"}
+            marginBottom={12}
+            flexDirection="row"
+            paddingHorizontal={20}
+            paddingVertical={5}
+            
           >
             <View
-              style={{
-                justifyContent: "space-evenly",
-
-                height: "100%",
-              }}
+            justifyContent="space-evenly"
+            height={'100%'}
+              
             >
               <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-
-                  paddingRight: 20,
-                }}
+              flexDirection="row"
+              justifyContent="space-between"
+               
               >
-                <Text>{item.orderid}</Text>
-                <Text>
+                <Text >{item.orderid}</Text>
+                <Text >
                   {moment(item.date).utc(true).format("DD/MM")}-
                   {moment(item.date).utc(true).format("HH:mm")}
                 </Text>
               </View>
-              <Divider />
+              {/* <Divider /> */}
               <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  width: "100%",
-                  paddingRight: 20,
-
-                  height: 70,
-                }}
+              flexDirection="row"
+              justifyContent="space-between"
+              alignItems="center"
+              width={'100%'}
+              paddingRight={20}
+              height={70}
+             
               >
                 <View
-                  style={{
-                    justifyContent: "space-around",
-                    height: "100%",
-                    width: "70%",
-                  }}
+                justifyContent="space-around"
+                height={'100%'}
+                width={'70%'}
+                 
                 >
-                  <Heading fontWeight={500} size="xs">
+                  <Text  >
                     {item.integracao.name}
-                  </Heading>
+                  </Text>
                   <Text>{item.Customer.name}</Text>
                 </View>
                 <View
-                  style={{
-                    alignItems: "center",
-                    justifyContent: "space-around",
-                    height: "100%",
-                  }}
+                 alignItems="center"
+                 justifyContent= "space-around"
+                 height="100%"
                 >
                   {statusHub[item.status_hub]?.box}
 
-                  <View style={{ flexDirection: "row" }}>
+                  <View flexDirection="row">
                     {item.erroNota && (
                       <AntDesign color={"red"} name="exclefile1" size={22} />
                     )}
@@ -98,9 +89,9 @@ export default function ListOrders({ navigation, item }: any) {
                 </View>
               </View>
             </View>
-          </Center>
-        </VStack>
+          </View>
+        </YStack>
       </TouchableOpacity>
-    </>
+    </View>
   );
 }

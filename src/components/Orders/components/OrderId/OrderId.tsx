@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView } from "react-native";
+import {  SafeAreaView } from "react-native";
 import React from "react";
 import { useQuery } from "react-query";
 import { Box, Button, Heading, ScrollView } from "native-base";
@@ -9,6 +9,7 @@ import DataProductsSold from "./components/DataProductsSold/DataProductsSold";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import ArrowBack from "../../../ArrowBack/ArrowBack";
+import { View } from "tamagui";
 
 export function OrderId({ route, navigation }: any) {
   const { data, isLoading, refetch, isFetching }: any = useQuery(
