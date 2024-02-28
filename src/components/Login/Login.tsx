@@ -95,9 +95,9 @@ export default function Login({ navigation }: any) {
       <View alignItems="center">
         {loading ? (
           <Button
-            borderRadius={30}
+            borderRadius={10}
             marginTop={50}
-            width={"60%"}
+            width={"85%"}
             backgroundColor={"#EA582C"}
           >
             <Spinner />
@@ -105,8 +105,8 @@ export default function Login({ navigation }: any) {
         ) : (
           <Button
             marginTop={50}
-            width={"60%"}
-            borderRadius={30}
+            width={"85%"}
+            borderRadius={10}
             backgroundColor={"#c2410c"}
             onPress={handleSubmit(onSubmit)}
           >
