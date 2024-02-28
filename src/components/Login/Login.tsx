@@ -61,13 +61,13 @@ export default function Login({ navigation }: any) {
       behavior={Platform.OS == "ios" ? "padding" : undefined}
       style={styles.container}
     >
-      <View theme={"light"} style={styles.containerInput}>
+      <View gap={20} theme={"light"} style={styles.containerInput}>
         <Image
+          width={200}
           alt="Logo Expedy"
-          style={styles.image}
-          source={require("../../../assets/logo-transparente.png")}
+          source={require("../../../assets/expedy-logo.png")}
         />
-        <View w={"80%"}>
+        <View gap={10} w={"80%"}>
           <Input
             onChangeText={(text) => setValue("companyCode", text)}
             size={"lg"}

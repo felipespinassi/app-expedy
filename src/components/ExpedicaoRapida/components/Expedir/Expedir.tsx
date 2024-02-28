@@ -19,17 +19,10 @@ export function SelectDemo() {
     <YStack padding={5} gap="$4">
       <XStack ai="center" gap="$4">
         <Label htmlFor="select-demo-1" f={1} miw={80}>
-          Custom
+          Integração
         </Label>
 
         <SelectDemoItem id="select-demo-1" />
-      </XStack>
-      <XStack ai="center" gap="$4">
-        <Label htmlFor="select-demo-2" f={1} miw={80}>
-          Native
-        </Label>
-
-        <SelectDemoItem id="select-demo-2" native />
       </XStack>
 
       <View theme={"dark"}>
