@@ -62,10 +62,15 @@ export default function Login({ navigation }: any) {
       style={styles.container}
     >
       <View gap={40} theme={"light"} style={styles.containerInput}>
-        <Image
-          alt="Logo Expedy"
-          source={require("../../../assets/expedy-logo.png")}
-        />
+          <Image
+          resizeMode="contain"
+          width={200}
+          height={44}
+            alt="Logo Expedy"
+            source={{  uri: require("../../../assets/expedy-logo.png")  }}
+          />
+
+
 
         <View gap={10} w={"80%"}>
           <Input
@@ -100,7 +105,7 @@ export default function Login({ navigation }: any) {
           <Button
             borderRadius={30}
             style={styles.button}
-            backgroundColor={"#002851"}
+            backgroundColor={"#EA582C"}
           >
             <Spinner />
           </Button>
@@ -108,7 +113,7 @@ export default function Login({ navigation }: any) {
           <Button
             borderRadius={30}
             style={styles.button}
-            backgroundColor={"#002851"}
+            backgroundColor={"#c2410c"}
             onPress={handleSubmit(onSubmit)}
           >
             Login
