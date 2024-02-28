@@ -26,7 +26,6 @@
     "expo-status-bar": "~1.11.1",
     "expo-updates": "~0.24.8",
     "moment-timezone": "^0.5.44",
-    "native-base": "^3.4.28",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.49.3",

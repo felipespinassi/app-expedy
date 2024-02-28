@@ -1,6 +1,4 @@
 import {
-  View,
-  Text,
   Alert,
   KeyboardAvoidingView,
   PlatformColor,
@@ -13,8 +11,8 @@ import axios from "axios";
 import { createAccess_token } from "../../storage/createAccess_token";
 import { createCompanyName } from "../../storage/createCompanyName";
 import { styles } from "../../screens/Login/styles";
-import { Button, Center, FormControl, Image, Input } from "native-base";
 import { verifyInactiveAccess_token } from "../../storage/verifyInactiveAccess_token";
+import { Button, Image, Input, Spinner, View } from "tamagui";
 
 export default function Login({ navigation }: any) {
   const { register, setValue, handleSubmit } = useForm<Dataprops>();
@@ -63,62 +61,59 @@ export default function Login({ navigation }: any) {
       behavior={Platform.OS == "ios" ? "padding" : undefined}
       style={styles.container}
     >
-      <View style={styles.containerInput}>
+      <View theme={"light"} style={styles.containerInput}>
         <Image
           alt="Logo Expedy"
           style={styles.image}
           source={require("../../../assets/logo-transparente.png")}
         />
-        <Center w={"80%"}>
-          <FormControl isRequired>
-            <Input
-              onChangeText={(text) => setValue("companyCode", text)}
-              size={"lg"}
-              _focus={{ borderColor: "primary.900", bg: "white" }}
-              marginTop={5}
-              placeholder="Código"
-              placeholderTextColor="#6b6b6b"
-              variant="rounded"
-              keyboardType="numeric"
-            />
-          </FormControl>
-          <FormControl>
-            <Input
-              onChangeText={(text) => setValue("login", text)}
-              autoCapitalize="none"
-              size={"lg"}
-              _focus={{ borderColor: "primary.900", bg: "white" }}
-              marginTop={5}
-              placeholder="Usuário"
-              placeholderTextColor="#6b6b6b"
-              variant="rounded"
-            />
-          </FormControl>
-          <FormControl>
-            <Input
-              onChangeText={(text) => setValue("password", text)}
-              size={"lg"}
-              _focus={{ borderColor: "primary.900", bg: "white" }}
-              marginTop={5}
-              placeholder="Senha"
-              placeholderTextColor="#6b6b6b"
-              secureTextEntry={true}
-              variant="rounded"
-              autoCapitalize="none"
-            />
-          </FormControl>
-        </Center>
+        <View w={"80%"}>
+          <Input
+            onChangeText={(text) => setValue("companyCode", text)}
+            size={"lg"}
+            marginTop={5}
+            placeholder="Código"
+            placeholderTextColor="#6b6b6b"
+            keyboardType="numeric"
+          />
+          <Input
+            onChangeText={(text) => setValue("login", text)}
+            autoCapitalize="none"
+            size={"lg"}
+            marginTop={5}
+            placeholder="Usuário"
+            placeholderTextColor="#6b6b6b"
+          />
+          <Input
+            onChangeText={(text) => setValue("password", text)}
+            size={"lg"}
+            marginTop={5}
+            placeholder="Senha"
+            placeholderTextColor="#6b6b6b"
+            secureTextEntry={true}
+            autoCapitalize="none"
+          />
+        </View>
       </View>
       <View style={styles.containerButton}>
-        <Button
-          isLoading={loading}
-          borderRadius={30}
-          style={styles.button}
-          backgroundColor={"#002851"}
-          onPress={handleSubmit(onSubmit)}
-        >
-          Login
-        </Button>
+        {loading ? (
+          <Button
+            borderRadius={30}
+            style={styles.button}
+            backgroundColor={"#002851"}
+          >
+            <Spinner />
+          </Button>
+        ) : (
+          <Button
+            borderRadius={30}
+            style={styles.button}
+            backgroundColor={"#002851"}
+            onPress={handleSubmit(onSubmit)}
+          >
+            Login
+          </Button>
+        )}
       </View>
     </KeyboardAvoidingView>
   );

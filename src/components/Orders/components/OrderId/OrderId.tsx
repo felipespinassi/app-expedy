@@ -1,8 +1,7 @@
-import { SafeAreaView } from "react-native";
+import { ActivityIndicator, SafeAreaView } from "react-native";
 import React from "react";
 import { useQuery } from "react-query";
 import { getService } from "../../../../services/getService";
-import { OrderSkelleton } from "../../../OrderSkelleton/OrderSkelleton";
 import DataCustomer from "./components/DataCustomer/DataCustomer";
 import DataProductsSold from "./components/DataProductsSold/DataProductsSold";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -20,7 +19,7 @@ export function OrderId({ route, navigation }: any) {
   if (isFetching) {
     return (
       <SafeAreaView>
-        <OrderSkelleton />
+        <ActivityIndicator />
       </SafeAreaView>
     );
   }

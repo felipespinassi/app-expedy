@@ -1,4 +1,4 @@
-import { Box } from "native-base";
+import { Text, View } from "tamagui";
 
 export const statusHub: any = {
   naocorrelacionado: {
@@ -6,17 +6,14 @@ export const statusHub: any = {
     identifier: "naocorrelacionado",
     name: "Sem vinculo",
     box: (
-      <Box
-        px={3}
-        py={"0.2"}
-        rounded="xl"
-        _text={{
-          color: "orange.500",
-        }}
-        bg={"orange.200"}
+      <View
+        borderRadius={5}
+        backgroundColor={"#fed7aa"}
+        paddingHorizontal={5}
+        paddingVertical={2}
       >
-        Sem vinculo
-      </Box>
+        <Text color={"#f97316"}>Sem vinculo</Text>
+      </View>
     ),
   },
   aprovado: {
@@ -24,17 +21,14 @@ export const statusHub: any = {
     identifier: "aprovado",
     name: "Aprovado",
     box: (
-      <Box
-        px={3}
-        py={"0.2"}
-        rounded="xl"
-        _text={{
-          color: "cyan.600",
-        }}
-        bg={"cyan.300"}
+      <View
+        borderRadius={5}
+        backgroundColor={"#67e8f9"}
+        paddingHorizontal={5}
+        paddingVertical={2}
       >
-        Aprovado
-      </Box>
+        <Text color={"#0891b2"}>Aprovado</Text>
+      </View>
     ),
   },
   pendente: {
@@ -42,17 +36,14 @@ export const statusHub: any = {
     identifier: "pendente",
     name: "Pendente",
     box: (
-      <Box
-        px={3}
-        py={"0.2"}
-        rounded="xl"
-        _text={{
-          color: "muted.600",
-        }}
-        bg={"muted.300"}
+      <View
+        borderRadius={5}
+        backgroundColor={"#d4d4d4"}
+        paddingHorizontal={5}
+        paddingVertical={2}
       >
-        Pendente
-      </Box>
+        <Text color={"#525252"}>Pendente</Text>
+      </View>
     ),
   },
   faturado: {
@@ -60,17 +51,14 @@ export const statusHub: any = {
     identifier: "faturado",
     name: "Faturado",
     box: (
-      <Box
-        px={3}
-        py={"0.2"}
-        rounded="xl"
-        _text={{
-          color: "lightBlue.600",
-        }}
-        bg={"lightBlue.300"}
+      <View
+        borderRadius={5}
+        backgroundColor={"#7dd3fc"}
+        paddingHorizontal={5}
+        paddingVertical={2}
       >
-        Faturado
-      </Box>
+        <Text color={"#0284c7"}>Faturado</Text>
+      </View>
     ),
   },
 
@@ -79,17 +67,14 @@ export const statusHub: any = {
     identifier: "cancelado",
     name: "Cancelado",
     box: (
-      <Box
-        px={3}
-        py={"0.2"}
-        rounded="xl"
-        _text={{
-          color: "red.600",
-        }}
-        bg={"red.300"}
+      <View
+        borderRadius={5}
+        backgroundColor={"#fca5a5"}
+        paddingHorizontal={5}
+        paddingVertical={2}
       >
-        Cancelado
-      </Box>
+        <Text color={"#dc2626"}>Cancelado</Text>
+      </View>
     ),
   },
   emseparacao: {
@@ -97,17 +82,14 @@ export const statusHub: any = {
     identifier: "emseparacao",
     name: "Em separação",
     box: (
-      <Box
-        px={3}
-        py={"0.2"}
-        rounded="xl"
-        _text={{
-          color: "amber.500",
-        }}
-        bg={"amber.200"}
+      <View
+        borderRadius={5}
+        backgroundColor={"#fde68a"}
+        paddingHorizontal={5}
+        paddingVertical={2}
       >
-        Em separação
-      </Box>
+        <Text color={"#f59e0b"}>Em Separaçao</Text>
+      </View>
     ),
   },
   temmensagem: {
@@ -115,17 +97,14 @@ export const statusHub: any = {
     identifier: "temmensagem",
     name: "Tem mensagem",
     box: (
-      <Box
-        px={3}
-        py={"0.2"}
-        rounded="xl"
-        _text={{
-          color: "green.600",
-        }}
-        bg={"green.300"}
+      <View
+        borderRadius={5}
+        backgroundColor={"#86efac"}
+        paddingHorizontal={5}
+        paddingVertical={2}
       >
-        Tem mensagem
-      </Box>
+        <Text color={"#16a34a"}>Tem Mensagem</Text>
+      </View>
     ),
   },
   expedir: {
@@ -133,17 +112,14 @@ export const statusHub: any = {
     identifier: "expedir",
     name: "Expedir",
     box: (
-      <Box
-        px={3}
-        py={"0.2"}
-        rounded="xl"
-        _text={{
-          color: "danger.600",
-        }}
-        bg={"danger.200"}
+      <View
+        borderRadius={5}
+        backgroundColor={"#fecdd3"}
+        paddingHorizontal={5}
+        paddingVertical={2}
       >
-        Expedir
-      </Box>
+        <Text color={"#e11d48"}>Expedir</Text>
+      </View>
     ),
   },
   completo: {
@@ -151,17 +127,14 @@ export const statusHub: any = {
     identifier: "completo",
     name: "Completo",
     box: (
-      <Box
-        px={3}
-        py={"0.2"}
-        rounded="xl"
-        _text={{
-          color: "lime.700",
-        }}
-        bg={"lime.200"}
+      <View
+        borderRadius={5}
+        backgroundColor={"#d9f99d"}
+        paddingHorizontal={5}
+        paddingVertical={2}
       >
-        Completo
-      </Box>
+        <Text color={"#4d7c0f"}>Completo</Text>
+      </View>
     ),
   },
 };

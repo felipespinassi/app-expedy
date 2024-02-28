@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import * as Updates from "expo-updates";
-import { NativeBaseProvider, StatusBar } from "native-base";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Routes } from "./src/Routes";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { TamaguiProvider, createTamagui } from "tamagui";
-import { useColorScheme } from "react-native";
+import { StatusBar, useColorScheme } from "react-native";
 import config from "./tamagui.config";
 import { useFonts } from "expo-font";
 
@@ -37,19 +36,17 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <QueryClientProvider client={queryClient}>
-        <NativeBaseProvider>
-          <TamaguiProvider
-            config={tamaguiConfig}
-            defaultTheme={colorScheme as any}
-          >
-            <StatusBar
-              barStyle={"light-content"}
-              backgroundColor="transparent"
-              translucent
-            />
-            <Routes />
-          </TamaguiProvider>
-        </NativeBaseProvider>
+        <TamaguiProvider
+          config={tamaguiConfig}
+          defaultTheme={colorScheme as any}
+        >
+          <StatusBar
+            barStyle={"light-content"}
+            backgroundColor="transparent"
+            translucent
+          />
+          <Routes />
+        </TamaguiProvider>
       </QueryClientProvider>
     </GestureHandlerRootView>
   );

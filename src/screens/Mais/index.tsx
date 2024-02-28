@@ -1,19 +1,12 @@
-import {
-  View,
-  Text,
-  SafeAreaView,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
+import { TouchableOpacity } from "react-native";
 
 import React, { useState, useEffect } from "react";
-import ArrowBack from "../../components/ArrowBack/ArrowBack";
-import { Avatar, Box, Heading } from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { COMPANY_NAME } from "../../storage/storageConfig";
 import { removeCompanyName } from "../../storage/removeCompanyName";
 import { removeAccess_token } from "../../storage/removeAccess_token";
+import { Avatar, ScrollView, Text, View } from "tamagui";
 
 export default function Mais({ navigation }: any) {
   const [companyName, setCompanyName] = useState("");
@@ -50,7 +43,7 @@ export default function Mais({ navigation }: any) {
               maxWidth: "90%",
             }}
           >
-            <Avatar bg="white">
+            <Avatar borderRadius={50} bg="white">
               <Text
                 style={{
                   color: "black",
@@ -75,94 +68,49 @@ export default function Mais({ navigation }: any) {
           </View>
         </View>
       </View>
-      <ScrollView style={{ paddingHorizontal: 15 }}>
+      <ScrollView theme={"light"} style={{ paddingHorizontal: 15 }}>
         <TouchableOpacity
           onPress={() => navigation.navigate("Home")}
           style={{ flexDirection: "row", padding: 5 }}
         >
-          <Box
-            height={16}
-            w={"100%"}
-            rounded="lg"
-            borderColor="coolGray.200"
-            borderWidth="1"
-            _dark={{
-              borderColor: "coolGray.600",
-              backgroundColor: "gray.700",
-            }}
-            _light={{
-              backgroundColor: "gray.50",
-            }}
-            px={3}
-            style={{ justifyContent: "center" }}
-          >
+          <View height={40} w={"100%"} style={{ justifyContent: "center" }}>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Ionicons name="home-outline" size={20} />
-              <Heading fontWeight={400} size={"md"} style={{ paddingLeft: 10 }}>
+              <Ionicons name="home-outline" size={26} />
+              <Text fontSize={20} style={{ paddingLeft: 10 }}>
                 Início
-              </Heading>
+              </Text>
             </View>
-          </Box>
+          </View>
         </TouchableOpacity>
 
         <TouchableOpacity
           onPress={() => navigation.navigate("Pedidos")}
           style={{ flexDirection: "row", padding: 5 }}
         >
-          <Box
-            height={16}
-            w={"100%"}
-            rounded="lg"
-            borderColor="coolGray.200"
-            borderWidth="1"
-            _dark={{
-              borderColor: "coolGray.600",
-              backgroundColor: "gray.700",
-            }}
-            _light={{
-              backgroundColor: "gray.50",
-            }}
-            px={3}
-            style={{ justifyContent: "center" }}
-          >
+          <View height={40} w={"100%"} style={{ justifyContent: "center" }}>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Ionicons name="cart-outline" size={20} />
+              <Ionicons name="cart-outline" size={26} />
 
-              <Heading fontWeight={400} size={"md"} style={{ paddingLeft: 10 }}>
+              <Text fontSize={20} style={{ paddingLeft: 10 }}>
                 Pedidos
-              </Heading>
+              </Text>
             </View>
-          </Box>
+          </View>
         </TouchableOpacity>
 
         <TouchableOpacity
           onPress={() => navigation.navigate("Expedicao")}
           style={{ flexDirection: "row", padding: 5 }}
         >
-          <Box
-            height={16}
-            w={"100%"}
-            rounded="lg"
-            borderColor="coolGray.200"
-            borderWidth="1"
-            _dark={{
-              borderColor: "coolGray.600",
-              backgroundColor: "gray.700",
-            }}
-            _light={{
-              backgroundColor: "gray.50",
-            }}
-            px={3}
-            style={{ justifyContent: "center" }}
-          >
+          <View height={40} w={"100%"} style={{ justifyContent: "center" }}>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Ionicons name="cube-outline" size={20} />
+              <Ionicons name="cube-outline" size={26} />
 
-              <Heading fontWeight={400} size={"md"} style={{ paddingLeft: 10 }}>
+              <Text fontSize={20} style={{ paddingLeft: 10 }}>
                 Expedição
-              </Heading>
+              </Text>
             </View>
-          </Box>
+          </View>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -173,30 +121,15 @@ export default function Mais({ navigation }: any) {
           }}
           style={{ flexDirection: "row", padding: 5 }}
         >
-          <Box
-            height={16}
-            w={"100%"}
-            rounded="lg"
-            borderColor="coolGray.200"
-            borderWidth="1"
-            _dark={{
-              borderColor: "coolGray.600",
-              backgroundColor: "gray.700",
-            }}
-            _light={{
-              backgroundColor: "gray.50",
-            }}
-            px={3}
-            style={{ justifyContent: "center" }}
-          >
+          <View height={40} w={"100%"} style={{ justifyContent: "center" }}>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Ionicons name="log-out-outline" size={20} />
+              <Ionicons name="log-out-outline" size={26} />
 
-              <Heading fontWeight={400} size={"md"} style={{ paddingLeft: 10 }}>
+              <Text fontSize={20} style={{ paddingLeft: 10 }}>
                 Sair
-              </Heading>
+              </Text>
             </View>
-          </Box>
+          </View>
         </TouchableOpacity>
       </ScrollView>
     </>
