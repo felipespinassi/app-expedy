@@ -55,10 +55,10 @@ export default function Login({ navigation }: any) {
       behavior={Platform.OS == "ios" ? "padding" : undefined}
       style={{ flex: 1, justifyContent: "center", backgroundColor: "#19223E" }}
     >
-      <View gap={40} alignItems="center" theme={"light"}>
+      <View gap={50} alignItems="center" theme={"light"}>
         <Image
           resizeMode="contain"
-          width={200}
+          width={350}
           height={44}
           alt="Logo Expedy"
           source={{ uri: require("../../../assets/expedy-logo.png") }}

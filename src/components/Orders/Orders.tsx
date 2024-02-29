@@ -1,7 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { getService } from "../../services/getService";
 import ListOrders from "./components/ListOrders/ListOrders";
-import { ActivityIndicator, Alert, FlatList, SafeAreaView, TouchableOpacity } from "react-native";
+import {
+  ActivityIndicator,
+  Alert,
+  FlatList,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 import ModalFilterPedidos from "./components/ModalFilterPedidos/ModalFilterPedidos";
 import { Modalize } from "react-native-modalize";
 import AntDesign from "react-native-vector-icons/AntDesign";
@@ -25,6 +31,7 @@ export default function Orders({ navigation }: any) {
         pageSize: 50,
       });
 
+      console.log(response);
       const newData = response.data.pedidos;
 
       const filteredData = newData.filter((newItem: any) => {
@@ -62,7 +69,7 @@ export default function Orders({ navigation }: any) {
 
   return (
     <SafeAreaView style={{ alignItems: "center", flex: 1 }}>
-      <View  width={"95%"}>
+      <View width={"95%"}>
         <TouchableOpacity
           onPress={() => onOpen()}
           style={{
@@ -70,7 +77,9 @@ export default function Orders({ navigation }: any) {
             justifyContent: "flex-end",
           }}
         >
-          <Text fontSize={18} color={'black'} >Filtrar</Text>
+          <Text fontSize={18} color={"black"}>
+            Filtrar
+          </Text>
           <AntDesign name="filter" size={24} />
         </TouchableOpacity>
       </View>
@@ -89,7 +98,9 @@ export default function Orders({ navigation }: any) {
             <ListOrders navigation={navigation} item={item} />
           </>
         )}
-        ListFooterComponent={<ActivityIndicator style={{ paddingTop: 10 }} size={"large"} />}
+        ListFooterComponent={
+          <ActivityIndicator style={{ paddingTop: 10 }} size={"large"} />
+        }
       />
       <ModalFilterPedidos
         modalizeRef={modalizeRef}

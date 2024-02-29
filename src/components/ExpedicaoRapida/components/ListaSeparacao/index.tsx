@@ -1,7 +1,7 @@
 import { TouchableOpacity } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { UseQueryResult, useQuery } from "react-query";
+import { UseQueryResult, useIsFetching, useQuery } from "react-query";
 import { ScrollView, Spinner, Text, Theme, View, YStack } from "tamagui";
 import { getService } from "../../../../services/getService";
 import { NavigationTypes } from "../../../../@types/NavigationTypes";
@@ -10,6 +10,11 @@ interface PickingListProps {
   data: {
     produtos: [
       {
+        controle: {
+          quantidadeConferida: number;
+          quantidadeRestante: number;
+          quantidadeTotal: number;
+        };
         database_name: string;
         id: string;
         order_id: string;
@@ -29,13 +34,15 @@ interface PickingListProps {
 
 export default function ListaSeparacao({ fileId }: { fileId: string }) {
   const navigation = useNavigation<NavigationTypes>();
-  const { data: response, isLoading }: UseQueryResult<PickingListProps> =
+  const { data: response, isFetching }: UseQueryResult<PickingListProps> =
     useQuery(
       "OrderComplete",
       async () => await getService(`orders/file/picking/${fileId}`, {})
     );
 
-  if (isLoading) {
+  console.log(response?.data.produtos);
+
+  if (isFetching) {
     return (
       <View margin={20}>
         <Spinner size={"large"} />
@@ -51,7 +58,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
             <TouchableOpacity
               key={index}
               onPress={() => {
-                navigation.navigate("ItemsToPick", produto);
+                navigation.navigate("ItemsToPick", { produto, fileId });
               }}
             >
               <YStack paddingHorizontal={5}>
@@ -67,7 +74,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
                   paddingHorizontal={25}
                 >
                   <Text width={"20%"} fontSize={"$6"}>
-                    {produto.quantity}
+                    {produto.controle.quantidadeRestante}
                   </Text>
 
                   <View width={"80%"} gap={7}>

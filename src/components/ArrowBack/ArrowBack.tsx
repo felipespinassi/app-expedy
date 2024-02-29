@@ -6,7 +6,7 @@ export default function ArrowBack({ navigation }: any) {
   return (
     <View style={{ justifyContent: "flex-start", width: "90%" }}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Ionicons color={"#fff"} name="arrow-back-outline" size={30} />
+        <Ionicons color={"#fff"} name="arrow-back-outline" size={36} />
       </TouchableOpacity>
     </View>
   );

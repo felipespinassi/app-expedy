@@ -9,11 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 
-
-
 export default function TabRoutes() {
-
-  
   return (
     <Tab.Navigator
       screenOptions={{
@@ -22,10 +18,9 @@ export default function TabRoutes() {
     >
       <Tab.Screen
         options={{
-          tabBarStyle:{display:'none'},
-          tabBarIconStyle:{display:'none'},
-          tabBarButton: () => <></>
-         
+          tabBarStyle: { display: "none" },
+          tabBarIconStyle: { display: "none" },
+          tabBarButton: () => <></>,
         }}
         name="Login"
         component={Login}

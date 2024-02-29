@@ -8,6 +8,7 @@ import { TamaguiProvider, createTamagui } from "tamagui";
 import { StatusBar, useColorScheme } from "react-native";
 import config from "./tamagui.config";
 import { useFonts } from "expo-font";
+import { ToastProvider } from "@tamagui/toast";
 
 const queryClient = new QueryClient();
 const tamaguiConfig = createTamagui(config);
@@ -40,12 +41,14 @@ export default function App() {
           config={tamaguiConfig}
           defaultTheme={colorScheme as any}
         >
-          <StatusBar
-            barStyle={"light-content"}
-            backgroundColor="transparent"
-            translucent
-          />
-          <Routes />
+          <ToastProvider>
+            <StatusBar
+              barStyle={"light-content"}
+              backgroundColor="transparent"
+              translucent
+            />
+            <Routes />
+          </ToastProvider>
         </TamaguiProvider>
       </QueryClientProvider>
     </GestureHandlerRootView>
