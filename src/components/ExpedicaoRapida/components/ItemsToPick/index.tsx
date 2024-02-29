@@ -16,6 +16,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NavigationTypes } from "../../../../@types/NavigationTypes";
 import axios from "axios";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { getAccess_token } from "../../../../storage/getAccess_token";
 
 interface Props {
   produto: {
@@ -39,9 +40,11 @@ interface Props {
 
 export default function ItemsToPick({ produto }: Props) {
   async function onPickProduct(produto: any) {
+    const access_token = await getAccess_token();
+
     try {
       const response = await axios.put(
-        `https://api.expedy.com.br/orders/file/putpicking/${produto.fileId}?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aXBvIjoidXNlciIsImlkIjo4MiwibmFtZSI6IkV4cGVkeSIsImxvZ2luIjoiZXhwZWR5IiwiZW1haWwiOiJleHBlZHk4MkBleHBlZHkuY29tLmJyIiwiY29tcGFueSI6ODIsInBlcm1pc3Npb25zIjpbXSwicHJpbWVpcm9BY2Vzc28iOmZhbHNlLCJzdGF0dXNDb250YSI6ImF0aXZvIiwicGF5bWVudEluZm8iOnsic3RhdHVzIjoicGFpZCIsImJhbmtJZCI6Ijc1OTYzMTI4IiwiZHVlX2F0IjoiMjAyNC0wMi0xMVQwMjo1OTo1OS4wMDBaIn0sImlhdCI6MTcwOTIxMjkxMywiZXhwIjoxNzA5Mjk5MzEzfQ.1YopSSZRZdQq2buwPHurFM9YpwY5u2aPT1TSYxddFFE`,
+        `https://api.expedy.com.br/orders/file/putpicking/${produto.fileId}?access_token=${access_token}`,
         {
           produto: {
             id: produto.produto.product_id,
