@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { UseQueryResult, useQuery } from "react-query";
 
 import type { FontSizeTokens, SelectProps } from "tamagui";
 
@@ -13,8 +14,33 @@ import {
   YStack,
   getFontSize,
 } from "tamagui";
+import { getService } from "../../../../services/getService";
+import SelectIntegracoes from "./components/SelectIntegracoes/SelectIntegracoes";
+import { getAccess_token } from "../../../../storage/getAccess_token";
+import axios from "axios";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-export function SelectDemo() {
+export default function Expedir() {
+
+
+  async function onGerarArquivo() {
+    const access_token = await getAccess_token();
+
+    try {
+      const response = await axios.post(`https://api.expedy.com.br/orders/file/create?access_token=${access_token}&usuario=Expedy`,{
+        pedidos: [10317223]
+    })
+
+      
+    } catch (error) {
+    console.log(error)
+      
+    }
+
+
+}
+
+
   return (
     <YStack padding={5} gap="$4">
       <XStack ai="center" gap="$4">
@@ -22,110 +48,16 @@ export function SelectDemo() {
           Integração
         </Label>
 
-        <SelectDemoItem id="select-demo-1" />
+        <SelectIntegracoes id="select-demo-1" />
       </XStack>
-
-      <View theme={"dark"}>
+      <TouchableOpacity onPress={() => onGerarArquivo()}>
+        <View theme={"dark"}>
         <Button>Gerar Arquivo</Button>
       </View>
+      </TouchableOpacity>
+
+      
     </YStack>
   );
 }
-export function SelectDemoItem(props: SelectProps) {
-  const [val, setVal] = useState("apple");
-  return (
-    <Select
-      value={val}
-      onValueChange={setVal}
-      disablePreventBodyScroll
-      {...props}
-    >
-      <Select.Trigger width={220}>
-        <Select.Value placeholder="Something" />
-      </Select.Trigger>
-      <Adapt when="sm" platform="touch">
-        <Sheet
-          native={!!props.native}
-          modal
-          dismissOnSnapToBottom
-          animationConfig={{
-            type: "spring",
-            damping: 20,
-            mass: 1.2,
-            stiffness: 250,
-          }}
-        >
-          <Sheet.Frame>
-            <Sheet.ScrollView>
-              <Adapt.Contents />
-            </Sheet.ScrollView>
-          </Sheet.Frame>
 
-          <Sheet.Overlay
-            animation="lazy"
-            enterStyle={{ opacity: 0 }}
-            exitStyle={{ opacity: 0 }}
-          />
-        </Sheet>
-      </Adapt>
-      <Select.Content zIndex={200000}>
-        <Select.ScrollUpButton
-          alignItems="center"
-          justifyContent="center"
-          position="relative"
-          width="100%"
-          height="$3"
-        >
-          <YStack zIndex={10}></YStack>
-        </Select.ScrollUpButton>
-        <Select.Viewport minWidth={200}>
-          <Select.Group>
-            <Select.Label>Fruits</Select.Label>
-
-            {useMemo(
-              () =>
-                items.map((item, i) => {
-                  return (
-                    <Select.Item
-                      index={i}
-                      key={item.name}
-                      value={item.name.toLowerCase()}
-                    >
-                      <Select.ItemText>{item.name}</Select.ItemText>
-
-                      <Select.ItemIndicator marginLeft="auto"></Select.ItemIndicator>
-                    </Select.Item>
-                  );
-                }),
-
-              [items]
-            )}
-          </Select.Group>
-
-          {props.native && (
-            <YStack
-              position="absolute"
-              right={0}
-              top={0}
-              bottom={0}
-              alignItems="center"
-              justifyContent="center"
-              width={"$4"}
-              pointerEvents="none"
-            ></YStack>
-          )}
-        </Select.Viewport>
-        <Select.ScrollDownButton
-          alignItems="center"
-          justifyContent="center"
-          position="relative"
-          width="100%"
-          height="$3"
-        >
-          <YStack zIndex={10}></YStack>
-        </Select.ScrollDownButton>
-      </Select.Content>
-    </Select>
-  );
-}
-const items = [{ name: "Shopee" }];

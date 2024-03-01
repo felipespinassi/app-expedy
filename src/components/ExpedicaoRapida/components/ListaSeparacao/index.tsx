@@ -36,7 +36,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
   const navigation = useNavigation<NavigationTypes>();
   const { data: response, isFetching }: UseQueryResult<PickingListProps> =
     useQuery(
-      "OrderComplete",
+      "ListaSeparacao",
       async () => await getService(`orders/file/picking/${fileId}`, {})
     );
 
