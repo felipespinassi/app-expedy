@@ -14,14 +14,12 @@ export default function SelectIntegracoes(props: any) {
         );
 
 
-    const [val, setVal] = useState("");
 
-    console.log(val)
-
+    console.log(props.integracao)
     return (
         <Select
-            value={val}
-            onValueChange={setVal}
+            value={props.integracaoId}
+            onValueChange={props.setIntegracaoId}
             disablePreventBodyScroll
             {...props}
         >
