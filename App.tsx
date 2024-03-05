@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
-import * as Updates from "expo-updates";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useEffect } from "react";
+import { ToastProvider } from "@tamagui/toast";
 import { Routes } from "./src/Routes";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -36,16 +35,11 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <QueryClientProvider client={queryClient}>
-        <TamaguiProvider
-          config={tamaguiConfig}
-          defaultTheme={colorScheme as any}
-        >
-            <StatusBar
-              barStyle={"light-content"}
-              backgroundColor="transparent"
-              translucent
-            />
+        <TamaguiProvider config={tamaguiConfig} defaultTheme={colorScheme as any}>
+          <ToastProvider>
+            <StatusBar barStyle={"light-content"} backgroundColor="transparent" translucent />
             <Routes />
+          </ToastProvider>
         </TamaguiProvider>
       </QueryClientProvider>
     </GestureHandlerRootView>

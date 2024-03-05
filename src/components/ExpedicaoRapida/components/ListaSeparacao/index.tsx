@@ -5,6 +5,7 @@ import { UseQueryResult, useIsFetching, useQuery } from "react-query";
 import { ScrollView, Spinner, Text, Theme, View, YStack } from "tamagui";
 import { getService } from "../../../../services/getService";
 import { NavigationTypes } from "../../../../@types/NavigationTypes";
+import { ToastDemo } from "../../../ToastDemo";
 
 interface PickingListProps {
   data: {
@@ -34,20 +35,22 @@ interface PickingListProps {
 
 export default function ListaSeparacao({ fileId }: { fileId: string }) {
   const navigation = useNavigation<any>();
-  const { data: response, isFetching, refetch }: UseQueryResult<PickingListProps> =
-    useQuery(
-      "ListaSeparacao",
-      async () => await getService(`orders/file/picking/${fileId}`, {})
-    );
+  const {
+    data: response,
+    isFetching,
+    refetch,
+  }: UseQueryResult<PickingListProps> = useQuery(
+    "ListaSeparacao",
+    async () => await getService(`orders/file/picking/${fileId}`, {})
+  );
 
+  useEffect(() => {
+    const focused = navigation.addListener("focus", () => {
+      refetch();
+    });
 
-    useEffect(() => {
-      const focused = navigation.addListener('focus', () => {
-        refetch()
-      });
-  
-      return focused;
-    }, [navigation]);
+    return focused;
+  }, [navigation]);
 
   if (isFetching) {
     return (

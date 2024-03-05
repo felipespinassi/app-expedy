@@ -1,23 +1,15 @@
 import { Alert, KeyboardAvoidingView, SafeAreaView } from "react-native";
+import { ToastViewport } from "@tamagui/toast";
+
 import React, { useState } from "react";
-import {
-  Button,
-  Card,
-  H4,
-  H5,
-  Input,
-  Text,
-  Theme,
-  View,
-  YStack,
-} from "tamagui";
+import { Button, Card, H4, H5, Input, Text, Theme, View, YStack } from "tamagui";
 import { Platform } from "react-native";
 import { NavigationTypes } from "../../../../@types/NavigationTypes";
 import axios from "axios";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { getAccess_token } from "../../../../storage/getAccess_token";
 import { useNavigation } from "@react-navigation/native";
-
+import { ToastDemo } from "../../../ToastDemo";
 
 interface Props {
   params: {
@@ -35,26 +27,20 @@ interface Props {
       tax_name: string;
       variacao: string;
       controle: {
-        quantidadeTotal: number,
-        quantidadeConferida:number,
-        quantidadeRestante:number
-      }
+        quantidadeTotal: number;
+        quantidadeConferida: number;
+        quantidadeRestante: number;
+      };
     };
     fileId: string;
-
   };
 }
 
 export default function ItemsToPick({ params }: Props) {
-
   const navigation = useNavigation<any>();
 
-
-  
   async function onPickProduct(produto: any) {
     const access_token = await getAccess_token();
-
-    console.log(produto)
 
     try {
       const response = await axios.put(
@@ -66,18 +52,17 @@ export default function ItemsToPick({ params }: Props) {
           },
         }
       );
-      navigation.goBack()
+      navigation.goBack();
       return Alert.alert("Produto atualizado");
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return Alert.alert("Não foi possivel atualizar");
     }
   }
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
-    >
-      <Text></Text>
+    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined}>
+      <ToastViewport />
+      <ToastDemo />
       <View jc={"space-around"} h={"90%"} padding={5}>
         <View alignItems="center">
           <H4 textAlign="center">{params.produto.database_name}</H4>
@@ -88,15 +73,7 @@ export default function ItemsToPick({ params }: Props) {
         </View>
 
         <View alignItems="center">
-          <Card
-            justifyContent="center"
-            gap={50}
-            w={"85%"}
-            h={"$15"}
-            elevate
-            size="$4"
-            bordered
-          >
+          <Card justifyContent="center" gap={50} w={"85%"} h={"$15"} elevate size="$4" bordered>
             <View alignItems="center">
               <H5>Quantidade Restante: {params.produto.controle.quantidadeRestante}</H5>
             </View>

@@ -679,7 +679,9 @@ var require_concatClassName = __commonJS({
     var pseudoInvert = {
       hover: "hoverStyle",
       focus: "focusStyle",
-      press: "pressStyle"
+      press: "pressStyle",
+      focusVisible: "focusVisibleStyle",
+      disabled: "disabledStyle"
     };
   }
 });
@@ -1074,7 +1076,9 @@ var require_validStyleProps = __commonJS({
       exitStyle: true,
       hoverStyle: true,
       pressStyle: true,
-      focusStyle: true
+      focusStyle: true,
+      disabledStyle: true,
+      focusVisibleStyle: true
     };
     var validStyles2 = {
       ...validPseudoKeys2,
@@ -29352,7 +29356,9 @@ var validPseudoKeys = {
   exitStyle: true,
   hoverStyle: true,
   pressStyle: true,
-  focusStyle: true
+  focusStyle: true,
+  disabledStyle: true,
+  focusVisibleStyle: true
 };
 var validStyles = {
   ...validPseudoKeys,
@@ -30902,15 +30908,23 @@ __name(getYPositions, "getYPositions");
 // node_modules/@tamagui/scroll-view/dist/esm/ScrollView.js
 var import_web = require("@tamagui/core");
 var import_react_native_web3 = __toESM(require_cjs22());
-var ScrollView = (0, import_web.styled)(import_react_native_web3.ScrollView, {
-  name: "ScrollView",
-  scrollEnabled: true,
-  variants: {
-    fullscreen: {
-      true: fullscreenStyle
+var ScrollView = (0, import_web.styled)(
+  import_react_native_web3.ScrollView,
+  {
+    name: "ScrollView",
+    scrollEnabled: true,
+    variants: {
+      fullscreen: {
+        true: fullscreenStyle
+      }
+    }
+  },
+  {
+    accept: {
+      contentContainerStyle: "style"
     }
   }
-});
+);
 
 // node_modules/@tamagui/sheet/dist/esm/SheetScrollView.js
 var import_react23 = require("react");
@@ -32173,7 +32187,7 @@ var ButtonFrame = (0, import_web7.styled)(ThemeableStack, {
         backgrounded: true,
         borderWidth: 1,
         borderColor: "transparent",
-        focusStyle: {
+        focusVisibleStyle: {
           outlineColor: "$outlineColor",
           outlineStyle: "solid",
           outlineWidth: 2
@@ -32193,14 +32207,15 @@ var ButtonFrame = (0, import_web7.styled)(ThemeableStack, {
           backgroundColor: "transparent",
           borderColor: "$borderColorPress"
         },
-        focusStyle: {
+        focusVisibleStyle: {
           backgroundColor: "transparent",
           borderColor: "$borderColorFocus"
         }
       }
     },
     size: {
-      "...size": import_get_button_sized2.getButtonSized
+      "...size": import_get_button_sized2.getButtonSized,
+      ":number": import_get_button_sized2.getButtonSized
     },
     disabled: {
       true: {
@@ -32313,8 +32328,8 @@ function useButton({ textProps, ...propsIn }, { Text: Text4 = Button2.Text } = {
     ...propsIn.disabled && {
       // in rnw - false still has keyboard tabIndex, undefined = not actually focusable
       focusable: void 0,
-      // even with tabIndex unset, it will keep focusStyle on web so disable it here
-      focusStyle: {
+      // even with tabIndex unset, it will keep focusVisibleStyle on web so disable it here
+      focusVisibleStyle: {
         borderColor: "$background"
       }
     },
@@ -32469,7 +32484,9 @@ var CheckboxFrame = (0, import_core17.styled)(ThemeableStack, {
           borderColor: "$borderColorHover"
         },
         focusStyle: {
-          borderColor: "$borderColorFocus",
+          borderColor: "$borderColorFocus"
+        },
+        focusVisibleStyle: {
           outlineStyle: "solid",
           outlineWidth: 2,
           outlineColor: "$outlineColor"
@@ -38634,7 +38651,9 @@ var Popover = withStaticProperties(
         disable: sheetActive,
         hoverable,
         disableFocus
-      }), [anchorTo, setAnchorTo] = React21.useState();
+      }), [anchorTo, setAnchorToRaw] = React21.useState(), setAnchorTo = (0, import_core24.createShallowSetState)(
+        setAnchorToRaw
+      );
       React21.useImperativeHandle(forwardedRef, () => ({
         anchorTo: setAnchorTo
       }));
@@ -39175,7 +39194,9 @@ var RadioGroupItemFrame = (0, import_core28.styled)(ThemeableStack, {
         },
         focusStyle: {
           borderColor: "$borderColorHover",
-          backgroundColor: "$backgroundHover",
+          backgroundColor: "$backgroundHover"
+        },
+        focusVisibleStyle: {
           outlineStyle: "solid",
           outlineWidth: 2,
           outlineColor: "$outlineColor"
@@ -39199,7 +39220,7 @@ var RadioGroupItemFrame = (0, import_core28.styled)(ThemeableStack, {
           borderColor: "$borderColor",
           backgroundColor: "$backgroundColor"
         },
-        focusStyle: {
+        focusVisibleStyle: {
           outlineWidth: 0
         }
       }
@@ -41194,7 +41215,7 @@ var SwitchFrame = (0, import_core39.styled)(YStack, {
         backgroundColor: "$background",
         borderWidth: 2,
         borderColor: "$background",
-        focusStyle: {
+        focusVisibleStyle: {
           outlineColor: "$outlineColor",
           outlineStyle: "solid",
           outlineWidth: 2
@@ -41645,7 +41666,9 @@ var ToggleFrame = (0, import_web11.styled)(ThemeableStack, {
           backgroundColor: "$backgroundPress"
         },
         focusStyle: {
-          borderColor: "$borderColorFocus",
+          borderColor: "$borderColorFocus"
+        },
+        focusVisibleStyle: {
           outlineColor: "$outlineColor",
           outlineWidth: 2,
           outlineStyle: "solid"
@@ -42405,10 +42428,12 @@ var defaultStyles = {
     borderColor: "$borderColorHover"
   },
   focusStyle: {
+    borderColor: "$borderColorFocus"
+  },
+  focusVisibleStyle: {
     outlineColor: "$outlineColor",
     outlineWidth: 2,
-    outlineStyle: "solid",
-    borderColor: "$borderColorFocus"
+    outlineStyle: "solid"
   }
 };
 var InputFrame = (0, import_core48.styled)(
@@ -42432,7 +42457,7 @@ var InputFrame = (0, import_core48.styled)(
   },
   {
     isInput: true,
-    acceptTokens: {
+    accept: {
       placeholderTextColor: "color",
       selectionColor: "color"
     }
