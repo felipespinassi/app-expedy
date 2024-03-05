@@ -39459,7 +39459,7 @@ var RadioGroup = withStaticProperties(
 );
 RadioGroup.displayName = RADIO_GROUP_NAME;
 
-// node_modules/tamagui/node_modules/@tamagui/select/dist/esm/Select.js
+// node_modules/@tamagui/select/dist/esm/Select.js
 var import_core35 = require("@tamagui/core");
 var import_get_token6 = __toESM(require_cjs13());
 var import_list_item3 = __toESM(require_cjs30());
@@ -39495,7 +39495,7 @@ var Separator = (0, import_core29.styled)(import_core29.Stack, {
   }
 });
 
-// node_modules/tamagui/node_modules/@tamagui/select/dist/esm/Select.js
+// node_modules/@tamagui/select/dist/esm/Select.js
 var React32 = __toESM(require("react"));
 
 // node_modules/@tamagui/use-debounce/dist/esm/index.js
@@ -39537,12 +39537,12 @@ function useDebounceValue(val, amt = 0) {
 }
 __name(useDebounceValue, "useDebounceValue");
 
-// node_modules/tamagui/node_modules/@tamagui/select/dist/esm/constants.js
+// node_modules/@tamagui/select/dist/esm/constants.js
 var SELECT_NAME = "Select";
 var SCROLL_ARROW_THRESHOLD = 8;
 var VIEWPORT_NAME = "SelectViewport";
 
-// node_modules/tamagui/node_modules/@tamagui/select/dist/esm/context.js
+// node_modules/@tamagui/select/dist/esm/context.js
 var import_jsx_runtime33 = require("react/jsx-runtime");
 var [createSelectContext, createSelectScope] = createContextScope(SELECT_NAME);
 var [SelectProvider, useSelectContext] = createSelectContext(SELECT_NAME);
@@ -39555,12 +39555,12 @@ var ForwardSelectContext = /* @__PURE__ */ __name(({
   children
 }) => /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(SelectProvider, { isInSheet: true, scope: __scopeSelect, ...context, children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(SelectItemParentProvider, { scope: __scopeSelect, ...itemContext, children }) }), "ForwardSelectContext");
 
-// node_modules/tamagui/node_modules/@tamagui/select/dist/esm/SelectContent.js
+// node_modules/@tamagui/select/dist/esm/SelectContent.js
 var import_core31 = require("@tamagui/core");
 var import_focus_scope3 = __toESM(require_cjs21());
 var import_react41 = require("react");
 
-// node_modules/tamagui/node_modules/@tamagui/select/dist/esm/useSelectBreakpointActive.js
+// node_modules/@tamagui/select/dist/esm/useSelectBreakpointActive.js
 var import_core30 = require("@tamagui/core");
 var useSelectBreakpointActive = /* @__PURE__ */ __name((sheetBreakpoint) => {
   const media = (0, import_core30.useMedia)();
@@ -39571,7 +39571,7 @@ var useShowSelectSheet = /* @__PURE__ */ __name((context) => {
   return context.open === false ? false : breakpointActive;
 }, "useShowSelectSheet");
 
-// node_modules/tamagui/node_modules/@tamagui/select/dist/esm/SelectContent.js
+// node_modules/@tamagui/select/dist/esm/SelectContent.js
 var import_jsx_runtime34 = require("react/jsx-runtime");
 var CONTENT_NAME3 = "SelectContent";
 var SelectContent = /* @__PURE__ */ __name(({
@@ -39591,7 +39591,7 @@ var SelectContent = /* @__PURE__ */ __name(({
   ) });
 }, "SelectContent");
 
-// node_modules/tamagui/node_modules/@tamagui/select/dist/esm/SelectImpl.js
+// node_modules/@tamagui/select/dist/esm/SelectImpl.js
 var import_core32 = require("@tamagui/core");
 var React27 = __toESM(require("react"));
 var import_react_dom5 = require("react-dom");
@@ -39792,7 +39792,7 @@ var SelectInlineImpl = /* @__PURE__ */ __name((props) => {
   );
 }, "SelectInlineImpl");
 
-// node_modules/tamagui/node_modules/@tamagui/select/dist/esm/SelectItem.js
+// node_modules/@tamagui/select/dist/esm/SelectItem.js
 var import_list_item = __toESM(require_cjs30());
 var React28 = __toESM(require("react"));
 var import_jsx_runtime36 = require("react/jsx-runtime");
@@ -39893,7 +39893,7 @@ var SelectItem = import_list_item.ListItemFrame.styleable(
               cursor: "default",
               size: size3,
               outlineOffset: -0.5,
-              focusStyle: {
+              focusVisibleStyle: {
                 outlineColor: "$outlineColor",
                 outlineWidth: 1,
                 outlineStyle: "solid"
@@ -39911,7 +39911,7 @@ var SelectItem = import_list_item.ListItemFrame.styleable(
   }
 );
 
-// node_modules/tamagui/node_modules/@tamagui/select/dist/esm/SelectItemText.js
+// node_modules/@tamagui/select/dist/esm/SelectItemText.js
 var import_core33 = require("@tamagui/core");
 var React29 = __toESM(require("react"));
 var import_jsx_runtime37 = require("react/jsx-runtime");
@@ -39949,7 +39949,7 @@ var SelectItemText = SelectItemTextFrame.styleable(function(props, forwardedRef)
   }), [itemContext.value]), itemParentContext.shouldRenderWebNative ? /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(import_jsx_runtime37.Fragment, { children: props.children }) : /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(import_jsx_runtime37.Fragment, { children: contents.current });
 });
 
-// node_modules/tamagui/node_modules/@tamagui/select/dist/esm/SelectScrollButton.js
+// node_modules/@tamagui/select/dist/esm/SelectScrollButton.js
 var React30 = __toESM(require("react"));
 var import_react_dom6 = require("react-dom");
 var import_jsx_runtime38 = require("react/jsx-runtime");
@@ -40036,7 +40036,7 @@ var SelectScrollButtonImpl = React30.memo(
   )
 );
 
-// node_modules/tamagui/node_modules/@tamagui/select/dist/esm/SelectTrigger.js
+// node_modules/@tamagui/select/dist/esm/SelectTrigger.js
 var import_list_item2 = __toESM(require_cjs30());
 var React31 = __toESM(require("react"));
 var import_jsx_runtime39 = require("react/jsx-runtime");
@@ -40061,7 +40061,7 @@ var SelectTrigger = React31.forwardRef(
           hoverTheme: true,
           pressTheme: true,
           focusable: true,
-          focusStyle: {
+          focusVisibleStyle: {
             outlineStyle: "solid",
             outlineWidth: 2,
             outlineColor: "$outlineColor"
@@ -40092,7 +40092,7 @@ var SelectTrigger = React31.forwardRef(
   }
 );
 
-// node_modules/tamagui/node_modules/@tamagui/select/dist/esm/SelectViewport.js
+// node_modules/@tamagui/select/dist/esm/SelectViewport.js
 var import_core34 = require("@tamagui/core");
 var import_jsx_runtime40 = require("react/jsx-runtime");
 var SelectViewportFrame = (0, import_core34.styled)(ThemeableStack, {
@@ -40189,7 +40189,7 @@ var selectViewportCSS = `
 }
 `;
 
-// node_modules/tamagui/node_modules/@tamagui/select/dist/esm/Select.js
+// node_modules/@tamagui/select/dist/esm/Select.js
 var import_jsx_runtime41 = require("react/jsx-runtime");
 var VALUE_NAME = "SelectValue";
 var SelectValueFrame = (0, import_core35.styled)(SizableText, {
