@@ -8,7 +8,7 @@ import ItemsToPickComponent from "../../../components/ExpedicaoRapida/components
 export default function ItemsToPick(props: any) {
   const navigation: any = useNavigation();
 
-  const produto = props.route.params;
+  const params = props.route.params;
 
   return (
     <Theme name={"light"}>
@@ -22,7 +22,7 @@ export default function ItemsToPick(props: any) {
         <ArrowBack navigation={navigation} />
         <Heading color={"white"}>Produtos</Heading>
       </View>
-      <ItemsToPickComponent produto={produto} />
+      <ItemsToPickComponent params={params} />
     </Theme>
   );
 }

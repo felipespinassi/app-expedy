@@ -1,5 +1,5 @@
 import { TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { UseQueryResult, useIsFetching, useQuery } from "react-query";
 import { ScrollView, Spinner, Text, Theme, View, YStack } from "tamagui";
@@ -33,14 +33,21 @@ interface PickingListProps {
 }
 
 export default function ListaSeparacao({ fileId }: { fileId: string }) {
-  const navigation = useNavigation<NavigationTypes>();
-  const { data: response, isFetching }: UseQueryResult<PickingListProps> =
+  const navigation = useNavigation<any>();
+  const { data: response, isFetching, refetch }: UseQueryResult<PickingListProps> =
     useQuery(
       "ListaSeparacao",
       async () => await getService(`orders/file/picking/${fileId}`, {})
     );
 
-  console.log(response?.data.produtos);
+
+    useEffect(() => {
+      const focused = navigation.addListener('focus', () => {
+        refetch()
+      });
+  
+      return focused;
+    }, [navigation]);
 
   if (isFetching) {
     return (

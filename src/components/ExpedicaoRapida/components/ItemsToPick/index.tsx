@@ -12,14 +12,15 @@ import {
   YStack,
 } from "tamagui";
 import { Platform } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import { NavigationTypes } from "../../../../@types/NavigationTypes";
 import axios from "axios";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { getAccess_token } from "../../../../storage/getAccess_token";
+import { useNavigation } from "@react-navigation/native";
+
 
 interface Props {
-  produto: {
+  params: {
     produto: {
       database_name: string;
       id: string;
@@ -33,31 +34,45 @@ interface Props {
       reference: string;
       tax_name: string;
       variacao: string;
+      controle: {
+        quantidadeTotal: number,
+        quantidadeConferida:number,
+        quantidadeRestante:number
+      }
     };
-    fileId: any;
+    fileId: string;
+
   };
 }
 
-export default function ItemsToPick({ produto }: Props) {
+export default function ItemsToPick({ params }: Props) {
+
+  const navigation = useNavigation<any>();
+
+
+  
   async function onPickProduct(produto: any) {
     const access_token = await getAccess_token();
 
+    console.log(produto)
+
     try {
       const response = await axios.put(
-        `https://api.expedy.com.br/orders/file/putpicking/${produto.fileId}?access_token=${access_token}`,
+        `https://api.expedy.com.br/orders/file/putpicking/${params.fileId}?access_token=${access_token}`,
         {
           produto: {
-            id: produto.produto.product_id,
+            id: produto.product_id,
             quantidade: 1,
           },
         }
       );
+      navigation.goBack()
       return Alert.alert("Produto atualizado");
     } catch (error) {
+      console.log(error)
       return Alert.alert("Não foi possivel atualizar");
     }
   }
-  const navigation = useNavigation<NavigationTypes>();
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : undefined}
@@ -65,11 +80,11 @@ export default function ItemsToPick({ produto }: Props) {
       <Text></Text>
       <View jc={"space-around"} h={"90%"} padding={5}>
         <View alignItems="center">
-          <H4 textAlign="center">{produto.produto.database_name}</H4>
+          <H4 textAlign="center">{params.produto.database_name}</H4>
         </View>
 
         <View alignItems="center">
-          <H5>SKU: {produto.produto.reference}</H5>
+          <H5>SKU: {params.produto.reference}</H5>
         </View>
 
         <View alignItems="center">
@@ -83,7 +98,7 @@ export default function ItemsToPick({ produto }: Props) {
             bordered
           >
             <View alignItems="center">
-              <H5>Quantidade necessária: {produto.produto.quantity}</H5>
+              <H5>Quantidade Restante: {params.produto.controle.quantidadeRestante}</H5>
             </View>
 
             <View alignItems="center" justifyContent="center">
@@ -91,7 +106,7 @@ export default function ItemsToPick({ produto }: Props) {
             </View>
           </Card>
         </View>
-        <TouchableOpacity onPress={() => onPickProduct(produto)}>
+        <TouchableOpacity onPress={() => onPickProduct(params.produto)}>
           <View theme={"dark"} alignItems="center">
             <Button>Confirmar</Button>
           </View>
