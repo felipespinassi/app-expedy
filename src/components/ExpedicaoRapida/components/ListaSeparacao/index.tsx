@@ -33,6 +33,9 @@ interface PickingListProps {
   };
 }
 
+
+
+
 export default function ListaSeparacao({ fileId }: { fileId: string }) {
   const navigation = useNavigation<any>();
   const {
@@ -60,22 +63,38 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
     );
   }
 
+
+  function moveZerosToEnd() {
+    const arr: any = response?.data.produtos
+    arr.sort((a: any, b: any) => {
+      if (a.controle.quantidadeRestante === 0 && b.controle.quantidadeRestante !== 0) {
+        return 1; // Coloca 'a' após 'b'
+      } else if (a.controle.quantidadeRestante !== 0 && b.controle.quantidadeRestante === 0) {
+        return -1; // Coloca 'a' antes de 'b'
+      } else {
+        return 0; // Mantém a ordem original
+      }
+    });
+
+
+  }
+  moveZerosToEnd()
+
+
   return (
     <Theme name={"light"}>
       <ScrollView paddingTop={5}>
         {response?.data.produtos?.map((produto, index) => {
+
+
           return (
-            <TouchableOpacity
-              key={index}
-              onPress={() => {
-                navigation.navigate("ItemsToPick", { produto, fileId });
-              }}
-            >
-              <YStack paddingHorizontal={5}>
+
+            <View key={index}>
+
+              {produto.controle.quantidadeRestante === 0 ? <YStack paddingHorizontal={5}>
                 <View
-                  key={produto.reference}
                   height={80}
-                  backgroundColor={"white"}
+                  backgroundColor={"$green4Light"}
                   borderRadius={5}
                   alignItems="center"
                   justifyContent={"space-between"}
@@ -83,9 +102,11 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
                   flexDirection="row"
                   paddingHorizontal={25}
                 >
+
                   <Text width={"20%"} fontSize={"$6"}>
                     {produto.controle.quantidadeRestante}
                   </Text>
+
 
                   <View width={"80%"} gap={7}>
                     <Text fontSize={"$4"}>
@@ -98,8 +119,47 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
                     </Text>
                   </View>
                 </View>
-              </YStack>
-            </TouchableOpacity>
+              </YStack> : <TouchableOpacity
+                key={index}
+                onPress={() => {
+                  navigation.navigate("ItemsToPick", { produto, fileId });
+                }}
+              >
+
+                <YStack paddingHorizontal={5}>
+                  <View
+                    height={80}
+                    backgroundColor={"white"}
+                    borderRadius={5}
+                    alignItems="center"
+                    justifyContent={"space-between"}
+                    marginBottom={10}
+                    flexDirection="row"
+                    paddingHorizontal={25}
+                  >
+
+                    <Text width={"20%"} fontSize={"$6"}>
+                      {produto.controle.quantidadeRestante}
+                    </Text>
+
+
+                    <View width={"80%"} gap={7}>
+                      <Text fontSize={"$4"}>
+                        <Text color={"$gray10"}>SKU: </Text>
+                        {produto.reference}
+                      </Text>
+                      <Text fontSize={"$4"}>
+                        <Text color={"$gray10"}>Descricao: </Text>
+                        {produto.database_name}
+                      </Text>
+                    </View>
+                  </View>
+                </YStack>
+
+              </TouchableOpacity>}
+
+            </View>
+
           );
         })}
       </ScrollView>

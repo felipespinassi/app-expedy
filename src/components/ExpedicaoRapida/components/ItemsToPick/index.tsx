@@ -39,6 +39,8 @@ interface Props {
 
   export default function ItemsToPick({ params }: Props) {
 
+    const [quantity, setQuantity] = useState('')
+
   const toast = useToastController();
 
   const navigation = useNavigation<any>();
@@ -52,7 +54,7 @@ interface Props {
         {
           produto: {
             id: produto.product_id,
-            quantidade: 1,
+            quantidade: Number(quantity),
           },
         }
       );
@@ -85,7 +87,7 @@ interface Props {
             </View>
 
             <View alignItems="center" justifyContent="center">
-              <Input borderWidth={2} keyboardType="numeric" w={"$6"} />
+              <Input onChangeText={(e) => setQuantity(e)} borderWidth={2} keyboardType="numeric" w={"$6"} />
             </View>
           </Card>
         </View>
