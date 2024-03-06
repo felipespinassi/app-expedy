@@ -2,10 +2,11 @@ import { TouchableOpacity } from "react-native";
 import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { UseQueryResult, useIsFetching, useQuery } from "react-query";
-import { ScrollView, Spinner, Text, Theme, View, YStack } from "tamagui";
+import { Button, ScrollView, Spinner, Text, Theme, View, YStack } from "tamagui";
 import { getService } from "../../../../services/getService";
 import { NavigationTypes } from "../../../../@types/NavigationTypes";
 import { ToastDemo } from "../../../ToastDemo";
+import { Swipeable } from "react-native-gesture-handler";
 
 interface PickingListProps {
   data: {
@@ -80,56 +81,27 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
   }
   moveZerosToEnd()
 
+  function RightAction () {
+    return <Button height={'90%'} backgroundColor={'$green5Light'}>Confirmar todos</Button>
+  }
+
 
   return (
     <Theme name={"light"}>
       <ScrollView paddingTop={5}>
-        {response?.data.produtos?.map((produto, index) => {
 
+          {response?.data.produtos?.map((produto, index) => {
+            
+            
+            return (
+              <Swipeable key={index} renderRightActions={RightAction}>
 
-          return (
+              <View >
 
-            <View key={index}>
-
-              {produto.controle.quantidadeRestante === 0 ? <YStack paddingHorizontal={5}>
-                <View
-                  height={80}
-                  backgroundColor={"$green4Light"}
-                  borderRadius={5}
-                  alignItems="center"
-                  justifyContent={"space-between"}
-                  marginBottom={10}
-                  flexDirection="row"
-                  paddingHorizontal={25}
-                >
-
-                  <Text width={"20%"} fontSize={"$6"}>
-                    {produto.controle.quantidadeRestante}
-                  </Text>
-
-
-                  <View width={"80%"} gap={7}>
-                    <Text fontSize={"$4"}>
-                      <Text color={"$gray10"}>SKU: </Text>
-                      {produto.reference}
-                    </Text>
-                    <Text fontSize={"$4"}>
-                      <Text color={"$gray10"}>Descricao: </Text>
-                      {produto.database_name}
-                    </Text>
-                  </View>
-                </View>
-              </YStack> : <TouchableOpacity
-                key={index}
-                onPress={() => {
-                  navigation.navigate("ItemsToPick", { produto, fileId });
-                }}
-              >
-
-                <YStack paddingHorizontal={5}>
+                {produto.controle.quantidadeRestante === 0 ? <YStack paddingHorizontal={5}>
                   <View
                     height={80}
-                    backgroundColor={"white"}
+                    backgroundColor={"$green4Light"}
                     borderRadius={5}
                     alignItems="center"
                     justifyContent={"space-between"}
@@ -154,14 +126,50 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
                       </Text>
                     </View>
                   </View>
-                </YStack>
+                </YStack> : <TouchableOpacity
+                  key={index}
+                  onPress={() => {
+                    navigation.navigate("ItemsToPick", { produto, fileId });
+                  }}
+                >
 
-              </TouchableOpacity>}
+                  <YStack paddingHorizontal={5}>
+                    <View
+                      height={80}
+                      backgroundColor={"white"}
+                      borderRadius={5}
+                      alignItems="center"
+                      justifyContent={"space-between"}
+                      marginBottom={10}
+                      flexDirection="row"
+                      paddingHorizontal={25}
+                    >
 
-            </View>
+                      <Text width={"20%"} fontSize={"$6"}>
+                        {produto.controle.quantidadeRestante}
+                      </Text>
 
-          );
-        })}
+
+                      <View width={"80%"} gap={7}>
+                        <Text fontSize={"$4"}>
+                          <Text color={"$gray10"}>SKU: </Text>
+                          {produto.reference}
+                        </Text>
+                        <Text fontSize={"$4"}>
+                          <Text color={"$gray10"}>Descricao: </Text>
+                          {produto.database_name}
+                        </Text>
+                      </View>
+                    </View>
+                  </YStack>
+
+                </TouchableOpacity>}
+
+              </View>
+        </Swipeable>
+
+            );
+          })}
       </ScrollView>
     </Theme>
   );
