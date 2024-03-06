@@ -5,19 +5,13 @@ import React from "react";
 import { Button, XStack, YStack } from "tamagui";
 
 export const ToastDemo = () => {
-  return (
-    <YStack space alignItems="center">
-      <ToastControl />
-
-      <CurrentToast />
-    </YStack>
-  );
-};
-const CurrentToast = () => {
+  const toast = useToastController();
   const currentToast = useToastState();
   if (!currentToast || currentToast.isHandledNatively) return null;
-
   return (
+    <YStack space alignItems="center">
+     
+
     <Toast
       theme={"green_active"}
       key={currentToast.id}
@@ -37,22 +31,7 @@ const CurrentToast = () => {
         {!!currentToast.message && <Toast.Description>{currentToast.message}</Toast.Description>}
       </YStack>
     </Toast>
+    </YStack>
   );
 };
-const ToastControl = () => {
-  const toast = useToastController();
 
-  return (
-    <XStack justifyContent="center">
-      <Button
-        onPress={() => {
-          toast.show("Salvo com sucesso!", {
-            message: "Produto separado.",
-          });
-        }}
-      >
-        Show
-      </Button>
-    </XStack>
-  );
-};

@@ -1,5 +1,6 @@
 import { Alert, KeyboardAvoidingView, SafeAreaView } from "react-native";
 import { ToastViewport } from "@tamagui/toast";
+import { Toast, useToastController, useToastState } from "@tamagui/toast";
 
 import React, { useState } from "react";
 import { Button, Card, H4, H5, Input, Text, Theme, View, YStack } from "tamagui";
@@ -36,7 +37,10 @@ interface Props {
   };
 }
 
-export default function ItemsToPick({ params }: Props) {
+  export default function ItemsToPick({ params }: Props) {
+
+  const toast = useToastController();
+
   const navigation = useNavigation<any>();
 
   async function onPickProduct(produto: any) {
@@ -52,8 +56,10 @@ export default function ItemsToPick({ params }: Props) {
           },
         }
       );
-      navigation.goBack();
-      return Alert.alert("Produto atualizado");
+      await toast.show("Salvo com sucesso!", {
+        message: "Produto separado.",
+      });
+     
     } catch (error) {
       console.log(error);
       return Alert.alert("Não foi possivel atualizar");
@@ -62,7 +68,7 @@ export default function ItemsToPick({ params }: Props) {
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined}>
       <ToastViewport />
-      <ToastDemo />
+      <ToastDemo/>
       <View jc={"space-around"} h={"90%"} padding={5}>
         <View alignItems="center">
           <H4 textAlign="center">{params.produto.database_name}</H4>
