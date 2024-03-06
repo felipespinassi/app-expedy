@@ -56,7 +56,7 @@ interface Props {
           },
         }
       );
-      await toast.show("Salvo com sucesso!", {
+       toast.show("Salvo com sucesso!", {
         message: "Produto separado.",
       });
      
