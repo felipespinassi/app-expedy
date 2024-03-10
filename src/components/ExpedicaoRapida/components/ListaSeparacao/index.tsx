@@ -1,12 +1,14 @@
-import { TouchableOpacity } from "react-native";
+import { Alert, TouchableOpacity } from "react-native";
 import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { UseQueryResult, useIsFetching, useQuery } from "react-query";
 import { Button, ScrollView, Spinner, Text, Theme, View, YStack } from "tamagui";
 import { getService } from "../../../../services/getService";
 import { NavigationTypes } from "../../../../@types/NavigationTypes";
-import { ToastDemo } from "../../../ToastDemo";
 import { Swipeable } from "react-native-gesture-handler";
+import { onPickTotalQuantity } from "../utils/onPickTotalQuantity";
+import { ToastViewport, useToastController } from "@tamagui/toast";
+import { ToastDemo } from "../../../ToastDemo";
 
 interface PickingListProps {
   data: {
@@ -39,6 +41,8 @@ interface PickingListProps {
 
 export default function ListaSeparacao({ fileId }: { fileId: string }) {
   const navigation = useNavigation<any>();
+  const toast = useToastController();
+
   const {
     data: response,
     isFetching,
@@ -81,8 +85,12 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
   }
   moveZerosToEnd()
 
-  function RightAction () {
-    return <Button height={'90%'} backgroundColor={'$green5Light'}>Confirmar todos</Button>
+  function RightAction() {
+    return <Button flex={1} height={'90%'} backgroundColor={'$green5Light'}>Separando</Button>
+  }
+
+ async function onSwipeTotal(produto: any) {
+   await onPickTotalQuantity(produto, fileId, toast,refetch)
   }
 
 
@@ -90,12 +98,12 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
     <Theme name={"light"}>
       <ScrollView paddingTop={5}>
 
-          {response?.data.produtos?.map((produto, index) => {
-            
-            
-            return (
-              <Swipeable key={index} renderRightActions={RightAction}>
+        {response?.data.produtos?.map((produto, index) => {
 
+
+          return (
+            <Swipeable key={index} onSwipeableOpen={() => onSwipeTotal(produto)} renderRightActions={RightAction}>
+              
               <View >
 
                 {produto.controle.quantidadeRestante === 0 ? <YStack paddingHorizontal={5}>
@@ -166,10 +174,10 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
                 </TouchableOpacity>}
 
               </View>
-        </Swipeable>
+            </Swipeable>
 
-            );
-          })}
+          );
+        })}
       </ScrollView>
     </Theme>
   );

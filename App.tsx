@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ToastProvider } from "@tamagui/toast";
+import { ToastProvider, ToastViewport } from "@tamagui/toast";
 import { Routes } from "./src/Routes";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -7,13 +7,14 @@ import { TamaguiProvider, createTamagui } from "tamagui";
 import { StatusBar, useColorScheme } from "react-native";
 import config from "./tamagui.config";
 import { useFonts } from "expo-font";
+import { ToastDemo } from "./src/components/ToastDemo";
 
 const queryClient = new QueryClient();
 const tamaguiConfig = createTamagui(config);
 
 type Conf = typeof tamaguiConfig;
 declare module "@tamagui/core" {
-  interface TamaguiCustomConfig extends Conf {}
+  interface TamaguiCustomConfig extends Conf { }
 }
 
 export default function App() {
@@ -37,6 +38,8 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <TamaguiProvider config={tamaguiConfig} defaultTheme={colorScheme as any}>
           <ToastProvider>
+            <ToastViewport />
+            <ToastDemo />
             <StatusBar barStyle={"light-content"} backgroundColor="transparent" translucent />
             <Routes />
           </ToastProvider>

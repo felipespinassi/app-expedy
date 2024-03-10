@@ -11,6 +11,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { getAccess_token } from "../../../../storage/getAccess_token";
 import { useNavigation } from "@react-navigation/native";
 import { ToastDemo } from "../../../ToastDemo";
+import { onPickProduct } from "../utils/onPickProduct";
 
 interface Props {
   params: {
@@ -37,40 +38,18 @@ interface Props {
   };
 }
 
-  export default function ItemsToPick({ params }: Props) {
+export default function ItemsToPick({ params }: Props) {
 
-    const [quantity, setQuantity] = useState('')
+  const [quantity, setQuantity] = useState('')
 
   const toast = useToastController();
 
   const navigation = useNavigation<any>();
 
-  async function onPickProduct(produto: any) {
-    const access_token = await getAccess_token();
 
-    try {
-      const response = await axios.put(
-        `https://api.expedy.com.br/orders/file/putpicking/${params.fileId}?access_token=${access_token}`,
-        {
-          produto: {
-            id: produto.product_id,
-            quantidade: Number(quantity),
-          },
-        }
-      );
-       toast.show("Salvo com sucesso!", {
-        message: "Produto separado.",
-      });
-     
-    } catch (error) {
-      console.log(error);
-      return Alert.alert("Não foi possivel atualizar");
-    }
-  }
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined}>
-      <ToastViewport />
-      <ToastDemo/>
+     
       <View jc={"space-around"} h={"90%"} padding={5}>
         <View alignItems="center">
           <H4 textAlign="center">{params.produto.database_name}</H4>
@@ -91,7 +70,7 @@ interface Props {
             </View>
           </Card>
         </View>
-        <TouchableOpacity onPress={() => onPickProduct(params.produto)}>
+        <TouchableOpacity onPress={() => onPickProduct(params, quantity, toast,navigation)}>
           <View theme={"dark"} alignItems="center">
             <Button>Confirmar</Button>
           </View>
