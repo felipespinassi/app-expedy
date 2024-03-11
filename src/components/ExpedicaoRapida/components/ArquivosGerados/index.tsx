@@ -7,25 +7,9 @@ import { Spinner, Text, View, YStack } from "tamagui";
 import { NavigationTypes } from "../../../../@types/NavigationTypes";
 import { UseQueryResult, useQuery } from "react-query";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { FilesProps } from "../../../../@types/Files";
 
-interface FilesProps {
-  data: {
-    files: [
-      {
-        orders: [];
-        usuario: string;
-        status: string;
-        contains: [];
-        orders_errors: [];
-        company: string;
-        createdAt: string;
-        updatedAt: string;
-        idERP_File: number;
-        path: string;
-      }
-    ];
-  };
-}
+
 
 export default function ArquivosGerados() {
   const navigation = useNavigation<NavigationTypes>();

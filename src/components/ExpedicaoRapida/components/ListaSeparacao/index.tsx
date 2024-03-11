@@ -1,41 +1,13 @@
-import { Alert, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { UseQueryResult, useIsFetching, useQuery } from "react-query";
+import { UseQueryResult, useQuery } from "react-query";
 import { Button, ScrollView, Spinner, Text, Theme, View, YStack } from "tamagui";
 import { getService } from "../../../../services/getService";
-import { NavigationTypes } from "../../../../@types/NavigationTypes";
 import { Swipeable } from "react-native-gesture-handler";
 import { onPickTotalQuantity } from "../utils/onPickTotalQuantity";
-import { ToastViewport, useToastController } from "@tamagui/toast";
-import { ToastDemo } from "../../../ToastDemo";
-
-interface PickingListProps {
-  data: {
-    produtos: [
-      {
-        controle: {
-          quantidadeConferida: number;
-          quantidadeRestante: number;
-          quantidadeTotal: number;
-        };
-        database_name: string;
-        id: string;
-        order_id: string;
-        original_name: string;
-        price: number;
-        product_id: string;
-        product_kit_id: string;
-        produtoAlterado: boolean;
-        quantity: number;
-        reference: string;
-        tax_name: string;
-        variacao: string;
-      }
-    ];
-  };
-}
-
+import { useToastController } from "@tamagui/toast";
+import { PickingListProps, Product } from "../../../../@types/Products";
 
 
 
@@ -52,22 +24,13 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
     async () => await getService(`orders/file/picking/${fileId}`, {})
   );
 
-  useEffect(() => {
-    const focused = navigation.addListener("focus", () => {
-      refetch();
-    });
-
-    return focused;
-  }, [navigation]);
-
-  if (isFetching) {
-    return (
-      <View margin={20}>
-        <Spinner size={"large"} />
-      </View>
-    );
+  function RightAction() {
+    return <Button flex={1} height={'90%'} backgroundColor={'$green5Light'}><Spinner /> </Button>
   }
 
+  async function onSwipeTotal(produto: Product) {
+    await onPickTotalQuantity(produto, fileId, toast, refetch)
+  }
 
   function moveZerosToEnd() {
     const arr: any = response?.data.produtos
@@ -83,15 +46,29 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
 
 
   }
+
+
+
+
+  useEffect(() => {
+    const focused = navigation.addListener("focus", () => {
+      refetch();
+    });
+
+
+
+    return focused;
+  }, [navigation, response]);
+
+  if (isFetching) {
+    return (
+      <View margin={20}>
+        <Spinner size={"large"} />
+      </View>
+    );
+  }
+
   moveZerosToEnd()
-
-  function RightAction() {
-    return <Button flex={1} height={'90%'} backgroundColor={'$green5Light'}><Spinner/> </Button>
-  }
-
- async function onSwipeTotal(produto: any) {
-   await onPickTotalQuantity(produto, fileId, toast,refetch)
-  }
 
 
   return (
@@ -103,7 +80,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
 
           return (
             <Swipeable key={index} onSwipeableOpen={() => onSwipeTotal(produto)} renderRightActions={RightAction}>
-              
+
               <View >
 
                 {produto.controle.quantidadeRestante === 0 ? <YStack paddingHorizontal={5}>

@@ -1,39 +1,17 @@
-import { Alert, KeyboardAvoidingView, SafeAreaView } from "react-native";
-import { ToastViewport } from "@tamagui/toast";
-import { Toast, useToastController, useToastState } from "@tamagui/toast";
+import { KeyboardAvoidingView } from "react-native";
+import {  useToastController } from "@tamagui/toast";
 
 import React, { useState } from "react";
-import { Button, Card, H4, H5, Input, Text, Theme, View, YStack } from "tamagui";
+import { Button, Card, H4, H5, Input, View } from "tamagui";
 import { Platform } from "react-native";
-import { NavigationTypes } from "../../../../@types/NavigationTypes";
-import axios from "axios";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { getAccess_token } from "../../../../storage/getAccess_token";
 import { useNavigation } from "@react-navigation/native";
-import { ToastDemo } from "../../../ToastDemo";
 import { onPickProduct } from "../utils/onPickProduct";
+import { Product } from "../../../../@types/Products";
 
 interface Props {
   params: {
-    produto: {
-      database_name: string;
-      id: string;
-      order_id: string;
-      original_name: string;
-      price: number;
-      product_id: string;
-      product_kit_id: string;
-      produtoAlterado: boolean;
-      quantity: number;
-      reference: string;
-      tax_name: string;
-      variacao: string;
-      controle: {
-        quantidadeTotal: number;
-        quantidadeConferida: number;
-        quantidadeRestante: number;
-      };
-    };
+    produto: Product,
     fileId: string;
   };
 }

@@ -1,8 +1,9 @@
 import axios from "axios";
 import { getAccess_token } from "../../../../storage/getAccess_token";
 import { Alert } from "react-native";
+import { Product } from "../../../../@types/Products";
 
-export async function onPickTotalQuantity(produto: any, fileId: any, toast: any,refetch:any) {
+export async function onPickTotalQuantity(produto: Product, fileId: any, toast: any,refetch:any) {
     const access_token = await getAccess_token();
 
     try {

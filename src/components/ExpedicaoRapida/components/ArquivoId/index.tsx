@@ -6,7 +6,6 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { View } from "tamagui";
 import { Alert } from "react-native";
 import { NavigationTypes } from "../../../../@types/NavigationTypes";
-import { AxiosResponse } from "axios";
 
 export default function ArquivoId({ fileId }: { fileId: string }) {
   const navigation = useNavigation<NavigationTypes>();
