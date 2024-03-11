@@ -1,19 +1,14 @@
-import { View, Text } from "react-native";
 import React, { useMemo, useState } from "react";
 import { UseQueryResult, useQuery } from "react-query";
 import { getService } from "../../../../../../services/getService";
 import { Adapt, Select, Sheet } from "tamagui";
+import { integracoesDisponiveis } from "../../../../../../Objects/integracoesDisponiveis";
 
-export default function SelectIntegracoes(props: any) {
-  const { data: response, isFetching }: UseQueryResult<any> = useQuery(
-    "Integracoes",
-    async () => await getService(`front/integracoes`, {})
-  );
-
+export default function SelectMarkeplace(props: any) {
   return (
     <Select
-      value={props.integracaoId}
-      onValueChange={props.setIntegracaoId}
+      //   value={props.integracaoId}
+      //   onValueChange={props.setIntegracaoId}
       disablePreventBodyScroll
       {...props}
     >
@@ -47,19 +42,20 @@ export default function SelectIntegracoes(props: any) {
       <Select.Content zIndex={200000}>
         <Select.Viewport minWidth={200}>
           <Select.Group>
-            <Select.Label>Integração</Select.Label>
+            <Select.Label>Marketplace</Select.Label>
 
             {useMemo(
               () =>
-                response?.data.integracoes.map((item: any, i: any) => {
+                integracoesDisponiveis?.map((item: any, i: any) => {
+                  console.log(item);
                   return (
-                    <Select.Item index={i} key={item.id} value={item?.id}>
-                      <Select.ItemText>{item?.descricao}</Select.ItemText>
+                    <Select.Item index={i} key={item.key} value={item?.key}>
+                      <Select.ItemText>{item?.label}</Select.ItemText>
                     </Select.Item>
                   );
                 }),
 
-              [response?.data.integracoes]
+              [integracoesDisponiveis]
             )}
           </Select.Group>
         </Select.Viewport>
