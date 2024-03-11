@@ -58,7 +58,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
 
 
     return focused;
-  }, [navigation, response]);
+  }, [navigation]);
 
   if (isFetching) {
     return (
