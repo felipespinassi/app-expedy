@@ -11,13 +11,14 @@ export async function onPickTotalQuantity(produto: any, fileId: any, toast: any,
             {
                 produto: {
                     id: produto.product_id,
-                    quantidade: Number(produto.controle.quantidadeTotal),
+                    quantidade: Number(produto.controle.quantidadeRestante),
                 },
             }
         );
         refetch()
         toast.show("Salvo com sucesso!", {
             message: "Produto separado.",
+        
         });
 
     } catch (error) {

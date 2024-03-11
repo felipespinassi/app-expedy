@@ -86,7 +86,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
   moveZerosToEnd()
 
   function RightAction() {
-    return <Button flex={1} height={'90%'} backgroundColor={'$green5Light'}>Separando</Button>
+    return <Button flex={1} height={'90%'} backgroundColor={'$green5Light'}><Spinner/> </Button>
   }
 
  async function onSwipeTotal(produto: any) {

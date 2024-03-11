@@ -37,9 +37,9 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <QueryClientProvider client={queryClient}>
         <TamaguiProvider config={tamaguiConfig} defaultTheme={colorScheme as any}>
-          <ToastProvider>
-            <ToastViewport />
-            <ToastDemo />
+          <ToastProvider >
+            <ToastViewport width={'100%'} justifyContent="center" alignItems="center" height={'20%'}  />
+            <ToastDemo  />
             <StatusBar barStyle={"light-content"} backgroundColor="transparent" translucent />
             <Routes />
           </ToastProvider>

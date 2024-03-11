@@ -22,14 +22,12 @@ export const ToastDemo = () => {
     <Toast
       theme={"green_active"}
       key={currentToast.id}
-      duration={currentToast.duration}
+      duration={1500}
       enterStyle={{ opacity: 0, scale: 0.5, y: -25 }}
       exitStyle={{ opacity: 0, scale: 1, y: -20 }}
-      y={50}
-      x={100}
       opacity={1}
       scale={1.1}
-      animation="quick"
+      animation="100ms"
       viewportName={currentToast.viewportName}
     >
       <YStack>
