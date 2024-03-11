@@ -1,9 +1,9 @@
 import React from "react";
-import { Heading, Theme, View } from "tamagui";
-import ArrowBack from "../../../components/ArrowBack/ArrowBack";
+import { Theme } from "tamagui";
 import { useNavigation } from "@react-navigation/native";
 
 import ItemsToPickComponent from "../../../components/ExpedicaoRapida/components/ItemsToPick";
+import Header from "../../../components/Header/Header";
 
 export default function ItemsToPick(props: any) {
   const navigation: any = useNavigation();
@@ -12,16 +12,9 @@ export default function ItemsToPick(props: any) {
 
   return (
     <Theme name={"light"}>
-      <View
-        backgroundColor={"#002851"}
-        height={"15%"}
-        justifyContent="flex-end"
-        alignItems="center"
-        paddingBottom={15}
-      >
-        <ArrowBack navigation={navigation} />
-        <Heading color={"white"}>Produtos</Heading>
-      </View>
+      <Header showArrow navigation={navigation}>
+        Separação
+      </Header>
       <ItemsToPickComponent params={params} />
     </Theme>
   );
