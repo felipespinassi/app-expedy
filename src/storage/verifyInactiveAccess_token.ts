@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ACCESS_TOKEN, TOKEN_EXPIRE_TIME } from "./storageConfig";
 import { Alert } from "react-native";
 
-export async function verifyInactiveAccess_token(navigation: any) {
+export async function verifyInactiveAccess_token(setIsLogged: any) {
   try {
     const tokenExpireTime = await AsyncStorage.getItem(TOKEN_EXPIRE_TIME);
     if (tokenExpireTime) {
@@ -17,9 +17,9 @@ export async function verifyInactiveAccess_token(navigation: any) {
         Alert.alert(
           "Seu access token expirou e foi removido, faça o login novamente."
         );
-        // navigation.navigate("Login");
+        setIsLogged(false);
       } else {
-        navigation.navigate("Home");
+        setIsLogged(true);
       }
     }
   } catch (error) {}

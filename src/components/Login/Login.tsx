@@ -1,5 +1,5 @@
 import { Alert, KeyboardAvoidingView, Platform } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import axios from "axios";
@@ -7,6 +7,7 @@ import { createAccess_token } from "../../storage/createAccess_token";
 import { createCompanyName } from "../../storage/createCompanyName";
 import { verifyInactiveAccess_token } from "../../storage/verifyInactiveAccess_token";
 import { Button, Image, Input, Spinner, View } from "tamagui";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Login({ navigation }: any) {
   const { register, setValue, handleSubmit } = useForm<Dataprops>();
@@ -18,8 +19,10 @@ export default function Login({ navigation }: any) {
     password: string;
   }
 
+  const { setIsLogged } = useContext(AuthContext);
+
   async function verifyLogin() {
-    verifyInactiveAccess_token(navigation);
+    await verifyInactiveAccess_token(setIsLogged);
   }
 
   async function onSubmit(data: Dataprops) {
@@ -33,9 +36,9 @@ export default function Login({ navigation }: any) {
         login,
         password,
       });
-      navigation.navigate("Home");
       await createAccess_token(response.data.access_token);
       await createCompanyName(response.data.usuario.companyName);
+      setIsLogged(true);
 
       setLoading(false);
     } catch (error) {

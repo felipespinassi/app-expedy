@@ -14,7 +14,7 @@ const tamaguiConfig = createTamagui(config);
 
 type Conf = typeof tamaguiConfig;
 declare module "@tamagui/core" {
-  interface TamaguiCustomConfig extends Conf { }
+  interface TamaguiCustomConfig extends Conf {}
 }
 
 export default function App() {
@@ -36,11 +36,23 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <QueryClientProvider client={queryClient}>
-        <TamaguiProvider config={tamaguiConfig} defaultTheme={colorScheme as any}>
-          <ToastProvider >
-            <ToastViewport width={'100%'} justifyContent="center" alignItems="center" height={'20%'}  />
-            <ToastDemo  />
-            <StatusBar barStyle={"light-content"} backgroundColor="transparent" translucent />
+        <TamaguiProvider
+          config={tamaguiConfig}
+          defaultTheme={colorScheme as any}
+        >
+          <ToastProvider>
+            <ToastViewport
+              width={"100%"}
+              justifyContent="center"
+              alignItems="center"
+              height={"20%"}
+            />
+            <ToastDemo />
+            <StatusBar
+              barStyle={"light-content"}
+              backgroundColor="transparent"
+              translucent
+            />
             <Routes />
           </ToastProvider>
         </TamaguiProvider>

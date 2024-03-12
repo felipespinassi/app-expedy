@@ -1,16 +1,18 @@
 import { TouchableOpacity } from "react-native";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { COMPANY_NAME } from "../../storage/storageConfig";
 import { removeCompanyName } from "../../storage/removeCompanyName";
 import { removeAccess_token } from "../../storage/removeAccess_token";
 import { Avatar, ScrollView, Text, View } from "tamagui";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Mais({ navigation }: any) {
   const [companyName, setCompanyName] = useState("");
 
+  const { setIsLogged } = useContext(AuthContext);
   async function getCompanyName() {
     const storage: any = await AsyncStorage.getItem(COMPANY_NAME);
     setCompanyName(storage);
@@ -89,9 +91,7 @@ export default function Mais({ navigation }: any) {
 
         <TouchableOpacity
           onPress={() => {
-            removeAccess_token(),
-              removeCompanyName(),
-              navigation.navigate("Login");
+            removeAccess_token(), removeCompanyName(), setIsLogged(false);
           }}
           style={{ flexDirection: "row", padding: 5 }}
         >

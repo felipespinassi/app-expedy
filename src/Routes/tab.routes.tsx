@@ -16,7 +16,7 @@ export default function TabRoutes() {
         headerShown: false,
       }}
     >
-      <Tab.Screen
+      {/* <Tab.Screen
         options={{
           tabBarStyle: { display: "none" },
           tabBarIconStyle: { display: "none" },
@@ -24,7 +24,7 @@ export default function TabRoutes() {
         }}
         name="Login"
         component={Login}
-      />
+      /> */}
       <Tab.Screen
         options={{
           tabBarIcon: ({ color, size }) => (
