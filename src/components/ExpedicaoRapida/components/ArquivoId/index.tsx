@@ -22,7 +22,7 @@ export default function ArquivoId({ fileId }: { fileId: string }) {
   }
   return (
     <>
-      <View paddingHorizontal={5} gap={10} marginTop={10}>
+      <View paddingHorizontal={5} gap={20} marginTop={10}>
         <TouchableOpacity
           onPress={() => navigation.navigate("ListaSeparacao", fileId)}
         >
@@ -35,7 +35,8 @@ export default function ArquivoId({ fileId }: { fileId: string }) {
           >
             <YGroup.Item>
               <ListItem
-                size={"$6"}
+                backgroundColor={"$background075"}
+                size={"$7"}
                 title="Lista de Separação"
                 subTitle="Picking"
               />
@@ -51,14 +52,21 @@ export default function ArquivoId({ fileId }: { fileId: string }) {
             size="$4"
           >
             <YGroup.Item>
-              <ListItem size={"$6"} title="Pedidos" subTitle="pedidos " />
+              <ListItem
+                backgroundColor={"$background075"}
+                size={"$7"}
+                title="Pedidos"
+                subTitle="pedidos "
+              />
             </YGroup.Item>
           </YGroup>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => handlePrintFile(fileId)}>
-          <View theme={"dark"}>
-            <Button>Imprimir Arquivo</Button>
+          <View marginTop={20} theme={"orange_active"}>
+            <Button color={"white"} backgroundColor={"#c2410c"}>
+              Imprimir Arquivo
+            </Button>
           </View>
         </TouchableOpacity>
       </View>

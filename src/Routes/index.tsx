@@ -1,13 +1,21 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { StackRoutes } from "./stack.routes";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Text } from "tamagui";
-import Login from "../components/Login/Login";
+import { Login } from "../screens/Login";
+import { verifyInactiveAccess_token } from "../storage/verifyInactiveAccess_token";
 
 export function Routes() {
   const [isLogged, setIsLogged] = useState(false);
-  console.log(isLogged);
+
+  async function verifyLogin() {
+    await verifyInactiveAccess_token(setIsLogged);
+  }
+
+  useEffect(() => {
+    verifyLogin();
+  }, []);
 
   return (
     <NavigationContainer>

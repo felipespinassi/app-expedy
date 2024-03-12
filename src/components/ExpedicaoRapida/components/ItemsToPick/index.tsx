@@ -1,5 +1,5 @@
 import { KeyboardAvoidingView } from "react-native";
-import {  useToastController } from "@tamagui/toast";
+import { useToastController } from "@tamagui/toast";
 
 import React, { useState } from "react";
 import { Button, Card, H4, H5, Input, View } from "tamagui";
@@ -11,23 +11,22 @@ import { Product } from "../../../../@types/Products";
 
 interface Props {
   params: {
-    produto: Product,
+    produto: Product;
     fileId: string;
   };
 }
 
 export default function ItemsToPick({ params }: Props) {
-
-  const [quantity, setQuantity] = useState('')
+  const [quantity, setQuantity] = useState("");
 
   const toast = useToastController();
 
   const navigation = useNavigation<any>();
 
-
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined}>
-     
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
+    >
       <View jc={"space-around"} h={"90%"} padding={5}>
         <View alignItems="center">
           <H4 textAlign="center">{params.produto.database_name}</H4>
@@ -38,19 +37,39 @@ export default function ItemsToPick({ params }: Props) {
         </View>
 
         <View alignItems="center">
-          <Card justifyContent="center" gap={50} w={"85%"} h={"$15"} elevate size="$4" bordered>
+          <Card
+            justifyContent="center"
+            gap={50}
+            w={"85%"}
+            h={"$15"}
+            elevate
+            size="$4"
+            bordered
+          >
             <View alignItems="center">
-              <H5>Quantidade Restante: {params.produto.controle.quantidadeRestante}</H5>
+              <H5>
+                Quantidade Restante:{" "}
+                {params.produto.controle.quantidadeRestante}
+              </H5>
             </View>
 
             <View alignItems="center" justifyContent="center">
-              <Input onChangeText={(e) => setQuantity(e)} borderWidth={2} keyboardType="numeric" w={"$6"} />
+              <Input
+                onChangeText={(e) => setQuantity(e)}
+                borderWidth={2}
+                keyboardType="numeric"
+                w={"$6"}
+              />
             </View>
           </Card>
         </View>
-        <TouchableOpacity onPress={() => onPickProduct(params, quantity, toast,navigation)}>
-          <View theme={"dark"} alignItems="center">
-            <Button>Confirmar</Button>
+        <TouchableOpacity
+          onPress={() => onPickProduct(params, quantity, toast, navigation)}
+        >
+          <View theme={"orange_active"} alignItems="center">
+            <Button width={"85%"} color={"white"} backgroundColor={"#c2410c"}>
+              Confirmar
+            </Button>
           </View>
         </TouchableOpacity>
       </View>

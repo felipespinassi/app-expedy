@@ -47,7 +47,6 @@ export default function SelectMarkeplace(props: any) {
             {useMemo(
               () =>
                 integracoesDisponiveis?.map((item: any, i: any) => {
-                  console.log(item);
                   return (
                     <Select.Item index={i} key={item.key} value={item?.key}>
                       <Select.ItemText>{item?.label}</Select.ItemText>

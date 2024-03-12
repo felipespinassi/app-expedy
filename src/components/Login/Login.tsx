@@ -5,8 +5,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { createAccess_token } from "../../storage/createAccess_token";
 import { createCompanyName } from "../../storage/createCompanyName";
-import { verifyInactiveAccess_token } from "../../storage/verifyInactiveAccess_token";
-import { Button, Image, Input, Spinner, View } from "tamagui";
+import { Button, Image, Input, Spinner, Theme, View } from "tamagui";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function Login({ navigation }: any) {
@@ -20,10 +19,6 @@ export default function Login({ navigation }: any) {
   }
 
   const { setIsLogged } = useContext(AuthContext);
-
-  async function verifyLogin() {
-    await verifyInactiveAccess_token(setIsLogged);
-  }
 
   async function onSubmit(data: Dataprops) {
     setLoading(true);
@@ -51,7 +46,6 @@ export default function Login({ navigation }: any) {
     register("companyCode");
     register("login");
     register("password");
-    verifyLogin();
   }, []);
   return (
     <KeyboardAvoidingView
@@ -95,28 +89,32 @@ export default function Login({ navigation }: any) {
           />
         </View>
       </View>
-      <View alignItems="center">
-        {loading ? (
-          <Button
-            borderRadius={10}
-            marginTop={50}
-            width={"85%"}
-            backgroundColor={"#EA582C"}
-          >
-            <Spinner />
-          </Button>
-        ) : (
-          <Button
-            marginTop={50}
-            width={"85%"}
-            borderRadius={10}
-            backgroundColor={"#c2410c"}
-            onPress={handleSubmit(onSubmit)}
-          >
-            Login
-          </Button>
-        )}
-      </View>
+      <Theme name={"orange_active"}>
+        <View alignItems="center">
+          {loading ? (
+            <Button
+              borderRadius={10}
+              marginTop={50}
+              width={"85%"}
+              backgroundColor={"#EA582C"}
+              color={"white"}
+            >
+              <Spinner />
+            </Button>
+          ) : (
+            <Button
+              marginTop={50}
+              width={"85%"}
+              borderRadius={10}
+              backgroundColor={"#c2410c"}
+              onPress={handleSubmit(onSubmit)}
+              color={"white"}
+            >
+              Login
+            </Button>
+          )}
+        </View>
+      </Theme>
     </KeyboardAvoidingView>
   );
 }

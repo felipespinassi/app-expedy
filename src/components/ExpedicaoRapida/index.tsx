@@ -9,7 +9,7 @@ export default function ExpedicaoRapida() {
   const navigation = useNavigation<NavigationTypes>();
   return (
     <View flex={1}>
-      <View alignItems="center" width={"100%"} marginTop={20} gap={10}>
+      <View alignItems="center" width={"100%"} marginTop={20} gap={20}>
         <TouchableOpacity onPress={() => navigation.navigate("Expedir")}>
           <YGroup
             minWidth={"95%"}
@@ -22,8 +22,9 @@ export default function ExpedicaoRapida() {
               <ListItem
                 padding={30}
                 icon={<Feather name="package" size={24} />}
-                size={"$6"}
                 title="Expedir"
+                backgroundColor={"$background075"}
+                size={"$7"}
               />
             </YGroup.Item>
           </YGroup>
@@ -41,9 +42,10 @@ export default function ExpedicaoRapida() {
           >
             <YGroup.Item>
               <ListItem
+                backgroundColor={"$background075"}
+                size={"$7"}
                 padding={30}
                 icon={<Feather name="file-text" size={24} />}
-                size={"$6"}
                 title="Arquivos Gerados"
               />
             </YGroup.Item>

@@ -25,7 +25,7 @@ export default function Expedir() {
   }
 
   return (
-    <YStack padding={5} gap="$4">
+    <YStack padding={5} gap={20}>
       <XStack ai="center" gap="$4">
         <Label htmlFor="selectIntegracoes" f={1} miw={80}>
           Integração
@@ -45,8 +45,10 @@ export default function Expedir() {
         <SelectMarkeplace id="selectMarketplace" />
       </XStack>
       <TouchableOpacity onPress={() => onGerarArquivo()}>
-        <View theme={"dark"}>
-          <Button>Gerar Arquivo</Button>
+        <View theme={"orange_active"} alignItems="center">
+          <Button width={"85%"} color={"white"} backgroundColor={"#c2410c"}>
+            GerarArquivo
+          </Button>
         </View>
       </TouchableOpacity>
     </YStack>

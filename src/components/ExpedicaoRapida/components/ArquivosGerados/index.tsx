@@ -9,8 +9,6 @@ import { UseQueryResult, useQuery } from "react-query";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { FilesProps } from "../../../../@types/Files";
 
-
-
 export default function ArquivosGerados() {
   const navigation = useNavigation<NavigationTypes>();
 
@@ -28,7 +26,7 @@ export default function ArquivosGerados() {
   }
 
   return (
-    <View theme={"light"}>
+    <View>
       <FlatList
         data={response?.data.files}
         renderItem={({ item }) => (
@@ -38,8 +36,8 @@ export default function ArquivosGerados() {
           >
             <YStack>
               <View
-                height={80}
-                backgroundColor={"white"}
+                height={100}
+                backgroundColor={"$background"}
                 borderRadius={5}
                 alignItems="center"
                 justifyContent={"space-between"}

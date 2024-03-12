@@ -13,6 +13,7 @@ export default function Mais({ navigation }: any) {
   const [companyName, setCompanyName] = useState("");
 
   const { setIsLogged } = useContext(AuthContext);
+
   async function getCompanyName() {
     const storage: any = await AsyncStorage.getItem(COMPANY_NAME);
     setCompanyName(storage);
@@ -20,7 +21,7 @@ export default function Mais({ navigation }: any) {
 
   useEffect(() => {
     getCompanyName();
-  }, [companyName]);
+  }, []);
   return (
     <>
       <View height={"22%"} backgroundColor={"#002851"} flexDirection="row">
