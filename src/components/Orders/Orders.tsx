@@ -1,22 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
 import { getService } from "../../services/getService";
 import ListOrders from "./components/ListOrders/ListOrders";
-import { ActivityIndicator, Alert, FlatList, SafeAreaView, TouchableOpacity } from "react-native";
-import ModalFilterPedidos from "./components/ModalFilterPedidos/ModalFilterPedidos";
-import { Modalize } from "react-native-modalize";
-import AntDesign from "react-native-vector-icons/AntDesign";
-import { Text, View } from "tamagui";
+import {
+  ActivityIndicator,
+  Alert,
+  FlatList,
+  Image,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
+import { ScrollView, Text, View } from "tamagui";
 
 export default function Orders({ navigation }: any) {
   const [page, setPage] = useState(1);
   const [pedidos, setPedidos] = useState<any>([]);
   const [loading, setLoading] = useState(false);
-  const [openModal, setOpenModal] = useState(true);
-  const modalizeRef = useRef<Modalize>(null);
-
-  const onOpen = () => {
-    modalizeRef.current?.open();
-  };
 
   async function fetchData() {
     try {
@@ -62,21 +60,141 @@ export default function Orders({ navigation }: any) {
 
   return (
     <SafeAreaView style={{ alignItems: "center", flex: 1 }}>
-      <View width={"95%"}>
-        <TouchableOpacity
-          onPress={() => onOpen()}
-          style={{
-            flexDirection: "row",
-            justifyContent: "flex-end",
-          }}
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        paddingBottom={20}
+        paddingTop={5}
+      >
+        <View
+          justifyContent="center"
+          alignItems="center"
+          width={60}
+          height={60}
+          backgroundColor={"white"}
+          borderRadius={50}
+          padding={10}
+          marginRight={10}
         >
-          <Text fontSize={18} color={"black"}>
-            Filtrar
-          </Text>
-          <AntDesign name="filter" size={24} />
-        </TouchableOpacity>
-      </View>
-
+          <Image
+            resizeMode="contain"
+            style={{ width: 50, height: 40 }}
+            source={require("../../../assets/logos/shopee.png")}
+          />
+        </View>
+        <View
+          justifyContent="center"
+          alignItems="center"
+          width={60}
+          height={60}
+          backgroundColor={"white"}
+          borderRadius={50}
+          padding={10}
+          marginRight={10}
+        >
+          <Image
+            resizeMode="contain"
+            style={{ width: 50, height: 40 }}
+            source={require("../../../assets/logos/mercadolivre.png")}
+          />
+        </View>
+        <View
+          justifyContent="center"
+          alignItems="center"
+          width={60}
+          height={60}
+          backgroundColor={"white"}
+          borderRadius={50}
+          padding={10}
+          marginRight={10}
+        >
+          <Image
+            resizeMode="contain"
+            style={{ width: 50, height: 40 }}
+            source={require("../../../assets/logos/shein.png")}
+          />
+        </View>
+        <View
+          justifyContent="center"
+          alignItems="center"
+          width={60}
+          height={60}
+          backgroundColor={"white"}
+          borderRadius={50}
+          padding={10}
+          marginRight={10}
+        >
+          <Image
+            resizeMode="contain"
+            style={{ width: 50, height: 40 }}
+            source={require("../../../assets/logos/magalu.png")}
+          />
+        </View>
+        <View
+          justifyContent="center"
+          alignItems="center"
+          width={60}
+          height={60}
+          backgroundColor={"white"}
+          borderRadius={50}
+          padding={10}
+          marginRight={10}
+        >
+          <Image
+            resizeMode="contain"
+            style={{ width: 50, height: 40 }}
+            source={require("../../../assets/logos/skyhub.png")}
+          />
+        </View>
+        <View
+          justifyContent="center"
+          alignItems="center"
+          width={60}
+          height={60}
+          backgroundColor={"white"}
+          borderRadius={50}
+          padding={10}
+          marginRight={10}
+        >
+          <Image
+            resizeMode="contain"
+            style={{ width: 50, height: 40 }}
+            source={require("../../../assets/logos/yampi.png")}
+          />
+        </View>
+        <View
+          justifyContent="center"
+          alignItems="center"
+          width={60}
+          height={60}
+          backgroundColor={"white"}
+          borderRadius={50}
+          padding={10}
+          marginRight={10}
+        >
+          <Image
+            resizeMode="contain"
+            style={{ width: 50, height: 40 }}
+            source={require("../../../assets/logos/olist.png")}
+          />
+        </View>
+        <View
+          justifyContent="center"
+          alignItems="center"
+          width={60}
+          height={60}
+          backgroundColor={"white"}
+          borderRadius={50}
+          padding={10}
+          marginRight={10}
+        >
+          <Image
+            resizeMode="contain"
+            style={{ width: 50, height: 40 }}
+            source={require("../../../assets/logos/netshoes.png")}
+          />
+        </View>
+      </ScrollView>
       <FlatList
         onEndReachedThreshold={0.4}
         keyExtractor={(item: any) => item.id}
@@ -91,12 +209,9 @@ export default function Orders({ navigation }: any) {
             <ListOrders navigation={navigation} item={item} />
           </>
         )}
-        ListFooterComponent={<ActivityIndicator style={{ paddingTop: 10 }} size={"large"} />}
-      />
-      <ModalFilterPedidos
-        modalizeRef={modalizeRef}
-        openModal={openModal}
-        setOpenModal={setOpenModal}
+        ListFooterComponent={
+          <ActivityIndicator style={{ paddingTop: 10 }} size={"large"} />
+        }
       />
     </SafeAreaView>
   );
