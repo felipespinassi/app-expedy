@@ -1,4 +1,4 @@
-import { TouchableOpacity } from "react-native";
+import { SafeAreaView, TouchableOpacity } from "react-native";
 import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { UseQueryResult, useQuery } from "react-query";
@@ -72,7 +72,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
   moveZerosToEnd();
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <ScrollView paddingTop={5}>
         {response?.data.produtos?.map((produto, index) => {
           return (
