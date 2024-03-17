@@ -22,10 +22,9 @@ export default function ListOrders({ navigation, item }: any) {
             justifyContent={"space-between"}
             marginBottom={12}
             flexDirection="row"
-            paddingHorizontal={20}
-            paddingVertical={5}
           >
-            <View justifyContent="space-evenly" height={"100%"}>
+            <View paddingLeft={7} height={"100%"} backgroundColor={"orange"} />
+            <View padding={10} justifyContent="space-evenly" height={"100%"}>
               <View flexDirection="row" justifyContent="space-between">
                 <Text>{item.orderid}</Text>
                 <Text>
