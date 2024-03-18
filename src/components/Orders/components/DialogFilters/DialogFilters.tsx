@@ -32,7 +32,7 @@ export default function DialogFilters() {
         <TouchableOpacity
           style={{
             flexDirection: "row",
-            justifyContent: "flex-end",
+            justifyContent: "center",
             alignItems: "center",
           }}
         >

@@ -78,15 +78,12 @@ export default function Orders({ navigation }: any) {
   return (
     <SafeAreaView style={{ alignItems: "center", flex: 1 }}>
       <View
-        style={{
-          backgroundColor: "white",
-          width: "100%",
-          height: 30,
-          justifyContent: "flex-end",
-          alignItems: "center",
-          flexDirection: "row",
-          paddingHorizontal: 5,
-        }}
+        backgroundColor={"white"}
+        width={"100%"}
+        height={30}
+        justifyContent="flex-end"
+        flexDirection="row"
+        paddingHorizontal={5}
       >
         <DialogFilters />
       </View>
