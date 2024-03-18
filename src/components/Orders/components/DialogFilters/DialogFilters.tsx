@@ -1,17 +1,29 @@
 import { TouchableOpacity } from "react-native";
 import React from "react";
 import {
+  Accordion,
   Adapt,
   Button,
   Dialog,
   Fieldset,
+  Group,
   Input,
   Label,
+  ListItem,
+  Paragraph,
+  ScrollView,
+  Select,
+  Separator,
   Sheet,
+  Square,
   Text,
+  View,
+  XGroup,
   XStack,
+  YGroup,
+  YStack,
 } from "tamagui";
-import { ChevronDown } from "@tamagui/lucide-icons";
+import { Activity, Airplay, ChevronDown } from "@tamagui/lucide-icons";
 
 export default function DialogFilters() {
   return (
@@ -20,7 +32,7 @@ export default function DialogFilters() {
         <TouchableOpacity
           style={{
             flexDirection: "row",
-            justifyContent: "center",
+            justifyContent: "flex-end",
             alignItems: "center",
           }}
         >
@@ -82,6 +94,18 @@ export default function DialogFilters() {
               ID Hub
             </Label>
             <Input id="name" defaultValue="Nate Wienert" />
+          </Fieldset>
+          <Fieldset>
+            <Label width={160} justifyContent="flex-end" htmlFor="name">
+              Loja
+            </Label>
+            <ScrollView>
+              <TouchableOpacity>
+                <Text>Shopee - Nuance Casa</Text>
+                <Text>Mercado Livre - Nuance Casa</Text>
+                <Text>Shein - Nuance Casa</Text>
+              </TouchableOpacity>
+            </ScrollView>
           </Fieldset>
 
           <XStack alignSelf="flex-end" gap="$4">
