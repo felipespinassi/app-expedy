@@ -72,7 +72,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
   moveZerosToEnd();
 
   return (
-    <View style={{ flex: 1 }}>
+    <View flex={1}>
       <ScrollView paddingTop={5}>
         {response?.data.produtos?.map((produto, index) => {
           return (

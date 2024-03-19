@@ -26,7 +26,7 @@ export default function ArquivosGerados() {
   }
 
   return (
-    <View style={{ flex: 1 }}>
+    <View flex={1}>
       <FlatList
         data={response?.data.files}
         renderItem={({ item }) => (
