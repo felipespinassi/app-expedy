@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { UseQueryResult, useQuery } from "react-query";
 import { getService } from "../../../../../../services/getService";
 import { Adapt, Select, Sheet } from "tamagui";
-import { integracoesDisponiveis } from "../../../../../../Objects/integracoesDisponiveis";
+import { integracoesDisponiveis } from "../../../../../../objects/integracoesDisponiveis";
 
 export default function SelectMarkeplace(props: any) {
   return (

@@ -27,17 +27,19 @@ import {
 } from "tamagui";
 import { ChevronDown } from "@tamagui/lucide-icons";
 import DialogFilters from "./components/DialogFilters/DialogFilters";
+import FloatButton from "./components/FloatButton/FloatButton";
 
 export default function Orders({ navigation }: any) {
   const [page, setPage] = useState(1);
   const [pedidos, setPedidos] = useState<any>([]);
   const [loading, setLoading] = useState(false);
+  const [selectedOrders, setSelectedOrders] = useState([] as any);
 
   async function fetchData() {
     try {
       const response: any = await getService("front/orders/simples", {
         page,
-        pageSize: 50,
+        pageSize: 10,
       });
 
       const newData = response.data.pedidos;
@@ -75,6 +77,20 @@ export default function Orders({ navigation }: any) {
     fetchData();
   }, [page]);
 
+  function onLongPress(item: any) {
+    if (selectedOrders.includes(item.id)) {
+      const newListOrder = selectedOrders.filter(
+        (itemId: any) => itemId !== item.id
+      );
+      return setSelectedOrders(newListOrder);
+    }
+    setSelectedOrders([...selectedOrders, item.id]);
+  }
+
+  function getSelected(item: any) {
+    return selectedOrders.includes(item.id);
+  }
+
   return (
     <SafeAreaView style={{ alignItems: "center", flex: 1 }}>
       <View
@@ -87,146 +103,149 @@ export default function Orders({ navigation }: any) {
       >
         <DialogFilters />
       </View>
+      {selectedOrders.length > 0 && <FloatButton />}
 
       <FlatList
         ListHeaderComponent={() => (
           <>
             <Text color={"black"}>Marketplace</Text>
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              paddingBottom={20}
-              paddingTop={5}
-            >
-              <View
-                justifyContent="center"
-                alignItems="center"
-                width={60}
-                height={60}
-                backgroundColor={"white"}
-                borderRadius={50}
-                padding={10}
-                marginRight={10}
+            <View justifyContent="center" alignItems="center">
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                paddingBottom={20}
+                paddingTop={5}
               >
-                <Image
-                  resizeMode="contain"
-                  style={{ width: 50, height: 40 }}
-                  source={require("../../../assets/logos/shopee.png")}
-                />
-              </View>
-              <View
-                justifyContent="center"
-                alignItems="center"
-                width={60}
-                height={60}
-                backgroundColor={"white"}
-                borderRadius={50}
-                padding={10}
-                marginRight={10}
-              >
-                <Image
-                  resizeMode="contain"
-                  style={{ width: 50, height: 40 }}
-                  source={require("../../../assets/logos/mercadolivre.png")}
-                />
-              </View>
-              <View
-                justifyContent="center"
-                alignItems="center"
-                width={60}
-                height={60}
-                backgroundColor={"white"}
-                borderRadius={50}
-                padding={10}
-                marginRight={10}
-              >
-                <Image
-                  resizeMode="contain"
-                  style={{ width: 50, height: 40 }}
-                  source={require("../../../assets/logos/shein.png")}
-                />
-              </View>
-              <View
-                justifyContent="center"
-                alignItems="center"
-                width={60}
-                height={60}
-                backgroundColor={"white"}
-                borderRadius={50}
-                padding={10}
-                marginRight={10}
-              >
-                <Image
-                  resizeMode="contain"
-                  style={{ width: 50, height: 40 }}
-                  source={require("../../../assets/logos/magalu.png")}
-                />
-              </View>
-              <View
-                justifyContent="center"
-                alignItems="center"
-                width={60}
-                height={60}
-                backgroundColor={"white"}
-                borderRadius={50}
-                padding={10}
-                marginRight={10}
-              >
-                <Image
-                  resizeMode="contain"
-                  style={{ width: 50, height: 40 }}
-                  source={require("../../../assets/logos/skyhub.png")}
-                />
-              </View>
-              <View
-                justifyContent="center"
-                alignItems="center"
-                width={60}
-                height={60}
-                backgroundColor={"white"}
-                borderRadius={50}
-                padding={10}
-                marginRight={10}
-              >
-                <Image
-                  resizeMode="contain"
-                  style={{ width: 50, height: 40 }}
-                  source={require("../../../assets/logos/yampi.png")}
-                />
-              </View>
-              <View
-                justifyContent="center"
-                alignItems="center"
-                width={60}
-                height={60}
-                backgroundColor={"white"}
-                borderRadius={50}
-                padding={10}
-                marginRight={10}
-              >
-                <Image
-                  resizeMode="contain"
-                  style={{ width: 50, height: 40 }}
-                  source={require("../../../assets/logos/olist.png")}
-                />
-              </View>
-              <View
-                justifyContent="center"
-                alignItems="center"
-                width={60}
-                height={60}
-                backgroundColor={"white"}
-                borderRadius={50}
-                padding={10}
-                marginRight={10}
-              >
-                <Image
-                  resizeMode="contain"
-                  style={{ width: 50, height: 40 }}
-                  source={require("../../../assets/logos/netshoes.png")}
-                />
-              </View>
-            </ScrollView>
+                <View
+                  justifyContent="center"
+                  alignItems="center"
+                  width={60}
+                  height={60}
+                  backgroundColor={"white"}
+                  borderRadius={50}
+                  padding={10}
+                  marginRight={10}
+                >
+                  <Image
+                    resizeMode="contain"
+                    style={{ width: 50, height: 40 }}
+                    source={require("../../../assets/logos/shopee.png")}
+                  />
+                </View>
+                <View
+                  justifyContent="center"
+                  alignItems="center"
+                  width={60}
+                  height={60}
+                  backgroundColor={"white"}
+                  borderRadius={50}
+                  padding={10}
+                  marginRight={10}
+                >
+                  <Image
+                    resizeMode="contain"
+                    style={{ width: 50, height: 40 }}
+                    source={require("../../../assets/logos/mercadolivre.png")}
+                  />
+                </View>
+                <View
+                  justifyContent="center"
+                  alignItems="center"
+                  width={60}
+                  height={60}
+                  backgroundColor={"white"}
+                  borderRadius={50}
+                  padding={10}
+                  marginRight={10}
+                >
+                  <Image
+                    resizeMode="contain"
+                    style={{ width: 50, height: 40 }}
+                    source={require("../../../assets/logos/shein.png")}
+                  />
+                </View>
+                <View
+                  justifyContent="center"
+                  alignItems="center"
+                  width={60}
+                  height={60}
+                  backgroundColor={"white"}
+                  borderRadius={50}
+                  padding={10}
+                  marginRight={10}
+                >
+                  <Image
+                    resizeMode="contain"
+                    style={{ width: 50, height: 40 }}
+                    source={require("../../../assets/logos/magalu.png")}
+                  />
+                </View>
+                <View
+                  justifyContent="center"
+                  alignItems="center"
+                  width={60}
+                  height={60}
+                  backgroundColor={"white"}
+                  borderRadius={50}
+                  padding={10}
+                  marginRight={10}
+                >
+                  <Image
+                    resizeMode="contain"
+                    style={{ width: 50, height: 40 }}
+                    source={require("../../../assets/logos/skyhub.png")}
+                  />
+                </View>
+                <View
+                  justifyContent="center"
+                  alignItems="center"
+                  width={60}
+                  height={60}
+                  backgroundColor={"white"}
+                  borderRadius={50}
+                  padding={10}
+                  marginRight={10}
+                >
+                  <Image
+                    resizeMode="contain"
+                    style={{ width: 50, height: 40 }}
+                    source={require("../../../assets/logos/yampi.png")}
+                  />
+                </View>
+                <View
+                  justifyContent="center"
+                  alignItems="center"
+                  width={60}
+                  height={60}
+                  backgroundColor={"white"}
+                  borderRadius={50}
+                  padding={10}
+                  marginRight={10}
+                >
+                  <Image
+                    resizeMode="contain"
+                    style={{ width: 50, height: 40 }}
+                    source={require("../../../assets/logos/olist.png")}
+                  />
+                </View>
+                <View
+                  justifyContent="center"
+                  alignItems="center"
+                  width={60}
+                  height={60}
+                  backgroundColor={"white"}
+                  borderRadius={50}
+                  padding={10}
+                  marginRight={10}
+                >
+                  <Image
+                    resizeMode="contain"
+                    style={{ width: 50, height: 40 }}
+                    source={require("../../../assets/logos/netshoes.png")}
+                  />
+                </View>
+              </ScrollView>
+            </View>
           </>
         )}
         onEndReachedThreshold={0.4}
@@ -239,7 +258,13 @@ export default function Orders({ navigation }: any) {
         data={pedidos}
         renderItem={({ item }: any) => (
           <>
-            <ListOrders navigation={navigation} item={item} />
+            <ListOrders
+              selectedOrders={selectedOrders}
+              selected={getSelected(item)}
+              onLongPress={onLongPress}
+              navigation={navigation}
+              item={item}
+            />
           </>
         )}
         ListFooterComponent={

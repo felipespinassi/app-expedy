@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { ToastProvider, ToastViewport } from "@tamagui/toast";
-import { Routes } from "./src/Routes";
+import { Routes } from "./src/routes";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { TamaguiProvider, createTamagui } from "tamagui";
