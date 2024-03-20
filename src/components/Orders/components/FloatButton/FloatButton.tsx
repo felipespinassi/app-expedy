@@ -2,9 +2,29 @@ import { TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { Plus } from "@tamagui/lucide-icons";
 import { Text, View } from "tamagui";
+import axios from "axios";
+import { getAccess_token } from "../../../../storage/getAccess_token";
 
-export default function FloatButton() {
+export default function FloatButton({
+  selectedOrders,
+  setSelectedOrders,
+}: any) {
   const [open, setOpen] = useState(false);
+
+  async function onEmitirNota() {
+    const token = await getAccess_token();
+    try {
+      const response = await axios.post(
+        `https://api.expedy.com.br/faturador?faturador=apiFiscal&tipo=danfe&access_token=${token}`,
+        {
+          pedidoId: selectedOrders,
+        }
+      );
+      setSelectedOrders([]);
+    } catch (error) {
+      alert(error);
+    }
+  }
   return (
     <View
       top={"80%"}
@@ -20,9 +40,11 @@ export default function FloatButton() {
           position="absolute"
           top={-100}
           right={10}
-          backgroundColor={"$green4Light"}
+          shadowColor={"black"}
+          shadowRadius={2}
+          backgroundColor={"white"}
         >
-          <TouchableOpacity onPress={() => alert("Emitir Nota Fiscal")}>
+          <TouchableOpacity onPress={() => onEmitirNota()}>
             <View padding={20}>
               <Text>Emitir Nota Fiscal</Text>
             </View>
@@ -38,8 +60,10 @@ export default function FloatButton() {
       <TouchableOpacity onPress={() => setOpen(!open)}>
         <View
           width={65}
-          backgroundColor="#002851"
+          backgroundColor="#1890ff"
           padding={20}
+          shadowColor={"black"}
+          shadowRadius={1}
           borderRadius={50}
         >
           <Plus color={"white"} />

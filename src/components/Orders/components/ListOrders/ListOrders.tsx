@@ -25,16 +25,22 @@ export default function ListOrders({
       >
         <YStack alignItems="center">
           <View
+            backgroundColor={"white"}
             height={100}
-            backgroundColor={`${selected ? "$green5Light" : "white"}`}
             borderRadius={5}
             alignItems="center"
             justifyContent={"space-between"}
             marginBottom={12}
+            paddingLeft={selected ? 20 : 0}
             flexDirection="row"
           >
             <View paddingLeft={5} height={"100%"} backgroundColor={"orange"} />
-            <View padding={10} justifyContent="space-evenly" height={"100%"}>
+            <View
+              padding={10}
+              justifyContent="space-evenly"
+              height={"100%"}
+              backgroundColor={`${selected ? "#e6f7ff" : "white"}`}
+            >
               <View
                 flexDirection="row"
                 justifyContent="space-around"

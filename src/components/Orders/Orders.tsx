@@ -103,7 +103,12 @@ export default function Orders({ navigation }: any) {
       >
         <DialogFilters />
       </View>
-      {selectedOrders.length > 0 && <FloatButton />}
+      {selectedOrders.length > 0 && (
+        <FloatButton
+          selectedOrders={selectedOrders}
+          setSelectedOrders={setSelectedOrders}
+        />
+      )}
 
       <FlatList
         ListHeaderComponent={() => (
