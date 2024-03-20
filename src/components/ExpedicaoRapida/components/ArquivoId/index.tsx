@@ -64,7 +64,7 @@ export default function ArquivoId({ fileId }: { fileId: string }) {
 
         <TouchableOpacity onPress={() => handlePrintFile(fileId)}>
           <View marginTop={20} theme={"orange_active"}>
-            <Button color={"white"} backgroundColor={"#c2410c"}>
+            <Button color={"white"} backgroundColor={"#1890ff"}>
               Imprimir Arquivo
             </Button>
           </View>

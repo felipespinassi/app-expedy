@@ -46,7 +46,7 @@ export default function Expedir() {
       </XStack>
       <TouchableOpacity onPress={() => onGerarArquivo()}>
         <View theme={"orange_active"} alignItems="center">
-          <Button width={"85%"} color={"white"} backgroundColor={"#c2410c"}>
+          <Button width={"85%"} color={"white"} backgroundColor={"#1890ff"}>
             GerarArquivo
           </Button>
         </View>

@@ -67,7 +67,7 @@ export default function ItemsToPick({ params }: Props) {
           onPress={() => onPickProduct(params, quantity, toast, navigation)}
         >
           <View theme={"orange_active"} alignItems="center">
-            <Button width={"85%"} color={"white"} backgroundColor={"#c2410c"}>
+            <Button width={"85%"} color={"white"} backgroundColor={"#1890ff"}>
               Confirmar
             </Button>
           </View>
