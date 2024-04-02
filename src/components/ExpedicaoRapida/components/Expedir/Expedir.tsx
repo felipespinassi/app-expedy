@@ -109,7 +109,7 @@ export default function Expedir() {
                 timeZoneName="America/Sao_Paulo"
                 mode="date"
                 locale="pt_BR"
-                onChange={(e) => setValue("date", e)}
+                onChange={(e) => setValue("dataCriacao_from", e)}
               />
             </View>
           </XStack>
