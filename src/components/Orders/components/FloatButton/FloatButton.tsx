@@ -26,10 +26,11 @@ export default function FloatButton({
       );
       setSelectedOrders([]);
       toast.show("Notas sendo emitidas");
+      fetchData();
     } catch (error) {
       alert(error);
+      fetchData();
     }
-    fetchData();
   }
 
   async function onGetLabel() {
@@ -47,12 +48,16 @@ export default function FloatButton({
         );
         setLoading(false);
         setSelectedOrders([]);
+        fetchData();
+
         return toast.show("Etiquetas  preparadas");
       } catch (error) {
-        alert("erro");
+        alert(
+          "Não foi possível gerar a etiqueta, tente novamente am alguns instantes."
+        );
         setLoading(false);
+        fetchData();
       }
-      fetchData();
     }
   }
   return (
