@@ -52,7 +52,6 @@ export default function SelectMaisVendidos(props: any) {
             {useMemo(
               () =>
                 data?.maisVendidos?.map((item: any, i: any) => {
-                  console.log(item);
                   return (
                     <Select.Item index={i} key={i} value={item?.id_produto}>
                       <Select.ItemText>{item?.sku}</Select.ItemText>
