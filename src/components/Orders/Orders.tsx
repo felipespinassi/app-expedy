@@ -96,7 +96,7 @@ export default function Orders({ navigation }: any) {
       <View
         backgroundColor={"white"}
         width={"100%"}
-        height={30}
+        height={40}
         justifyContent="flex-end"
         flexDirection="row"
         paddingHorizontal={5}
