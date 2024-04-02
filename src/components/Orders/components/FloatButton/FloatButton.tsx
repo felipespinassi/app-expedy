@@ -1,17 +1,21 @@
 import { TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { Plus } from "@tamagui/lucide-icons";
-import { Text, View } from "tamagui";
+import { Spinner, Text, View } from "tamagui";
 import axios from "axios";
 import { getAccess_token } from "../../../../storage/getAccess_token";
+import { Toast, useToastController } from "@tamagui/toast";
+import { getService } from "../../../../services/getService";
 
 export default function FloatButton({
   selectedOrders,
   setSelectedOrders,
+  fetchData,
 }: any) {
   const [open, setOpen] = useState(false);
-
-  async function onEmitirNota() {
+  const toast = useToastController();
+  const [loading, setLoading] = useState(false);
+  async function onSendInvoices() {
     const token = await getAccess_token();
     try {
       const response = await axios.post(
@@ -21,8 +25,34 @@ export default function FloatButton({
         }
       );
       setSelectedOrders([]);
+      toast.show("Notas sendo emitidas");
     } catch (error) {
       alert(error);
+    }
+    fetchData();
+  }
+
+  async function onGetLabel() {
+    setLoading(true);
+    const token = await getAccess_token();
+
+    for (const order of selectedOrders) {
+      try {
+        await axios.get(
+          `https://api.expedy.com.br/front/orders/${order}/etiqueta?formato=zpl2`,
+
+          {
+            headers: { Authorization: token, "content-type": "text/json" },
+          }
+        );
+        setLoading(false);
+        setSelectedOrders([]);
+        return toast.show("Etiquetas  preparadas");
+      } catch (error) {
+        alert("erro");
+        setLoading(false);
+      }
+      fetchData();
     }
   }
   return (
@@ -44,13 +74,19 @@ export default function FloatButton({
           shadowRadius={2}
           backgroundColor={"white"}
         >
-          <TouchableOpacity onPress={() => onEmitirNota()}>
+          <TouchableOpacity onPress={() => onSendInvoices()}>
             <View padding={20}>
               <Text>Emitir Nota Fiscal</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => alert("preparar etiqueta")}>
-            <View padding={20}>
+          <TouchableOpacity onPress={() => onGetLabel()}>
+            <View flexDirection="row" gap={5} padding={20}>
+              {loading && (
+                <Text>
+                  <Spinner />
+                </Text>
+              )}
+
               <Text>Preparar Etiqueta</Text>
             </View>
           </TouchableOpacity>

@@ -107,6 +107,7 @@ export default function Orders({ navigation }: any) {
         <FloatButton
           selectedOrders={selectedOrders}
           setSelectedOrders={setSelectedOrders}
+          fetchData={fetchData}
         />
       )}
 
