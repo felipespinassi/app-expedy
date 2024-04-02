@@ -1,23 +1,20 @@
 import { View, Text } from "react-native";
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
+import { Adapt, Select, Sheet } from "tamagui";
 import { UseQueryResult, useQuery } from "react-query";
-import { getService } from "../../../../../../services/getService";
-import { Adapt, Select, Sheet, Spinner } from "tamagui";
 import fetcher from "../../../../../../services/fetcher";
 import { config } from "../../../../../../services/apiConfig";
 
-export default function SelectIntegracoes(props: any) {
-  const {
-    data: response,
-    isFetching,
-    isLoading,
-  }: UseQueryResult<any> = useQuery(
-    "Integracoes",
-    async () => await fetcher(`${config.baseURL}front/integracoes`, {})
+export default function SelectMaisVendidos(props: any) {
+  const { data, isFetching, isLoading }: UseQueryResult<any> = useQuery(
+    "Visual",
+    async () => await fetcher(`${config.baseURL}orders/file/visual`, {})
   );
+
   return (
     <Select
-      onValueChange={(e) => props.setValue("integracaoId", e)}
+      //   value={props.integracaoId}
+      onValueChange={(e) => props.setValue("produto", e)}
       disablePreventBodyScroll
       {...props}
     >
@@ -26,7 +23,6 @@ export default function SelectIntegracoes(props: any) {
       </Select.Trigger>
       <Adapt when="sm" platform="touch">
         <Sheet
-          native={!!props.native}
           modal
           dismissOnSnapToBottom
           animationConfig={{
@@ -51,19 +47,20 @@ export default function SelectIntegracoes(props: any) {
       <Select.Content zIndex={200000}>
         <Select.Viewport minWidth={200}>
           <Select.Group>
-            <Select.Label>Integração</Select.Label>
+            <Select.Label>Produtos Mais vendidos</Select.Label>
 
             {useMemo(
               () =>
-                response?.integracoes.map((item: any, i: any) => {
+                data?.maisVendidos?.map((item: any, i: any) => {
+                  console.log(item);
                   return (
-                    <Select.Item index={i} key={item.id} value={item?.id}>
-                      <Select.ItemText>{item?.descricao}</Select.ItemText>
+                    <Select.Item index={i} key={i} value={item?.id_produto}>
+                      <Select.ItemText>{item?.sku}</Select.ItemText>
                     </Select.Item>
                   );
                 }),
 
-              [response?.integracoes]
+              [data?.maisVendidos]
             )}
           </Select.Group>
         </Select.Viewport>

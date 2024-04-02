@@ -34789,7 +34789,7 @@ var Checkbox = createCheckbox({
 // node_modules/tamagui/dist/esm/index.js
 __reExport(esm_exports2, __toESM(require_cjs28()));
 
-// node_modules/@tamagui/form/dist/esm/Form.js
+// node_modules/tamagui/node_modules/@tamagui/form/dist/esm/Form.js
 var import_core19 = require("@tamagui/core");
 var import_jsx_runtime24 = require("react/jsx-runtime");
 var FORM_NAME = "Form";

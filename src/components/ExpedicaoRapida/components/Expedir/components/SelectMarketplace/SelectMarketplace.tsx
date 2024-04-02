@@ -8,7 +8,7 @@ export default function SelectMarkeplace(props: any) {
   return (
     <Select
       //   value={props.integracaoId}
-      //   onValueChange={props.setIntegracaoId}
+      onValueChange={(e) => props.setValue("marketplace", e)}
       disablePreventBodyScroll
       {...props}
     >
@@ -17,7 +17,6 @@ export default function SelectMarkeplace(props: any) {
       </Select.Trigger>
       <Adapt when="sm" platform="touch">
         <Sheet
-          native={!!props.native}
           modal
           dismissOnSnapToBottom
           animationConfig={{
