@@ -1,6 +1,5 @@
 import { FlatList } from "react-native";
 import React from "react";
-import { getService } from "../../../../services/getService";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
 import { Spinner, Text, View, YStack } from "tamagui";
@@ -8,13 +7,15 @@ import { NavigationTypes } from "../../../../@types/NavigationTypes";
 import { UseQueryResult, useQuery } from "react-query";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { FilesProps } from "../../../../@types/Files";
+import fetcher from "../../../../services/fetcher";
+import { config } from "../../../../services/apiConfig";
 
 export default function ArquivosGerados() {
   const navigation = useNavigation<NavigationTypes>();
 
-  const { data: response, isLoading }: UseQueryResult<FilesProps> = useQuery(
+  const { data, isLoading, error }: UseQueryResult<FilesProps> = useQuery(
     "Files",
-    async () => await getService(`orders/file`, {})
+    async () => await fetcher(`${config.baseURL}orders/file`, {})
   );
 
   if (isLoading) {
@@ -28,7 +29,7 @@ export default function ArquivosGerados() {
   return (
     <View flex={1}>
       <FlatList
-        data={response?.data.files}
+        data={data?.files}
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => navigation.navigate("ArquivoId", item)}

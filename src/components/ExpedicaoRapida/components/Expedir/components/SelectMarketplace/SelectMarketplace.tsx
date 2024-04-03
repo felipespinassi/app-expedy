@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from "react";
 import { UseQueryResult, useQuery } from "react-query";
-import { getService } from "../../../../../../services/getService";
 import { Adapt, Select, Sheet } from "tamagui";
 import { integracoesDisponiveis } from "../../../../../../objects/integracoesDisponiveis";
 import { FieldValues, UseFormSetValue } from "react-hook-form";

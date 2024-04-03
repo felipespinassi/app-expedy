@@ -5,7 +5,6 @@ import { Spinner, Text, View } from "tamagui";
 import axios from "axios";
 import { getAccess_token } from "../../../../storage/getAccess_token";
 import { Toast, useToastController } from "@tamagui/toast";
-import { getService } from "../../../../services/getService";
 import { config } from "../../../../services/apiConfig";
 import fetcher from "../../../../services/fetcher";
 

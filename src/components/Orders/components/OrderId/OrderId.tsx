@@ -1,20 +1,22 @@
 import { ActivityIndicator, SafeAreaView } from "react-native";
 import React from "react";
 import { useQuery } from "react-query";
-import { getService } from "../../../../services/getService";
 import DataCustomer from "./components/DataCustomer/DataCustomer";
 import DataProductsSold from "./components/DataProductsSold/DataProductsSold";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import ArrowBack from "../../../ArrowBack/ArrowBack";
 import { Button, ScrollView, View } from "tamagui";
+import fetcher from "../../../../services/fetcher";
+import { config } from "../../../../services/apiConfig";
 
 export function OrderId({ route, navigation }: any) {
   const { data, isLoading, refetch, isFetching }: any = useQuery(
     "OrderComplete",
-    async () => await getService(`front/orders/complete/${route.params}`, {})
+    async () =>
+      await fetcher(`${config.baseURL}front/orders/complete/${route.params}`)
   );
-  const pedido = data?.data?.Order;
+  const pedido = data?.Order;
 
   if (isFetching) {
     return (

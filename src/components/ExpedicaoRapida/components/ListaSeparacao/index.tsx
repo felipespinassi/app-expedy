@@ -3,24 +3,23 @@ import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { UseQueryResult, useQuery } from "react-query";
 import { Button, ScrollView, Spinner, Text, View, YStack } from "tamagui";
-import { getService } from "../../../../services/getService";
 import { Swipeable } from "react-native-gesture-handler";
 import { onPickTotalQuantity } from "../utils/onPickTotalQuantity";
 import { useToastController } from "@tamagui/toast";
 import { PickingListProps, Product } from "../../../../@types/Products";
+import fetcher from "../../../../services/fetcher";
+import { config } from "../../../../services/apiConfig";
 
 export default function ListaSeparacao({ fileId }: { fileId: string }) {
   const navigation = useNavigation<any>();
   const toast = useToastController();
 
-  const {
-    data: response,
-    isFetching,
-    refetch,
-  }: UseQueryResult<PickingListProps> = useQuery(
-    "ListaSeparacao",
-    async () => await getService(`orders/file/picking/${fileId}`, {})
-  );
+  const { data, isFetching, refetch }: UseQueryResult<PickingListProps> =
+    useQuery(
+      "ListaSeparacao",
+      async () =>
+        await fetcher(`${config.baseURL}orders/file/picking/${fileId}`, {})
+    );
 
   function RightAction() {
     return (
@@ -35,7 +34,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
   }
 
   function moveZerosToEnd() {
-    const arr: any = response?.data.produtos;
+    const arr: any = data?.produtos;
     arr.sort((a: any, b: any) => {
       if (
         a.controle.quantidadeRestante === 0 &&
@@ -74,7 +73,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
   return (
     <View flex={1}>
       <ScrollView paddingTop={5}>
-        {response?.data.produtos?.map((produto, index) => {
+        {data?.produtos?.map((produto, index) => {
           return (
             <Swipeable
               key={index}

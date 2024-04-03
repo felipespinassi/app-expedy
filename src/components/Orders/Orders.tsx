@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { getService } from "../../services/getService";
 import ListOrders from "./components/ListOrders/ListOrders";
 import {
   ActivityIndicator,
@@ -28,6 +27,8 @@ import {
 import { ChevronDown } from "@tamagui/lucide-icons";
 import DialogFilters from "./components/DialogFilters/DialogFilters";
 import FloatButton from "./components/FloatButton/FloatButton";
+import fetcher from "../../services/fetcher";
+import { config } from "../../services/apiConfig";
 
 export default function Orders({ navigation }: any) {
   const [page, setPage] = useState(1);
@@ -37,17 +38,15 @@ export default function Orders({ navigation }: any) {
 
   async function fetchData() {
     try {
-      const response: any = await getService("front/orders/simples", {
-        page,
-        pageSize: 10,
-      });
+      const response: any = await fetcher(
+        `${config.baseURL}front/orders/simples?page=${page}&pageSize=10`
+      );
 
-      const newData = response.data.pedidos;
+      const newData = response.pedidos;
 
       const filteredData = newData.filter((newItem: any) => {
         return !pedidos.some((item: any) => item.id === newItem.id);
       });
-
       if (page === 1) {
         setPedidos(newData);
       } else {
@@ -55,6 +54,7 @@ export default function Orders({ navigation }: any) {
       }
     } catch (error) {
       Alert.alert("ERRO");
+      console.log(error);
     } finally {
       setLoading(false);
     }
