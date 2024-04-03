@@ -7,6 +7,7 @@ import { createAccess_token } from "../../storage/createAccess_token";
 import { createCompanyName } from "../../storage/createCompanyName";
 import { Button, Image, Input, Spinner, Theme, View } from "tamagui";
 import { AuthContext } from "../../context/AuthContext";
+import { config } from "../../services/apiConfig";
 
 export default function Login({ navigation }: any) {
   const { register, setValue, handleSubmit } = useForm<Dataprops>();
@@ -26,18 +27,28 @@ export default function Login({ navigation }: any) {
     const login = data.login;
     const password = data.password;
     try {
-      const response = await axios.post("https://api.expedy.com.br/auth", {
-        companyCode,
-        login,
-        password,
+      const response = await fetch(`${config.baseURL}auth`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          companyCode,
+          login,
+          password,
+        }),
       });
-      await createAccess_token(response.data.access_token);
-      await createCompanyName(response.data.usuario.companyName);
+      const data = await response.json();
+
+      await Promise.all([
+        createAccess_token(data.access_token),
+        createCompanyName(data.usuario.companyName),
+      ]);
+
       setIsLogged(true);
 
       setLoading(false);
     } catch (error) {
       setLoading(false);
+      console.log(error);
       Alert.alert("Usuário ou senha inválidos");
     }
   }

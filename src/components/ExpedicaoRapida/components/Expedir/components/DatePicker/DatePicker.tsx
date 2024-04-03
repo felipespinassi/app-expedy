@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import { FieldValues, UseFormSetValue } from "react-hook-form";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import { Button, View } from "tamagui";
 
-export default function DatePicker({ setValue }: any) {
+export default function DatePicker({
+  setValue,
+}: {
+  setValue: UseFormSetValue<FieldValues>;
+}) {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
   const showDatePicker = () => {

@@ -6,6 +6,8 @@ import axios from "axios";
 import { getAccess_token } from "../../../../storage/getAccess_token";
 import { Toast, useToastController } from "@tamagui/toast";
 import { getService } from "../../../../services/getService";
+import { config } from "../../../../services/apiConfig";
+import fetcher from "../../../../services/fetcher";
 
 export default function FloatButton({
   selectedOrders,
@@ -18,10 +20,11 @@ export default function FloatButton({
   async function onSendInvoices() {
     const token = await getAccess_token();
     try {
-      const response = await axios.post(
-        `https://api.expedy.com.br/faturador?faturador=apiFiscal&tipo=danfe&access_token=${token}`,
+      const response = await fetcher(
+        `${config.baseURL}faturador?faturador=apiFiscal&tipo=danfe&access_token=${token}`,
         {
-          pedidoId: selectedOrders,
+          method: "POST",
+          body: JSON.stringify({ pedidoId: selectedOrders }),
         }
       );
       setSelectedOrders([]);
@@ -40,7 +43,7 @@ export default function FloatButton({
     for (const order of selectedOrders) {
       try {
         await axios.get(
-          `https://api.expedy.com.br/front/orders/${order}/etiqueta?formato=zpl2`,
+          `${config.baseURL}front/orders/${order}/etiqueta?formato=zpl2`,
 
           {
             headers: { Authorization: token, "content-type": "text/json" },

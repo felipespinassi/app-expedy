@@ -1,18 +1,5 @@
-import { useState } from "react";
-import {
-  Button,
-  Form,
-  Input,
-  Label,
-  Separator,
-  Text,
-  View,
-  XStack,
-  YStack,
-} from "tamagui";
+import { Button, Form, Input, Label, Separator, Text, View } from "tamagui";
 import SelectIntegracoes from "./components/SelectIntegracoes/SelectIntegracoes";
-import { getAccess_token } from "../../../../storage/getAccess_token";
-import axios from "axios";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import {
   Alert,

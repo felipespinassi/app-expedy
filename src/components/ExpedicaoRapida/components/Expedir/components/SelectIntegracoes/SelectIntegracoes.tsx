@@ -1,28 +1,30 @@
 import { View, Text } from "react-native";
 import React, { useMemo, useState } from "react";
 import { UseQueryResult, useQuery } from "react-query";
-import { getService } from "../../../../../../services/getService";
 import { Adapt, Select, Sheet, Spinner } from "tamagui";
 import fetcher from "../../../../../../services/fetcher";
 import { config } from "../../../../../../services/apiConfig";
+import { FieldValues, UseFormSetValue } from "react-hook-form";
 
-export default function SelectIntegracoes(props: any) {
+export default function SelectIntegracoes({
+  setValue,
+}: {
+  setValue: UseFormSetValue<FieldValues>;
+}) {
   const { data, isFetching, isLoading }: UseQueryResult<any> = useQuery(
     "Integracoes",
     async () => await fetcher(`${config.baseURL}front/integracoes`, {})
   );
   return (
     <Select
-      onValueChange={(e) => props.setValue("integracaoId", e)}
+      onValueChange={(e) => setValue("integracaoId", e)}
       disablePreventBodyScroll
-      {...props}
     >
       <Select.Trigger width={"60%"}>
         <Select.Value placeholder="Selecione a integração" />
       </Select.Trigger>
       <Adapt when="sm" platform="touch">
         <Sheet
-          native={!!props.native}
           modal
           dismissOnSnapToBottom
           animationConfig={{

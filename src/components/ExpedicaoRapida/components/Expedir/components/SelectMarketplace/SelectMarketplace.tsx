@@ -3,14 +3,18 @@ import { UseQueryResult, useQuery } from "react-query";
 import { getService } from "../../../../../../services/getService";
 import { Adapt, Select, Sheet } from "tamagui";
 import { integracoesDisponiveis } from "../../../../../../objects/integracoesDisponiveis";
+import { FieldValues, UseFormSetValue } from "react-hook-form";
 
-export default function SelectMarkeplace(props: any) {
+export default function SelectMarkeplace({
+  setValue,
+}: {
+  setValue: UseFormSetValue<FieldValues>;
+}) {
   return (
     <Select
       //   value={props.integracaoId}
-      onValueChange={(e) => props.setValue("marketplace", e)}
+      onValueChange={(e) => setValue("marketplace", e)}
       disablePreventBodyScroll
-      {...props}
     >
       <Select.Trigger width={"60%"}>
         <Select.Value placeholder="Selecione o marketplace" />
