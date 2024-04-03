@@ -18,8 +18,8 @@ export default function SelectMaisVendidos(props: any) {
       disablePreventBodyScroll
       {...props}
     >
-      <Select.Trigger width={220}>
-        <Select.Value placeholder="Selecione a integração" />
+      <Select.Trigger width={"60%"}>
+        <Select.Value placeholder="Mais vendidos" />
       </Select.Trigger>
       <Adapt when="sm" platform="touch">
         <Sheet

@@ -1,5 +1,15 @@
 import { useState } from "react";
-import { Button, Form, Input, Label, View, XStack, YStack } from "tamagui";
+import {
+  Button,
+  Form,
+  Input,
+  Label,
+  Separator,
+  Text,
+  View,
+  XStack,
+  YStack,
+} from "tamagui";
 import SelectIntegracoes from "./components/SelectIntegracoes/SelectIntegracoes";
 import { getAccess_token } from "../../../../storage/getAccess_token";
 import axios from "axios";
@@ -12,16 +22,13 @@ import {
 } from "react-native";
 import SelectMarkeplace from "./components/SelectMarketplace/SelectMarketplace";
 import { useForm } from "react-hook-form";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
 import SelectMaisVendidos from "./components/SelectMaisVendidos/SelectMaisVendidos";
 import { config } from "../../../../services/apiConfig";
 import fetcher from "../../../../services/fetcher";
+import DatePicker from "./components/DatePicker/DatePicker";
 
 export default function Expedir() {
-  const [integracaoId, setIntegracaoId] = useState("");
-
   const { getValues, setValue, register } = useForm();
-  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
   async function onGerarArquivo() {
     const values = getValues();
@@ -43,18 +50,6 @@ export default function Expedir() {
     }
   }
 
-  const showDatePicker = () => {
-    setDatePickerVisibility(true);
-  };
-
-  const hideDatePicker = () => {
-    setDatePickerVisibility(false);
-  };
-
-  const handleConfirm = (date: any) => {
-    console.warn("A date has been picked: ", date);
-    hideDatePicker();
-  };
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS == "ios" ? "padding" : undefined}
@@ -62,84 +57,75 @@ export default function Expedir() {
     >
       <ScrollView>
         <Form onSubmit={onGerarArquivo} gap={20} padding={20}>
-          <XStack ai="center" gap="$4">
-            <Label htmlFor="selectIntegracoes" f={1} miw={80}>
+          <View flexDirection="row" gap={10}>
+            <Text width={"40%"} fontSize={"$5"}>
               Integração
-            </Label>
+            </Text>
 
-            <SelectIntegracoes
-              setValue={setValue}
-              setIntegracaoId={setIntegracaoId}
-              integracaoId={integracaoId}
-              id="selectIntegracoes"
-            />
-          </XStack>
-          <XStack ai="center" gap="$4">
-            <Label htmlFor="selectMarketplace" f={1} miw={80}>
+            <SelectIntegracoes setValue={setValue} />
+          </View>
+          <View flexDirection="row" gap={10}>
+            <Text width={"40%"} fontSize={"$5"}>
               Marketplace
-            </Label>
+            </Text>
 
-            <SelectMarkeplace setValue={setValue} id="selectMarketplace" />
-          </XStack>
-          <XStack ai="center" gap="$4">
-            <Label htmlFor="maisVendidos" f={1} miw={80}>
+            <SelectMarkeplace setValue={setValue} />
+          </View>
+
+          <View flexDirection="row" gap={10}>
+            <Text width={"40%"} fontSize={"$5"}>
               Produtos mais vendidos
-            </Label>
+            </Text>
 
             <SelectMaisVendidos setValue={setValue} />
-          </XStack>
-          <XStack>
-            <Label htmlFor="data" f={1} miw={80}>
-              Aguardando desde:
-            </Label>
-            <View>
-              <Button
-                backgroundColor={"#1890ff"}
-                color={"white"}
-                onPress={showDatePicker}
-              >
-                Selecionar Data
-              </Button>
-              <DateTimePickerModal
-                confirmTextIOS="Confirmar"
-                cancelTextIOS="Cancelar"
-                isVisible={isDatePickerVisible}
-                onConfirm={handleConfirm}
-                onCancel={hideDatePicker}
-                timeZoneName="America/Sao_Paulo"
-                mode="date"
-                locale="pt_BR"
-                onChange={(e) => setValue("dataCriacao_from", e)}
-              />
-            </View>
-          </XStack>
+          </View>
 
-          <XStack ai="center" gap="$4">
-            <Label htmlFor="sku" f={1} miw={80}>
+          <View flexDirection="row" gap={10}>
+            <Text width={"40%"} fontSize={"$5"}>
               SKU
-            </Label>
+            </Text>
             <Input
+              placeholderTextColor={"black"}
+              placeholder="Selecionar SKU"
               onChangeText={(e) => setValue("unico_sku", e)}
-              width={"50%"}
+              width={"60%"}
             />
-          </XStack>
-          <XStack ai="center" gap="$4">
-            <Label htmlFor="idMp" f={1} miw={80}>
+          </View>
+          <View flexDirection="row" gap={10}>
+            <Text width={"40%"} fontSize={"$5"}>
               ID Marketplace
-            </Label>
-            <Input onChangeText={(e) => setValue("orderid", e)} width={"50%"} />
-          </XStack>
-          <XStack ai="center" gap="$4">
-            <Label htmlFor="id" f={1} miw={80}>
+            </Text>
+            <Input
+              placeholderTextColor={"black"}
+              placeholder="Selecionar Marketplace"
+              onChangeText={(e) => setValue("orderid", e)}
+              width={"60%"}
+            />
+          </View>
+          <View flexDirection="row" gap={10}>
+            <Text width={"40%"} fontSize={"$5"}>
               ID expedy
-            </Label>
-            <Input onChangeText={(e) => setValue("id", e)} width={"50%"} />
-          </XStack>
+            </Text>
+            <Input
+              placeholderTextColor={"black"}
+              placeholder="Selecionar ID"
+              onChangeText={(e) => setValue("id", e)}
+              width={"60%"}
+            />
+          </View>
+          <View flexDirection="row" gap={10}>
+            <Text width={"40%"} fontSize={"$5"}>
+              Aguardando desde:
+            </Text>
+            <DatePicker setValue={setValue} />
+          </View>
+          <Separator />
+
           <Form.Trigger asChild>
             <TouchableOpacity>
-              <View theme={"orange_active"} alignItems="center">
+              <View alignItems="center">
                 <Button
-                  width={"85%"}
+                  width={"100%"}
                   color={"white"}
                   backgroundColor={"#1890ff"}
                 >
@@ -150,7 +136,9 @@ export default function Expedir() {
           </Form.Trigger>
           <TouchableOpacity>
             <View alignItems="center">
-              <Button width={"85%"}>Limpar Filtros</Button>
+              <Button backgroundColor={"$white075"} width={"100%"}>
+                Limpar Filtros
+              </Button>
             </View>
           </TouchableOpacity>
         </Form>

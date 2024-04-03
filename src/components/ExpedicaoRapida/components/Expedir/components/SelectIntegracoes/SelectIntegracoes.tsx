@@ -7,11 +7,7 @@ import fetcher from "../../../../../../services/fetcher";
 import { config } from "../../../../../../services/apiConfig";
 
 export default function SelectIntegracoes(props: any) {
-  const {
-    data: response,
-    isFetching,
-    isLoading,
-  }: UseQueryResult<any> = useQuery(
+  const { data, isFetching, isLoading }: UseQueryResult<any> = useQuery(
     "Integracoes",
     async () => await fetcher(`${config.baseURL}front/integracoes`, {})
   );
@@ -21,7 +17,7 @@ export default function SelectIntegracoes(props: any) {
       disablePreventBodyScroll
       {...props}
     >
-      <Select.Trigger width={220}>
+      <Select.Trigger width={"60%"}>
         <Select.Value placeholder="Selecione a integração" />
       </Select.Trigger>
       <Adapt when="sm" platform="touch">
@@ -55,7 +51,7 @@ export default function SelectIntegracoes(props: any) {
 
             {useMemo(
               () =>
-                response?.integracoes.map((item: any, i: any) => {
+                data?.integracoes.map((item: any, i: any) => {
                   return (
                     <Select.Item index={i} key={item.id} value={item?.id}>
                       <Select.ItemText>{item?.descricao}</Select.ItemText>
@@ -63,7 +59,7 @@ export default function SelectIntegracoes(props: any) {
                   );
                 }),
 
-              [response?.integracoes]
+              [data?.integracoes]
             )}
           </Select.Group>
         </Select.Viewport>

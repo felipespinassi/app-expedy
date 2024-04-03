@@ -4,6 +4,7 @@ import moment from "moment";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { statusHub } from "../../../../objects/statusHub";
 import { Text, View, YStack } from "tamagui";
+import { Info } from "@tamagui/lucide-icons";
 
 export default function ListOrders({
   navigation,
