@@ -73,14 +73,14 @@ export default function Orders({ navigation }: any) {
   function onLongPress(item: OrdersTypes) {
     if (selectedOrders.includes(item.id)) {
       const newListOrder = selectedOrders.filter(
-        (itemId: any) => itemId !== item.id
+        (itemId: number) => itemId !== item.id
       );
       return setSelectedOrders(newListOrder);
     }
     setSelectedOrders([...selectedOrders, item.id]);
   }
 
-  function getSelected(item: any) {
+  function getSelected(item: OrdersTypes) {
     return selectedOrders.includes(item.id);
   }
   return (
@@ -161,14 +161,14 @@ export default function Orders({ navigation }: any) {
           </>
         )}
         onEndReachedThreshold={0.6}
-        keyExtractor={(item: any) => item.id}
+        keyExtractor={(item) => item.id}
         onEndReached={onScrollScreen}
         refreshing={loading}
         onRefresh={onRefresh}
         showsVerticalScrollIndicator={false}
         style={{ width: "95%" }}
         data={pedidos}
-        renderItem={({ item }: any) => (
+        renderItem={({ item }) => (
           <>
             <ListOrders
               selectedOrders={selectedOrders}
