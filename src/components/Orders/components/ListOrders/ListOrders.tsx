@@ -4,7 +4,17 @@ import moment from "moment";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { statusHub } from "../../../../objects/statusHub";
 import { Text, View, YStack } from "tamagui";
-import { Info } from "@tamagui/lucide-icons";
+import { marketplaces } from "../../utils/marketplaces";
+import { OrdersTypes } from "../../../../@types/OrdersTypes";
+
+interface Props {
+  navigation: any;
+  item: OrdersTypes;
+
+  onLongPress: (item: OrdersTypes) => void;
+  selected: boolean;
+  selectedOrders: number[];
+}
 
 export default function ListOrders({
   navigation,
@@ -12,7 +22,7 @@ export default function ListOrders({
   onLongPress,
   selected,
   selectedOrders,
-}: any) {
+}: Props) {
   return (
     <View theme={"light"}>
       <TouchableOpacity
@@ -35,7 +45,11 @@ export default function ListOrders({
             paddingLeft={selected ? 20 : 0}
             flexDirection="row"
           >
-            <View paddingLeft={5} height={"100%"} backgroundColor={"orange"} />
+            <View
+              width={5}
+              height={"100%"}
+              backgroundColor={marketplaces[item.integracao.tipo]?.color}
+            />
             <View
               padding={10}
               justifyContent="space-evenly"
@@ -53,7 +67,7 @@ export default function ListOrders({
                 <View
                   justifyContent="space-around"
                   height={"100%"}
-                  width={"70%"}
+                  width={"65%"}
                 >
                   <Text>{item.orderid}</Text>
 

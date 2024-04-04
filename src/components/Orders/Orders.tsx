@@ -8,40 +8,28 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
-import {
-  Adapt,
-  Button,
-  Dialog,
-  Fieldset,
-  Input,
-  Label,
-  Paragraph,
-  ScrollView,
-  Sheet,
-  Text,
-  TooltipSimple,
-  Unspaced,
-  View,
-  XStack,
-} from "tamagui";
-import { ChevronDown } from "@tamagui/lucide-icons";
+import { ScrollView, Text, View } from "tamagui";
 import DialogFilters from "./components/DialogFilters/DialogFilters";
 import FloatButton from "./components/FloatButton/FloatButton";
+import { marketplaces } from "./utils/marketplaces";
+import ListEmptyComponent from "../ListEmptyComponent/ListEmptyComponent";
 import fetcher from "../../services/fetcher";
 import { config } from "../../services/apiConfig";
+import { OrdersTypes } from "../../@types/OrdersTypes";
 
 export default function Orders({ navigation }: any) {
   const [page, setPage] = useState(1);
   const [pedidos, setPedidos] = useState<any>([]);
   const [loading, setLoading] = useState(false);
   const [selectedOrders, setSelectedOrders] = useState([] as any);
+  const [marketplace, setMarkeplace] = useState("");
 
-  async function fetchData() {
+  async function fetchOrders() {
+    setLoading(true);
     try {
       const response: any = await fetcher(
-        `${config.baseURL}front/orders/simples?page=${page}&pageSize=10`
+        `${config.baseURL}front/orders/simples?page=${page}&pageSize=20&marketplace=${marketplace}`
       );
-
       const newData = response.pedidos;
 
       const filteredData = newData.filter((newItem: any) => {
@@ -53,7 +41,7 @@ export default function Orders({ navigation }: any) {
         setPedidos((prevData: any) => [...prevData, ...filteredData]);
       }
     } catch (error) {
-      Alert.alert("ERRO");
+      Alert.alert("Falha ao buscar pedidos");
       console.log(error);
     } finally {
       setLoading(false);
@@ -73,11 +61,16 @@ export default function Orders({ navigation }: any) {
     }
   }
 
-  useEffect(() => {
-    fetchData();
-  }, [page]);
+  function onSelectMarketplace(marketplace: string) {
+    setMarkeplace(marketplace);
+    setPage(1);
+  }
 
-  function onLongPress(item: any) {
+  useEffect(() => {
+    fetchOrders();
+  }, [page, marketplace]);
+
+  function onLongPress(item: OrdersTypes) {
     if (selectedOrders.includes(item.id)) {
       const newListOrder = selectedOrders.filter(
         (itemId: any) => itemId !== item.id
@@ -90,7 +83,6 @@ export default function Orders({ navigation }: any) {
   function getSelected(item: any) {
     return selectedOrders.includes(item.id);
   }
-
   return (
     <SafeAreaView style={{ alignItems: "center", flex: 1 }}>
       <View
@@ -107,7 +99,7 @@ export default function Orders({ navigation }: any) {
         <FloatButton
           selectedOrders={selectedOrders}
           setSelectedOrders={setSelectedOrders}
-          fetchData={fetchData}
+          fetchOrders={fetchOrders}
         />
       )}
 
@@ -122,139 +114,53 @@ export default function Orders({ navigation }: any) {
                 paddingBottom={20}
                 paddingTop={5}
               >
-                <View
-                  justifyContent="center"
-                  alignItems="center"
-                  width={60}
-                  height={60}
-                  backgroundColor={"white"}
-                  borderRadius={50}
-                  padding={10}
-                  marginRight={10}
+                <TouchableOpacity
+                  key={"Todos"}
+                  onPress={() => onSelectMarketplace("")}
                 >
-                  <Image
-                    resizeMode="contain"
-                    style={{ width: 50, height: 40 }}
-                    source={require("../../../assets/logos/shopee.png")}
-                  />
-                </View>
-                <View
-                  justifyContent="center"
-                  alignItems="center"
-                  width={60}
-                  height={60}
-                  backgroundColor={"white"}
-                  borderRadius={50}
-                  padding={10}
-                  marginRight={10}
-                >
-                  <Image
-                    resizeMode="contain"
-                    style={{ width: 50, height: 40 }}
-                    source={require("../../../assets/logos/mercadolivre.png")}
-                  />
-                </View>
-                <View
-                  justifyContent="center"
-                  alignItems="center"
-                  width={60}
-                  height={60}
-                  backgroundColor={"white"}
-                  borderRadius={50}
-                  padding={10}
-                  marginRight={10}
-                >
-                  <Image
-                    resizeMode="contain"
-                    style={{ width: 50, height: 40 }}
-                    source={require("../../../assets/logos/shein.png")}
-                  />
-                </View>
-                <View
-                  justifyContent="center"
-                  alignItems="center"
-                  width={60}
-                  height={60}
-                  backgroundColor={"white"}
-                  borderRadius={50}
-                  padding={10}
-                  marginRight={10}
-                >
-                  <Image
-                    resizeMode="contain"
-                    style={{ width: 50, height: 40 }}
-                    source={require("../../../assets/logos/magalu.png")}
-                  />
-                </View>
-                <View
-                  justifyContent="center"
-                  alignItems="center"
-                  width={60}
-                  height={60}
-                  backgroundColor={"white"}
-                  borderRadius={50}
-                  padding={10}
-                  marginRight={10}
-                >
-                  <Image
-                    resizeMode="contain"
-                    style={{ width: 50, height: 40 }}
-                    source={require("../../../assets/logos/skyhub.png")}
-                  />
-                </View>
-                <View
-                  justifyContent="center"
-                  alignItems="center"
-                  width={60}
-                  height={60}
-                  backgroundColor={"white"}
-                  borderRadius={50}
-                  padding={10}
-                  marginRight={10}
-                >
-                  <Image
-                    resizeMode="contain"
-                    style={{ width: 50, height: 40 }}
-                    source={require("../../../assets/logos/yampi.png")}
-                  />
-                </View>
-                <View
-                  justifyContent="center"
-                  alignItems="center"
-                  width={60}
-                  height={60}
-                  backgroundColor={"white"}
-                  borderRadius={50}
-                  padding={10}
-                  marginRight={10}
-                >
-                  <Image
-                    resizeMode="contain"
-                    style={{ width: 50, height: 40 }}
-                    source={require("../../../assets/logos/olist.png")}
-                  />
-                </View>
-                <View
-                  justifyContent="center"
-                  alignItems="center"
-                  width={60}
-                  height={60}
-                  backgroundColor={"white"}
-                  borderRadius={50}
-                  padding={10}
-                  marginRight={10}
-                >
-                  <Image
-                    resizeMode="contain"
-                    style={{ width: 50, height: 40 }}
-                    source={require("../../../assets/logos/netshoes.png")}
-                  />
-                </View>
+                  <View
+                    justifyContent="center"
+                    alignItems="center"
+                    width={60}
+                    height={60}
+                    backgroundColor={"white"}
+                    borderRadius={50}
+                    padding={10}
+                    marginRight={10}
+                  >
+                    <Text fontSize={12}>Todos</Text>
+                  </View>
+                </TouchableOpacity>
+                {Object.values(marketplaces).map((element) => {
+                  return (
+                    <TouchableOpacity
+                      key={element.name}
+                      onPress={() => onSelectMarketplace(element.name)}
+                    >
+                      <View
+                        justifyContent="center"
+                        alignItems="center"
+                        width={60}
+                        height={60}
+                        backgroundColor={"white"}
+                        borderRadius={50}
+                        padding={10}
+                        marginRight={10}
+                      >
+                        <Image
+                          resizeMode="contain"
+                          style={{ width: 50, height: 40 }}
+                          source={element.image}
+                        />
+                      </View>
+                    </TouchableOpacity>
+                  );
+                })}
               </ScrollView>
             </View>
           </>
         )}
-        onEndReachedThreshold={0.4}
+        onEndReachedThreshold={0.6}
         keyExtractor={(item: any) => item.id}
         onEndReached={onScrollScreen}
         refreshing={loading}
@@ -273,8 +179,9 @@ export default function Orders({ navigation }: any) {
             />
           </>
         )}
+        ListEmptyComponent={<ListEmptyComponent />}
         ListFooterComponent={
-          <ActivityIndicator style={{ paddingTop: 10 }} size={"large"} />
+          <>{pedidos.length >= 10 && <ActivityIndicator size={"large"} />}</>
         }
       />
     </SafeAreaView>

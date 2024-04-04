@@ -54,7 +54,7 @@ export default function TabRoutes() {
         }}
       /> */}
       <Tab.Screen
-        name="Expedicao"
+        name="Expedição"
         component={ExpedicaoRapida}
         options={{
           tabBarIcon: ({ color, size }) => (

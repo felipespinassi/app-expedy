@@ -11,7 +11,7 @@ import fetcher from "../../../../services/fetcher";
 export default function FloatButton({
   selectedOrders,
   setSelectedOrders,
-  fetchData,
+  fetchOrders,
 }: any) {
   const [open, setOpen] = useState(false);
   const toast = useToastController();
@@ -28,10 +28,10 @@ export default function FloatButton({
       );
       setSelectedOrders([]);
       toast.show("Notas sendo emitidas");
-      fetchData();
+      fetchOrders();
     } catch (error) {
       alert(error);
-      fetchData();
+      fetchOrders();
     }
   }
 
@@ -50,7 +50,7 @@ export default function FloatButton({
         );
         setLoading(false);
         setSelectedOrders([]);
-        fetchData();
+        fetchOrders();
 
         return toast.show("Etiquetas  preparadas");
       } catch (error) {
@@ -58,7 +58,7 @@ export default function FloatButton({
           "Não foi possível gerar a etiqueta, tente novamente am alguns instantes."
         );
         setLoading(false);
-        fetchData();
+        fetchOrders();
       }
     }
   }
