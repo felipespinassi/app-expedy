@@ -93,7 +93,7 @@ export default function DialogFilters({
           enterStyle={{ x: 0, y: 20, opacity: 0, scale: 0.9 }}
           exitStyle={{ x: 0, y: 10, opacity: 0, scale: 0.95 }}
         >
-          <Form onSubmit={() => onSubmit()} gap={10}>
+          <Form onSubmit={() => onSubmit()} gap={20}>
             <Dialog.Title>Filtrar pedidos</Dialog.Title>
 
             <Form.Trigger asChild>
@@ -135,7 +135,10 @@ export default function DialogFilters({
                       )}
                     </Accordion.Trigger>
 
-                    <Accordion.Content>
+                    <Accordion.Content
+                      backgroundColor={"$white3"}
+                      width={"100%"}
+                    >
                       <RadioGroup
                         gap={15}
                         value={filters?.fkintegracao}
@@ -146,13 +149,11 @@ export default function DialogFilters({
                         {data?.integracoes.map((integracao: any) => {
                           return (
                             <View
-                              backgroundColor={"$white3"}
                               key={integracao.descricao}
                               flexDirection="row"
                               justifyContent="space-between"
-                              padding={20}
+                              padding={10}
                               paddingRight={25}
-                              borderRadius={10}
                             >
                               <Text>{integracao.descricao}</Text>
                               <RadioGroup.Item
@@ -190,7 +191,7 @@ export default function DialogFilters({
                       )}
                     </Accordion.Trigger>
 
-                    <Accordion.Content gap={10}>
+                    <Accordion.Content backgroundColor={"$white3"} gap={10}>
                       <RadioGroup
                         gap={15}
                         value={filters?.status_hub}
@@ -202,12 +203,10 @@ export default function DialogFilters({
                           return (
                             <View
                               key={status.id}
-                              backgroundColor={"$white3"}
-                              padding={20}
+                              padding={10}
                               paddingRight={25}
                               flexDirection="row"
                               justifyContent="space-between"
-                              borderRadius={10}
                             >
                               <Text padding={5}>{status.name}</Text>
                               <RadioGroup.Item
