@@ -1,43 +1,34 @@
-import { KeyboardAvoidingView, Platform, TouchableOpacity } from "react-native";
-import React, { useMemo } from "react";
+import { TouchableOpacity } from "react-native";
+import React from "react";
 import {
   Accordion,
   Adapt,
   Button,
+  Checkbox,
   Dialog,
-  Fieldset,
   Form,
-  Group,
   Input,
   Label,
-  ListItem,
   Paragraph,
   ScrollView,
-  Select,
-  Separator,
   Sheet,
   Square,
   Text,
   View,
-  XGroup,
-  XStack,
-  YGroup,
-  YStack,
 } from "tamagui";
-import { Activity, Airplay, ChevronDown } from "@tamagui/lucide-icons";
-import { useForm } from "react-hook-form";
+import { Check, ChevronDown } from "@tamagui/lucide-icons";
 import fetcher from "../../../../services/fetcher";
 import { config } from "../../../../services/apiConfig";
 import { UseQueryResult, useQuery } from "react-query";
-import { integracoesDisponiveis } from "../../../../objects/integracoesDisponiveis";
 import { statusHub } from "../../../../objects/statusHub";
+import { RadioGroup } from "tamagui";
 
 export default function DialogFilters({
   setFilters,
   setValue,
   getValues,
-  reset,
   setPage,
+  filters,
 }: any) {
   const { data, isFetching, isLoading }: UseQueryResult<any> = useQuery(
     "Integracoes",
@@ -102,12 +93,22 @@ export default function DialogFilters({
           enterStyle={{ x: 0, y: 20, opacity: 0, scale: 0.9 }}
           exitStyle={{ x: 0, y: 10, opacity: 0, scale: 0.95 }}
         >
-          <Dialog.Title>Filtrar pedidos</Dialog.Title>
-          {/* <Dialog.Description>
-          Make changes to your profile here. Click save when you're done.
-        </Dialog.Description> */}
-          <ScrollView>
-            <Form onSubmit={() => onSubmit()}>
+          <Form onSubmit={() => onSubmit()} gap={10}>
+            <Dialog.Title>Filtrar pedidos</Dialog.Title>
+
+            <Form.Trigger asChild>
+              <Dialog.Close displayWhenAdapted asChild>
+                <Button
+                  theme={"blue_active"}
+                  backgroundColor={"#1890ff"}
+                  color={"white"}
+                >
+                  Filtrar
+                </Button>
+              </Dialog.Close>
+            </Form.Trigger>
+
+            <ScrollView>
               <View>
                 <Accordion
                   overflow="hidden"
@@ -134,21 +135,39 @@ export default function DialogFilters({
                       )}
                     </Accordion.Trigger>
 
-                    <Accordion.Content gap={10}>
-                      {data?.integracoes.map((integracao: any) => {
-                        return (
-                          <TouchableOpacity
-                            onPress={() =>
-                              setValue("fkintegracao", integracao.id)
-                            }
-                            key={integracao.descricao}
-                          >
-                            <Paragraph borderRadius={50} padding={5}>
-                              {integracao.descricao}
-                            </Paragraph>
-                          </TouchableOpacity>
-                        );
-                      })}
+                    <Accordion.Content>
+                      <RadioGroup
+                        gap={15}
+                        value={filters?.fkintegracao}
+                        onValueChange={(integracaoId) =>
+                          setValue("fkintegracao", integracaoId)
+                        }
+                      >
+                        {data?.integracoes.map((integracao: any) => {
+                          return (
+                            <View
+                              backgroundColor={"$white3"}
+                              key={integracao.descricao}
+                              flexDirection="row"
+                              justifyContent="space-between"
+                              padding={20}
+                              paddingRight={25}
+                              borderRadius={10}
+                            >
+                              <Text>{integracao.descricao}</Text>
+                              <RadioGroup.Item
+                                size={"$5"}
+                                backgroundColor={"white"}
+                                value={integracao.id}
+                              >
+                                <RadioGroup.Indicator
+                                  backgroundColor={"#1890ff"}
+                                />
+                              </RadioGroup.Item>
+                            </View>
+                          );
+                        })}
+                      </RadioGroup>
                     </Accordion.Content>
                   </Accordion.Item>
 
@@ -172,18 +191,38 @@ export default function DialogFilters({
                     </Accordion.Trigger>
 
                     <Accordion.Content gap={10}>
-                      {Object.values(statusHub).map((status: any) => {
-                        return (
-                          <TouchableOpacity
-                            key={status.identifier}
-                            onPress={() =>
-                              setValue("status_hub", status.identifier)
-                            }
-                          >
-                            <Paragraph padding={5}>{status.name}</Paragraph>
-                          </TouchableOpacity>
-                        );
-                      })}
+                      <RadioGroup
+                        gap={15}
+                        value={filters?.status_hub}
+                        onValueChange={(statusIdentifier) =>
+                          setValue("status_hub", statusIdentifier)
+                        }
+                      >
+                        {Object.values(statusHub).map((status: any) => {
+                          return (
+                            <View
+                              key={status.id}
+                              backgroundColor={"$white3"}
+                              padding={20}
+                              paddingRight={25}
+                              flexDirection="row"
+                              justifyContent="space-between"
+                              borderRadius={10}
+                            >
+                              <Text padding={5}>{status.name}</Text>
+                              <RadioGroup.Item
+                                size={"$5"}
+                                backgroundColor={"white"}
+                                value={status.identifier}
+                              >
+                                <RadioGroup.Indicator
+                                  backgroundColor={"#1890ff"}
+                                />
+                              </RadioGroup.Item>
+                            </View>
+                          );
+                        })}
+                      </RadioGroup>
                     </Accordion.Content>
                   </Accordion.Item>
                 </Accordion>
@@ -207,11 +246,8 @@ export default function DialogFilters({
                   placeholder="Id Hub"
                 />
               </View>
-              <Form.Trigger asChild>
-                <Button>Filtrar</Button>
-              </Form.Trigger>
-            </Form>
-          </ScrollView>
+            </ScrollView>
+          </Form>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog>

@@ -23,7 +23,6 @@ export default function Orders({ navigation }: any) {
   const [pedidos, setPedidos] = useState<any>([]);
   const [loading, setLoading] = useState(false);
   const [selectedOrders, setSelectedOrders] = useState([] as any);
-  const [marketplace, setMarkeplace] = useState("");
   const [filters, setFilters] = useState<any>({});
 
   const { getValues, setValue, register, reset } = useForm();
@@ -39,7 +38,7 @@ export default function Orders({ navigation }: any) {
       const response: any = await fetcher(
         `${
           config.baseURL
-        }front/orders/simples?page=${page}&pageSize=20&marketplace=${marketplace}&${params.toString()}`
+        }front/orders/simples?page=${page}&pageSize=20&${params.toString()}`
       );
       const newData = response.pedidos;
 
@@ -73,15 +72,14 @@ export default function Orders({ navigation }: any) {
   }
 
   function onSelectMarketplace(marketplace: string) {
-    setMarkeplace(marketplace);
+    setFilters({ marketplace: marketplace });
     setPage(1);
   }
 
   useEffect(() => {
     fetchOrders();
-  }, [page, marketplace, filters]);
+  }, [page, filters]);
 
-  console.log(filters);
   function onLongPress(item: OrdersTypes) {
     if (selectedOrders.includes(item.id)) {
       const newListOrder = selectedOrders.filter(
@@ -95,6 +93,8 @@ export default function Orders({ navigation }: any) {
   function getSelected(item: OrdersTypes) {
     return selectedOrders.includes(item.id);
   }
+
+  console.log(filters);
   return (
     <SafeAreaView style={{ alignItems: "center", flex: 1 }}>
       <View
@@ -102,24 +102,17 @@ export default function Orders({ navigation }: any) {
         backgroundColor={"white"}
         width={"100%"}
         height={40}
-        justifyContent="space-between"
+        justifyContent="flex-end"
         flexDirection="row"
         alignItems="center"
         paddingHorizontal={5}
       >
-        <TouchableOpacity
-          onPress={() => {
-            setFilters({}), reset();
-          }}
-        >
-          <Text>Limpar Filtros</Text>
-        </TouchableOpacity>
         <DialogFilters
           setValue={setValue}
           getValues={getValues}
-          reset={reset}
           setFilters={setFilters}
           setPage={setPage}
+          filters={filters}
         />
       </View>
       {selectedOrders.length > 0 && (
@@ -146,7 +139,9 @@ export default function Orders({ navigation }: any) {
                 <TouchableOpacity
                   key={"Todos"}
                   onPress={() => {
-                    onSelectMarketplace(""), setFilters({});
+                    setPage(1);
+                    setFilters({});
+                    reset();
                   }}
                 >
                   <View
