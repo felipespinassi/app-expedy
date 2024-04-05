@@ -47,7 +47,7 @@ export default function SelectMaisVendidos(props: any) {
       <Select.Content zIndex={200000}>
         <Select.Viewport minWidth={200}>
           <Select.Group>
-            <Select.Label>Produtos Mais vendidos</Select.Label>
+            <Select.Label fontSize={18}>Produtos Mais vendidos</Select.Label>
 
             {useMemo(
               () =>

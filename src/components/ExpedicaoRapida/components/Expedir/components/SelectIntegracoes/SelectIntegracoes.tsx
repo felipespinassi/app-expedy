@@ -49,7 +49,7 @@ export default function SelectIntegracoes({
       <Select.Content zIndex={200000}>
         <Select.Viewport minWidth={200}>
           <Select.Group>
-            <Select.Label>Integração</Select.Label>
+            <Select.Label fontSize={18}>Integração</Select.Label>
 
             {useMemo(
               () =>

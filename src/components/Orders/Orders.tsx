@@ -8,7 +8,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
-import { ScrollView, Text, View } from "tamagui";
+import { Button, ScrollView, Text, View } from "tamagui";
 import DialogFilters from "./components/DialogFilters/DialogFilters";
 import FloatButton from "./components/FloatButton/FloatButton";
 import { marketplaces } from "./utils/marketplaces";
@@ -16,6 +16,7 @@ import ListEmptyComponent from "../ListEmptyComponent/ListEmptyComponent";
 import fetcher from "../../services/fetcher";
 import { config } from "../../services/apiConfig";
 import { OrdersTypes } from "../../@types/OrdersTypes";
+import { useForm } from "react-hook-form";
 
 export default function Orders({ navigation }: any) {
   const [page, setPage] = useState(1);
@@ -23,12 +24,22 @@ export default function Orders({ navigation }: any) {
   const [loading, setLoading] = useState(false);
   const [selectedOrders, setSelectedOrders] = useState([] as any);
   const [marketplace, setMarkeplace] = useState("");
+  const [filters, setFilters] = useState<any>({});
+
+  const { getValues, setValue, register, reset } = useForm();
 
   async function fetchOrders() {
+    const params = new URLSearchParams();
+    Object.keys(filters).map((key) => {
+      const value = filters[key];
+      params.append(key, value);
+    });
     setLoading(true);
     try {
       const response: any = await fetcher(
-        `${config.baseURL}front/orders/simples?page=${page}&pageSize=20&marketplace=${marketplace}`
+        `${
+          config.baseURL
+        }front/orders/simples?page=${page}&pageSize=20&marketplace=${marketplace}&${params.toString()}`
       );
       const newData = response.pedidos;
 
@@ -68,8 +79,9 @@ export default function Orders({ navigation }: any) {
 
   useEffect(() => {
     fetchOrders();
-  }, [page, marketplace]);
+  }, [page, marketplace, filters]);
 
+  console.log(filters);
   function onLongPress(item: OrdersTypes) {
     if (selectedOrders.includes(item.id)) {
       const newListOrder = selectedOrders.filter(
@@ -90,11 +102,25 @@ export default function Orders({ navigation }: any) {
         backgroundColor={"white"}
         width={"100%"}
         height={40}
-        justifyContent="flex-end"
+        justifyContent="space-between"
         flexDirection="row"
+        alignItems="center"
         paddingHorizontal={5}
       >
-        <DialogFilters />
+        <TouchableOpacity
+          onPress={() => {
+            setFilters({}), reset();
+          }}
+        >
+          <Text>Limpar Filtros</Text>
+        </TouchableOpacity>
+        <DialogFilters
+          setValue={setValue}
+          getValues={getValues}
+          reset={reset}
+          setFilters={setFilters}
+          setPage={setPage}
+        />
       </View>
       {selectedOrders.length > 0 && (
         <FloatButton
@@ -107,7 +133,9 @@ export default function Orders({ navigation }: any) {
       <FlatList
         ListHeaderComponent={() => (
           <>
-            <Text color={"black"}>Marketplace</Text>
+            <Text color={"black"} marginVertical={10}>
+              Marketplace
+            </Text>
             <View justifyContent="center" alignItems="center">
               <ScrollView
                 horizontal
@@ -117,7 +145,9 @@ export default function Orders({ navigation }: any) {
               >
                 <TouchableOpacity
                   key={"Todos"}
-                  onPress={() => onSelectMarketplace("")}
+                  onPress={() => {
+                    onSelectMarketplace(""), setFilters({});
+                  }}
                 >
                   <View
                     justifyContent="center"
