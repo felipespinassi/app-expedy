@@ -38,19 +38,21 @@ export default function ListOrders({
           <View
             backgroundColor={"white"}
             height={100}
-            borderRadius={5}
             alignItems="center"
             justifyContent={"space-between"}
             marginBottom={12}
             paddingLeft={selected ? 20 : 0}
             flexDirection="row"
+            borderRadius={10}
           >
             <View
+              borderRadius={50}
               width={5}
               height={"100%"}
               backgroundColor={marketplaces[item.integracao.tipo]?.color}
             />
             <View
+              borderRadius={10}
               padding={10}
               justifyContent="space-evenly"
               height={"100%"}

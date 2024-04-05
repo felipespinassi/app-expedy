@@ -86,6 +86,7 @@ export default function Orders({ navigation }: any) {
   return (
     <SafeAreaView style={{ alignItems: "center", flex: 1 }}>
       <View
+        borderRadius={10}
         backgroundColor={"white"}
         width={"100%"}
         height={40}
