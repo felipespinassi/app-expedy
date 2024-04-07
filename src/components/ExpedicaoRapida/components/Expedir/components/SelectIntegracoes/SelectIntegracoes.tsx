@@ -1,10 +1,10 @@
-import { View, Text } from "react-native";
-import React, { useMemo, useState } from "react";
+import React from "react";
 import { UseQueryResult, useQuery } from "react-query";
-import { Adapt, Select, Sheet, Spinner } from "tamagui";
+import { Accordion, Paragraph, RadioGroup, Square, Text, View } from "tamagui";
 import fetcher from "../../../../../../services/fetcher";
 import { config } from "../../../../../../services/apiConfig";
 import { FieldValues, UseFormSetValue } from "react-hook-form";
+import { ChevronDown } from "@tamagui/lucide-icons";
 
 export default function SelectIntegracoes({
   setValue,
@@ -16,56 +16,50 @@ export default function SelectIntegracoes({
     async () => await fetcher(`${config.baseURL}front/integracoes`, {})
   );
   return (
-    <Select
-      onValueChange={(e) => setValue("integracaoId", e)}
-      disablePreventBodyScroll
-    >
-      <Select.Trigger width={"60%"}>
-        <Select.Value placeholder="Selecione a integração" />
-      </Select.Trigger>
-      <Adapt when="sm" platform="touch">
-        <Sheet
-          modal
-          dismissOnSnapToBottom
-          animationConfig={{
-            type: "spring",
-            damping: 20,
-            mass: 1.2,
-            stiffness: 250,
-          }}
-        >
-          <Sheet.Frame>
-            <Sheet.ScrollView>
-              <Adapt.Contents />
-            </Sheet.ScrollView>
-          </Sheet.Frame>
+    <Accordion overflow="hidden" width="100%" type="multiple" gap={10}>
+      <Accordion.Item value="a1">
+        <Accordion.Trigger flexDirection="row" justifyContent="space-between">
+          {({ open }: { open: boolean }) => (
+            <>
+              <Paragraph>Integrações</Paragraph>
 
-          <Sheet.Overlay
-            enterStyle={{ opacity: 0 }}
-            exitStyle={{ opacity: 0 }}
-          />
-        </Sheet>
-      </Adapt>
-      <Select.Content zIndex={200000}>
-        <Select.Viewport minWidth={200}>
-          <Select.Group>
-            <Select.Label fontSize={18}>Integração</Select.Label>
+              <Square animation="quick" rotate={open ? "180deg" : "0deg"}>
+                <ChevronDown size="$1" />
+              </Square>
+            </>
+          )}
+        </Accordion.Trigger>
 
-            {useMemo(
-              () =>
-                data?.integracoes.map((item: any, i: any) => {
-                  return (
-                    <Select.Item index={i} key={item.id} value={item?.id}>
-                      <Select.ItemText>{item?.descricao}</Select.ItemText>
-                    </Select.Item>
-                  );
-                }),
-
-              [data?.integracoes]
-            )}
-          </Select.Group>
-        </Select.Viewport>
-      </Select.Content>
-    </Select>
+        <Accordion.Content backgroundColor={"$white3"} width={"100%"}>
+          <RadioGroup
+            gap={15}
+            onValueChange={(integracaoId) =>
+              setValue("integracaoId", integracaoId)
+            }
+          >
+            {data?.integracoes.map((integracao: any) => {
+              return (
+                <View
+                  key={integracao.descricao}
+                  flexDirection="row"
+                  justifyContent="space-between"
+                  padding={10}
+                  paddingRight={25}
+                >
+                  <Text>{integracao.descricao}</Text>
+                  <RadioGroup.Item
+                    size={"$5"}
+                    backgroundColor={"white"}
+                    value={integracao.id}
+                  >
+                    <RadioGroup.Indicator backgroundColor={"#1890ff"} />
+                  </RadioGroup.Item>
+                </View>
+              );
+            })}
+          </RadioGroup>
+        </Accordion.Content>
+      </Accordion.Item>
+    </Accordion>
   );
 }

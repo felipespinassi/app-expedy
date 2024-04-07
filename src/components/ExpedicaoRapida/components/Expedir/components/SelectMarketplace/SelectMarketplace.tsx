@@ -1,8 +1,19 @@
 import React, { useMemo, useState } from "react";
 import { UseQueryResult, useQuery } from "react-query";
-import { Adapt, Select, Sheet } from "tamagui";
+import {
+  Accordion,
+  Adapt,
+  Paragraph,
+  RadioGroup,
+  Select,
+  Sheet,
+  Square,
+  Text,
+  View,
+} from "tamagui";
 import { integracoesDisponiveis } from "../../../../../../objects/integracoesDisponiveis";
 import { FieldValues, UseFormSetValue } from "react-hook-form";
+import { ChevronDown } from "@tamagui/lucide-icons";
 
 export default function SelectMarkeplace({
   setValue,
@@ -10,57 +21,50 @@ export default function SelectMarkeplace({
   setValue: UseFormSetValue<FieldValues>;
 }) {
   return (
-    <Select
-      //   value={props.integracaoId}
-      onValueChange={(e) => setValue("marketplace", e)}
-      disablePreventBodyScroll
-    >
-      <Select.Trigger width={"60%"}>
-        <Select.Value placeholder="Selecione o marketplace" />
-      </Select.Trigger>
-      <Adapt when="sm" platform="touch">
-        <Sheet
-          modal
-          dismissOnSnapToBottom
-          animationConfig={{
-            type: "spring",
-            damping: 20,
-            mass: 1.2,
-            stiffness: 250,
-          }}
-        >
-          <Sheet.Frame>
-            <Sheet.ScrollView>
-              <Adapt.Contents />
-            </Sheet.ScrollView>
-          </Sheet.Frame>
+    <Accordion overflow="hidden" width="100%" type="multiple" gap={10}>
+      <Accordion.Item value="a1">
+        <Accordion.Trigger flexDirection="row" justifyContent="space-between">
+          {({ open }: { open: boolean }) => (
+            <>
+              <Paragraph>Marketplaces</Paragraph>
 
-          <Sheet.Overlay
-            enterStyle={{ opacity: 0 }}
-            exitStyle={{ opacity: 0 }}
-          />
-        </Sheet>
-      </Adapt>
-      <Select.Content zIndex={200000}>
-        <Select.Viewport minWidth={200}>
-          <Select.Group>
-            <Select.Label fontSize={18}>Marketplace</Select.Label>
+              <Square animation="quick" rotate={open ? "180deg" : "0deg"}>
+                <ChevronDown size="$1" />
+              </Square>
+            </>
+          )}
+        </Accordion.Trigger>
 
-            {useMemo(
-              () =>
-                integracoesDisponiveis?.map((item: any, i: any) => {
-                  return (
-                    <Select.Item index={i} key={item.key} value={item?.key}>
-                      <Select.ItemText>{item?.label}</Select.ItemText>
-                    </Select.Item>
-                  );
-                }),
-
-              [integracoesDisponiveis]
-            )}
-          </Select.Group>
-        </Select.Viewport>
-      </Select.Content>
-    </Select>
+        <Accordion.Content backgroundColor={"$white3"} width={"100%"}>
+          <RadioGroup
+            gap={15}
+            onValueChange={(marketplace) =>
+              setValue("marketplace", marketplace)
+            }
+          >
+            {integracoesDisponiveis?.map((marketplace: any) => {
+              return (
+                <View
+                  key={marketplace.key}
+                  flexDirection="row"
+                  justifyContent="space-between"
+                  padding={10}
+                  paddingRight={25}
+                >
+                  <Text>{marketplace.label}</Text>
+                  <RadioGroup.Item
+                    size={"$5"}
+                    backgroundColor={"white"}
+                    value={marketplace.key}
+                  >
+                    <RadioGroup.Indicator backgroundColor={"#1890ff"} />
+                  </RadioGroup.Item>
+                </View>
+              );
+            })}
+          </RadioGroup>
+        </Accordion.Content>
+      </Accordion.Item>
+    </Accordion>
   );
 }

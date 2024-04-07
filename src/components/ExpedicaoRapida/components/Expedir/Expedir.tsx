@@ -45,25 +45,13 @@ export default function Expedir() {
       <ScrollView>
         <Form onSubmit={onGerarArquivo} gap={20} padding={20}>
           <View flexDirection="row" gap={10}>
-            <Text width={"40%"} fontSize={"$5"}>
-              Integração
-            </Text>
-
             <SelectIntegracoes setValue={setValue} />
           </View>
           <View flexDirection="row" gap={10}>
-            <Text width={"40%"} fontSize={"$5"}>
-              Marketplace
-            </Text>
-
             <SelectMarkeplace setValue={setValue} />
           </View>
 
           <View flexDirection="row" gap={10}>
-            <Text width={"40%"} fontSize={"$5"}>
-              Produtos mais vendidos
-            </Text>
-
             <SelectMaisVendidos setValue={setValue} />
           </View>
 
