@@ -6,9 +6,11 @@ import {
   FlatList,
   Image,
   SafeAreaView,
+  ScrollView,
+  Text,
   TouchableOpacity,
+  View,
 } from "react-native";
-import { Button, ScrollView, Text, View } from "tamagui";
 import DialogFilters from "./components/DialogFilters/DialogFilters";
 import FloatButton from "./components/FloatButton/FloatButton";
 import { marketplaces } from "./utils/marketplaces";
@@ -98,14 +100,16 @@ export default function Orders({ navigation }: any) {
   return (
     <SafeAreaView style={{ alignItems: "center", flex: 1 }}>
       <View
-        borderRadius={10}
-        backgroundColor={"white"}
-        width={"100%"}
-        height={40}
-        justifyContent="flex-end"
-        flexDirection="row"
-        alignItems="center"
-        paddingHorizontal={5}
+        style={{
+          borderRadius: 10,
+          backgroundColor: "white",
+          width: "100%",
+          height: 40,
+          justifyContent: "flex-end",
+          flexDirection: "row",
+          alignItems: "center",
+          paddingHorizontal: 5,
+        }}
       >
         <DialogFilters
           setValue={setValue}
@@ -126,15 +130,14 @@ export default function Orders({ navigation }: any) {
       <FlatList
         ListHeaderComponent={() => (
           <>
-            <Text color={"black"} marginVertical={10}>
+            <Text style={{ color: "black", marginVertical: 10 }}>
               Marketplace
             </Text>
-            <View justifyContent="center" alignItems="center">
+            <View style={{ justifyContent: "center", alignItems: "center" }}>
               <ScrollView
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                paddingBottom={20}
-                paddingTop={5}
+                style={{ paddingBottom: 20, paddingTop: 5 }}
               >
                 <TouchableOpacity
                   key={"Todos"}
@@ -145,16 +148,18 @@ export default function Orders({ navigation }: any) {
                   }}
                 >
                   <View
-                    justifyContent="center"
-                    alignItems="center"
-                    width={60}
-                    height={60}
-                    backgroundColor={"white"}
-                    borderRadius={50}
-                    padding={10}
-                    marginRight={10}
+                    style={{
+                      justifyContent: "center",
+                      alignItems: "center",
+                      width: 60,
+                      height: 60,
+                      backgroundColor: "white",
+                      borderRadius: 50,
+                      padding: 10,
+                      marginRight: 10,
+                    }}
                   >
-                    <Text fontSize={12}>Todos</Text>
+                    <Text style={{ fontSize: 12 }}>Todos</Text>
                   </View>
                 </TouchableOpacity>
                 {Object.values(marketplaces).map((element) => {
@@ -164,14 +169,16 @@ export default function Orders({ navigation }: any) {
                       onPress={() => onSelectMarketplace(element.name)}
                     >
                       <View
-                        justifyContent="center"
-                        alignItems="center"
-                        width={60}
-                        height={60}
-                        backgroundColor={"white"}
-                        borderRadius={50}
-                        padding={10}
-                        marginRight={10}
+                        style={{
+                          justifyContent: "center",
+                          alignItems: "center",
+                          width: 60,
+                          height: 60,
+                          backgroundColor: "white",
+                          borderRadius: 50,
+                          padding: 10,
+                          marginRight: 10,
+                        }}
                       >
                         <Image
                           resizeMode="contain"

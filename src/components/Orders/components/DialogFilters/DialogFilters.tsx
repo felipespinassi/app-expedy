@@ -1,20 +1,16 @@
-import { TouchableOpacity } from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import {
   Accordion,
   Adapt,
   Button,
-  Checkbox,
   Dialog,
   Form,
   Input,
   Label,
   Paragraph,
-  ScrollView,
   Sheet,
   Square,
-  Text,
-  View,
 } from "tamagui";
 import { Check, ChevronDown } from "@tamagui/lucide-icons";
 import fetcher from "../../../../services/fetcher";
@@ -149,11 +145,13 @@ export default function DialogFilters({
                         {data?.integracoes.map((integracao: any) => {
                           return (
                             <View
+                              style={{
+                                flexDirection: "row",
+                                justifyContent: "space-between",
+                                padding: 10,
+                                paddingRight: 25,
+                              }}
                               key={integracao.descricao}
-                              flexDirection="row"
-                              justifyContent="space-between"
-                              padding={10}
-                              paddingRight={25}
                             >
                               <Text>{integracao.descricao}</Text>
                               <RadioGroup.Item
@@ -202,13 +200,15 @@ export default function DialogFilters({
                         {Object.values(statusHub).map((status: any) => {
                           return (
                             <View
+                              style={{
+                                padding: 10,
+                                paddingRight: 25,
+                                flexDirection: "row",
+                                justifyContent: "space-between",
+                              }}
                               key={status.id}
-                              padding={10}
-                              paddingRight={25}
-                              flexDirection="row"
-                              justifyContent="space-between"
                             >
-                              <Text padding={5}>{status.name}</Text>
+                              <Text style={{ padding: 5 }}>{status.name}</Text>
                               <RadioGroup.Item
                                 size={"$5"}
                                 backgroundColor={"white"}

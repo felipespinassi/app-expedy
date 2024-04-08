@@ -1,11 +1,16 @@
-import { Alert, KeyboardAvoidingView, Platform } from "react-native";
+import {
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  TextInput,
+  View,
+} from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-import axios from "axios";
 import { createAccess_token } from "../../storage/createAccess_token";
 import { createCompanyName } from "../../storage/createCompanyName";
-import { Button, Image, Input, Spinner, Theme, View } from "tamagui";
+import { Button, Image, Spinner } from "tamagui";
 import { AuthContext } from "../../context/AuthContext";
 import { config } from "../../services/apiConfig";
 
@@ -63,7 +68,7 @@ export default function Login({ navigation }: any) {
       behavior={Platform.OS == "ios" ? "padding" : undefined}
       style={{ flex: 1, justifyContent: "center", backgroundColor: "#19223E" }}
     >
-      <View gap={50} alignItems="center" theme={"light"}>
+      <View style={{ gap: 20, alignItems: "center" }}>
         <Image
           resizeMode="contain"
           width={350}
@@ -72,27 +77,39 @@ export default function Login({ navigation }: any) {
           source={{ uri: require("../../../assets/expedy-logo.png") }}
         />
 
-        <View gap={10} width={"85%"}>
-          <Input
-            height={50}
+        <View style={{ gap: 10, width: "85%" }}>
+          <TextInput
+            style={{
+              padding: 15,
+              marginTop: 5,
+              backgroundColor: "white",
+              borderRadius: 10,
+            }}
             onChangeText={(text) => setValue("companyCode", text)}
-            marginTop={5}
             placeholder="Código"
             placeholderTextColor="#6b6b6b"
             keyboardType="numeric"
           />
-          <Input
-            height={50}
+          <TextInput
+            style={{
+              padding: 15,
+              marginTop: 5,
+              backgroundColor: "white",
+              borderRadius: 10,
+            }}
             onChangeText={(text) => setValue("login", text)}
             autoCapitalize="none"
-            marginTop={5}
             placeholder="Usuário"
             placeholderTextColor="#6b6b6b"
           />
-          <Input
-            height={50}
+          <TextInput
+            style={{
+              padding: 15,
+              marginTop: 5,
+              backgroundColor: "white",
+              borderRadius: 10,
+            }}
             onChangeText={(text) => setValue("password", text)}
-            marginTop={5}
             placeholder="Senha"
             placeholderTextColor="#6b6b6b"
             secureTextEntry={true}
@@ -100,32 +117,30 @@ export default function Login({ navigation }: any) {
           />
         </View>
       </View>
-      <Theme name={"orange_active"}>
-        <View alignItems="center">
-          {loading ? (
-            <Button
-              borderRadius={10}
-              marginTop={50}
-              width={"85%"}
-              backgroundColor={"#EA582C"}
-              color={"white"}
-            >
-              <Spinner />
-            </Button>
-          ) : (
-            <Button
-              marginTop={50}
-              width={"85%"}
-              borderRadius={10}
-              backgroundColor={"#c2410c"}
-              onPress={handleSubmit(onSubmit)}
-              color={"white"}
-            >
-              Login
-            </Button>
-          )}
-        </View>
-      </Theme>
+      <View style={{ alignItems: "center" }}>
+        {loading ? (
+          <Button
+            borderRadius={10}
+            marginTop={50}
+            width={"85%"}
+            backgroundColor={"#EA582C"}
+            color={"white"}
+          >
+            <Spinner />
+          </Button>
+        ) : (
+          <Button
+            marginTop={50}
+            width={"85%"}
+            borderRadius={10}
+            backgroundColor={"#c2410c"}
+            onPress={handleSubmit(onSubmit)}
+            color={"white"}
+          >
+            Login
+          </Button>
+        )}
+      </View>
     </KeyboardAvoidingView>
   );
 }

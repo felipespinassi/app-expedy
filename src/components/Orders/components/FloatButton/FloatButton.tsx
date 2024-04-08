@@ -1,10 +1,10 @@
-import { TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import { Plus } from "@tamagui/lucide-icons";
-import { Spinner, Text, View } from "tamagui";
+import { Spinner } from "tamagui";
 import axios from "axios";
 import { getAccess_token } from "../../../../storage/getAccess_token";
-import { Toast, useToastController } from "@tamagui/toast";
+import { useToastController } from "@tamagui/toast";
 import { config } from "../../../../services/apiConfig";
 import fetcher from "../../../../services/fetcher";
 
@@ -64,30 +64,34 @@ export default function FloatButton({
   }
   return (
     <View
-      top={"80%"}
-      right={"2%"}
-      zIndex={10}
-      position={"absolute"}
-      padding={20}
+      style={{
+        top: "80%",
+        right: "2%",
+        zIndex: 10,
+        position: "absolute",
+        padding: 20,
+      }}
     >
       {open && (
         <View
-          borderRadius={20}
-          width={200}
-          position="absolute"
-          top={-100}
-          right={10}
-          shadowColor={"black"}
-          shadowRadius={2}
-          backgroundColor={"white"}
+          style={{
+            borderRadius: 20,
+            width: 200,
+            position: "absolute",
+            top: -100,
+            right: 10,
+            shadowColor: "black",
+            shadowRadius: 2,
+            backgroundColor: "white",
+          }}
         >
           <TouchableOpacity onPress={() => onSendInvoices()}>
-            <View padding={20}>
+            <View style={{ padding: 20 }}>
               <Text>Emitir Nota Fiscal</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => onGetLabel()}>
-            <View flexDirection="row" gap={5} padding={20}>
+            <View style={{ flexDirection: "row", gap: 5, padding: 20 }}>
               {loading && (
                 <Text>
                   <Spinner />
@@ -102,12 +106,14 @@ export default function FloatButton({
 
       <TouchableOpacity onPress={() => setOpen(!open)}>
         <View
-          width={65}
-          backgroundColor="#1890ff"
-          padding={20}
-          shadowColor={"black"}
-          shadowRadius={1}
-          borderRadius={50}
+          style={{
+            width: 65,
+            backgroundColor: "#1890ff",
+            padding: 20,
+            shadowColor: "black",
+            shadowRadius: 1,
+            borderRadius: 50,
+          }}
         >
           <Plus color={"white"} />
         </View>
