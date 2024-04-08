@@ -25,7 +25,7 @@ export default function DialogFilters({
   setValue,
   getValues,
   setPage,
-  filters,
+  reset,
 }: any) {
   const { data, isFetching, isLoading }: UseQueryResult<any> = useQuery(
     "Integracoes",
@@ -33,7 +33,7 @@ export default function DialogFilters({
   );
 
   const [integrationSelected, setIntegrationSelected] = useState("");
-  const [statusHubSelected, setStatusHubSelected] = useState();
+  const [statusHubSelected, setStatusHubSelected] = useState("");
 
   function onSubmit() {
     const values = getValues();
@@ -108,7 +108,16 @@ export default function DialogFilters({
               </Dialog.Close>
             </Form.Trigger>
 
-            <Button>Limpar Filtros</Button>
+            <Button
+              onPress={() => {
+                setFilters({}),
+                  setIntegrationSelected(""),
+                  setStatusHubSelected("");
+                reset();
+              }}
+            >
+              Limpar Filtros
+            </Button>
 
             <ScrollView>
               <View>

@@ -116,7 +116,7 @@ export default function Orders({ navigation }: any) {
           getValues={getValues}
           setFilters={setFilters}
           setPage={setPage}
-          filters={filters}
+          reset={reset}
         />
       </View>
       {selectedOrders.length > 0 && (
@@ -193,7 +193,7 @@ export default function Orders({ navigation }: any) {
             </View>
           </>
         )}
-        onEndReachedThreshold={0.6}
+        onEndReachedThreshold={0.2}
         keyExtractor={(item) => item.id}
         onEndReached={onScrollScreen}
         refreshing={loading}
