@@ -1,5 +1,5 @@
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import {
   Accordion,
   Adapt,
@@ -18,6 +18,7 @@ import { config } from "../../../../services/apiConfig";
 import { UseQueryResult, useQuery } from "react-query";
 import { statusHub } from "../../../../Objects/statusHub";
 import { RadioGroup } from "tamagui";
+import Checkbox from "../../../Checkbox/Checkbox";
 
 export default function DialogFilters({
   setFilters,
@@ -30,6 +31,9 @@ export default function DialogFilters({
     "Integracoes",
     async () => await fetcher(`${config.baseURL}front/integracoes`, {})
   );
+
+  const [integrationSelected, setIntegrationSelected] = useState("");
+  const [statusHubSelected, setStatusHubSelected] = useState();
 
   function onSubmit() {
     const values = getValues();
@@ -104,6 +108,8 @@ export default function DialogFilters({
               </Dialog.Close>
             </Form.Trigger>
 
+            <Button>Limpar Filtros</Button>
+
             <ScrollView>
               <View>
                 <Accordion
@@ -119,7 +125,14 @@ export default function DialogFilters({
                     >
                       {({ open }: { open: boolean }) => (
                         <>
-                          <Paragraph>Integrações</Paragraph>
+                          <Paragraph>
+                            Integração{" "}
+                            {integrationSelected ? (
+                              `- ${integrationSelected}`
+                            ) : (
+                              <></>
+                            )}
+                          </Paragraph>
 
                           <Square
                             animation="quick"
@@ -135,15 +148,15 @@ export default function DialogFilters({
                       backgroundColor={"$white3"}
                       width={"100%"}
                     >
-                      <RadioGroup
-                        gap={15}
-                        value={filters?.fkintegracao}
-                        onValueChange={(integracaoId) =>
-                          setValue("fkintegracao", integracaoId)
-                        }
-                      >
-                        {data?.integracoes.map((integracao: any) => {
-                          return (
+                      {data?.integracoes.map((integracao: any) => {
+                        return (
+                          <TouchableOpacity
+                            key={integracao.descricao}
+                            onPress={() => {
+                              setIntegrationSelected(integracao.descricao),
+                                setValue("fkintegracao", integracao.id);
+                            }}
+                          >
                             <View
                               style={{
                                 flexDirection: "row",
@@ -151,22 +164,16 @@ export default function DialogFilters({
                                 padding: 10,
                                 paddingRight: 25,
                               }}
-                              key={integracao.descricao}
                             >
                               <Text>{integracao.descricao}</Text>
-                              <RadioGroup.Item
-                                size={"$5"}
-                                backgroundColor={"white"}
-                                value={integracao.id}
-                              >
-                                <RadioGroup.Indicator
-                                  backgroundColor={"#1890ff"}
-                                />
-                              </RadioGroup.Item>
+                              <Checkbox
+                                value1={integrationSelected}
+                                value2={integracao.descricao}
+                              />
                             </View>
-                          );
-                        })}
-                      </RadioGroup>
+                          </TouchableOpacity>
+                        );
+                      })}
                     </Accordion.Content>
                   </Accordion.Item>
 
@@ -177,7 +184,14 @@ export default function DialogFilters({
                     >
                       {({ open }: any) => (
                         <>
-                          <Paragraph>Status Hub</Paragraph>
+                          <Paragraph>
+                            Status Hub{" "}
+                            {statusHubSelected ? (
+                              `- ${statusHubSelected}`
+                            ) : (
+                              <></>
+                            )}
+                          </Paragraph>
 
                           <Square
                             animation="quick"
@@ -190,15 +204,15 @@ export default function DialogFilters({
                     </Accordion.Trigger>
 
                     <Accordion.Content backgroundColor={"$white3"} gap={10}>
-                      <RadioGroup
-                        gap={15}
-                        value={filters?.status_hub}
-                        onValueChange={(statusIdentifier) =>
-                          setValue("status_hub", statusIdentifier)
-                        }
-                      >
-                        {Object.values(statusHub).map((status: any) => {
-                          return (
+                      {Object.values(statusHub).map((status: any) => {
+                        return (
+                          <TouchableOpacity
+                            key={status.id}
+                            onPress={() => {
+                              setStatusHubSelected(status.name),
+                                setValue("status_hub", status.identifier);
+                            }}
+                          >
                             <View
                               style={{
                                 padding: 10,
@@ -206,22 +220,16 @@ export default function DialogFilters({
                                 flexDirection: "row",
                                 justifyContent: "space-between",
                               }}
-                              key={status.id}
                             >
                               <Text style={{ padding: 5 }}>{status.name}</Text>
-                              <RadioGroup.Item
-                                size={"$5"}
-                                backgroundColor={"white"}
-                                value={status.identifier}
-                              >
-                                <RadioGroup.Indicator
-                                  backgroundColor={"#1890ff"}
-                                />
-                              </RadioGroup.Item>
+                              <Checkbox
+                                value1={statusHubSelected}
+                                value2={status.name}
+                              />
                             </View>
-                          );
-                        })}
-                      </RadioGroup>
+                          </TouchableOpacity>
+                        );
+                      })}
                     </Accordion.Content>
                   </Accordion.Item>
                 </Accordion>
