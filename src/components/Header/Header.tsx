@@ -1,6 +1,7 @@
 import React from "react";
-import { Heading, View } from "tamagui";
+import { Heading } from "tamagui";
 import ArrowBack from "../ArrowBack/ArrowBack";
+import { View } from "react-native";
 
 interface HeaderProps {
   navigation?: any;
@@ -15,11 +16,13 @@ export default function Header({
 }: HeaderProps) {
   return (
     <View
-      backgroundColor={"#002851"}
-      height={150}
-      justifyContent="flex-end"
-      alignItems="center"
-      paddingBottom={15}
+      style={{
+        backgroundColor: "#002851",
+        height: 150,
+        justifyContent: "flex-end",
+        alignItems: "center",
+        paddingBottom: 15,
+      }}
     >
       {showArrow ? <ArrowBack navigation={navigation} /> : <></>}
       <Heading color={"white"}>{children}</Heading>
