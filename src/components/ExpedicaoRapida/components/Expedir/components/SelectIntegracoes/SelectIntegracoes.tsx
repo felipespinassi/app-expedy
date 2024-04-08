@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { UseQueryResult, useQuery } from "react-query";
 import { Accordion, Paragraph, RadioGroup, Square, Text, View } from "tamagui";
 import fetcher from "../../../../../../services/fetcher";
@@ -15,6 +15,7 @@ export default function SelectIntegracoes({
     "Integracoes",
     async () => await fetcher(`${config.baseURL}front/integracoes`, {})
   );
+
   return (
     <Accordion overflow="hidden" width="100%" type="multiple" gap={10}>
       <Accordion.Item value="a1">

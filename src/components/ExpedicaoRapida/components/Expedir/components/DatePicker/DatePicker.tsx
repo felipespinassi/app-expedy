@@ -24,7 +24,7 @@ export default function DatePicker({
     hideDatePicker();
   };
   return (
-    <View width={"60%"}>
+    <View width={"100%"}>
       <Button
         backgroundColor={"$white075"}
         color={"black"}

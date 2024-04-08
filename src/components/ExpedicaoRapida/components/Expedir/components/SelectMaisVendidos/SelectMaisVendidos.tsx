@@ -36,7 +36,7 @@ export default function SelectMaisVendidos({ setValue }: any) {
             {data?.maisVendidos?.map((produto: any) => {
               return (
                 <View
-                  key={produto.key}
+                  key={produto.id_produto}
                   flexDirection="row"
                   justifyContent="space-between"
                   padding={10}

@@ -56,42 +56,30 @@ export default function Expedir() {
           </View>
 
           <View flexDirection="row" gap={10}>
-            <Text width={"40%"} fontSize={"$5"}>
-              SKU
-            </Text>
             <Input
               placeholderTextColor={"black"}
-              placeholder="Selecionar SKU"
+              placeholder=" SKU"
               onChangeText={(e) => setValue("unico_sku", e)}
-              width={"60%"}
+              width={"100%"}
             />
           </View>
           <View flexDirection="row" gap={10}>
-            <Text width={"40%"} fontSize={"$5"}>
-              ID Marketplace
-            </Text>
             <Input
               placeholderTextColor={"black"}
-              placeholder="Selecionar Marketplace"
+              placeholder=" Marketplace"
               onChangeText={(e) => setValue("orderid", e)}
-              width={"60%"}
+              width={"100%"}
             />
           </View>
           <View flexDirection="row" gap={10}>
-            <Text width={"40%"} fontSize={"$5"}>
-              ID expedy
-            </Text>
             <Input
               placeholderTextColor={"black"}
-              placeholder="Selecionar ID"
+              placeholder=" ID Hub"
               onChangeText={(e) => setValue("id", e)}
-              width={"60%"}
+              width={"100%"}
             />
           </View>
           <View flexDirection="row" gap={10}>
-            <Text width={"40%"} fontSize={"$5"}>
-              Aguardando desde:
-            </Text>
             <DatePicker setValue={setValue} />
           </View>
           <Separator />
