@@ -2,7 +2,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import moment from "moment";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import { statusHub } from "../../../../objects/statusHub";
+import { statusHub } from "../../../../Objects/statusHub";
 import { YStack } from "tamagui";
 import { marketplaces } from "../../utils/marketplaces";
 import { OrdersTypes } from "../../../../@types/OrdersTypes";

@@ -16,7 +16,7 @@ import { Check, ChevronDown } from "@tamagui/lucide-icons";
 import fetcher from "../../../../services/fetcher";
 import { config } from "../../../../services/apiConfig";
 import { UseQueryResult, useQuery } from "react-query";
-import { statusHub } from "../../../../objects/statusHub";
+import { statusHub } from "../../../../Objects/statusHub";
 import { RadioGroup } from "tamagui";
 
 export default function DialogFilters({

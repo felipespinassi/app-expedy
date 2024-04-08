@@ -1,10 +1,10 @@
 import React, { useMemo, useState } from "react";
 
 import { Accordion, Paragraph, RadioGroup, Square } from "tamagui";
-import { integracoesDisponiveis } from "../../../../../../objects/integracoesDisponiveis";
 import { FieldValues, UseFormSetValue } from "react-hook-form";
 import { ChevronDown } from "@tamagui/lucide-icons";
 import { Text, View } from "react-native";
+import { integracoesDisponiveis } from "../../../../../../Objects/integracoesDisponiveis";
 
 export default function SelectMarkeplace({
   setValue,
