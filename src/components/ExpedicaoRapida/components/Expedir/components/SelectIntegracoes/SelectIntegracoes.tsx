@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { UseQueryResult, useQuery } from "react-query";
-import { Accordion, Paragraph, RadioGroup, Square, Text, View } from "tamagui";
+import { Accordion, Paragraph, RadioGroup, Square } from "tamagui";
 import fetcher from "../../../../../../services/fetcher";
 import { config } from "../../../../../../services/apiConfig";
 import { FieldValues, UseFormSetValue } from "react-hook-form";
 import { ChevronDown } from "@tamagui/lucide-icons";
+import { Text, View } from "react-native";
 
 export default function SelectIntegracoes({
   setValue,
@@ -42,10 +43,12 @@ export default function SelectIntegracoes({
               return (
                 <View
                   key={integracao.descricao}
-                  flexDirection="row"
-                  justifyContent="space-between"
-                  padding={10}
-                  paddingRight={25}
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    padding: 10,
+                    paddingRight: 25,
+                  }}
                 >
                   <Text>{integracao.descricao}</Text>
                   <RadioGroup.Item

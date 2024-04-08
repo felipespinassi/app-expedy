@@ -1,15 +1,17 @@
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import React from "react";
 import Feather from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
-import { ListItem, View, YGroup } from "tamagui";
+import { ListItem, YGroup } from "tamagui";
 import { NavigationTypes } from "../../@types/NavigationTypes";
 
 export default function ExpedicaoRapida() {
   const navigation = useNavigation<NavigationTypes>();
   return (
-    <View flex={1}>
-      <View alignItems="center" width={"100%"} marginTop={20} gap={20}>
+    <View style={{ flex: 1 }}>
+      <View
+        style={{ alignItems: "center", width: "100%", marginTop: 20, gap: 20 }}
+      >
         <TouchableOpacity onPress={() => navigation.navigate("Expedir")}>
           <YGroup
             minWidth={"95%"}

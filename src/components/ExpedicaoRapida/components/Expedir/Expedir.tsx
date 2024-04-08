@@ -1,4 +1,4 @@
-import { Button, Form, Input, Label, Separator, Text, View } from "tamagui";
+import { Button, Form, Input, Label, Separator } from "tamagui";
 import SelectIntegracoes from "./components/SelectIntegracoes/SelectIntegracoes";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import {
@@ -6,6 +6,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  View,
 } from "react-native";
 import SelectMarkeplace from "./components/SelectMarketplace/SelectMarketplace";
 import { useForm } from "react-hook-form";
@@ -44,18 +45,18 @@ export default function Expedir() {
     >
       <ScrollView>
         <Form onSubmit={onGerarArquivo} gap={20} padding={20}>
-          <View flexDirection="row" gap={10}>
+          <View style={{ flexDirection: "row" }}>
             <SelectIntegracoes setValue={setValue} />
           </View>
-          <View flexDirection="row" gap={10}>
+          <View style={{ flexDirection: "row" }}>
             <SelectMarkeplace setValue={setValue} />
           </View>
 
-          <View flexDirection="row" gap={10}>
+          <View style={{ flexDirection: "row" }}>
             <SelectMaisVendidos setValue={setValue} />
           </View>
 
-          <View flexDirection="row" gap={10}>
+          <View style={{ flexDirection: "row" }}>
             <Input
               placeholderTextColor={"black"}
               placeholder=" SKU"
@@ -63,7 +64,7 @@ export default function Expedir() {
               width={"100%"}
             />
           </View>
-          <View flexDirection="row" gap={10}>
+          <View style={{ flexDirection: "row" }}>
             <Input
               placeholderTextColor={"black"}
               placeholder=" Marketplace"
@@ -71,7 +72,7 @@ export default function Expedir() {
               width={"100%"}
             />
           </View>
-          <View flexDirection="row" gap={10}>
+          <View style={{ flexDirection: "row", gap: 10 }}>
             <Input
               placeholderTextColor={"black"}
               placeholder=" ID Hub"
@@ -79,14 +80,14 @@ export default function Expedir() {
               width={"100%"}
             />
           </View>
-          <View flexDirection="row" gap={10}>
+          <View style={{ flexDirection: "row", gap: 10 }}>
             <DatePicker setValue={setValue} />
           </View>
           <Separator />
 
           <Form.Trigger asChild>
             <TouchableOpacity>
-              <View alignItems="center">
+              <View style={{ alignItems: "center" }}>
                 <Button
                   width={"100%"}
                   color={"white"}
@@ -98,7 +99,7 @@ export default function Expedir() {
             </TouchableOpacity>
           </Form.Trigger>
           <TouchableOpacity>
-            <View alignItems="center">
+            <View style={{ alignItems: "center" }}>
               <Button backgroundColor={"$white075"} width={"100%"}>
                 Limpar Filtros
               </Button>

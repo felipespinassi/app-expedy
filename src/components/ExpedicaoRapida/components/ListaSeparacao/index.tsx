@@ -1,8 +1,8 @@
-import { SafeAreaView, TouchableOpacity } from "react-native";
+import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { UseQueryResult, useQuery } from "react-query";
-import { Button, ScrollView, Spinner, Text, View, YStack } from "tamagui";
+import { Button, ScrollView, Spinner, YStack } from "tamagui";
 import { Swipeable } from "react-native-gesture-handler";
 import { onPickTotalQuantity } from "../utils/onPickTotalQuantity";
 import { useToastController } from "@tamagui/toast";
@@ -23,7 +23,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
 
   function RightAction() {
     return (
-      <Button flex={1} height={"90%"} backgroundColor={"$green5Light"}>
+      <Button flex={1} height={"90%"} backgroundColor={"#e0fed7"}>
         <Spinner />{" "}
       </Button>
     );
@@ -62,7 +62,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
 
   if (isFetching) {
     return (
-      <View margin={20}>
+      <View style={{ margin: 20 }}>
         <Spinner size={"large"} />
       </View>
     );
@@ -71,7 +71,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
   moveZerosToEnd();
 
   return (
-    <View flex={1}>
+    <View style={{ flex: 1 }}>
       <ScrollView paddingTop={5}>
         {data?.produtos?.map((produto, index) => {
           return (
@@ -84,26 +84,28 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
                 {produto.controle.quantidadeRestante === 0 ? (
                   <YStack paddingHorizontal={5}>
                     <View
-                      height={100}
-                      backgroundColor={"$green4Light"}
-                      borderRadius={5}
-                      alignItems="center"
-                      justifyContent={"space-between"}
-                      marginBottom={10}
-                      flexDirection="row"
-                      paddingHorizontal={25}
+                      style={{
+                        height: 100,
+                        backgroundColor: "#e0fed7",
+                        borderRadius: 5,
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginBottom: 10,
+                        flexDirection: "row",
+                        paddingHorizontal: 25,
+                      }}
                     >
-                      <Text width={"20%"} fontSize={"$6"}>
+                      <Text style={{ width: "20%", fontSize: 18 }}>
                         {produto.controle.quantidadeRestante}
                       </Text>
 
-                      <View width={"80%"} gap={7}>
-                        <Text fontSize={"$4"}>
-                          <Text color={"$gray10"}>SKU: </Text>
+                      <View style={{ width: "80%", gap: 7 }}>
+                        <Text style={{ fontSize: 14 }}>
+                          <Text style={{ color: "gray" }}>SKU: </Text>
                           {produto.reference}
                         </Text>
-                        <Text fontSize={"$4"}>
-                          <Text color={"$gray10"}>Descricao: </Text>
+                        <Text style={{ fontSize: 14 }}>
+                          <Text style={{ color: "gray" }}>Descricao: </Text>
                           {produto.database_name}
                         </Text>
                       </View>
@@ -118,26 +120,28 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
                   >
                     <YStack paddingHorizontal={5}>
                       <View
-                        height={100}
-                        backgroundColor={"$background075"}
-                        borderRadius={5}
-                        alignItems="center"
-                        justifyContent={"space-between"}
-                        marginBottom={10}
-                        flexDirection="row"
-                        paddingHorizontal={25}
+                        style={{
+                          height: 100,
+                          backgroundColor: "white",
+                          borderRadius: 5,
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          marginBottom: 10,
+                          flexDirection: "row",
+                          paddingHorizontal: 25,
+                        }}
                       >
-                        <Text width={"20%"} fontSize={"$6"}>
+                        <Text style={{ width: "20%", fontSize: 18 }}>
                           {produto.controle.quantidadeRestante}
                         </Text>
 
-                        <View width={"80%"} gap={7}>
-                          <Text fontSize={"$4"}>
-                            <Text color={"$gray10"}>SKU: </Text>
+                        <View style={{ width: "80%", gap: 7 }}>
+                          <Text style={{ fontSize: 14 }}>
+                            <Text style={{ color: "gray" }}>SKU: </Text>
                             {produto.reference}
                           </Text>
-                          <Text fontSize={"$4"}>
-                            <Text color={"$gray10"}>Descricao: </Text>
+                          <Text style={{ fontSize: 14 }}>
+                            <Text style={{ color: "gray" }}>Descricao: </Text>
                             {produto.database_name}
                           </Text>
                         </View>

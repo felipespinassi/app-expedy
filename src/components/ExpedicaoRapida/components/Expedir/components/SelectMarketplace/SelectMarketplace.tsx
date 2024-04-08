@@ -1,19 +1,10 @@
 import React, { useMemo, useState } from "react";
-import { UseQueryResult, useQuery } from "react-query";
-import {
-  Accordion,
-  Adapt,
-  Paragraph,
-  RadioGroup,
-  Select,
-  Sheet,
-  Square,
-  Text,
-  View,
-} from "tamagui";
+
+import { Accordion, Paragraph, RadioGroup, Square } from "tamagui";
 import { integracoesDisponiveis } from "../../../../../../objects/integracoesDisponiveis";
 import { FieldValues, UseFormSetValue } from "react-hook-form";
 import { ChevronDown } from "@tamagui/lucide-icons";
+import { Text, View } from "react-native";
 
 export default function SelectMarkeplace({
   setValue,
@@ -46,10 +37,12 @@ export default function SelectMarkeplace({
               return (
                 <View
                   key={marketplace.key}
-                  flexDirection="row"
-                  justifyContent="space-between"
-                  padding={10}
-                  paddingRight={25}
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    padding: 10,
+                    paddingRight: 25,
+                  }}
                 >
                   <Text>{marketplace.label}</Text>
                   <RadioGroup.Item

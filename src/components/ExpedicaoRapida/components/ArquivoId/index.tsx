@@ -3,8 +3,7 @@ import { getService } from "../../../../services/getService";
 import { useNavigation } from "@react-navigation/native";
 import { Button, ListItem, YGroup } from "tamagui";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { View } from "tamagui";
-import { Alert } from "react-native";
+import { Alert, View } from "react-native";
 import { NavigationTypes } from "../../../../@types/NavigationTypes";
 
 export default function ArquivoId({ fileId }: { fileId: string }) {
@@ -22,7 +21,7 @@ export default function ArquivoId({ fileId }: { fileId: string }) {
   }
   return (
     <>
-      <View paddingHorizontal={5} gap={20} marginTop={10}>
+      <View style={{ paddingHorizontal: 5, gap: 20, marginTop: 10 }}>
         <TouchableOpacity
           onPress={() => navigation.navigate("ListaSeparacao", fileId)}
         >
@@ -63,7 +62,7 @@ export default function ArquivoId({ fileId }: { fileId: string }) {
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => handlePrintFile(fileId)}>
-          <View marginTop={20} theme={"orange_active"}>
+          <View style={{ marginTop: 20 }}>
             <Button color={"white"} backgroundColor={"#1890ff"}>
               Imprimir Arquivo
             </Button>
