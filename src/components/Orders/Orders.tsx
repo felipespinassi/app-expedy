@@ -61,7 +61,7 @@ export default function Orders({ navigation }: any) {
   }
 
   async function onScrollScreen() {
-    if (!loading) {
+    if (!loading && pedidos.length > 10) {
       setPage(page + 1);
     }
   }
@@ -96,7 +96,12 @@ export default function Orders({ navigation }: any) {
     return selectedOrders.includes(item.id);
   }
 
-  console.log(filters);
+  function onReset() {
+    setPage(1);
+    setFilters({});
+    reset();
+  }
+
   return (
     <SafeAreaView style={{ alignItems: "center", flex: 1 }}>
       <View
@@ -116,7 +121,8 @@ export default function Orders({ navigation }: any) {
           getValues={getValues}
           setFilters={setFilters}
           setPage={setPage}
-          reset={reset}
+          onReset={onReset}
+          filters={filters}
         />
       </View>
       {selectedOrders.length > 0 && (
@@ -142,9 +148,7 @@ export default function Orders({ navigation }: any) {
                 <TouchableOpacity
                   key={"Todos"}
                   onPress={() => {
-                    setPage(1);
-                    setFilters({});
-                    reset();
+                    onReset();
                   }}
                 >
                   <View
@@ -193,7 +197,7 @@ export default function Orders({ navigation }: any) {
             </View>
           </>
         )}
-        onEndReachedThreshold={0.2}
+        onEndReachedThreshold={0.5}
         keyExtractor={(item) => item.id}
         onEndReached={onScrollScreen}
         refreshing={loading}

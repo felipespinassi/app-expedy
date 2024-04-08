@@ -1,5 +1,5 @@
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Accordion,
   Adapt,
@@ -25,7 +25,7 @@ export default function DialogFilters({
   setValue,
   getValues,
   setPage,
-  reset,
+  onReset,
 }: any) {
   const { data, isFetching, isLoading }: UseQueryResult<any> = useQuery(
     "Integracoes",
@@ -110,10 +110,8 @@ export default function DialogFilters({
 
             <Button
               onPress={() => {
-                setFilters({}),
-                  setIntegrationSelected(""),
-                  setStatusHubSelected("");
-                reset();
+                setIntegrationSelected(""), setStatusHubSelected("");
+                onReset();
               }}
             >
               Limpar Filtros
