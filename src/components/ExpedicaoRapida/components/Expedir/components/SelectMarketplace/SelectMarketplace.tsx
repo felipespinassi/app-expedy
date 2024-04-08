@@ -3,7 +3,7 @@ import React, { useMemo, useState } from "react";
 import { Accordion, Paragraph, RadioGroup, Square } from "tamagui";
 import { FieldValues, UseFormSetValue } from "react-hook-form";
 import { ChevronDown } from "@tamagui/lucide-icons";
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { integracoesDisponiveis } from "../../../../../../Objects/integracoesDisponiveis";
 
 export default function SelectMarkeplace({
@@ -11,13 +11,17 @@ export default function SelectMarkeplace({
 }: {
   setValue: UseFormSetValue<FieldValues>;
 }) {
+  const [marketplaceSelected, setMarketplaceSelected] = useState("");
   return (
     <Accordion overflow="hidden" width="100%" type="multiple" gap={10}>
       <Accordion.Item value="a1">
         <Accordion.Trigger flexDirection="row" justifyContent="space-between">
           {({ open }: { open: boolean }) => (
             <>
-              <Paragraph>Marketplaces</Paragraph>
+              <Text style={{ fontSize: 14, fontWeight: "500" }}>
+                Marketplace{" "}
+                {marketplaceSelected ? `- ${marketplaceSelected}` : <></>}
+              </Text>
 
               <Square animation="quick" rotate={open ? "180deg" : "0deg"}>
                 <ChevronDown size="$1" />
@@ -27,16 +31,22 @@ export default function SelectMarkeplace({
         </Accordion.Trigger>
 
         <Accordion.Content backgroundColor={"$white3"} width={"100%"}>
-          <RadioGroup
+          {/* <RadioGroup
             gap={15}
             onValueChange={(marketplace) =>
               setValue("marketplace", marketplace)
             }
-          >
-            {integracoesDisponiveis?.map((marketplace: any) => {
-              return (
+          > */}
+          {integracoesDisponiveis?.map((marketplace: any) => {
+            return (
+              <TouchableOpacity
+                key={marketplace.key}
+                onPress={() => {
+                  setMarketplaceSelected(marketplace.label),
+                    setValue("marketplace", marketplace.key);
+                }}
+              >
                 <View
-                  key={marketplace.key}
                   style={{
                     flexDirection: "row",
                     justifyContent: "space-between",
@@ -45,17 +55,29 @@ export default function SelectMarkeplace({
                   }}
                 >
                   <Text>{marketplace.label}</Text>
-                  <RadioGroup.Item
-                    size={"$5"}
-                    backgroundColor={"white"}
-                    value={marketplace.key}
-                  >
-                    <RadioGroup.Indicator backgroundColor={"#1890ff"} />
-                  </RadioGroup.Item>
+                  {marketplaceSelected === marketplace.label ? (
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        backgroundColor: "#1890ff",
+                        borderRadius: 5,
+                      }}
+                    />
+                  ) : (
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        backgroundColor: "white",
+                        borderRadius: 5,
+                      }}
+                    />
+                  )}
                 </View>
-              );
-            })}
-          </RadioGroup>
+              </TouchableOpacity>
+            );
+          })}
         </Accordion.Content>
       </Accordion.Item>
     </Accordion>

@@ -25,17 +25,19 @@ export default function Expedir() {
       const value = values[key];
       params.append(key, value);
     });
-    try {
-      const response = await fetcher(
-        `${
-          config.baseURL
-        }orders/file/create?usuario=Expedy&${params.toString()}`,
-        { method: "POST" }
-      );
-      return Alert.alert("Arquivo gerado");
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   const response = await fetcher(
+    //     `${
+    //       config.baseURL
+    //     }orders/file/create?usuario=Expedy&${params.toString()}`,
+    //     { method: "POST" }
+    //   );
+    //   return Alert.alert("Arquivo gerado");
+    // } catch (error) {
+    //   console.log(error);
+    // }
+
+    console.log(values);
   }
 
   return (
