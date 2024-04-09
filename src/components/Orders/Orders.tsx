@@ -102,8 +102,10 @@ export default function Orders({ navigation }: any) {
     setPage(1);
     setStatusHubSelected("");
     setIntegrationSelected("");
+    setFilters({});
     form.reset();
   }
+  console.log(filters);
   return (
     <SafeAreaView style={{ alignItems: "center", flex: 1 }}>
       <View
