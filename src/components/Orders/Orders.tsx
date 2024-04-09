@@ -26,8 +26,10 @@ export default function Orders({ navigation }: any) {
   const [loading, setLoading] = useState(false);
   const [selectedOrders, setSelectedOrders] = useState([] as any);
   const [filters, setFilters] = useState<any>({});
+  const [integrationSelected, setIntegrationSelected] = useState("");
+  const [statusHubSelected, setStatusHubSelected] = useState("");
 
-  const { getValues, setValue, register, reset } = useForm();
+  const form = useForm();
 
   async function fetchOrders() {
     const params = new URLSearchParams();
@@ -98,10 +100,10 @@ export default function Orders({ navigation }: any) {
 
   function onReset() {
     setPage(1);
-    setFilters({});
-    reset();
+    setStatusHubSelected("");
+    setIntegrationSelected("");
+    form.reset();
   }
-
   return (
     <SafeAreaView style={{ alignItems: "center", flex: 1 }}>
       <View
@@ -117,12 +119,15 @@ export default function Orders({ navigation }: any) {
         }}
       >
         <DialogFilters
-          setValue={setValue}
-          getValues={getValues}
+          form={form}
           setFilters={setFilters}
           setPage={setPage}
           onReset={onReset}
           filters={filters}
+          integrationSelected={integrationSelected}
+          setIntegrationSelected={setIntegrationSelected}
+          statusHubSelected={statusHubSelected}
+          setStatusHubSelected={setStatusHubSelected}
         />
       </View>
       {selectedOrders.length > 0 && (

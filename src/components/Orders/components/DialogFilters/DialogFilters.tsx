@@ -22,21 +22,21 @@ import Checkbox from "../../../Checkbox/Checkbox";
 
 export default function DialogFilters({
   setFilters,
-  setValue,
-  getValues,
+  form,
   setPage,
   onReset,
+  integrationSelected,
+  setIntegrationSelected,
+  statusHubSelected,
+  setStatusHubSelected,
 }: any) {
   const { data, isFetching, isLoading }: UseQueryResult<any> = useQuery(
     "Integracoes",
     async () => await fetcher(`${config.baseURL}front/integracoes`, {})
   );
 
-  const [integrationSelected, setIntegrationSelected] = useState("");
-  const [statusHubSelected, setStatusHubSelected] = useState("");
-
   function onSubmit() {
-    const values = getValues();
+    const values = form.getValues();
     setFilters(values);
     setPage(1);
   }
@@ -161,7 +161,7 @@ export default function DialogFilters({
                             key={integracao.descricao}
                             onPress={() => {
                               setIntegrationSelected(integracao.descricao),
-                                setValue("fkintegracao", integracao.id);
+                                form.setValue("fkintegracao", integracao.id);
                             }}
                           >
                             <View
@@ -217,7 +217,7 @@ export default function DialogFilters({
                             key={status.id}
                             onPress={() => {
                               setStatusHubSelected(status.name),
-                                setValue("status_hub", status.identifier);
+                                form.setValue("status_hub", status.identifier);
                             }}
                           >
                             <View
@@ -246,7 +246,7 @@ export default function DialogFilters({
                   ID Marketplace
                 </Label>
                 <Input
-                  onChangeText={(e) => setValue("orderid", e)}
+                  onChangeText={(e) => form.setValue("orderid", e)}
                   placeholder="ID marketplace"
                 />
               </View>
@@ -256,7 +256,7 @@ export default function DialogFilters({
                   ID Hub
                 </Label>
                 <Input
-                  onChangeText={(e) => setValue("id", e)}
+                  onChangeText={(e) => form.setValue("id", e)}
                   placeholder="Id Hub"
                 />
               </View>
