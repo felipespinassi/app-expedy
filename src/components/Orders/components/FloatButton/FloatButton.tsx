@@ -82,6 +82,8 @@ export default function FloatButton({
             right: 10,
             shadowColor: "black",
             shadowRadius: 2,
+            shadowOpacity: 0.2,
+            shadowOffset: { width: 0, height: 0 },
             backgroundColor: "white",
           }}
         >

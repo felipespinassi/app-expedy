@@ -19,6 +19,8 @@ import fetcher from "../../services/fetcher";
 import { config } from "../../services/apiConfig";
 import { OrdersTypes } from "../../@types/OrdersTypes";
 import { useForm } from "react-hook-form";
+import { Input } from "tamagui";
+import { Search } from "@tamagui/lucide-icons";
 
 export default function Orders({ navigation }: any) {
   const [page, setPage] = useState(1);
@@ -26,8 +28,6 @@ export default function Orders({ navigation }: any) {
   const [loading, setLoading] = useState(false);
   const [selectedOrders, setSelectedOrders] = useState([] as any);
   const [filters, setFilters] = useState<any>({});
-  const [integrationSelected, setIntegrationSelected] = useState("");
-  const [statusHubSelected, setStatusHubSelected] = useState("");
 
   const form = useForm();
 
@@ -100,10 +100,7 @@ export default function Orders({ navigation }: any) {
 
   function onReset() {
     setPage(1);
-    setStatusHubSelected("");
-    setIntegrationSelected("");
     setFilters({});
-    form.reset();
   }
   console.log(filters);
   return (
@@ -114,22 +111,41 @@ export default function Orders({ navigation }: any) {
           backgroundColor: "white",
           width: "100%",
           height: 40,
-          justifyContent: "flex-end",
+          justifyContent: "space-between",
           flexDirection: "row",
           alignItems: "center",
           paddingHorizontal: 5,
+          shadowColor: "black",
+          shadowRadius: 2,
+          shadowOpacity: 0.2,
+          shadowOffset: { width: 0, height: 0 },
         }}
       >
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "80%",
+          }}
+        >
+          <Search position="relative" left={30} zIndex={10} size={20} />
+          <Input
+            paddingLeft={35}
+            borderStyle="unset"
+            width={"100%"}
+            height={30}
+            backgroundColor={"white"}
+            placeholder="Buscar Pedidos"
+          />
+        </View>
+
         <DialogFilters
           form={form}
           setFilters={setFilters}
           setPage={setPage}
           onReset={onReset}
           filters={filters}
-          integrationSelected={integrationSelected}
-          setIntegrationSelected={setIntegrationSelected}
-          statusHubSelected={statusHubSelected}
-          setStatusHubSelected={setStatusHubSelected}
         />
       </View>
       {selectedOrders.length > 0 && (

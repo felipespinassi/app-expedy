@@ -52,7 +52,7 @@ export default function Mais({ navigation }: any) {
     <>
       <View
         style={{
-          height: "22%",
+          height: 150,
           backgroundColor: "#002851",
           flexDirection: "row",
         }}

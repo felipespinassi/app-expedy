@@ -1,45 +1,23 @@
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
-import React, { useEffect, useState } from "react";
-import {
-  Accordion,
-  Adapt,
-  Button,
-  Dialog,
-  Form,
-  Input,
-  Label,
-  Paragraph,
-  Sheet,
-  Square,
-} from "tamagui";
-import { Check, ChevronDown } from "@tamagui/lucide-icons";
+import React, { useState } from "react";
+import { Adapt, Button, Dialog, Sheet } from "tamagui";
+import { ChevronDown } from "@tamagui/lucide-icons";
 import fetcher from "../../../../services/fetcher";
 import { config } from "../../../../services/apiConfig";
 import { UseQueryResult, useQuery } from "react-query";
 import { statusHub } from "../../../../Objects/statusHub";
-import { RadioGroup } from "tamagui";
 import Checkbox from "../../../Checkbox/Checkbox";
 
 export default function DialogFilters({
   setFilters,
-  form,
-  setPage,
-  onReset,
-  integrationSelected,
-  setIntegrationSelected,
-  statusHubSelected,
-  setStatusHubSelected,
+  // form,
+  // setPage,
+  filters,
 }: any) {
   const { data, isFetching, isLoading }: UseQueryResult<any> = useQuery(
     "Integracoes",
     async () => await fetcher(`${config.baseURL}front/integracoes`, {})
   );
-
-  function onSubmit() {
-    const values = form.getValues();
-    setFilters(values);
-    setPage(1);
-  }
 
   return (
     <Dialog modal>
@@ -93,175 +71,82 @@ export default function DialogFilters({
           enterStyle={{ x: 0, y: 20, opacity: 0, scale: 0.9 }}
           exitStyle={{ x: 0, y: 10, opacity: 0, scale: 0.95 }}
         >
-          <Form onSubmit={() => onSubmit()} gap={20}>
-            <Dialog.Title>Filtrar pedidos</Dialog.Title>
+          <Dialog.Title>Filtrar pedidos</Dialog.Title>
 
-            <Form.Trigger asChild>
-              <Dialog.Close displayWhenAdapted asChild>
-                <Button
-                  theme={"blue_active"}
-                  backgroundColor={"#1890ff"}
-                  color={"white"}
-                >
-                  Filtrar
-                </Button>
-              </Dialog.Close>
-            </Form.Trigger>
-
+          <Dialog.Close displayWhenAdapted asChild>
             <Button
-              onPress={() => {
-                setIntegrationSelected(""), setStatusHubSelected("");
-                onReset();
-              }}
+              theme={"blue_active"}
+              backgroundColor={"#1890ff"}
+              color={"white"}
             >
-              Limpar Filtros
+              Feito
             </Button>
+          </Dialog.Close>
 
-            <ScrollView>
-              <View>
-                <Accordion
-                  overflow="hidden"
-                  width="100%"
-                  type="multiple"
-                  gap={10}
-                >
-                  <Accordion.Item value="a1">
-                    <Accordion.Trigger
-                      flexDirection="row"
-                      justifyContent="space-between"
+          <ScrollView>
+            <View style={{ padding: 10, gap: 20 }}>
+              <Text style={{ fontSize: 22, fontWeight: "500" }}>
+                Integrações
+              </Text>
+              {data?.integracoes.map((integracao: any) => {
+                return (
+                  <TouchableOpacity
+                    key={integracao.descricao}
+                    onPress={() => {
+                      setFilters({ ...filters, fkintegracao: integracao.id });
+                    }}
+                  >
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        paddingRight: 25,
+                      }}
                     >
-                      {({ open }: { open: boolean }) => (
-                        <>
-                          <Paragraph>
-                            Integração{" "}
-                            {integrationSelected ? (
-                              `- ${integrationSelected}`
-                            ) : (
-                              <></>
-                            )}
-                          </Paragraph>
+                      <Text>{integracao.descricao}</Text>
+                      <Checkbox
+                        value1={filters.fkintegracao}
+                        value2={integracao.id}
+                      />
+                    </View>
+                  </TouchableOpacity>
+                );
+              })}
 
-                          <Square
-                            animation="quick"
-                            rotate={open ? "180deg" : "0deg"}
-                          >
-                            <ChevronDown size="$1" />
-                          </Square>
-                        </>
-                      )}
-                    </Accordion.Trigger>
+              <View style={{ borderWidth: 0.5 }} />
 
-                    <Accordion.Content
-                      backgroundColor={"$white3"}
-                      width={"100%"}
+              <Text style={{ fontSize: 22, fontWeight: "500" }}>
+                Status Hub
+              </Text>
+              {Object.values(statusHub).map((status: any) => {
+                return (
+                  <TouchableOpacity
+                    key={status.id}
+                    onPress={() => {
+                      setFilters({
+                        ...filters,
+                        status_hub: status.identifier,
+                      });
+                    }}
+                  >
+                    <View
+                      style={{
+                        paddingRight: 25,
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                      }}
                     >
-                      {data?.integracoes.map((integracao: any) => {
-                        return (
-                          <TouchableOpacity
-                            key={integracao.descricao}
-                            onPress={() => {
-                              setIntegrationSelected(integracao.descricao),
-                                form.setValue("fkintegracao", integracao.id);
-                            }}
-                          >
-                            <View
-                              style={{
-                                flexDirection: "row",
-                                justifyContent: "space-between",
-                                padding: 10,
-                                paddingRight: 25,
-                              }}
-                            >
-                              <Text>{integracao.descricao}</Text>
-                              <Checkbox
-                                value1={integrationSelected}
-                                value2={integracao.descricao}
-                              />
-                            </View>
-                          </TouchableOpacity>
-                        );
-                      })}
-                    </Accordion.Content>
-                  </Accordion.Item>
-
-                  <Accordion.Item value="a2">
-                    <Accordion.Trigger
-                      flexDirection="row"
-                      justifyContent="space-between"
-                    >
-                      {({ open }: any) => (
-                        <>
-                          <Paragraph>
-                            Status Hub{" "}
-                            {statusHubSelected ? (
-                              `- ${statusHubSelected}`
-                            ) : (
-                              <></>
-                            )}
-                          </Paragraph>
-
-                          <Square
-                            animation="quick"
-                            rotate={open ? "180deg" : "0deg"}
-                          >
-                            <ChevronDown size="$1" />
-                          </Square>
-                        </>
-                      )}
-                    </Accordion.Trigger>
-
-                    <Accordion.Content backgroundColor={"$white3"} gap={10}>
-                      {Object.values(statusHub).map((status: any) => {
-                        return (
-                          <TouchableOpacity
-                            key={status.id}
-                            onPress={() => {
-                              setStatusHubSelected(status.name),
-                                form.setValue("status_hub", status.identifier);
-                            }}
-                          >
-                            <View
-                              style={{
-                                padding: 10,
-                                paddingRight: 25,
-                                flexDirection: "row",
-                                justifyContent: "space-between",
-                              }}
-                            >
-                              <Text style={{ padding: 5 }}>{status.name}</Text>
-                              <Checkbox
-                                value1={statusHubSelected}
-                                value2={status.name}
-                              />
-                            </View>
-                          </TouchableOpacity>
-                        );
-                      })}
-                    </Accordion.Content>
-                  </Accordion.Item>
-                </Accordion>
-              </View>
-              <View>
-                <Label width={160} justifyContent="flex-end">
-                  ID Marketplace
-                </Label>
-                <Input
-                  onChangeText={(e) => form.setValue("orderid", e)}
-                  placeholder="ID marketplace"
-                />
-              </View>
-
-              <View>
-                <Label width={160} justifyContent="flex-end">
-                  ID Hub
-                </Label>
-                <Input
-                  onChangeText={(e) => form.setValue("id", e)}
-                  placeholder="Id Hub"
-                />
-              </View>
-            </ScrollView>
-          </Form>
+                      <Text style={{ padding: 5 }}>{status.name}</Text>
+                      <Checkbox
+                        value1={filters.status_hub}
+                        value2={status.identifier}
+                      />
+                    </View>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          </ScrollView>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog>

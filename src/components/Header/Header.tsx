@@ -18,7 +18,7 @@ export default function Header({
     <View
       style={{
         backgroundColor: "#002851",
-        height: 150,
+        height: 110,
         justifyContent: "flex-end",
         alignItems: "center",
         paddingBottom: 15,

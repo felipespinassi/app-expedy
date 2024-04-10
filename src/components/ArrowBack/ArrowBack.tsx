@@ -9,6 +9,9 @@ export default function ArrowBack({ navigation }: any) {
         justifyContent: "flex-start",
         width: "90%",
         padding: 5,
+        position: "relative",
+        bottom: -40,
+        right: 10,
       }}
     >
       <TouchableOpacity onPress={() => navigation.goBack()}>

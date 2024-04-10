@@ -18,7 +18,7 @@ export default function Checkbox({ value1, value2 }: any) {
           style={{
             width: 20,
             height: 20,
-            backgroundColor: "white",
+            backgroundColor: "#d3d3d3",
             borderRadius: 5,
           }}
         />
