@@ -129,15 +129,16 @@ export default function Orders({ navigation }: any) {
             width: "80%",
           }}
         >
-          <Search position="relative" left={30} zIndex={10} size={20} />
-          <Input
+          {/* <Search position="relative" left={30} zIndex={10} size={20} /> */}
+          {/* <Input
+          
             paddingLeft={35}
             borderStyle="unset"
             width={"100%"}
             height={30}
             backgroundColor={"white"}
             placeholder="Buscar Pedidos"
-          />
+          /> */}
         </View>
 
         <DialogFilters

@@ -13,7 +13,6 @@ import { useForm } from "react-hook-form";
 import SelectMaisVendidos from "./components/SelectMaisVendidos/SelectMaisVendidos";
 import { config } from "../../../../services/apiConfig";
 import fetcher from "../../../../services/fetcher";
-import DatePicker from "./components/DatePicker/DatePicker";
 
 export default function Expedir() {
   const { getValues, setValue, register } = useForm();
@@ -25,17 +24,21 @@ export default function Expedir() {
       const value = values[key];
       params.append(key, value);
     });
-    // try {
-    //   const response = await fetcher(
-    //     `${
-    //       config.baseURL
-    //     }orders/file/create?usuario=Expedy&${params.toString()}`,
-    //     { method: "POST" }
-    //   );
-    //   return Alert.alert("Arquivo gerado");
-    // } catch (error) {
-    //   console.log(error);
-    // }
+
+    if (Object.keys(values).length <= 0) {
+      return Alert.alert("Selecione um filtro para gerar o arquivo");
+    }
+    try {
+      const response = await fetcher(
+        `${
+          config.baseURL
+        }orders/file/create?usuario=Expedy&${params.toString()}`,
+        { method: "POST" }
+      );
+      return Alert.alert("Arquivo gerado");
+    } catch (error) {
+      console.log(error);
+    }
 
     console.log(values);
   }
@@ -82,9 +85,9 @@ export default function Expedir() {
               width={"100%"}
             />
           </View>
-          <View style={{ flexDirection: "row", gap: 10 }}>
+          {/* <View style={{ flexDirection: "row", gap: 10 }}>
             <DatePicker setValue={setValue} />
-          </View>
+          </View> */}
           <Separator />
 
           <Form.Trigger asChild>
@@ -100,13 +103,13 @@ export default function Expedir() {
               </View>
             </TouchableOpacity>
           </Form.Trigger>
-          <TouchableOpacity>
+          {/* <TouchableOpacity>
             <View style={{ alignItems: "center" }}>
               <Button backgroundColor={"$white075"} width={"100%"}>
                 Limpar Filtros
               </Button>
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </Form>
       </ScrollView>
     </KeyboardAvoidingView>

@@ -37,13 +37,13 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
     const arr: any = data?.produtos;
     arr.sort((a: any, b: any) => {
       if (
-        a.controle.quantidadeRestante === 0 &&
-        b.controle.quantidadeRestante !== 0
+        a.controle?.quantidadeRestante === 0 &&
+        b.controle?.quantidadeRestante !== 0
       ) {
         return 1; // Coloca 'a' após 'b'
       } else if (
-        a.controle.quantidadeRestante !== 0 &&
-        b.controle.quantidadeRestante === 0
+        a.controle?.quantidadeRestante !== 0 &&
+        b.controle?.quantidadeRestante === 0
       ) {
         return -1; // Coloca 'a' antes de 'b'
       } else {
@@ -81,7 +81,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
               renderRightActions={RightAction}
             >
               <View>
-                {produto.controle.quantidadeRestante === 0 ? (
+                {produto?.controle?.quantidadeRestante === 0 ? (
                   <YStack paddingHorizontal={5}>
                     <View
                       style={{
@@ -96,7 +96,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
                       }}
                     >
                       <Text style={{ width: "20%", fontSize: 18 }}>
-                        {produto.controle.quantidadeRestante}
+                        {produto?.controle?.quantidadeRestante}
                       </Text>
 
                       <View style={{ width: "80%", gap: 7 }}>
@@ -132,7 +132,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
                         }}
                       >
                         <Text style={{ width: "20%", fontSize: 18 }}>
-                          {produto.controle.quantidadeRestante}
+                          {produto?.controle?.quantidadeRestante}
                         </Text>
 
                         <View style={{ width: "80%", gap: 7 }}>

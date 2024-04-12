@@ -52,7 +52,7 @@ export default function ItemsToPick({ params }: Props) {
             <View style={{ alignItems: "center" }}>
               <H5>
                 Quantidade Restante:{" "}
-                {params.produto.controle.quantidadeRestante}
+                {params?.produto?.controle?.quantidadeRestante}
               </H5>
             </View>
 
