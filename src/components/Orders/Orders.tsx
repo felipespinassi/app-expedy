@@ -99,6 +99,7 @@ export default function Orders({ navigation }: any) {
   }
 
   function onReset() {
+    form.reset();
     setPage(1);
     setFilters({});
   }
@@ -111,7 +112,7 @@ export default function Orders({ navigation }: any) {
           backgroundColor: "white",
           width: "100%",
           height: 40,
-          justifyContent: "space-between",
+          justifyContent: "flex-end",
           flexDirection: "row",
           alignItems: "center",
           paddingHorizontal: 5,
@@ -121,31 +122,10 @@ export default function Orders({ navigation }: any) {
           shadowOffset: { width: 0, height: 0 },
         }}
       >
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "80%",
-          }}
-        >
-          {/* <Search position="relative" left={30} zIndex={10} size={20} /> */}
-          {/* <Input
-          
-            paddingLeft={35}
-            borderStyle="unset"
-            width={"100%"}
-            height={30}
-            backgroundColor={"white"}
-            placeholder="Buscar Pedidos"
-          /> */}
-        </View>
-
         <DialogFilters
+          onReset={onReset}
           form={form}
           setFilters={setFilters}
-          setPage={setPage}
-          onReset={onReset}
           filters={filters}
         />
       </View>

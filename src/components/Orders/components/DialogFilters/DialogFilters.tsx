@@ -1,28 +1,39 @@
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
-import React, { useState } from "react";
-import { Adapt, Button, Dialog, Sheet } from "tamagui";
+import React, { Dispatch, SetStateAction, useRef, useState } from "react";
+import { Adapt, Button, Dialog, Form, Input, Sheet } from "tamagui";
 import { ChevronDown } from "@tamagui/lucide-icons";
 import fetcher from "../../../../services/fetcher";
 import { config } from "../../../../services/apiConfig";
 import { UseQueryResult, useQuery } from "react-query";
 import { statusHub } from "../../../../Objects/statusHub";
 import Checkbox from "../../../Checkbox/Checkbox";
+import { FieldValues, UseFormReturn } from "react-hook-form";
+import SelectIntegracores from "./components/SelectIntegracoes/SelectIntegracores";
+import SelectStatusHub from "./components/SelectStatusHub/SelectStatusHub";
+
+interface Props {
+  setFilters: Dispatch<SetStateAction<{}>>;
+  form: UseFormReturn<FieldValues, any, undefined>;
+  filters: {};
+  onReset: () => void;
+}
 
 export default function DialogFilters({
   setFilters,
-  // form,
-  // setPage,
+  form,
   filters,
-}: any) {
-  const { data, isFetching, isLoading }: UseQueryResult<any> = useQuery(
-    "Integracoes",
-    async () => await fetcher(`${config.baseURL}front/integracoes`, {})
-  );
+  onReset,
+}: Props) {
+  function onFinish() {
+    const values = form.getValues();
+    setFilters(values);
+  }
 
   return (
     <Dialog modal>
       <Dialog.Trigger asChild>
         <TouchableOpacity
+          onPress={() => onFinish()}
           style={{
             flexDirection: "row",
             justifyContent: "center",
@@ -71,81 +82,52 @@ export default function DialogFilters({
           enterStyle={{ x: 0, y: 20, opacity: 0, scale: 0.9 }}
           exitStyle={{ x: 0, y: 10, opacity: 0, scale: 0.95 }}
         >
-          <Dialog.Title>Filtrar pedidos</Dialog.Title>
+          <View style={{ gap: 10 }}>
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                padding: 10,
+              }}
+            >
+              <Text onPress={onReset}>Limpar filtros </Text>
+            </View>
+          </View>
 
           <Dialog.Close displayWhenAdapted asChild>
             <Button
+              onPress={() => onFinish()}
               theme={"blue_active"}
               backgroundColor={"#1890ff"}
               color={"white"}
             >
-              Feito
+              Filtrar
             </Button>
           </Dialog.Close>
 
           <ScrollView>
-            <View style={{ padding: 10, gap: 20 }}>
-              <Text style={{ fontSize: 22, fontWeight: "500" }}>
-                Integrações
-              </Text>
-              {data?.integracoes.map((integracao: any) => {
-                return (
-                  <TouchableOpacity
-                    key={integracao.descricao}
-                    onPress={() => {
-                      setFilters({ ...filters, fkintegracao: integracao.id });
-                    }}
-                  >
-                    <View
-                      style={{
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                        paddingRight: 25,
-                      }}
-                    >
-                      <Text>{integracao.descricao}</Text>
-                      <Checkbox
-                        value1={filters.fkintegracao}
-                        value2={integracao.id}
-                      />
-                    </View>
-                  </TouchableOpacity>
-                );
-              })}
+            <Form onSubmit={onFinish}>
+              <View style={{ padding: 10, gap: 20 }}>
+                <Text style={{ fontSize: 22, fontWeight: "500" }}>ID HUB</Text>
+                <Input
+                  onChangeText={(e) => form.setValue("id", e)}
+                  placeholder="Digite o ID HUB"
+                />
 
-              <View style={{ borderWidth: 0.5 }} />
+                <Text style={{ fontSize: 22, fontWeight: "500" }}>
+                  ID Marketplace
+                </Text>
 
-              <Text style={{ fontSize: 22, fontWeight: "500" }}>
-                Status Hub
-              </Text>
-              {Object.values(statusHub).map((status: any) => {
-                return (
-                  <TouchableOpacity
-                    key={status.id}
-                    onPress={() => {
-                      setFilters({
-                        ...filters,
-                        status_hub: status.identifier,
-                      });
-                    }}
-                  >
-                    <View
-                      style={{
-                        paddingRight: 25,
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <Text style={{ padding: 5 }}>{status.name}</Text>
-                      <Checkbox
-                        value1={filters.status_hub}
-                        value2={status.identifier}
-                      />
-                    </View>
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
+                <Input
+                  onChangeText={(e) => form.setValue("orderid", e)}
+                  placeholder="Digite o ID Marketplace"
+                />
+
+                <SelectIntegracores form={form} />
+
+                <SelectStatusHub form={form} />
+              </View>
+            </Form>
           </ScrollView>
         </Dialog.Content>
       </Dialog.Portal>
