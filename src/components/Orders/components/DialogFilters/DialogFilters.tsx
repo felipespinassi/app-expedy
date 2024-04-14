@@ -1,12 +1,7 @@
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
-import React, { Dispatch, SetStateAction, useRef, useState } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { Adapt, Button, Dialog, Form, Input, Sheet } from "tamagui";
 import { ChevronDown } from "@tamagui/lucide-icons";
-import fetcher from "../../../../services/fetcher";
-import { config } from "../../../../services/apiConfig";
-import { UseQueryResult, useQuery } from "react-query";
-import { statusHub } from "../../../../Objects/statusHub";
-import Checkbox from "../../../Checkbox/Checkbox";
 import { FieldValues, UseFormReturn } from "react-hook-form";
 import SelectIntegracores from "./components/SelectIntegracoes/SelectIntegracores";
 import SelectStatusHub from "./components/SelectStatusHub/SelectStatusHub";
@@ -14,16 +9,10 @@ import SelectStatusHub from "./components/SelectStatusHub/SelectStatusHub";
 interface Props {
   setFilters: Dispatch<SetStateAction<{}>>;
   form: UseFormReturn<FieldValues, any, undefined>;
-  filters: {};
   onReset: () => void;
 }
 
-export default function DialogFilters({
-  setFilters,
-  form,
-  filters,
-  onReset,
-}: Props) {
+export default function DialogFilters({ setFilters, form, onReset }: Props) {
   function onFinish() {
     const values = form.getValues();
     setFilters(values);

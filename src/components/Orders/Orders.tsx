@@ -122,12 +122,7 @@ export default function Orders({ navigation }: any) {
           shadowOffset: { width: 0, height: 0 },
         }}
       >
-        <DialogFilters
-          onReset={onReset}
-          form={form}
-          setFilters={setFilters}
-          filters={filters}
-        />
+        <DialogFilters onReset={onReset} form={form} setFilters={setFilters} />
       </View>
       {selectedOrders.length > 0 && (
         <FloatButton
