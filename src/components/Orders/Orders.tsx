@@ -19,15 +19,15 @@ import fetcher from "../../services/fetcher";
 import { config } from "../../services/apiConfig";
 import { OrdersTypes } from "../../@types/OrdersTypes";
 import { useForm } from "react-hook-form";
-import { Input } from "tamagui";
-import { Search } from "@tamagui/lucide-icons";
+import { ChevronDown } from "@tamagui/lucide-icons";
+import ModalFilters from "./components/ModalFilters/ModalFilters";
 
 export default function Orders({ navigation }: any) {
-  const [page, setPage] = useState(1);
   const [pedidos, setPedidos] = useState<any>([]);
   const [loading, setLoading] = useState(false);
   const [selectedOrders, setSelectedOrders] = useState([] as any);
-  const [filters, setFilters] = useState<any>({});
+  const [filters, setFilters] = useState<any>({ page: 1 });
+  const [openModal, setOpenModal] = useState(false);
 
   const form = useForm();
 
@@ -40,16 +40,16 @@ export default function Orders({ navigation }: any) {
     setLoading(true);
     try {
       const response: any = await fetcher(
-        `${
-          config.baseURL
-        }front/orders/simples?page=${page}&pageSize=20&${params.toString()}`
+        `${config.baseURL}front/orders/simples?page=${
+          filters.page
+        }&pageSize=20&${params.toString()}`
       );
       const newData = response.pedidos;
 
       const filteredData = newData.filter((newItem: any) => {
         return !pedidos.some((item: any) => item.id === newItem.id);
       });
-      if (page === 1) {
+      if (filters.page === 1) {
         setPedidos(newData);
       } else {
         setPedidos((prevData: any) => [...prevData, ...filteredData]);
@@ -64,25 +64,24 @@ export default function Orders({ navigation }: any) {
 
   async function onScrollScreen() {
     if (!loading && pedidos.length > 10) {
-      setPage(page + 1);
+      setFilters({ page: filters.page + 1 });
     }
   }
 
   function onRefresh() {
-    if (page != 1) {
+    if (filters.page != 1) {
       setLoading(true);
-      setPage(1);
+      setFilters({ page: 1 });
     }
   }
 
   function onSelectMarketplace(marketplace: string) {
-    setFilters({ marketplace: marketplace });
-    setPage(1);
+    setFilters({ page: 1, marketplace: marketplace });
   }
 
   useEffect(() => {
     fetchOrders();
-  }, [page, filters]);
+  }, [filters]);
 
   function onLongPress(item: OrdersTypes) {
     if (selectedOrders.includes(item.id)) {
@@ -100,8 +99,7 @@ export default function Orders({ navigation }: any) {
 
   function onReset() {
     form.reset();
-    setPage(1);
-    setFilters({});
+    setFilters({ page: 1 });
   }
   console.log(filters);
   return (
@@ -122,7 +120,17 @@ export default function Orders({ navigation }: any) {
           shadowOffset: { width: 0, height: 0 },
         }}
       >
-        <DialogFilters onReset={onReset} form={form} setFilters={setFilters} />
+        <TouchableOpacity
+          onPress={() => setOpenModal(true)}
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Text>Filtros</Text>
+          <ChevronDown />
+        </TouchableOpacity>
       </View>
       {selectedOrders.length > 0 && (
         <FloatButton
@@ -219,6 +227,13 @@ export default function Orders({ navigation }: any) {
         ListFooterComponent={
           <>{pedidos.length >= 10 && <ActivityIndicator size={"large"} />}</>
         }
+      />
+      <ModalFilters
+        setFilters={setFilters}
+        form={form}
+        filters={filters}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
       />
     </SafeAreaView>
   );

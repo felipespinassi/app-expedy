@@ -9,20 +9,26 @@ import SelectStatusHub from "./components/SelectStatusHub/SelectStatusHub";
 interface Props {
   setFilters: Dispatch<SetStateAction<{}>>;
   form: UseFormReturn<FieldValues, any, undefined>;
-  onReset: () => void;
+  filters: {};
+  setPage: any;
 }
 
-export default function DialogFilters({ setFilters, form, onReset }: Props) {
+export default function DialogFilters({
+  setFilters,
+  form,
+  setPage,
+  filters,
+}: Props) {
   function onFinish() {
     const values = form.getValues();
     setFilters(values);
+    setPage(1);
   }
 
   return (
     <Dialog modal>
       <Dialog.Trigger asChild>
         <TouchableOpacity
-          onPress={() => onFinish()}
           style={{
             flexDirection: "row",
             justifyContent: "center",
@@ -71,18 +77,6 @@ export default function DialogFilters({ setFilters, form, onReset }: Props) {
           enterStyle={{ x: 0, y: 20, opacity: 0, scale: 0.9 }}
           exitStyle={{ x: 0, y: 10, opacity: 0, scale: 0.95 }}
         >
-          <View style={{ gap: 10 }}>
-            <View
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                padding: 10,
-              }}
-            >
-              <Text onPress={onReset}>Limpar filtros </Text>
-            </View>
-          </View>
-
           <Dialog.Close displayWhenAdapted asChild>
             <Button
               onPress={() => onFinish()}
@@ -112,7 +106,7 @@ export default function DialogFilters({ setFilters, form, onReset }: Props) {
                   placeholder="Digite o ID Marketplace"
                 />
 
-                <SelectIntegracores form={form} />
+                <SelectIntegracores filters={filters} form={form} />
 
                 <SelectStatusHub form={form} />
               </View>

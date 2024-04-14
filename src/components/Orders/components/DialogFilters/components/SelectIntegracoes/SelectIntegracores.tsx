@@ -5,13 +5,13 @@ import fetcher from "../../../../../../services/fetcher";
 import { config } from "../../../../../../services/apiConfig";
 import Checkbox from "../../../../../Checkbox/Checkbox";
 
-export default function SelectIntegracores({ form }: any) {
+export default function SelectIntegracores({ form, filters }: any) {
   const { data, isFetching, isLoading }: UseQueryResult<any> = useQuery(
     "Integracoes",
     async () => await fetcher(`${config.baseURL}front/integracoes`, {})
   );
 
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(filters.fkintegracao);
   return (
     <>
       <Text style={{ fontSize: 22, fontWeight: "500" }}>Integrações</Text>
