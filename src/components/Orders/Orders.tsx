@@ -63,7 +63,7 @@ export default function Orders({ navigation }: any) {
 
   async function onScrollScreen() {
     if (!loading && pedidos.length > 10) {
-      setFilters({ page: filters.page + 1 });
+      setFilters({ ...filters, page: filters.page + 1 });
     }
   }
 
