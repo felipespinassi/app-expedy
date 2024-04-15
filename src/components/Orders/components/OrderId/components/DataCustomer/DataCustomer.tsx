@@ -1,9 +1,11 @@
 import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Alert, Text, TouchableOpacity, View } from "react-native";
 import { Button } from "tamagui";
 import { statusHub } from "../../../../../../Objects/statusHub";
 import { Copy } from "@tamagui/lucide-icons";
 import * as Clipboard from "expo-clipboard";
+
+import AntDesign from "react-native-vector-icons/AntDesign";
 
 export default function DataCustomer({ pedido }: any) {
   async function handleCopyToClipboard(text: string) {
@@ -15,9 +17,25 @@ export default function DataCustomer({ pedido }: any) {
         gap: 10,
       }}
     >
-      <Text style={{ fontWeight: "500", fontSize: 20 }}>
-        Informações Gerais
-      </Text>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <Text style={{ fontWeight: "500", fontSize: 20 }}>
+          Informações Gerais
+        </Text>
+        <View style={{ flexDirection: "row", gap: 10 }}>
+          {pedido.erroNota && (
+            <TouchableOpacity onPress={() => Alert.alert(pedido.erroNota)}>
+              <AntDesign color={"red"} name="exclefile1" size={24} />
+            </TouchableOpacity>
+          )}
+
+          {pedido.erroEtiqueta && (
+            <TouchableOpacity onPress={() => Alert.alert(pedido.erroEtiqueta)}>
+              <AntDesign color={"red"} name="filetext1" size={24} />
+            </TouchableOpacity>
+          )}
+        </View>
+      </View>
+
       <View
         style={{
           backgroundColor: "white",
