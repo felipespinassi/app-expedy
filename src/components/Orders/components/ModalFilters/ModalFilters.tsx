@@ -8,10 +8,10 @@ import {
 } from "react-native";
 import React, { Dispatch, SetStateAction } from "react";
 import { Button, Form, Input } from "tamagui";
-import SelectIntegracores from "../DialogFilters/components/SelectIntegracoes/SelectIntegracores";
-import SelectStatusHub from "../DialogFilters/components/SelectStatusHub/SelectStatusHub";
 import { X } from "@tamagui/lucide-icons";
 import { FieldValues, UseFormReturn } from "react-hook-form";
+import SelectIntegracores from "./components/SelectIntegracoes/SelectIntegracores";
+import SelectStatusHub from "./components/SelectStatusHub/SelectStatusHub";
 
 interface Props {
   setFilters: Dispatch<SetStateAction<{}>>;

@@ -26,6 +26,7 @@
     "axios": "^1.6.5",
     "burnt": "^0.12.2",
     "expo": "^50.0.2",
+    "expo-clipboard": "~5.0.1",
     "expo-status-bar": "~1.11.1",
     "expo-updates": "~0.24.8",
     "moment-timezone": "^0.5.44",
