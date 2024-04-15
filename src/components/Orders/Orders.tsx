@@ -11,7 +11,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import DialogFilters from "./components/DialogFilters/DialogFilters";
 import FloatButton from "./components/FloatButton/FloatButton";
 import { marketplaces } from "./utils/marketplaces";
 import ListEmptyComponent from "../ListEmptyComponent/ListEmptyComponent";
@@ -110,7 +109,7 @@ export default function Orders({ navigation }: any) {
           backgroundColor: "white",
           width: "100%",
           height: 40,
-          justifyContent: "flex-end",
+          justifyContent: "space-between",
           flexDirection: "row",
           alignItems: "center",
           paddingHorizontal: 5,
@@ -120,6 +119,9 @@ export default function Orders({ navigation }: any) {
           shadowOffset: { width: 0, height: 0 },
         }}
       >
+        <TouchableOpacity onPress={onReset}>
+          <Text>Limpar Filtros</Text>
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => setOpenModal(true)}
           style={{
@@ -152,27 +154,6 @@ export default function Orders({ navigation }: any) {
                 showsHorizontalScrollIndicator={false}
                 style={{ paddingBottom: 20, paddingTop: 5 }}
               >
-                <TouchableOpacity
-                  key={"Todos"}
-                  onPress={() => {
-                    onReset();
-                  }}
-                >
-                  <View
-                    style={{
-                      justifyContent: "center",
-                      alignItems: "center",
-                      width: 60,
-                      height: 60,
-                      backgroundColor: "white",
-                      borderRadius: 50,
-                      padding: 10,
-                      marginRight: 10,
-                    }}
-                  >
-                    <Text style={{ fontSize: 12 }}>Todos</Text>
-                  </View>
-                </TouchableOpacity>
                 {Object.values(marketplaces).map((element) => {
                   return (
                     <TouchableOpacity

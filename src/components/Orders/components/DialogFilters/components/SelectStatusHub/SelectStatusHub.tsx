@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { statusHub } from "../../../../../../Objects/statusHub";
 import Checkbox from "../../../../../Checkbox/Checkbox";
 
-export default function SelectStatusHub({ form }: any) {
-  const [value, setValue] = useState("");
+export default function SelectStatusHub({ form, filters }: any) {
+  const [value, setValue] = useState(filters.status_hub);
 
   return (
     <>

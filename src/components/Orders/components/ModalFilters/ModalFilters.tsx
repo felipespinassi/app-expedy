@@ -10,7 +10,7 @@ import React, { Dispatch, SetStateAction } from "react";
 import { Button, Form, Input } from "tamagui";
 import SelectIntegracores from "../DialogFilters/components/SelectIntegracoes/SelectIntegracores";
 import SelectStatusHub from "../DialogFilters/components/SelectStatusHub/SelectStatusHub";
-import { FolderClosed, X } from "@tamagui/lucide-icons";
+import { X } from "@tamagui/lucide-icons";
 import { FieldValues, UseFormReturn } from "react-hook-form";
 
 interface Props {
@@ -70,28 +70,26 @@ export default function ModalFilters({
         </View>
 
         <ScrollView>
-          <Form onSubmit={onFinish}>
-            <View style={{ padding: 10, gap: 20 }}>
-              <Text style={{ fontSize: 22, fontWeight: "500" }}>ID HUB</Text>
-              <Input
-                onChangeText={(e) => form.setValue("id", e)}
-                placeholder="Digite o ID HUB"
-              />
+          <View style={{ padding: 10, gap: 20 }}>
+            <Text style={{ fontSize: 22, fontWeight: "500" }}>ID HUB</Text>
+            <Input
+              onChangeText={(e) => form.setValue("id", e)}
+              placeholder="Digite o ID HUB"
+            />
 
-              <Text style={{ fontSize: 22, fontWeight: "500" }}>
-                ID Marketplace
-              </Text>
+            <Text style={{ fontSize: 22, fontWeight: "500" }}>
+              ID Marketplace
+            </Text>
 
-              <Input
-                onChangeText={(e) => form.setValue("orderid", e)}
-                placeholder="Digite o ID Marketplace"
-              />
+            <Input
+              onChangeText={(e) => form.setValue("orderid", e)}
+              placeholder="Digite o ID Marketplace"
+            />
 
-              <SelectIntegracores filters={filters} form={form} />
+            <SelectIntegracores filters={filters} form={form} />
 
-              <SelectStatusHub form={form} />
-            </View>
-          </Form>
+            <SelectStatusHub filters={filters} form={form} />
+          </View>
         </ScrollView>
       </SafeAreaView>
     </Modal>
