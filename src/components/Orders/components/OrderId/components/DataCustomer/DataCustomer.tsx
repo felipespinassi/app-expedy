@@ -1,13 +1,25 @@
-import React from "react";
-import { Alert, Text, TouchableOpacity, View } from "react-native";
-import { Button } from "tamagui";
+import React, { useState } from "react";
+import {
+  Alert,
+  Modal,
+  SafeAreaView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { Button, Input } from "tamagui";
 import { statusHub } from "../../../../../../Objects/statusHub";
-import { Copy } from "@tamagui/lucide-icons";
+import { Copy, X } from "@tamagui/lucide-icons";
 import * as Clipboard from "expo-clipboard";
 
 import AntDesign from "react-native-vector-icons/AntDesign";
 
 export default function DataCustomer({ pedido }: any) {
+  const [openModal, setOpenModal] = useState(false);
+
+  const [openModalErroNota, setOpenModalErroNota] = useState(false);
+
+  console.log(openModal);
   async function handleCopyToClipboard(text: string) {
     await Clipboard.setStringAsync(String(text));
   }
@@ -17,23 +29,43 @@ export default function DataCustomer({ pedido }: any) {
         gap: 10,
       }}
     >
+      {pedido.erroNota && (
+        <TouchableOpacity
+          onPress={() => setOpenModalErroNota(true)}
+          style={{
+            backgroundColor: "#f4d2d7",
+            padding: 10,
+            borderRadius: 10,
+            borderWidth: 1,
+            borderColor: "#ec5353",
+          }}
+        >
+          <View>
+            <Text>Pedido com erro na nota fiscal, clique para ver.</Text>
+          </View>
+        </TouchableOpacity>
+      )}
+
+      {pedido.erroEtiqueta && (
+        <TouchableOpacity
+          style={{
+            backgroundColor: "#f4d2d7",
+            padding: 10,
+            borderRadius: 10,
+            borderWidth: 1,
+            borderColor: "#ec5353",
+          }}
+          onPress={() => Alert.alert(pedido.erroEtiqueta)}
+        >
+          <View>
+            <Text> Pedido com erro na etiqueta, clique para ver.</Text>
+          </View>
+        </TouchableOpacity>
+      )}
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Text style={{ fontWeight: "500", fontSize: 20 }}>
           Informações Gerais
         </Text>
-        <View style={{ flexDirection: "row", gap: 10 }}>
-          {pedido.erroNota && (
-            <TouchableOpacity onPress={() => Alert.alert(pedido.erroNota)}>
-              <AntDesign color={"red"} name="exclefile1" size={24} />
-            </TouchableOpacity>
-          )}
-
-          {pedido.erroEtiqueta && (
-            <TouchableOpacity onPress={() => Alert.alert(pedido.erroEtiqueta)}>
-              <AntDesign color={"red"} name="filetext1" size={24} />
-            </TouchableOpacity>
-          )}
-        </View>
       </View>
 
       <View
@@ -150,7 +182,11 @@ export default function DataCustomer({ pedido }: any) {
       </View>
 
       <TouchableOpacity style={{ marginVertical: 20 }}>
-        <Button color={"#fff"} backgroundColor={"#1890ff"}>
+        <Button
+          onPress={() => setOpenModal(true)}
+          color={"#fff"}
+          backgroundColor={"#1890ff"}
+        >
           Atualizar informações
         </Button>
       </TouchableOpacity>
@@ -190,6 +226,61 @@ export default function DataCustomer({ pedido }: any) {
             </View>
           );
         })}
+        <Modal
+          presentationStyle="formSheet"
+          animationType="slide"
+          visible={openModal}
+        >
+          <View style={{ alignItems: "flex-end", padding: 10 }}>
+            <TouchableOpacity onPress={() => setOpenModal(false)}>
+              <X size={26} color={"black"} />
+            </TouchableOpacity>
+          </View>
+          <Button color={"white"} backgroundColor={"#1890ff"}>
+            Confirmar
+          </Button>
+          <View style={{ padding: 10, gap: 10 }}>
+            <Input placeholder="Cliente" />
+            <Input placeholder="IE" />
+            <Input placeholder="CPF" />
+            <Input placeholder="CNPJ" />
+            <Input placeholder=" Endereço" />
+            <Input placeholder="Número" />
+            <Input placeholder="Bairro" />
+            <Input placeholder="Cidade" />
+            <Input placeholder="Estado" />
+            <Input placeholder="CEP" />
+          </View>
+        </Modal>
+
+        <Modal
+          presentationStyle="formSheet"
+          animationType="slide"
+          visible={openModalErroNota}
+        >
+          <View style={{ alignItems: "flex-end", padding: 10 }}>
+            <TouchableOpacity onPress={() => setOpenModalErroNota(false)}>
+              <X size={26} color={"black"} />
+            </TouchableOpacity>
+          </View>
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: 20,
+              padding: 20,
+              color: "#ec5353",
+            }}
+          >
+            {pedido.erroNota}
+          </Text>
+
+          <View style={{ gap: 10, padding: 20 }}>
+            <Button backgroundColor={"#1890ff"}>Atualizar XML</Button>
+            <Button backgroundColor={"#1890ff"}>
+              Enviar Para o Marketplace
+            </Button>
+          </View>
+        </Modal>
       </View>
     </View>
   );
