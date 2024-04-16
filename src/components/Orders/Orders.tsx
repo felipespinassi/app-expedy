@@ -149,39 +149,37 @@ export default function Orders({ navigation }: any) {
               Marketplace
             </Text>
             <View style={{ justifyContent: "center", alignItems: "center" }}>
-              <ScrollView
-                horizontal
+              <FlatList
+                keyExtractor={(item) => item.name.toString()}
                 showsHorizontalScrollIndicator={false}
                 style={{ paddingBottom: 20, paddingTop: 5 }}
-              >
-                {Object.values(marketplaces).map((element) => {
-                  return (
-                    <TouchableOpacity
-                      key={element.name}
-                      onPress={() => onSelectMarketplace(element.name)}
+                horizontal
+                data={Object.values(marketplaces)}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    onPress={() => onSelectMarketplace(item.name)}
+                  >
+                    <View
+                      style={{
+                        justifyContent: "center",
+                        alignItems: "center",
+                        width: 60,
+                        height: 60,
+                        backgroundColor: "white",
+                        borderRadius: 50,
+                        padding: 10,
+                        marginRight: 10,
+                      }}
                     >
-                      <View
-                        style={{
-                          justifyContent: "center",
-                          alignItems: "center",
-                          width: 60,
-                          height: 60,
-                          backgroundColor: "white",
-                          borderRadius: 50,
-                          padding: 10,
-                          marginRight: 10,
-                        }}
-                      >
-                        <Image
-                          resizeMode="contain"
-                          style={{ width: 50, height: 40 }}
-                          source={element.image}
-                        />
-                      </View>
-                    </TouchableOpacity>
-                  );
-                })}
-              </ScrollView>
+                      <Image
+                        resizeMode="contain"
+                        style={{ width: 50, height: 40 }}
+                        source={item.image}
+                      />
+                    </View>
+                  </TouchableOpacity>
+                )}
+              />
             </View>
           </>
         )}
