@@ -46,6 +46,7 @@ export default function App() {
               justifyContent="center"
               alignItems="center"
               height={"20%"}
+              zIndex={100}
             />
             <ToastDemo />
             <StatusBar
