@@ -31,12 +31,13 @@ export default function Orders({ navigation }: any) {
   const form = useForm();
 
   async function fetchOrders() {
+    setLoading(true);
+
     const params = new URLSearchParams();
     Object.keys(filters).map((key) => {
       const value = filters[key];
       params.append(key, value);
     });
-    setLoading(true);
     try {
       const response: any = await fetcher(
         `${config.baseURL}front/orders/simples?page=${
@@ -53,10 +54,10 @@ export default function Orders({ navigation }: any) {
       } else {
         setPedidos((prevData: any) => [...prevData, ...filteredData]);
       }
+      setLoading(false);
     } catch (error) {
       Alert.alert("Falha ao buscar pedidos");
       console.log(error);
-    } finally {
       setLoading(false);
     }
   }
@@ -68,10 +69,8 @@ export default function Orders({ navigation }: any) {
   }
 
   function onRefresh() {
-    if (filters.page != 1) {
-      setLoading(true);
-      setFilters({ page: 1 });
-    }
+    setLoading(true);
+    setFilters({ ...filters, page: 1 });
   }
 
   function onSelectMarketplace(marketplace: string) {
@@ -100,7 +99,6 @@ export default function Orders({ navigation }: any) {
     form.reset();
     setFilters({ page: 1 });
   }
-  console.log(filters);
   return (
     <SafeAreaView style={{ alignItems: "center", flex: 1 }}>
       <View
