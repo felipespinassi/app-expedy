@@ -1,8 +1,8 @@
-import { getAccess_token } from "../../../../storage/getAccess_token";
+import { getAccess_token } from "../../../storage/getAccess_token";
 import { Alert } from "react-native";
-import { Product } from "../../../../@types/Products";
-import fetcher from "../../../../services/fetcher";
-import { config } from "../../../../services/apiConfig";
+import { Product } from "../../../@types/Products";
+import fetcher from "../../../services/fetcher";
+import { config } from "../../../services/apiConfig";
 
 export async function onPickTotalQuantity(
   produto: Product,

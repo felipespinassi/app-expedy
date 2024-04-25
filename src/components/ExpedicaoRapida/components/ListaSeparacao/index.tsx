@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { UseQueryResult, useQuery } from "react-query";
 import { Button, ScrollView, Spinner, YStack } from "tamagui";
 import { Swipeable } from "react-native-gesture-handler";
-import { onPickTotalQuantity } from "../utils/onPickTotalQuantity";
+import { onPickTotalQuantity } from "../../utils/onPickTotalQuantity";
 import { useToastController } from "@tamagui/toast";
 import { PickingListProps, Product } from "../../../../@types/Products";
 import fetcher from "../../../../services/fetcher";

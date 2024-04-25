@@ -1,4 +1,4 @@
-export const marketplaces: any = {
+export const marketplaces = {
   shopee: {
     name: "shopee",
     image: require("../../../../assets/logos/shopee.png"),

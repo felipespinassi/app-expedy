@@ -1,16 +1,22 @@
-import React, { useMemo, useState } from "react";
-import { Accordion, Paragraph, RadioGroup, Square, Text, View } from "tamagui";
-import { UseQueryResult, useQuery } from "react-query";
-import fetcher from "../../../../../../services/fetcher";
-import { config } from "../../../../../../services/apiConfig";
-import { ChevronDown } from "@tamagui/lucide-icons";
+import React, { useState } from "react";
+import { Text, View } from "tamagui";
+import fetcher from "../../../../../../../../services/fetcher";
+import { config } from "../../../../../../../../services/apiConfig";
 import { TouchableOpacity } from "react-native";
-import Checkbox from "../../../../../Checkbox/Checkbox";
+import Checkbox from "../../../../../../../Checkbox/Checkbox";
+import useSWR from "swr";
+import { UseFormReturn } from "react-hook-form";
+import { FiltersProps } from "../../../../../../@types/FiltersExpedirTypes";
+import { OrdersResponseTypes } from "../../../../../../@types/OrdersResponseTypes";
 
-export default function SelectMaisVendidos({ form }: any) {
-  const { data, isFetching, isLoading }: UseQueryResult<any> = useQuery(
-    "Visual",
-    async () => await fetcher(`${config.baseURL}orders/file/visual`, {})
+export default function SelectMaisVendidos({
+  form,
+}: {
+  form: UseFormReturn<FiltersProps>;
+}) {
+  const { data, isLoading } = useSWR<OrdersResponseTypes>(
+    `${config.baseURL}orders/file/visual`,
+    fetcher
   );
 
   const [productSelected, setProductSelected] = useState("");
@@ -18,7 +24,7 @@ export default function SelectMaisVendidos({ form }: any) {
   return (
     <>
       <Text style={{ fontSize: 22, fontWeight: "500" }}>Mais Vendidos</Text>
-      {data?.maisVendidos?.map((produto: any) => {
+      {data?.maisVendidos?.map((produto) => {
         return (
           <TouchableOpacity
             onPress={() => {

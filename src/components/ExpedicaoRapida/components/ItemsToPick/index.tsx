@@ -6,7 +6,7 @@ import { Button, Card, H4, H5, Input } from "tamagui";
 import { Platform } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
-import { onPickProduct } from "../utils/onPickProduct";
+import { onPickProduct } from "../../utils/onPickProduct";
 import { Product } from "../../../../@types/Products";
 import { View } from "react-native";
 

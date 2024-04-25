@@ -1,18 +1,23 @@
 import React, { useMemo, useState } from "react";
 
 import { Accordion, Paragraph, RadioGroup, Square } from "tamagui";
-import { FieldValues, UseFormSetValue } from "react-hook-form";
+import { FieldValues, UseFormReturn, UseFormSetValue } from "react-hook-form";
 import { ChevronDown } from "@tamagui/lucide-icons";
 import { Text, TouchableOpacity, View } from "react-native";
-import { integracoesDisponiveis } from "../../../../../../Objects/integracoesDisponiveis";
-import Checkbox from "../../../../../Checkbox/Checkbox";
+import { integracoesDisponiveis } from "../../../../../../../../Objects/integracoesDisponiveis";
+import Checkbox from "../../../../../../../Checkbox/Checkbox";
+import { FiltersProps } from "../../../../../../@types/FiltersExpedirTypes";
 
-export default function SelectMarkeplace({ form }: { form: any }) {
+export default function SelectMarkeplace({
+  form,
+}: {
+  form: UseFormReturn<FiltersProps>;
+}) {
   const [marketplaceSelected, setMarketplaceSelected] = useState("");
   return (
     <>
       <Text style={{ fontSize: 22, fontWeight: "500" }}>Marketplace</Text>
-      {integracoesDisponiveis?.map((marketplace: any) => {
+      {integracoesDisponiveis?.map((marketplace) => {
         return (
           <TouchableOpacity
             key={marketplace.key}

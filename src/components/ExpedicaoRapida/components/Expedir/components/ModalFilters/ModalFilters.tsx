@@ -1,19 +1,27 @@
 import {
   View,
-  Text,
   Modal,
   KeyboardAvoidingView,
   Platform,
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { X } from "@tamagui/lucide-icons";
 import { Button, Form, Input } from "tamagui";
-import SelectMaisVendidos from "../SelectMaisVendidos/SelectMaisVendidos";
-import { useForm } from "react-hook-form";
-import SelectMarkeplace from "../SelectMarketplace/SelectMarketplace";
-import SelectIntegracoes from "../SelectIntegracoes/SelectIntegracoes";
+import SelectMaisVendidos from "./components/SelectMaisVendidos/SelectMaisVendidos";
+import { FieldValues, UseFormReturn } from "react-hook-form";
+import SelectMarkeplace from "./components/SelectMarketplace/SelectMarketplace";
+import SelectIntegracoes from "./components/SelectIntegracoes/SelectIntegracoes";
+import { FiltersProps } from "../../../../@types/FiltersExpedirTypes";
+
+interface Props {
+  openModal: boolean;
+  setOpenModal: Dispatch<SetStateAction<boolean>>;
+  setFilters: Dispatch<SetStateAction<FiltersProps>>;
+  filters: FiltersProps;
+  form: UseFormReturn<FiltersProps>;
+}
 
 export default function ModalFilters({
   openModal,
@@ -21,7 +29,7 @@ export default function ModalFilters({
   setFilters,
   filters,
   form,
-}: any) {
+}: Props) {
   async function onFinish() {
     const values = await form.getValues();
 

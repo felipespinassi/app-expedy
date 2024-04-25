@@ -1,9 +1,9 @@
 import axios from "axios";
-import { getAccess_token } from "../../../../storage/getAccess_token";
+import { getAccess_token } from "../../../storage/getAccess_token";
 import { Alert } from "react-native";
-import { config } from "../../../../services/apiConfig";
-import fetcher from "../../../../services/fetcher";
-import { Product } from "../../../../@types/Products";
+import { config } from "../../../services/apiConfig";
+import fetcher from "../../../services/fetcher";
+import { Product } from "../../../@types/Products";
 
 export async function onPickProduct(
   params: {
