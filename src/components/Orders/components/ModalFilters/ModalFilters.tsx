@@ -10,8 +10,8 @@ import React, { Dispatch, SetStateAction } from "react";
 import { Button, Form, Input } from "tamagui";
 import { X } from "@tamagui/lucide-icons";
 import { FieldValues, UseFormReturn } from "react-hook-form";
-import SelectIntegracores from "./components/SelectIntegracoes/SelectIntegracores";
 import SelectStatusHub from "./components/SelectStatusHub/SelectStatusHub";
+import SelectIntegracoes from "./components/SelectIntegracoes/SelectIntegracoes";
 
 interface Props {
   setFilters: Dispatch<SetStateAction<{}>>;
@@ -86,7 +86,7 @@ export default function ModalFilters({
               placeholder="Digite o ID Marketplace"
             />
 
-            <SelectIntegracores filters={filters} form={form} />
+            <SelectIntegracoes filters={filters} form={form} />
 
             <SelectStatusHub filters={filters} form={form} />
           </View>

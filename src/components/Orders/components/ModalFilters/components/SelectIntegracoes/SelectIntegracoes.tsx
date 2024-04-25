@@ -5,7 +5,7 @@ import fetcher from "../../../../../../services/fetcher";
 import { config } from "../../../../../../services/apiConfig";
 import Checkbox from "../../../../../Checkbox/Checkbox";
 
-export default function SelectIntegracores({ form, filters }: any) {
+export default function SelectIntegracoes({ form, filters }: any) {
   const { data, isFetching, isLoading }: UseQueryResult<any> = useQuery(
     "Integracoes",
     async () => await fetcher(`${config.baseURL}front/integracoes`, {})
