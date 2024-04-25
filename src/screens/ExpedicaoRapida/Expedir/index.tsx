@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Theme } from "tamagui";
-import ExpedirComponent from "../../../components/ExpedicaoRapida/components/Expedir/Expedir";
+import ExpedirComponent from "../../../views/ExpedicaoRapida/components/Expedir/Expedir";
 import Header from "../../../components/Header/Header";
 
 export default function Expedir() {

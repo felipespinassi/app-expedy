@@ -13,13 +13,13 @@ import {
 } from "react-native";
 import FloatButton from "./components/FloatButton/FloatButton";
 import { marketplaces } from "./utils/marketplaces";
-import ListEmptyComponent from "../ListEmptyComponent/ListEmptyComponent";
 import fetcher from "../../services/fetcher";
 import { config } from "../../services/apiConfig";
 import { OrdersTypes } from "../../@types/OrdersTypes";
 import { useForm } from "react-hook-form";
 import { ChevronDown } from "@tamagui/lucide-icons";
 import ModalFilters from "./components/ModalFilters/ModalFilters";
+import ListEmptyComponent from "../../components/ListEmptyComponent/ListEmptyComponent";
 
 export default function Orders({ navigation }: any) {
   const [pedidos, setPedidos] = useState<any>([]);

@@ -2,7 +2,7 @@ import React from "react";
 import { Theme } from "tamagui";
 import { useNavigation } from "@react-navigation/native";
 
-import ItemsToPickComponent from "../../../components/ExpedicaoRapida/components/ItemsToPick";
+import ItemsToPickComponent from "../../../views/ExpedicaoRapida/components/ItemsToPick";
 import Header from "../../../components/Header/Header";
 
 export default function ItemsToPick(props: any) {

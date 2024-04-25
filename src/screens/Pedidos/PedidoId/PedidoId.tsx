@@ -1,5 +1,5 @@
 import React from "react";
-import { OrderId } from "../../../components/Orders/components/OrderId/OrderId";
+import { OrderId } from "../../../views/Orders/components/OrderId/OrderId";
 import Header from "../../../components/Header/Header";
 import { View } from "tamagui";
 

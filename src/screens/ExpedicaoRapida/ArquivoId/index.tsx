@@ -1,6 +1,6 @@
 import React from "react";
 
-import ArquivoIdComponent from "../../../components/ExpedicaoRapida/components/ArquivoId/index";
+import ArquivoIdComponent from "../../../views/ExpedicaoRapida/components/ArquivoId/index";
 import { Theme } from "tamagui";
 import { useNavigation } from "@react-navigation/native";
 import Header from "../../../components/Header/Header";

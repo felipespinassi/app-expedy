@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { Copy } from "@tamagui/lucide-icons";
 import * as Clipboard from "expo-clipboard";
-import { statusHub } from "../../../../../../Objects/statusHub";
+import { statusHub } from "../../../../../../objects/statusHub";
 
 export default function DataGeneral({ pedido }: any) {
   async function handleCopyToClipboard(text: string) {

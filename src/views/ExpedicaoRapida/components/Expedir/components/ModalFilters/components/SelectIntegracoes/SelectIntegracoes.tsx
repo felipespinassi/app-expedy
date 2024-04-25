@@ -1,17 +1,34 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { UseQueryResult, useQuery } from "react-query";
-import fetcher from "../../../../../../services/fetcher";
-import { config } from "../../../../../../services/apiConfig";
-import Checkbox from "../../../../../Checkbox/Checkbox";
+import fetcher from "../../../../../../../../services/fetcher";
+import { config } from "../../../../../../../../services/apiConfig";
+import { FiltersProps } from "../../../../../../@types/FiltersExpedirTypes";
+import { UseFormReturn } from "react-hook-form";
+import useSWR from "swr";
+import Checkbox from "../../../../../../../../components/Checkbox/Checkbox";
 
-export default function SelectIntegracoes({ form, filters }: any) {
-  const { data, isFetching, isLoading }: UseQueryResult<any> = useQuery(
-    "Integracoes",
-    async () => await fetcher(`${config.baseURL}front/integracoes`, {})
+interface Props {
+  form: UseFormReturn<FiltersProps>;
+  filters: FiltersProps;
+}
+
+interface IntegrationProps {
+  integracoes: [
+    {
+      descricao: string;
+      id: string;
+    }
+  ];
+}
+
+export default function SelectIntegracoes({ form, filters }: Props) {
+  const { data, isLoading } = useSWR<IntegrationProps>(
+    `${config.baseURL}front/integracoes`,
+    fetcher
   );
 
-  const [value, setValue] = useState(filters.fkintegracao);
+  const [value, setValue] = useState(filters?.integracao);
   return (
     <>
       <Text style={{ fontSize: 22, fontWeight: "500" }}>Integrações</Text>
@@ -20,7 +37,7 @@ export default function SelectIntegracoes({ form, filters }: any) {
           <TouchableOpacity
             key={integracao.descricao}
             onPress={() => {
-              form.setValue("fkintegracao", integracao.id);
+              form.setValue("integracao", integracao.id);
               setValue(integracao.id);
             }}
           >

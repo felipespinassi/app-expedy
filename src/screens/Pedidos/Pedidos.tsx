@@ -1,6 +1,6 @@
-import Orders from "../../components/Orders/Orders";
 import Header from "../../components/Header/Header";
 import { View } from "tamagui";
+import Orders from "../../views/Orders/Orders";
 
 export default function Pedidos({ navigation }: any) {
   return (

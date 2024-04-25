@@ -7,7 +7,7 @@ import { StatusBar, useColorScheme } from "react-native";
 import config from "./tamagui.config";
 import { useFonts } from "expo-font";
 import { ToastDemo } from "./src/components/ToastDemo";
-import { Routes } from "./src/Routes";
+import { Routes } from "./src/routes";
 
 const queryClient = new QueryClient();
 const tamaguiConfig = createTamagui(config);

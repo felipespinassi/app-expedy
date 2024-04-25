@@ -4,9 +4,9 @@ import { Accordion, Paragraph, RadioGroup, Square } from "tamagui";
 import { FieldValues, UseFormReturn, UseFormSetValue } from "react-hook-form";
 import { ChevronDown } from "@tamagui/lucide-icons";
 import { Text, TouchableOpacity, View } from "react-native";
-import { integracoesDisponiveis } from "../../../../../../../../Objects/integracoesDisponiveis";
-import Checkbox from "../../../../../../../Checkbox/Checkbox";
+import { integracoesDisponiveis } from "../../../../../../../../objects/integracoesDisponiveis";
 import { FiltersProps } from "../../../../../../@types/FiltersExpedirTypes";
+import Checkbox from "../../../../../../../../components/Checkbox/Checkbox";
 
 export default function SelectMarkeplace({
   form,

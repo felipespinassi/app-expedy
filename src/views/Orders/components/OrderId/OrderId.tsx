@@ -1,17 +1,12 @@
 import {
   ActivityIndicator,
-  Alert,
   SafeAreaView,
   ScrollView,
-  Text,
   View,
 } from "react-native";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import DataCustomer from "./components/DataCustomer/DataCustomer";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import ArrowBack from "../../../ArrowBack/ArrowBack";
 import fetcher from "../../../../services/fetcher";
 import { config } from "../../../../services/apiConfig";
 import { Button } from "tamagui";

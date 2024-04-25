@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import { statusHub } from "../../../../../../Objects/statusHub";
-import Checkbox from "../../../../../Checkbox/Checkbox";
+import { statusHub } from "../../../../../../objects/statusHub";
+import Checkbox from "../../../../../../components/Checkbox/Checkbox";
 
 export default function SelectStatusHub({ form, filters }: any) {
   const [value, setValue] = useState(filters.status_hub);

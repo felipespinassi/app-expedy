@@ -3,11 +3,11 @@ import { Text, View } from "tamagui";
 import fetcher from "../../../../../../../../services/fetcher";
 import { config } from "../../../../../../../../services/apiConfig";
 import { TouchableOpacity } from "react-native";
-import Checkbox from "../../../../../../../Checkbox/Checkbox";
 import useSWR from "swr";
 import { UseFormReturn } from "react-hook-form";
 import { FiltersProps } from "../../../../../../@types/FiltersExpedirTypes";
 import { OrdersResponseTypes } from "../../../../../../@types/OrdersResponseTypes";
+import Checkbox from "../../../../../../../../components/Checkbox/Checkbox";
 
 export default function SelectMaisVendidos({
   form,

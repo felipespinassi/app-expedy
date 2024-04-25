@@ -1,5 +1,5 @@
 import { Theme } from "tamagui";
-import ListaSeparacaoComponent from "../../../components/ExpedicaoRapida/components/ListaSeparacao";
+import ListaSeparacaoComponent from "../../../views/ExpedicaoRapida/components/ListaSeparacao";
 import { useNavigation } from "@react-navigation/native";
 import Header from "../../../components/Header/Header";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import ExpedicaoRapidaComponent from "../../components/ExpedicaoRapida";
+import ExpedicaoRapidaComponent from "../../views/ExpedicaoRapida";
 import { Heading, Theme, View } from "tamagui";
 import Header from "../../components/Header/Header";
 
