@@ -1,14 +1,15 @@
 import { getAccess_token } from "../../../storage/getAccess_token";
 import { Alert } from "react-native";
-import { Product } from "../../../@types/Products";
+import { PickingListProps, Product } from "../../../@types/Products";
 import fetcher from "../../../services/fetcher";
 import { config } from "../../../services/apiConfig";
+import { KeyedMutator } from "swr";
 
 export async function onPickTotalQuantity(
   produto: Product,
   fileId: string,
   toast: any,
-  refetch: () => void
+  mutate: KeyedMutator<PickingListProps>
 ) {
   const access_token = await getAccess_token();
 
@@ -25,7 +26,7 @@ export async function onPickTotalQuantity(
         }),
       }
     );
-    refetch();
+    mutate();
     toast.show("Salvo com sucesso!", {
       message: "Produto separado.",
     });

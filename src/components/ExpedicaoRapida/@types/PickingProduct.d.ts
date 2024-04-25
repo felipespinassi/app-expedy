@@ -2,7 +2,7 @@ export interface PickingListProps {
   produtos: Product[];
 }
 
-export interface Product {
+export interface PickingProduct {
   controle: {
     quantidadeConferida: number;
     quantidadeRestante: number;

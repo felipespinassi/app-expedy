@@ -7,12 +7,13 @@ import { Platform } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { onPickProduct } from "../../utils/onPickProduct";
-import { Product } from "../../../../@types/Products";
+
 import { View } from "react-native";
+import { PickingProduct } from "../../@types/PickingProduct";
 
 interface Props {
   params: {
-    produto: Product;
+    produto: PickingProduct;
     fileId: string;
   };
 }

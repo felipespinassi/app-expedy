@@ -1,25 +1,24 @@
-import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { UseQueryResult, useQuery } from "react-query";
 import { Button, ScrollView, Spinner, YStack } from "tamagui";
 import { Swipeable } from "react-native-gesture-handler";
 import { onPickTotalQuantity } from "../../utils/onPickTotalQuantity";
 import { useToastController } from "@tamagui/toast";
-import { PickingListProps, Product } from "../../../../@types/Products";
+
 import fetcher from "../../../../services/fetcher";
 import { config } from "../../../../services/apiConfig";
+import useSWR from "swr";
+import { PickingListProps, PickingProduct } from "../../@types/PickingProduct";
 
 export default function ListaSeparacao({ fileId }: { fileId: string }) {
   const navigation = useNavigation<any>();
   const toast = useToastController();
 
-  const { data, isFetching, refetch }: UseQueryResult<PickingListProps> =
-    useQuery(
-      "ListaSeparacao",
-      async () =>
-        await fetcher(`${config.baseURL}orders/file/picking/${fileId}`, {})
-    );
+  const { data, isValidating, mutate } = useSWR<PickingListProps>(
+    `${config.baseURL}orders/file/picking/${fileId}`,
+    fetcher
+  );
 
   function RightAction() {
     return (
@@ -29,8 +28,8 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
     );
   }
 
-  async function onSwipeTotal(produto: Product) {
-    await onPickTotalQuantity(produto, fileId, toast, refetch);
+  async function onSwipeTotal(produto: PickingProduct) {
+    await onPickTotalQuantity(produto, fileId, toast, mutate);
   }
 
   function moveZerosToEnd() {
@@ -54,13 +53,13 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
 
   useEffect(() => {
     const focused = navigation.addListener("focus", () => {
-      refetch();
+      mutate();
     });
 
     return focused;
   }, [navigation]);
 
-  if (isFetching) {
+  if (isValidating) {
     return (
       <View style={{ margin: 20 }}>
         <Spinner size={"large"} />

@@ -4,19 +4,13 @@ import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
 import { Spinner, YStack } from "tamagui";
 import { NavigationTypes } from "../../../../@types/NavigationTypes";
-import { UseQueryResult, useQuery } from "react-query";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { FilesProps } from "../../../../@types/Files";
-import fetcher from "../../../../services/fetcher";
-import { config } from "../../../../services/apiConfig";
+import { useGetFiles } from "../../hooks/useGetFiles";
 
 export default function ArquivosGerados() {
   const navigation = useNavigation<NavigationTypes>();
 
-  const { data, isLoading, error }: UseQueryResult<FilesProps> = useQuery(
-    "Files",
-    async () => await fetcher(`${config.baseURL}orders/file`, {})
-  );
+  const { data, isLoading, error } = useGetFiles();
 
   if (isLoading) {
     return (
