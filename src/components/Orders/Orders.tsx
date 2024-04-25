@@ -148,7 +148,7 @@ export default function Orders({ navigation }: any) {
             </Text>
             <View style={{ justifyContent: "center", alignItems: "center" }}>
               <FlatList
-                keyExtractor={(item) => item.name.toString()}
+                keyExtractor={(item: any) => item.name.toString()}
                 showsHorizontalScrollIndicator={false}
                 style={{ paddingBottom: 20, paddingTop: 5 }}
                 horizontal

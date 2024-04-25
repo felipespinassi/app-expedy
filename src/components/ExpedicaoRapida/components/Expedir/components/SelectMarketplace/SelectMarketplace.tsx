@@ -11,6 +11,7 @@ export default function SelectMarkeplace({ form }: { form: any }) {
   const [marketplaceSelected, setMarketplaceSelected] = useState("");
   return (
     <>
+      <Text style={{ fontSize: 22, fontWeight: "500" }}>Marketplace</Text>
       {integracoesDisponiveis?.map((marketplace: any) => {
         return (
           <TouchableOpacity

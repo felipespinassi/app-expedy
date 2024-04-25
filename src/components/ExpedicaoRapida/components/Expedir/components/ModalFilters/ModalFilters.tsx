@@ -13,10 +13,20 @@ import { Button, Form, Input } from "tamagui";
 import SelectMaisVendidos from "../SelectMaisVendidos/SelectMaisVendidos";
 import { useForm } from "react-hook-form";
 import SelectMarkeplace from "../SelectMarketplace/SelectMarketplace";
-import SelectIntegracoes from "../../../../../Orders/components/ModalFilters/components/SelectIntegracoes/SelectIntegracoes";
+import SelectIntegracoes from "../SelectIntegracoes/SelectIntegracoes";
 
-export default function ModalFilters({ openModal, setOpenModal }: any) {
-  const form = useForm();
+export default function ModalFilters({
+  openModal,
+  setOpenModal,
+  setFilters,
+  filters,
+  form,
+}: any) {
+  async function onFinish() {
+    const values = await form.getValues();
+
+    setFilters(values);
+  }
 
   return (
     <Modal
@@ -34,16 +44,30 @@ export default function ModalFilters({ openModal, setOpenModal }: any) {
         >
           <X />
         </TouchableOpacity>
+        <TouchableOpacity>
+          <View style={{ alignItems: "center" }}>
+            <Button
+              onPress={() => {
+                onFinish(), setOpenModal(false);
+              }}
+              width={"80%"}
+              color={"white"}
+              backgroundColor={"#1890ff"}
+            >
+              Filtrar
+            </Button>
+          </View>
+        </TouchableOpacity>
         <ScrollView>
           <Form onSubmit={() => {}} gap={20} padding={20}>
-            <View style={{ gap: 15 }}>
-              <SelectIntegracoes form={form} filters={""} />
+            <View style={{ gap: 15, marginBottom: 10 }}>
+              <SelectIntegracoes form={form} filters={filters} />
             </View>
-            <View style={{ gap: 10 }}>
+            <View style={{ gap: 15, marginBottom: 10 }}>
               <SelectMarkeplace form={form} />
             </View>
 
-            <View style={{ flexDirection: "row" }}>
+            <View style={{ gap: 15, marginBottom: 10 }}>
               <SelectMaisVendidos form={form} />
             </View>
 
@@ -74,27 +98,6 @@ export default function ModalFilters({ openModal, setOpenModal }: any) {
             {/* <View style={{ flexDirection: "row", gap: 10 }}>
             <DatePicker setValue={setValue} />
           </View> */}
-
-            <Form.Trigger asChild>
-              <TouchableOpacity>
-                <View style={{ alignItems: "center" }}>
-                  <Button
-                    width={"100%"}
-                    color={"white"}
-                    backgroundColor={"#1890ff"}
-                  >
-                    GerarArquivo
-                  </Button>
-                </View>
-              </TouchableOpacity>
-            </Form.Trigger>
-            <TouchableOpacity onPress={() => setOpenModal(false)}>
-              <View style={{ alignItems: "center" }}>
-                <Button backgroundColor={"$white075"} width={"100%"}>
-                  Limpar Filtros
-                </Button>
-              </View>
-            </TouchableOpacity>
           </Form>
         </ScrollView>
       </KeyboardAvoidingView>

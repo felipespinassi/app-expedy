@@ -45,6 +45,7 @@
     "react-native-vector-icons": "^10.0.3",
     "react-native-web": "~0.19.10",
     "react-query": "^3.39.3",
+    "swr": "^2.2.5",
     "tamagui": "^1.90.8"
   },
   "devDependencies": {

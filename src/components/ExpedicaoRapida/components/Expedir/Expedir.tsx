@@ -1,36 +1,21 @@
-import { Button, Form, Input, Label, Separator, Spinner } from "tamagui";
-import SelectIntegracoes from "./components/SelectIntegracoes/SelectIntegracoes";
+import { Button, Spinner } from "tamagui";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import {
-  Alert,
-  FlatList,
-  KeyboardAvoidingView,
-  Modal,
-  Platform,
-  ScrollView,
-  Text,
-  View,
-} from "react-native";
-import SelectMarkeplace from "./components/SelectMarketplace/SelectMarketplace";
-import { useForm } from "react-hook-form";
-import SelectMaisVendidos from "./components/SelectMaisVendidos/SelectMaisVendidos";
-import { config } from "../../../../services/apiConfig";
-import fetcher from "../../../../services/fetcher";
-import { UseQueryResult, useQuery } from "react-query";
+import { FlatList, Text, View } from "react-native";
 import moment from "moment";
 import { useState } from "react";
 import { marketplaces } from "../../../Orders/utils/marketplaces";
-import { X } from "@tamagui/lucide-icons";
 import ModalFilters from "./components/ModalFilters/ModalFilters";
+import { useGetVisual } from "./hooks/useGetVisual";
+import ListEmptyComponent from "../../../ListEmptyComponent/ListEmptyComponent";
+import { useForm } from "react-hook-form";
 
 export default function Expedir() {
   const [openModal, setOpenModal] = useState(false);
+  const [filters, setFilters] = useState<any>({});
+  const form = useForm();
 
-  const { data, isFetching, isLoading }: UseQueryResult<any> = useQuery(
-    "Visual",
-    async () =>
-      await fetcher(`${config.baseURL}orders/file/visual?pageSize=100`, {})
-  );
+  console.log(filters);
+  const { data, isLoading, mutate, error } = useGetVisual(filters);
 
   // async function onGerarArquivo() {
   //   const values = getValues();
@@ -60,7 +45,6 @@ export default function Expedir() {
     <View style={{ flex: 1 }}>
       <View
         style={{
-          borderRadius: 10,
           backgroundColor: "white",
           width: "100%",
           height: 40,
@@ -72,12 +56,31 @@ export default function Expedir() {
           shadowRadius: 2,
           shadowOpacity: 0.2,
           shadowOffset: { width: 0, height: 0 },
+          borderBottomLeftRadius: 10,
+          borderBottomRightRadius: 10,
+          paddingRight: 15,
         }}
       >
+        <TouchableOpacity
+          onPress={() => {
+            setFilters({}), form.reset();
+          }}
+        >
+          <Text>Limpar Filtros</Text>
+        </TouchableOpacity>
         <TouchableOpacity onPress={() => setOpenModal(true)}>
           <Text>Filtros</Text>
         </TouchableOpacity>
       </View>
+
+      <Button
+        disabled={true}
+        color={"white"}
+        variant="outlined"
+        backgroundColor={"#1890ff"}
+      >
+        Gerar Arquivo
+      </Button>
       {isLoading ? (
         <View>
           <Spinner size="large" />
@@ -123,10 +126,17 @@ export default function Expedir() {
               </View>
             </View>
           )}
+          ListEmptyComponent={<ListEmptyComponent />}
         />
       )}
 
-      <ModalFilters openModal={openModal} setOpenModal={setOpenModal} />
+      <ModalFilters
+        setFilters={setFilters}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        filters={filters}
+        form={form}
+      />
     </View>
   );
 }

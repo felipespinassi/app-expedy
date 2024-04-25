@@ -1,85 +1,42 @@
+import { View, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { UseQueryResult, useQuery } from "react-query";
-import { Accordion, Square } from "tamagui";
 import fetcher from "../../../../../../services/fetcher";
 import { config } from "../../../../../../services/apiConfig";
-import { FieldValues, UseFormSetValue } from "react-hook-form";
-import { ChevronDown } from "@tamagui/lucide-icons";
-import { Text, TouchableOpacity, View } from "react-native";
+import Checkbox from "../../../../../Checkbox/Checkbox";
 
-export default function SelectIntegracoes({
-  setValue,
-}: {
-  setValue: UseFormSetValue<FieldValues>;
-}) {
+export default function SelectIntegracoes({ form, filters }: any) {
   const { data, isFetching, isLoading }: UseQueryResult<any> = useQuery(
     "Integracoes",
     async () => await fetcher(`${config.baseURL}front/integracoes`, {})
   );
-  const [integrationSelected, setIntegrationSelected] = useState("");
+
+  const [value, setValue] = useState(filters?.integracao);
   return (
-    <Accordion overflow="hidden" width="100%" type="multiple" gap={10}>
-      <Accordion.Item value="a1">
-        <Accordion.Trigger flexDirection="row" justifyContent="space-between">
-          {({ open }: { open: boolean }) => (
-            <>
-              <Text style={{ fontSize: 14, fontWeight: "500" }}>
-                Integração{" "}
-                {integrationSelected ? `- ${integrationSelected}` : <></>}
-              </Text>
-
-              <Square animation="quick" rotate={open ? "180deg" : "0deg"}>
-                <ChevronDown size="$1" />
-              </Square>
-            </>
-          )}
-        </Accordion.Trigger>
-
-        <Accordion.Content backgroundColor={"$white3"} width={"100%"}>
-          {data?.integracoes.map((integracao: any) => {
-            return (
-              <TouchableOpacity
-                onPress={() => {
-                  setIntegrationSelected(integracao.descricao),
-                    setValue("integracaoId", integracao.id);
-                }}
-                key={integracao.descricao}
-              >
-                <View
-                  style={{
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    padding: 15,
-                    paddingRight: 25,
-                  }}
-                >
-                  <Text>{integracao.descricao}</Text>
-                  {integrationSelected === integracao.descricao ? (
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        backgroundColor: "#1890ff",
-                        borderRadius: 5,
-                      }}
-                    />
-                  ) : (
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        backgroundColor: "white",
-                        borderRadius: 5,
-                      }}
-                    />
-                  )}
-                </View>
-              </TouchableOpacity>
-            );
-          })}
-          {/* </RadioGroup> */}
-        </Accordion.Content>
-      </Accordion.Item>
-    </Accordion>
+    <>
+      <Text style={{ fontSize: 22, fontWeight: "500" }}>Integrações</Text>
+      {data?.integracoes.map((integracao: any) => {
+        return (
+          <TouchableOpacity
+            key={integracao.descricao}
+            onPress={() => {
+              form.setValue("integracao", integracao.id);
+              setValue(integracao.id);
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                paddingRight: 25,
+              }}
+            >
+              <Text>{integracao.descricao}</Text>
+              <Checkbox value1={value} value2={integracao.id} />
+            </View>
+          </TouchableOpacity>
+        );
+      })}
+    </>
   );
 }
