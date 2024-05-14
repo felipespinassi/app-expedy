@@ -1,12 +1,13 @@
 import { getAccess_token } from "../../../storage/getAccess_token";
 import { Alert } from "react-native";
-import { PickingListProps, Product } from "../../../@types/Products";
+
 import fetcher from "../../../services/fetcher";
 import { config } from "../../../services/apiConfig";
 import { KeyedMutator } from "swr";
+import { PickingListProps, PickingProduct } from "../@types/PickingProduct";
 
 export async function onPickTotalQuantity(
-  produto: Product,
+  produto: PickingProduct,
   fileId: string,
   toast: any,
   mutate: KeyedMutator<PickingListProps>

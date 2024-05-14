@@ -3,12 +3,12 @@ import { getAccess_token } from "../../../storage/getAccess_token";
 import { Alert } from "react-native";
 import { config } from "../../../services/apiConfig";
 import fetcher from "../../../services/fetcher";
-import { Product } from "../../../@types/Products";
+import { PickingProduct } from "../@types/PickingProduct";
 
 export async function onPickProduct(
   params: {
     fileId: string;
-    produto: Product;
+    produto: PickingProduct;
   },
   quantity: string,
   toast: any,
