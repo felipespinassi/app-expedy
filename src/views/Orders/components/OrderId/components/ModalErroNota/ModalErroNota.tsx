@@ -1,8 +1,8 @@
 import { View, Text, Modal, Alert } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { X } from "@tamagui/lucide-icons";
-import { Button } from "tamagui";
+import { Button, Spinner } from "tamagui";
 import fetcher from "../../../../../../services/fetcher";
 import { config } from "../../../../../../services/apiConfig";
 import { useToastController } from "@tamagui/toast";
@@ -11,33 +11,42 @@ export default function ModalErroNota({
   pedido,
   openModalErroNota,
   setOpenModalErroNota,
+  refetch,
 }: any) {
   const toast = useToastController();
 
+  const [loading, setLoading] = useState(false);
+
   async function handleSendToMarketplace() {
+    setLoading(true);
     try {
       await fetcher(`${config.baseURL}orders/invoice/marketplace`, {
         method: "POST",
         body: JSON.stringify({ idPedido: pedido.id }),
       });
       toast.show("Enviado para o marketplace com sucesso");
+      refetch();
     } catch (error) {
       Alert.alert("Erro ao enviar para o marketplace");
     } finally {
       setOpenModalErroNota(false);
+      setLoading(false);
     }
   }
 
   async function handleUpdateandSendXML() {
+    setLoading(true);
     try {
       await fetcher(
         `${config.baseURL}faturador/consultar?pedido=${pedido.id}&faturador=apiFiscal`
       );
       toast.show("XML atualizado com sucesso");
+      refetch();
     } catch (error) {
       Alert.alert("Erro ao atualizar XML");
     } finally {
       setOpenModalErroNota(false);
+      setLoading(false);
     }
   }
   return (
@@ -63,12 +72,18 @@ export default function ModalErroNota({
       </Text>
 
       <View style={{ gap: 10, padding: 20 }}>
-        <Button onPress={handleUpdateandSendXML} backgroundColor={"#1890ff"}>
-          Atualizar XML
-        </Button>
-        <Button onPress={handleSendToMarketplace} backgroundColor={"#1890ff"}>
-          Enviar Para o Marketplace
-        </Button>
+        <TouchableOpacity disabled={loading} onPress={handleUpdateandSendXML}>
+          <Button style={{ backgroundColor: "#1890ff", color: "white" }}>
+            {loading && <Spinner />}
+            Atualizar XML
+          </Button>
+        </TouchableOpacity>
+        <TouchableOpacity disabled={loading} onPress={handleSendToMarketplace}>
+          <Button style={{ backgroundColor: "#1890ff", color: "white" }}>
+            {loading && <Spinner />}
+            Enviar Para o Marketplace
+          </Button>
+        </TouchableOpacity>
       </View>
     </Modal>
   );

@@ -76,6 +76,7 @@ export function OrderId({ route, navigation }: any) {
             pedido={pedido}
             openModalErroNota={openModalErroNota}
             setOpenModalErroNota={setOpenModalErroNota}
+            refetch={refetch}
           />
         )}
       </SafeAreaView>
