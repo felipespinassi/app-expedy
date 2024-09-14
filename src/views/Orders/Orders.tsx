@@ -22,7 +22,7 @@ import ModalFilters from "./components/ModalFilters/ModalFilters";
 import ListEmptyComponent from "../../components/ListEmptyComponent/ListEmptyComponent";
 
 export default function Orders({ navigation }: any) {
-  const [pedidos, setPedidos] = useState<any>([]);
+  const [pedidos, setPedidos] = useState<any>([] as OrdersTypes[]);
   const [loading, setLoading] = useState(false);
   const [selectedOrders, setSelectedOrders] = useState([] as any);
   const [filters, setFilters] = useState<any>({ page: 1 });
@@ -42,9 +42,9 @@ export default function Orders({ navigation }: any) {
       const response: any = await fetcher(
         `${config.baseURL}front/orders/simples?page=${
           filters.page
-        }&pageSize=20&${params.toString()}`
+        }&pageSize=50&${params.toString()}`
       );
-      const newData = response.pedidos;
+      const newData = response?.pedidos;
 
       const filteredData = newData.filter((newItem: any) => {
         return !pedidos.some((item: any) => item.id === newItem.id);
