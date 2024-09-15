@@ -2,84 +2,46 @@ import React, { useState, useEffect, useRef } from "react";
 import ListOrders from "./components/ListOrders/ListOrders";
 import {
   ActivityIndicator,
-  Alert,
   FlatList,
   Image,
   SafeAreaView,
-  ScrollView,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
 import FloatButton from "./components/FloatButton/FloatButton";
 import { marketplaces } from "./utils/marketplaces";
-import fetcher from "../../services/fetcher";
-import { config } from "../../services/apiConfig";
 import { OrdersTypes } from "../../@types/OrdersTypes";
 import { useForm } from "react-hook-form";
 import { ChevronDown } from "@tamagui/lucide-icons";
 import ModalFilters from "./components/ModalFilters/ModalFilters";
 import ListEmptyComponent from "../../components/ListEmptyComponent/ListEmptyComponent";
+import { useGetOrders } from "./hooks/useGetOrders";
 
 export default function Orders({ navigation }: any) {
-  const [pedidos, setPedidos] = useState<any>([] as OrdersTypes[]);
-  const [loading, setLoading] = useState(false);
   const [selectedOrders, setSelectedOrders] = useState([] as any);
   const [filters, setFilters] = useState<any>({ page: 1 });
   const [openModal, setOpenModal] = useState(false);
 
+  const flatListRef = useRef<FlatList>(null);
+  const { data, isLoading, mutate, error, isValidating } =
+    useGetOrders(filters);
+
   const form = useForm();
 
-  async function fetchOrders() {
-    setLoading(true);
-
-    const params = new URLSearchParams();
-    Object.keys(filters).map((key) => {
-      const value = filters[key];
-      params.append(key, value);
-    });
-    try {
-      const response: any = await fetcher(
-        `${config.baseURL}front/orders/simples?page=${
-          filters.page
-        }&pageSize=50&${params.toString()}`
-      );
-      const newData = response?.pedidos;
-
-      const filteredData = newData.filter((newItem: any) => {
-        return !pedidos.some((item: any) => item.id === newItem.id);
-      });
-      if (filters.page === 1) {
-        setPedidos(newData);
-      } else {
-        setPedidos((prevData: any) => [...prevData, ...filteredData]);
-      }
-      setLoading(false);
-    } catch (error) {
-      Alert.alert("Falha ao buscar pedidos");
-      console.log(error);
-      setLoading(false);
-    }
-  }
-
   async function onScrollScreen() {
-    if (!loading && pedidos.length > 10) {
+    if (!isValidating && data.length > 10) {
       setFilters({ ...filters, page: filters.page + 1 });
     }
   }
 
   function onRefresh() {
-    setLoading(true);
     setFilters({ ...filters, page: 1 });
   }
 
   function onSelectMarketplace(marketplace: string) {
     setFilters({ page: 1, marketplace: marketplace });
   }
-
-  useEffect(() => {
-    fetchOrders();
-  }, [filters]);
 
   function onLongPress(item: OrdersTypes) {
     if (selectedOrders.includes(item.id)) {
@@ -98,6 +60,7 @@ export default function Orders({ navigation }: any) {
   function onReset() {
     form.reset();
     setFilters({ page: 1 });
+    flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
   }
   return (
     <SafeAreaView style={{ alignItems: "center", flex: 1 }}>
@@ -136,11 +99,12 @@ export default function Orders({ navigation }: any) {
         <FloatButton
           selectedOrders={selectedOrders}
           setSelectedOrders={setSelectedOrders}
-          fetchOrders={fetchOrders}
+          fetchOrders={mutate}
         />
       )}
 
       <FlatList
+        ref={flatListRef}
         ListHeaderComponent={() => (
           <>
             <Text style={{ color: "black", marginVertical: 10 }}>
@@ -184,11 +148,11 @@ export default function Orders({ navigation }: any) {
         onEndReachedThreshold={0.5}
         keyExtractor={(item) => item.id}
         onEndReached={onScrollScreen}
-        refreshing={loading}
+        refreshing={isValidating && filters.page === 1 && data.length !== 0}
         onRefresh={onRefresh}
         showsVerticalScrollIndicator={false}
         style={{ width: "95%" }}
-        data={pedidos}
+        data={data}
         renderItem={({ item }) => (
           <>
             <ListOrders
@@ -200,9 +164,9 @@ export default function Orders({ navigation }: any) {
             />
           </>
         )}
-        ListEmptyComponent={<ListEmptyComponent />}
+        ListEmptyComponent={isLoading ? null : <ListEmptyComponent />}
         ListFooterComponent={
-          <>{pedidos.length >= 10 && <ActivityIndicator size={"large"} />}</>
+          <>{isValidating && <ActivityIndicator size={"large"} />}</>
         }
       />
       <ModalFilters

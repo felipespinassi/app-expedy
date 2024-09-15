@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import React, { useState } from "react";
 import { UseQueryResult, useQuery } from "react-query";
 import fetcher from "../../../../../../services/fetcher";
@@ -12,6 +12,10 @@ export default function SelectIntegracoes({ form, filters }: any) {
   );
 
   const [value, setValue] = useState(filters.fkintegracao);
+
+  if (isFetching) {
+    return <ActivityIndicator size={"large"} />;
+  }
   return (
     <>
       <Text style={{ fontSize: 22, fontWeight: "500" }}>Integrações</Text>

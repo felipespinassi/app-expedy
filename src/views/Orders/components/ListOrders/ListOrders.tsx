@@ -51,7 +51,7 @@ export default function ListOrders({
               borderRadius: 50,
               width: 5,
               height: "100%",
-              backgroundColor: marketplaces[item.integracao.tipo]?.color,
+              backgroundColor: marketplaces[item?.integracao?.tipo]?.color,
             }}
           />
           <View
