@@ -15,25 +15,24 @@ export function useGetOrders(filters: any) {
     fetcher
   );
 
-  const dataFormatedRef = useRef<any>([]);
+  const [dataFormated, setDataFormated] = useState<any[]>([]);
 
-  if (data) {
-    const newData = data?.pedidos;
-    const filteredData = newData.filter((newItem: any) => {
-      return !dataFormatedRef.current.some(
-        (item: any) => item.id === newItem.id
-      );
-    });
+  useEffect(() => {
+    if (data) {
+      const newData = data?.pedidos;
+      const filteredData = newData.filter((newItem: any) => {
+        return !dataFormated.some((item: any) => item.id === newItem.id);
+      });
 
-    if (filters.page === 1) {
-      dataFormatedRef.current = newData;
-    } else {
-      dataFormatedRef.current = [...dataFormatedRef.current, ...filteredData];
+      if (filters.page === 1) {
+        setDataFormated(newData);
+      } else {
+        setDataFormated((prevData: any) => [...prevData, ...filteredData]);
+      }
     }
-  }
-
+  }, [data, filters.page]);
   return {
-    data: dataFormatedRef.current,
+    data: dataFormated,
     isLoading,
     mutate,
     error,

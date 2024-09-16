@@ -170,7 +170,7 @@ export default function Orders({ navigation }: any) {
         )}
         ListEmptyComponent={isLoading ? null : <ListEmptyComponent />}
         ListFooterComponent={
-          <>{isLoading && <ActivityIndicator size={"large"} />}</>
+          <>{data.length > 10 && <ActivityIndicator size={"large"} />}</>
         }
       />
       <ModalFilters
