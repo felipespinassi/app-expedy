@@ -24,14 +24,16 @@ export default function Orders({ navigation }: any) {
   const [openModal, setOpenModal] = useState(false);
 
   const flatListRef = useRef<FlatList>(null);
-  const { data, isLoading, mutate, error, isValidating } =
+  const { data, isLoading, mutate, error, isValidating, paging } =
     useGetOrders(filters);
 
   const form = useForm();
 
   async function onScrollScreen() {
-    if (!isValidating && data.length > 10) {
-      setFilters({ ...filters, page: filters.page + 1 });
+    if (!isValidating) {
+      if (paging.total > data.length) {
+        setFilters({ ...filters, page: filters.page + 1 });
+      }
     }
   }
 
@@ -61,7 +63,9 @@ export default function Orders({ navigation }: any) {
     form.reset();
     setFilters({ page: 1 });
     flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
+    setSelectedOrders([]);
   }
+
   return (
     <SafeAreaView style={{ alignItems: "center", flex: 1 }}>
       <View
@@ -166,7 +170,7 @@ export default function Orders({ navigation }: any) {
         )}
         ListEmptyComponent={isLoading ? null : <ListEmptyComponent />}
         ListFooterComponent={
-          <>{isValidating && <ActivityIndicator size={"large"} />}</>
+          <>{isLoading && <ActivityIndicator size={"large"} />}</>
         }
       />
       <ModalFilters

@@ -32,5 +32,12 @@ export function useGetOrders(filters: any) {
     }
   }, [data, filters.page]);
 
-  return { data: dataFormated, isLoading, mutate, error, isValidating };
+  return {
+    data: dataFormated,
+    isLoading,
+    mutate,
+    error,
+    isValidating,
+    paging: data?.paging,
+  };
 }
