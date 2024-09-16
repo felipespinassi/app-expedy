@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import { config } from "../../../services/apiConfig";
 import fetcher from "../../../services/fetcher";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function useGetOrders(filters: any) {
   const params = new URLSearchParams();
@@ -15,25 +15,25 @@ export function useGetOrders(filters: any) {
     fetcher
   );
 
-  const [dataFormated, setDataFormated] = useState<any[]>([]);
+  const dataFormatedRef = useRef<any>([]);
 
-  useEffect(() => {
-    if (data) {
-      const newData = data?.pedidos;
-      const filteredData = newData.filter((newItem: any) => {
-        return !dataFormated.some((item: any) => item.id === newItem.id);
-      });
+  if (data) {
+    const newData = data?.pedidos;
+    const filteredData = newData.filter((newItem: any) => {
+      return !dataFormatedRef.current.some(
+        (item: any) => item.id === newItem.id
+      );
+    });
 
-      if (filters.page === 1) {
-        setDataFormated(newData);
-      } else {
-        setDataFormated((prevData: any) => [...prevData, ...filteredData]);
-      }
+    if (filters.page === 1) {
+      dataFormatedRef.current = newData;
+    } else {
+      dataFormatedRef.current = [...dataFormatedRef.current, ...filteredData];
     }
-  }, [data, filters.page]);
+  }
 
   return {
-    data: dataFormated,
+    data: dataFormatedRef.current,
     isLoading,
     mutate,
     error,
