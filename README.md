@@ -1,4 +1,4 @@
-# Projeto de Gerenciamento de Pedidos
+# Expedy App
 
 Este projeto é uma aplicação de gerenciamento de pedidos construída com React Native. Ele permite que os usuários visualizem, filtrem e gerenciem pedidos de forma eficiente.
 
@@ -9,7 +9,8 @@ Este projeto é uma aplicação de gerenciamento de pedidos construída com Reac
 - **Paginação:** Suporta carregamento de mais pedidos conforme o usuário rola a tela.
 - **Seleção de Pedidos:** Permite selecionar pedidos para ações em massa.
 - **Modal de Filtros:** Interface para aplicar filtros avançados.
-- **Geração de Arquivos:** Permite gerar arquivos a partir dos pedidos selecionados.
+- **Geração de Arquivos:** Permite gerar arquivos a partir dos pedidos selecionados para impressão de etiquetas de marketplaces.
+- **Picking List:** Permite visualizar o picking list e pegar produtos diretamente no app, inserindo os valores coletados.
 
 ## Tecnologias Utilizadas
 
