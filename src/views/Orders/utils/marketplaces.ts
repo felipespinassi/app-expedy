@@ -4,17 +4,22 @@ export const marketplaces = {
     image: require("../../../../assets/logos/shopee.png"),
     color: "#f04c34",
   },
+  shein: {
+    name: "shein",
+    image: require("../../../../assets/logos/shein.png"),
+    color: "#080404",
+  },
+  kwai: {
+    name: "kwai",
+    image: require("../../../../assets/logos/kwai.png"),
+    color: "#ff0000",
+  },
   mercadolivre: {
     name: "mercadolivre",
     image: require("../../../../assets/logos/mercadolivre.png"),
     color: "#ffe600",
   },
 
-  shein: {
-    name: "shein",
-    image: require("../../../../assets/logos/shein.png"),
-    color: "#080404",
-  },
   magalu: {
     name: "magalu",
     image: require("../../../../assets/logos/magalu.png"),
@@ -22,7 +27,7 @@ export const marketplaces = {
   },
   b2w: {
     name: "b2w",
-    image: require("../../../../assets/logos/b2w.png"),
+    image: require("../../../../assets/logos/americanas.png"),
     color: "#30e2c7",
   },
   yampi: {
