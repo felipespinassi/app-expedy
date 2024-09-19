@@ -83,8 +83,6 @@ export default function Orders({ navigation }: any) {
     setSelectedOrders([]);
   }, []);
 
-  const ListMemo = React.memo(ListOrders);
-
   return (
     <SafeAreaView style={{ alignItems: "center", flex: 1 }}>
       <View
@@ -144,7 +142,7 @@ export default function Orders({ navigation }: any) {
         data={data}
         renderItem={({ item }) => (
           <>
-            <ListMemo
+            <ListOrders
               selectedOrders={selectedOrders}
               selected={getSelected(item)}
               onLongPress={onLongPress}
