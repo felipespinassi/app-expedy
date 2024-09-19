@@ -1,5 +1,5 @@
-import { Text, TouchableOpacity, View } from "react-native";
-import React, { useState } from "react";
+import { Alert, Modal, Text, TouchableOpacity, View } from "react-native";
+import React, { useRef, useState } from "react";
 import { Plus } from "@tamagui/lucide-icons";
 import { Spinner } from "tamagui";
 import axios from "axios";
@@ -16,6 +16,8 @@ export default function FloatButton({
   const [open, setOpen] = useState(false);
   const toast = useToastController();
   const [loading, setLoading] = useState(false);
+  const successRef = useRef([] as any);
+
   async function onSendInvoices() {
     const token = await getAccess_token();
     try {
@@ -48,19 +50,16 @@ export default function FloatButton({
             headers: { Authorization: token, "content-type": "text/json" },
           }
         );
-        setLoading(false);
-        setSelectedOrders([]);
-        fetchOrders();
-
-        return toast.show("Etiquetas  preparadas");
-      } catch (error) {
-        alert(
-          "Não foi possível gerar a etiqueta, tente novamente am alguns instantes."
-        );
-        setLoading(false);
-        fetchOrders();
-      }
+        successRef.current.push(order);
+      } catch (error) {}
     }
+    toast.show(
+      `${successRef.current.length} etiquetas preparadas de ${selectedOrders.length} processadas`
+    );
+
+    setLoading(false);
+    setSelectedOrders([]);
+    fetchOrders();
   }
   return (
     <View
