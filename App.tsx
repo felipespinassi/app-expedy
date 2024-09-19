@@ -6,8 +6,8 @@ import { TamaguiProvider, createTamagui } from "tamagui";
 import { StatusBar, useColorScheme } from "react-native";
 import config from "./tamagui.config";
 import { useFonts } from "expo-font";
-import { ToastDemo } from "./src/components/ToastDemo";
 import { Routes } from "./src/routes";
+import { Toaster } from "./src/components/Toast";
 
 const queryClient = new QueryClient();
 const tamaguiConfig = createTamagui(config);
@@ -48,7 +48,7 @@ export default function App() {
               height={"20%"}
               zIndex={100}
             />
-            <ToastDemo />
+            <Toaster />
             <StatusBar
               barStyle={"light-content"}
               backgroundColor="transparent"

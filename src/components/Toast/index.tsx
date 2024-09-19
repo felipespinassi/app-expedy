@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 
 import { Button, XStack, YStack } from "tamagui";
 
-export const ToastDemo = () => {
+export const Toaster = () => {
   useEffect(() => {
     toast.hide();
   }, []);
