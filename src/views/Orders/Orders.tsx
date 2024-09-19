@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import ListOrders from "./components/ListOrders/ListOrders";
 import {
   ActivityIndicator,
@@ -17,6 +17,7 @@ import { ChevronDown } from "@tamagui/lucide-icons";
 import ModalFilters from "./components/ModalFilters/ModalFilters";
 import ListEmptyComponent from "../../components/ListEmptyComponent/ListEmptyComponent";
 import { useGetOrders } from "./hooks/useGetOrders";
+import { MarketplacesHeader } from "./components/MarketplacesHeader/MarketplacesHeader";
 
 export default function Orders({ navigation }: any) {
   const [selectedOrders, setSelectedOrders] = useState([] as any);
@@ -24,47 +25,65 @@ export default function Orders({ navigation }: any) {
   const [openModal, setOpenModal] = useState(false);
 
   const flatListRef = useRef<FlatList>(null);
+  const flatListMarketplaceRef = useRef<FlatList>(null);
+
   const { data, isLoading, mutate, error, isValidating, paging } =
     useGetOrders(filters);
 
   const form = useForm();
 
-  async function onScrollScreen() {
+  const onScrollScreen = useCallback(() => {
     if (!isValidating) {
       if (paging.total > data.length) {
         setFilters({ ...filters, page: filters.page + 1 });
       }
     }
-  }
+  }, [isValidating, paging?.total, data.length]);
 
-  function onRefresh() {
-    setFilters({ ...filters, page: 1 });
-  }
-
-  function onSelectMarketplace(marketplace: string) {
-    setFilters({ page: 1, marketplace: marketplace });
-  }
-
-  function onLongPress(item: OrdersTypes) {
-    if (selectedOrders.includes(item.id)) {
-      const newListOrder = selectedOrders.filter(
-        (itemId: number) => itemId !== item.id
-      );
-      return setSelectedOrders(newListOrder);
+  const onRefresh = useCallback(() => {
+    if (filters.page === 1) {
+      return mutate();
     }
-    setSelectedOrders([...selectedOrders, item.id]);
-  }
+    setFilters((prevFilters: any) => ({ ...prevFilters, page: 1 }));
+  }, []);
 
-  function getSelected(item: OrdersTypes) {
-    return selectedOrders.includes(item.id);
-  }
+  const onSelectMarketplace = useCallback(
+    (marketplace: string, index: number) => {
+      setFilters({ page: 1, marketplace: marketplace });
+    },
+    []
+  );
 
-  function onReset() {
+  const onLongPress = useCallback(
+    (item: OrdersTypes) => {
+      if (selectedOrders.includes(item.id)) {
+        const newListOrder = selectedOrders.filter(
+          (itemId: number) => itemId !== item.id
+        );
+        return setSelectedOrders(newListOrder);
+      }
+      setSelectedOrders([...selectedOrders, item.id]);
+    },
+    [selectedOrders]
+  );
+
+  const getSelected = useCallback(
+    (item: OrdersTypes) => selectedOrders.includes(item.id),
+    [selectedOrders]
+  );
+
+  const onReset = useCallback(() => {
     form.reset();
     setFilters({ page: 1 });
     flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
+    flatListMarketplaceRef.current?.scrollToOffset({
+      animated: true,
+      offset: 0,
+    });
     setSelectedOrders([]);
-  }
+  }, []);
+
+  const ListMemo = React.memo(ListOrders);
 
   return (
     <SafeAreaView style={{ alignItems: "center", flex: 1 }}>
@@ -109,57 +128,23 @@ export default function Orders({ navigation }: any) {
 
       <FlatList
         ref={flatListRef}
-        ListHeaderComponent={() => (
-          <>
-            <Text style={{ color: "black", marginVertical: 10 }}>
-              Marketplace
-            </Text>
-            <View style={{ justifyContent: "center", alignItems: "center" }}>
-              <FlatList
-                keyExtractor={(item: any) => item.name.toString()}
-                showsHorizontalScrollIndicator={false}
-                style={{ paddingBottom: 20, paddingTop: 5 }}
-                horizontal
-                data={Object.values(marketplaces)}
-                renderItem={({ item }) => (
-                  <TouchableOpacity
-                    onPress={() => onSelectMarketplace(item.name)}
-                  >
-                    <View
-                      style={{
-                        justifyContent: "center",
-                        alignItems: "center",
-                        width: 60,
-                        height: 60,
-                        backgroundColor: "white",
-                        borderRadius: 50,
-                        padding: 10,
-                        marginRight: 10,
-                      }}
-                    >
-                      <Image
-                        resizeMode="contain"
-                        style={{ width: 50, height: 40 }}
-                        source={item.image}
-                      />
-                    </View>
-                  </TouchableOpacity>
-                )}
-              />
-            </View>
-          </>
-        )}
+        ListHeaderComponent={
+          <MarketplacesHeader
+            onSelectMarketplace={onSelectMarketplace}
+            flatListMarketplaceRef={flatListMarketplaceRef}
+          />
+        }
         onEndReachedThreshold={0.5}
         keyExtractor={(item) => item.id}
         onEndReached={onScrollScreen}
-        refreshing={isValidating && filters.page === 1 && data.length !== 0}
+        refreshing={isValidating}
         onRefresh={onRefresh}
         showsVerticalScrollIndicator={false}
         style={{ width: "95%" }}
         data={data}
         renderItem={({ item }) => (
           <>
-            <ListOrders
+            <ListMemo
               selectedOrders={selectedOrders}
               selected={getSelected(item)}
               onLongPress={onLongPress}
@@ -169,9 +154,6 @@ export default function Orders({ navigation }: any) {
           </>
         )}
         ListEmptyComponent={isLoading ? null : <ListEmptyComponent />}
-        ListFooterComponent={
-          <>{data.length > 10 && <ActivityIndicator size={"large"} />}</>
-        }
       />
       <ModalFilters
         setFilters={setFilters}
