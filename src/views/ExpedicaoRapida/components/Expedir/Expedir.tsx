@@ -1,5 +1,12 @@
 import { Button, Spinner } from "tamagui";
-import { FlatList, View } from "react-native";
+import {
+  FlatList,
+  Pressable,
+  Text,
+  Touchable,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { useState } from "react";
 import ModalFilters from "./components/ModalFilters/ModalFilters";
 import { useGetVisual } from "../../hooks/useGetVisual";
@@ -9,6 +16,7 @@ import ListOrders from "./components/ListOrders/ListOrders";
 import TopBar from "./components/TopBar/TopBar";
 import { FiltersProps } from "../../@types/FiltersExpedirTypes";
 import ListEmptyComponent from "../../../../components/ListEmptyComponent/ListEmptyComponent";
+import { Plus } from "@tamagui/lucide-icons";
 
 export default function Expedir() {
   const [openModal, setOpenModal] = useState(false);
@@ -17,25 +25,40 @@ export default function Expedir() {
 
   const { data, isLoading, mutate, error } = useGetVisual(filters);
 
+  const isFiltered = Object.keys(filters).length > 0;
   function onResetFilters() {
     setFilters({} as FiltersProps), form.reset();
   }
 
   return (
     <View style={{ flex: 1 }}>
-      <TopBar onResetFilters={onResetFilters} setOpenModal={setOpenModal} />
-      <View
-        style={{ justifyContent: "center", flexDirection: "row", margin: 5 }}
+      <TopBar onResetFilters={onResetFilters} />
+
+      <TouchableOpacity
+        onPress={() =>
+          Object.keys(filters).length > 0
+            ? onGerarArquivo(form, mutate)
+            : setOpenModal(true)
+        }
+        style={{
+          backgroundColor: "#1890ff",
+          height: 70,
+          width: isFiltered ? 150 : 70,
+          borderRadius: isFiltered ? 20 : 50,
+          alignItems: "center",
+          justifyContent: "center",
+          position: "absolute",
+          top: "80%",
+          zIndex: 100,
+          right: "10%",
+        }}
       >
-        <Button
-          onPress={() => onGerarArquivo(form, mutate)}
-          width={"50%"}
-          color={"white"}
-          backgroundColor={"#1890ff"}
-        >
-          Gerar Arquivo
-        </Button>
-      </View>
+        {isFiltered ? (
+          <Text style={{ color: "white" }}>Gerar Arquivo</Text>
+        ) : (
+          <Plus color={"white"} />
+        )}
+      </TouchableOpacity>
 
       {isLoading ? (
         <View>

@@ -3,10 +3,9 @@ import React, { Dispatch, SetStateAction } from "react";
 
 interface Props {
   onResetFilters: () => void;
-  setOpenModal: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function TopBar({ onResetFilters, setOpenModal }: Props) {
+export default function TopBar({ onResetFilters }: Props) {
   return (
     <View
       style={{
@@ -29,9 +28,9 @@ export default function TopBar({ onResetFilters, setOpenModal }: Props) {
       <TouchableOpacity onPress={onResetFilters}>
         <Text>Limpar Filtros</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => setOpenModal(true)}>
+      {/* <TouchableOpacity onPress={() => setOpenModal(true)}>
         <Text>Filtros</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 }

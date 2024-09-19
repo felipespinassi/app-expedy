@@ -28,6 +28,6 @@ export async function onGerarArquivo(
     mutate();
     return Alert.alert("Arquivo gerado");
   } catch (error) {
-    console.log(error);
+    Alert.alert("Erro ao gerar arquivo");
   }
 }
