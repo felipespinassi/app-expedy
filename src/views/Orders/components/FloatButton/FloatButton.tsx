@@ -1,4 +1,11 @@
-import { Alert, Modal, Text, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  Modal,
+  SafeAreaView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React, { useRef, useState } from "react";
 import { Plus } from "@tamagui/lucide-icons";
 import { Spinner } from "tamagui";
@@ -62,10 +69,10 @@ export default function FloatButton({
     fetchOrders();
   }
   return (
-    <View
+    <SafeAreaView
       style={{
         top: "80%",
-        right: "2%",
+        right: "5%",
         zIndex: 10,
         position: "absolute",
         padding: 20,
@@ -77,7 +84,7 @@ export default function FloatButton({
             borderRadius: 20,
             width: 200,
             position: "absolute",
-            top: -100,
+            top: -115,
             right: 10,
             shadowColor: "black",
             shadowRadius: 2,
@@ -119,6 +126,6 @@ export default function FloatButton({
           <Plus color={"white"} />
         </View>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }

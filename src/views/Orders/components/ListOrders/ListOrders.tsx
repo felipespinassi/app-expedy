@@ -48,7 +48,8 @@ export default function ListOrders({
         >
           <View
             style={{
-              borderRadius: 50,
+              borderBottomLeftRadius: 10,
+              borderTopLeftRadius: 10,
               width: 5,
               height: "100%",
               backgroundColor: marketplaces[item?.integracao?.tipo]?.color,
@@ -56,7 +57,8 @@ export default function ListOrders({
           />
           <View
             style={{
-              borderRadius: 10,
+              borderTopRightRadius: 10,
+              borderBottomRightRadius: 10,
               padding: 10,
               justifyContent: "space-evenly",
               height: "100%",

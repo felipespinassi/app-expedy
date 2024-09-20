@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import ListOrders from "./components/ListOrders/ListOrders";
 import {
+  ActivityIndicator,
   FlatList,
   SafeAreaView,
   Text,
@@ -10,7 +11,7 @@ import {
 import FloatButton from "./components/FloatButton/FloatButton";
 import { OrdersTypes } from "../../@types/OrdersTypes";
 import { useForm } from "react-hook-form";
-import { ChevronDown } from "@tamagui/lucide-icons";
+import { ArrowUp, ChevronDown } from "@tamagui/lucide-icons";
 import ModalFilters from "./components/ModalFilters/ModalFilters";
 import ListEmptyComponent from "../../components/ListEmptyComponent/ListEmptyComponent";
 import { useGetOrders } from "./hooks/useGetOrders";
@@ -42,7 +43,7 @@ export default function Orders({ navigation }: any) {
       return mutate();
     }
     setFilters((prevFilters: any) => ({ ...prevFilters, page: 1 }));
-  }, []);
+  }, [filters.page]);
 
   const onSelectMarketplace = useCallback(
     (marketplace: string, index: number) => {
@@ -82,6 +83,28 @@ export default function Orders({ navigation }: any) {
 
   return (
     <SafeAreaView style={{ alignItems: "center", flex: 1 }}>
+      {filters.page >= 2 && (
+        <TouchableOpacity
+          onPress={() =>
+            flatListRef.current?.scrollToOffset({ offset: 0, animated: true })
+          }
+          style={{
+            position: "absolute",
+            top: "80%",
+            left: "5%",
+            zIndex: 10,
+            backgroundColor: "#e1e1e1",
+            width: 60,
+            height: 60,
+            borderRadius: 50,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <ArrowUp />
+        </TouchableOpacity>
+      )}
+
       <View
         style={{
           borderRadius: 10,
@@ -132,7 +155,7 @@ export default function Orders({ navigation }: any) {
         onEndReachedThreshold={0.5}
         keyExtractor={(item) => item.id}
         onEndReached={onScrollScreen}
-        refreshing={isValidating}
+        refreshing={filters.page == 1 ? isValidating : isLoading}
         onRefresh={onRefresh}
         showsVerticalScrollIndicator={false}
         style={{ width: "95%" }}
@@ -149,6 +172,9 @@ export default function Orders({ navigation }: any) {
           </>
         )}
         ListEmptyComponent={isLoading ? null : <ListEmptyComponent />}
+        ListFooterComponent={
+          filters.page != 1 ? <ActivityIndicator size={"large"} /> : null
+        }
       />
       <ModalFilters
         setFilters={setFilters}
