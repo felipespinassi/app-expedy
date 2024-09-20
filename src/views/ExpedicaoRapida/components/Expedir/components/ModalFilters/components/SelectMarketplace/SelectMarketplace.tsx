@@ -16,7 +16,7 @@ export default function SelectMarkeplace({
   const [marketplaceSelected, setMarketplaceSelected] = useState("");
   return (
     <>
-      <Text style={{ fontSize: 22, fontWeight: "500" }}>Marketplace</Text>
+      <Text style={{ fontSize: 18, fontWeight: "500" }}>Marketplace</Text>
       {integracoesDisponiveis?.map((marketplace) => {
         return (
           <TouchableOpacity

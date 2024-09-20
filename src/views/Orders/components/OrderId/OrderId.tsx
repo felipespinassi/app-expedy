@@ -28,7 +28,7 @@ export function OrderId({ route, navigation }: any) {
 
   if (isFetching) {
     return (
-      <SafeAreaView>
+      <SafeAreaView style={{ marginTop: 20 }}>
         <ActivityIndicator size={"large"} />
       </SafeAreaView>
     );

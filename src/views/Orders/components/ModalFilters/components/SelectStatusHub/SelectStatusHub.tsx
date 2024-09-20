@@ -8,7 +8,7 @@ export default function SelectStatusHub({ form, filters }: any) {
 
   return (
     <>
-      <Text style={{ fontSize: 22, fontWeight: "500" }}>Status Hub</Text>
+      <Text style={{ fontSize: 18, fontWeight: "500" }}>Status Hub</Text>
       {Object.values(statusHub).map((status: any) => {
         return (
           <TouchableOpacity

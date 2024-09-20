@@ -83,19 +83,9 @@ export default function ModalUpdateInfo({
               <X size={26} color={"black"} />
             </TouchableOpacity>
           </View>
-          <View style={{ justifyContent: "center", alignItems: "center" }}>
-            <Button
-              width={"80%"}
-              onPress={form.handleSubmit(onUpdateCustomerInfo)}
-              color={"white"}
-              backgroundColor={"#1890ff"}
-            >
-              Confirmar
-            </Button>
-          </View>
 
           <ScrollView style={{ padding: 10 }}>
-            <View style={{ gap: 15, paddingBottom: 30 }}>
+            <View style={{ gap: 15, paddingBottom: 100 }}>
               <Text>Cliente</Text>
 
               <Controller
@@ -255,6 +245,27 @@ export default function ModalUpdateInfo({
             </View>
           </ScrollView>
         </View>
+
+        <TouchableOpacity
+          style={{
+            position: "absolute",
+            bottom: 30,
+            right: "1%",
+            left: "1%",
+          }}
+        >
+          <View style={{ alignItems: "center" }}>
+            <Button
+              onPress={form.handleSubmit(onUpdateCustomerInfo)}
+              width={"90%"}
+              fontSize={18}
+              color={"white"}
+              backgroundColor={"#1890ff"}
+            >
+              Confirmar
+            </Button>
+          </View>
+        </TouchableOpacity>
       </KeyboardAvoidingView>
     </Modal>
   );

@@ -18,7 +18,7 @@ export default function SelectIntegracoes({ form, filters }: any) {
   }
   return (
     <>
-      <Text style={{ fontSize: 22, fontWeight: "500" }}>Integrações</Text>
+      <Text style={{ fontSize: 18, fontWeight: "500" }}>Integrações</Text>
       {data?.integracoes.map((integracao: any) => {
         return (
           <TouchableOpacity

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Text, View } from "tamagui";
 import fetcher from "../../../../../../../../services/fetcher";
 import { config } from "../../../../../../../../services/apiConfig";
-import { TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import useSWR from "swr";
 import { UseFormReturn } from "react-hook-form";
 import { FiltersProps } from "../../../../../../@types/FiltersExpedirTypes";
 import { OrdersResponseTypes } from "../../../../../../@types/OrdersResponseTypes";
 import Checkbox from "../../../../../../../../components/Checkbox/Checkbox";
+import { Spinner, View } from "tamagui";
 
 export default function SelectMaisVendidos({
   form,
@@ -15,15 +15,19 @@ export default function SelectMaisVendidos({
   form: UseFormReturn<FiltersProps>;
 }) {
   const { data, isLoading } = useSWR<OrdersResponseTypes>(
-    `${config.baseURL}orders/file/visual`,
+    `${config.baseURL}orders/maisVendidos`,
     fetcher
   );
 
   const [productSelected, setProductSelected] = useState("");
 
+  if (isLoading) {
+    return <Spinner size="large" />;
+  }
+
   return (
     <>
-      <Text style={{ fontSize: 22, fontWeight: "500" }}>Mais Vendidos</Text>
+      <Text style={{ fontSize: 18, fontWeight: "500" }}>Mais Vendidos</Text>
       {data?.maisVendidos?.map((produto) => {
         return (
           <TouchableOpacity

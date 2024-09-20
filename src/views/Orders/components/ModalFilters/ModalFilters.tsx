@@ -41,43 +41,31 @@ export default function ModalFilters({
       visible={openModal}
     >
       <SafeAreaView style={{ flex: 1, marginTop: 15 }}>
-        <TouchableOpacity
-          onPress={() => setOpenModal(false)}
-          style={{
-            alignItems: "flex-end",
-            paddingRight: 20,
-            paddingBottom: 20,
-          }}
-        >
-          <X size={26} />
-        </TouchableOpacity>
         <View
           style={{
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: 5,
+            flexDirection: "row",
+            justifyContent: "space-between",
+            paddingHorizontal: 20,
+            paddingVertical: 10,
           }}
         >
-          <Button
-            onPress={() => onFinish()}
-            theme={"blue_active"}
-            backgroundColor={"#1890ff"}
-            color={"white"}
-            width={"80%"}
-          >
-            Filtrar
-          </Button>
+          <Text style={{ fontSize: 22, fontWeight: "500" }}>
+            Filtrar Pedidos
+          </Text>
+          <TouchableOpacity onPress={() => setOpenModal(false)}>
+            <X size={26} />
+          </TouchableOpacity>
         </View>
 
         <ScrollView>
-          <View style={{ padding: 10, gap: 20 }}>
-            <Text style={{ fontSize: 22, fontWeight: "500" }}>ID HUB</Text>
+          <View style={{ padding: 10, gap: 20, paddingBottom: 60 }}>
+            <Text style={{ fontSize: 18, fontWeight: "500" }}>ID HUB</Text>
             <Input
               onChangeText={(e) => form.setValue("id", e)}
               placeholder="Digite o ID HUB"
             />
 
-            <Text style={{ fontSize: 22, fontWeight: "500" }}>
+            <Text style={{ fontSize: 18, fontWeight: "500" }}>
               ID Marketplace
             </Text>
 
@@ -91,6 +79,26 @@ export default function ModalFilters({
             <SelectStatusHub filters={filters} form={form} />
           </View>
         </ScrollView>
+        <TouchableOpacity
+          style={{
+            position: "absolute",
+            bottom: 30,
+            right: "1%",
+            left: "1%",
+          }}
+        >
+          <View style={{ alignItems: "center" }}>
+            <Button
+              onPress={() => onFinish()}
+              width={"90%"}
+              fontSize={18}
+              color={"white"}
+              backgroundColor={"#1890ff"}
+            >
+              Filtrar
+            </Button>
+          </View>
+        </TouchableOpacity>
       </SafeAreaView>
     </Modal>
   );

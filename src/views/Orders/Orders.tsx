@@ -1,16 +1,13 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import ListOrders from "./components/ListOrders/ListOrders";
 import {
-  ActivityIndicator,
   FlatList,
-  Image,
   SafeAreaView,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
 import FloatButton from "./components/FloatButton/FloatButton";
-import { marketplaces } from "./utils/marketplaces";
 import { OrdersTypes } from "../../@types/OrdersTypes";
 import { useForm } from "react-hook-form";
 import { ChevronDown } from "@tamagui/lucide-icons";

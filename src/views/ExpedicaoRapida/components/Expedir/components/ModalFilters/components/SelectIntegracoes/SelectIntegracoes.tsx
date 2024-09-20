@@ -7,6 +7,7 @@ import { FiltersProps } from "../../../../../../@types/FiltersExpedirTypes";
 import { UseFormReturn } from "react-hook-form";
 import useSWR from "swr";
 import Checkbox from "../../../../../../../../components/Checkbox/Checkbox";
+import { Spinner } from "tamagui";
 
 interface Props {
   form: UseFormReturn<FiltersProps>;
@@ -29,9 +30,14 @@ export default function SelectIntegracoes({ form, filters }: Props) {
   );
 
   const [value, setValue] = useState(filters?.integracao);
+
+  if (isLoading) {
+    return <Spinner size="large" />;
+  }
+
   return (
     <>
-      <Text style={{ fontSize: 22, fontWeight: "500" }}>Integrações</Text>
+      <Text style={{ fontSize: 18, fontWeight: "500" }}>Integrações</Text>
       {data?.integracoes.map((integracao: any) => {
         return (
           <TouchableOpacity

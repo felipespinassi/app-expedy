@@ -1,12 +1,5 @@
 import { Button, Spinner } from "tamagui";
-import {
-  FlatList,
-  Pressable,
-  Text,
-  Touchable,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import { useState } from "react";
 import ModalFilters from "./components/ModalFilters/ModalFilters";
 import { useGetVisual } from "../../hooks/useGetVisual";
@@ -42,8 +35,8 @@ export default function Expedir() {
         }
         style={{
           backgroundColor: "#1890ff",
-          height: 70,
-          width: isFiltered ? 150 : 70,
+          height: 60,
+          width: isFiltered ? 150 : 60,
           borderRadius: isFiltered ? 20 : 50,
           alignItems: "center",
           justifyContent: "center",
@@ -54,14 +47,24 @@ export default function Expedir() {
         }}
       >
         {isFiltered ? (
-          <Text style={{ color: "white" }}>Gerar Arquivo</Text>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 5,
+            }}
+          >
+            <Plus size={20} color={"white"} />
+            <Text style={{ color: "white" }}>Gerar Arquivo</Text>
+          </View>
         ) : (
           <Plus color={"white"} />
         )}
       </TouchableOpacity>
 
       {isLoading ? (
-        <View>
+        <View style={{ marginTop: 20 }}>
           <Spinner size="large" />
         </View>
       ) : (
