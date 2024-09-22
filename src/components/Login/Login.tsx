@@ -93,7 +93,7 @@ export default function Login({ navigation }: any) {
           <Input
             className="w-full "
             placeholder="Senha"
-            keyboardType="numeric"
+            keyboardType="visible-password"
             onChangeText={(text) => setValue("password", text)}
           />
         </View>

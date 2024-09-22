@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Expedy",
-    "slug": "app-expedicao",
+    "slug": "app-expedy",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,7 +13,7 @@
     },
     "updates": {
       "fallbackToCacheTimeout": 0,
-      "url": "https://u.expo.dev/a79d2f9c-0d27-4fd8-82fe-5be4ec4b11b2"
+      "url": "https://u.expo.dev/4ab2adb7-da63-47b6-8c4e-7d15fcbf9f37"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -37,8 +37,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "a79d2f9c-0d27-4fd8-82fe-5be4ec4b11b2"
+        "projectId": "4ab2adb7-da63-47b6-8c4e-7d15fcbf9f37"
       }
-    }
+    },
+    "owner": "spinassi"
   }
 }

@@ -6,7 +6,8 @@
     "dev": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "postinstall": "npx tailwindcss -i ./src/styles/global.css -o ./node_modules/.cache/nativewind/global.css"
   },
   "dependencies": {
     "@expo/metro-runtime": "~3.2.1",
@@ -33,7 +34,7 @@
     "expo-status-bar": "~1.12.1",
     "expo-updates": "~0.25.11",
     "moment-timezone": "^0.5.44",
-    "nativewind": "^4.0.1",
+    "nativewind": "4.0.25",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.49.3",
@@ -51,7 +52,7 @@
     "react-query": "^3.39.3",
     "swr": "^2.2.5",
     "tailwind-merge": "^2.5.2",
-    "tailwindcss": "^3.4.12",
+    "tailwindcss": "^3.4.4",
     "tamagui": "^1.90.8"
   },
   "devDependencies": {
