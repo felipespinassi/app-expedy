@@ -1,8 +1,8 @@
 import {
   Alert,
+  Image,
   KeyboardAvoidingView,
   Platform,
-  TextInput,
   View,
 } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
@@ -10,9 +10,10 @@ import { useForm } from "react-hook-form";
 
 import { createAccess_token } from "../../storage/createAccess_token";
 import { createCompanyName } from "../../storage/createCompanyName";
-import { Button, Image, Spinner } from "tamagui";
 import { AuthContext } from "../../context/AuthContext";
 import { config } from "../../services/apiConfig";
+import { Button } from "../../../components/Button";
+import { Input } from "../../../components/Input";
 
 export default function Login({ navigation }: any) {
   const { register, setValue, handleSubmit } = useForm<Dataprops>();
@@ -68,77 +69,47 @@ export default function Login({ navigation }: any) {
       behavior={Platform.OS == "ios" ? "padding" : undefined}
       style={{ flex: 1, justifyContent: "center", backgroundColor: "#19223E" }}
     >
-      <View style={{ gap: 20, alignItems: "center" }}>
+      <View style={{ gap: 30, alignItems: "center" }}>
         <Image
-          resizeMode="contain"
-          width={350}
-          height={44}
+          className="w-3/5 h-12 object-cover "
           alt="Logo Expedy"
-          source={{ uri: require("../../../assets/expedy-logo.png") }}
+          source={require("../../../assets/expedy-logo.png")}
         />
 
-        <View style={{ gap: 10, width: "85%" }}>
-          <TextInput
-            style={{
-              padding: 15,
-              marginTop: 5,
-              backgroundColor: "white",
-              borderRadius: 10,
-            }}
-            onChangeText={(text) => setValue("companyCode", text)}
-            placeholder="Código"
-            placeholderTextColor="#6b6b6b"
+        <View style={{ gap: 20, width: "85%" }}>
+          <Input
+            className="w-full "
+            placeholder="Digite o código da empresa"
             keyboardType="numeric"
+            onChangeText={(text) => setValue("companyCode", text)}
           />
-          <TextInput
-            style={{
-              padding: 15,
-              marginTop: 5,
-              backgroundColor: "white",
-              borderRadius: 10,
-            }}
-            onChangeText={(text) => setValue("login", text)}
-            autoCapitalize="none"
+
+          <Input
+            className="w-full "
             placeholder="Usuário"
-            placeholderTextColor="#6b6b6b"
+            onChangeText={(text) => setValue("login", text)}
           />
-          <TextInput
-            style={{
-              padding: 15,
-              marginTop: 5,
-              backgroundColor: "white",
-              borderRadius: 10,
-            }}
-            onChangeText={(text) => setValue("password", text)}
+
+          <Input
+            className="w-full "
             placeholder="Senha"
-            placeholderTextColor="#6b6b6b"
-            secureTextEntry={true}
-            autoCapitalize="none"
+            keyboardType="numeric"
+            onChangeText={(text) => setValue("password", text)}
           />
         </View>
       </View>
       <View style={{ alignItems: "center" }}>
         {loading ? (
           <Button
-            borderRadius={10}
-            marginTop={50}
-            width={"85%"}
-            backgroundColor={"#EA582C"}
-            color={"white"}
-          >
-            <Spinner />
-          </Button>
+            className="border-10 mt-10 w-4/5 h-12 bg-[#EA582C] text-white"
+            label="Carregando..."
+          />
         ) : (
           <Button
-            marginTop={50}
-            width={"85%"}
-            borderRadius={10}
-            backgroundColor={"#c2410c"}
+            className="border-10 mt-12 w-4/5 h-12 bg-[#c2410c] text-white"
+            label="Login"
             onPress={handleSubmit(onSubmit)}
-            color={"white"}
-          >
-            Login
-          </Button>
+          />
         )}
       </View>
     </KeyboardAvoidingView>
