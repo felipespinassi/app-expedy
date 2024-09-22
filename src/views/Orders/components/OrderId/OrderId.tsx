@@ -2,7 +2,6 @@ import {
   ActivityIndicator,
   SafeAreaView,
   ScrollView,
-  Text,
   View,
 } from "react-native";
 import React, { useState } from "react";
@@ -15,7 +14,7 @@ import ModalErroNota from "./components/ModalErroNota/ModalErroNota";
 import DataProducts from "./components/DataProducts/DataProducts";
 import DataGeneral from "./components/DataGeneral/DataGeneral";
 import OrderErrors from "./components/OrderErrors/OrderErrors";
-import { Button } from "tamagui";
+import { Button } from "../../../../../components/Button";
 
 export function OrderId({ route, navigation }: any) {
   const { data, isLoading, refetch, isFetching }: any = useQuery(
@@ -53,12 +52,9 @@ export function OrderId({ route, navigation }: any) {
             <DataGeneral pedido={pedido} />
             <DataCustomer pedido={pedido} />
             <Button
+              label="Atualizar informações"
               onPress={() => setOpenModal(true)}
-              color={"#fff"}
-              backgroundColor={"#1890ff"}
-            >
-              Atualizar informações
-            </Button>
+            />
             <DataProducts pedido={pedido} />
           </View>
         </ScrollView>
