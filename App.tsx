@@ -9,6 +9,8 @@ import { useFonts } from "expo-font";
 import { Routes } from "./src/routes";
 import { Toaster } from "./src/components/Toast";
 
+import "./src/styles/global.css";
+
 const queryClient = new QueryClient();
 const tamaguiConfig = createTamagui(config);
 

@@ -2,6 +2,7 @@ import {
   ActivityIndicator,
   SafeAreaView,
   ScrollView,
+  Text,
   View,
 } from "react-native";
 import React, { useState } from "react";
@@ -9,12 +10,12 @@ import { useQuery } from "react-query";
 import DataCustomer from "./components/DataCustomer/DataCustomer";
 import fetcher from "../../../../services/fetcher";
 import { config } from "../../../../services/apiConfig";
-import { Button } from "tamagui";
 import ModalUpdateInfo from "./components/ModalUpdateInfo/ModalUpdateInfo";
 import ModalErroNota from "./components/ModalErroNota/ModalErroNota";
 import DataProducts from "./components/DataProducts/DataProducts";
 import DataGeneral from "./components/DataGeneral/DataGeneral";
 import OrderErrors from "./components/OrderErrors/OrderErrors";
+import { Button } from "tamagui";
 
 export function OrderId({ route, navigation }: any) {
   const { data, isLoading, refetch, isFetching }: any = useQuery(
