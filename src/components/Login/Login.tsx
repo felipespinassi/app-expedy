@@ -67,16 +67,16 @@ export default function Login({ navigation }: any) {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS == "ios" ? "padding" : undefined}
-      style={{ flex: 1, justifyContent: "center", backgroundColor: "#19223E" }}
+      className="flex-1 justify-center bg-[#19223E]"
     >
-      <View style={{ gap: 30, alignItems: "center" }}>
+      <View className=" gap-8 items-center ">
         <Image
           className="w-3/5 h-12 object-cover "
           alt="Logo Expedy"
           source={require("../../../assets/expedy-logo.png")}
         />
 
-        <View style={{ gap: 20, width: "85%" }}>
+        <View className="gap-8 w-10/12">
           <Input
             className="w-full "
             placeholder="Digite o código da empresa"
@@ -98,7 +98,7 @@ export default function Login({ navigation }: any) {
           />
         </View>
       </View>
-      <View style={{ alignItems: "center" }}>
+      <View className="items-center">
         {loading ? (
           <Button
             className="border-10 mt-10 w-4/5 h-12 bg-[#EA582C] text-white"
