@@ -5,7 +5,7 @@ export function Home() {
   return (
     <>
       <Header showArrow={false}>Início</Header>
-      <View className="flex-1 justify-center items-center">
+      <View className="flex-1 justify-center items-center dark:bg-black">
         <Image
           style={{ width: "80%", height: 200 }}
           source={require("../../../assets/liveExpedy.png")}
