@@ -1,5 +1,4 @@
 import React from "react";
-import { Theme } from "tamagui";
 import { useNavigation } from "@react-navigation/native";
 
 import ItemsToPickComponent from "../../../views/ExpedicaoRapida/components/ItemsToPick";
@@ -11,11 +10,11 @@ export default function ItemsToPick(props: any) {
   const params = props.route.params;
 
   return (
-    <Theme name={"light"}>
+    <>
       <Header showArrow navigation={navigation}>
         Separação
       </Header>
       <ItemsToPickComponent params={params} />
-    </Theme>
+    </>
   );
 }

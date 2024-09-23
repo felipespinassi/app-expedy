@@ -6,9 +6,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { COMPANY_NAME } from "../../storage/storageConfig";
 import { removeCompanyName } from "../../storage/removeCompanyName";
 import { removeAccess_token } from "../../storage/removeAccess_token";
-import { Avatar } from "tamagui";
 import { AuthContext } from "../../context/AuthContext";
 import { View } from "react-native";
+import { Avatar } from "../../../components/Avatar";
 
 export default function Mais({ navigation }: any) {
   const [companyName, setCompanyName] = useState("");
@@ -72,7 +72,7 @@ export default function Mais({ navigation }: any) {
               maxWidth: "90%",
             }}
           >
-            <Avatar borderRadius={50} bg="white">
+            <Avatar className="bg-white justify-center items-center h-12 w-12">
               <Text style={{ textTransform: "uppercase", fontSize: 22 }}>
                 {companyName?.split("")[0]}
               </Text>

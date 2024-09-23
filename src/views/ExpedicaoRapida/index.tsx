@@ -1,9 +1,17 @@
-import { TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import Feather from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
-import { ListItem, YGroup } from "tamagui";
 import { NavigationTypes } from "../../@types/NavigationTypes";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../../../components/Card";
+import { Box, ScrollText } from "lucide-react-native";
 
 export default function ExpedicaoRapida() {
   const navigation = useNavigation<NavigationTypes>();
@@ -12,46 +20,34 @@ export default function ExpedicaoRapida() {
       <View
         style={{ alignItems: "center", width: "100%", marginTop: 20, gap: 20 }}
       >
-        <TouchableOpacity onPress={() => navigation.navigate("Expedir")}>
-          <YGroup
-            minWidth={"95%"}
-            alignSelf="center"
-            bordered
-            width={240}
-            size="$4"
-          >
-            <YGroup.Item>
-              <ListItem
-                padding={30}
-                icon={<Feather name="package" size={24} />}
-                title="Expedir"
-                backgroundColor={"$background075"}
-                size={"$7"}
-              />
-            </YGroup.Item>
-          </YGroup>
+        <TouchableOpacity
+          className="w-11/12"
+          onPress={() => navigation.navigate("Expedir")}
+        >
+          <Card className="bg-background   h-28 justify-center ">
+            <CardHeader className="w-full flex-row px-10 flex gap-4">
+              <Box size={28} />
+              <CardTitle className="text-foreground font-normal">
+                Expedição Rápida
+              </CardTitle>
+            </CardHeader>
+          </Card>
         </TouchableOpacity>
 
         <TouchableOpacity
+          className="w-11/12"
           onPress={() => navigation.navigate("ArquivosGerados")}
         >
-          <YGroup
-            minWidth={"95%"}
-            alignSelf="center"
-            bordered
-            width={240}
-            size="$4"
-          >
-            <YGroup.Item>
-              <ListItem
-                backgroundColor={"$background075"}
-                size={"$7"}
-                padding={30}
-                icon={<Feather name="file-text" size={24} />}
-                title="Arquivos Gerados"
-              />
-            </YGroup.Item>
-          </YGroup>
+          <View>
+            <Card className="bg-background h-28 justify-center">
+              <CardHeader className="w-full px-10 flex flex-row gap-4 ">
+                <ScrollText />
+                <CardTitle className="text-foreground font-normal">
+                  Arquivos Gerados
+                </CardTitle>
+              </CardHeader>
+            </Card>
+          </View>
         </TouchableOpacity>
       </View>
     </View>

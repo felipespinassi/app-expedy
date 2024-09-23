@@ -5,6 +5,7 @@ module.exports = {
     "./src/screens/**/*.{js,jsx,ts,tsx}",
     "./src/components/**/*.{js,jsx,ts,tsx}",
     "./src/views/**/*.{js,jsx,ts,tsx}",
+    "./src/objects/**/*.{js,jsx,ts,tsx}",
     "./components/**/*.{js,jsx,ts,tsx}",
   ],
 
