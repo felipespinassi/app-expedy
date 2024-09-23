@@ -70,7 +70,7 @@ export default function Expedir() {
 
       {isLoading ? (
         <View style={{ marginTop: 20 }}>
-          <ActivityIndicator />
+          <ActivityIndicator size={"large"} />
         </View>
       ) : (
         <FlatList

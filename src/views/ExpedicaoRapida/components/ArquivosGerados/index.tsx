@@ -13,8 +13,8 @@ export default function ArquivosGerados() {
 
   if (isLoading) {
     return (
-      <View className="justify-center items-center mt-16">
-        <ActivityIndicator />
+      <View className="justify-center items-center mt-5">
+        <ActivityIndicator size="large" />
       </View>
     );
   }

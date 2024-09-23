@@ -9,6 +9,7 @@ import { removeAccess_token } from "../../storage/removeAccess_token";
 import { AuthContext } from "../../context/AuthContext";
 import { View } from "react-native";
 import { Avatar } from "../../../components/Avatar";
+import { ModeToggle } from "../../components/ToogleTheme";
 
 export default function Mais({ navigation }: any) {
   const [companyName, setCompanyName] = useState("");
@@ -46,6 +47,10 @@ export default function Mais({ navigation }: any) {
       action: () => {
         removeAccess_token(), removeCompanyName(), setIsLogged(false);
       },
+    },
+    {
+      name: "",
+      icon: <ModeToggle />,
     },
   ];
   return (

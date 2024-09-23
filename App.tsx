@@ -1,12 +1,9 @@
-import { useEffect } from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { StatusBar, useColorScheme } from "react-native";
-import { useFonts } from "expo-font";
-import { Routes } from "./src/routes";
-
-import "./src/styles/global.css";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastProvider } from "./components/Toast";
+import { StatusBar } from "react-native";
+import { Routes } from "./src/routes";
+import "./src/styles/global.css";
 
 const queryClient = new QueryClient();
 

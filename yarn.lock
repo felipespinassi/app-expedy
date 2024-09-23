@@ -2131,6 +2131,11 @@
   resolved "https://registry.yarnpkg.com/@react-native/normalize-colors/-/normalize-colors-0.74.83.tgz#86ef925bacf219d74df115bcfb615f62d8142e85"
   integrity sha512-jhCY95gRDE44qYawWVvhTjTplW1g+JtKTKM3f8xYT1dJtJ8QWv+gqEtKcfmOHfDkSDaMKG0AGBaDTSK8GXLH8Q==
 
+"@react-native/normalize-colors@0.74.85":
+  version "0.74.85"
+  resolved "https://registry.yarnpkg.com/@react-native/normalize-colors/-/normalize-colors-0.74.85.tgz#62bcb9ab1b10b822ca0278fdfdf23d3b18e125da"
+  integrity sha512-pcE4i0X7y3hsAE0SpIl7t6dUc0B0NZLd1yv7ssm4FrLhWG+CGyIq4eFDXpmPU1XHmL5PPySxTAjEMiwv6tAmOw==
+
 "@react-native/virtualized-lists@0.74.83":
   version "0.74.83"
   resolved "https://registry.yarnpkg.com/@react-native/virtualized-lists/-/virtualized-lists-0.74.83.tgz#5595d6aefd9679d1295c56a1d1653b1fb261bd62"
@@ -4023,6 +4028,14 @@ expo-structured-headers@~3.8.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/expo-structured-headers/-/expo-structured-headers-3.8.0.tgz#11797a4c3a7a6770b21126cecffcda148030e361"
   integrity sha512-R+gFGn0x5CWl4OVlk2j1bJTJIz4KO8mPoCHpRHmfqMjmrMvrOM0qQSY3V5NHXwp1yT/L2v8aUmFQsBRIdvi1XA==
+
+expo-system-ui@~3.0.7:
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/expo-system-ui/-/expo-system-ui-3.0.7.tgz#73fee2a61db435e5d66cbf6407e0987f39c25b4e"
+  integrity sha512-KAs72F5JKhdIfPR9ZNVlRubTPK9uUuevPy5oYEp12xNEzSQcjZKvypH5NpwJuNWkXzrp3n3vZ+3pXsudA7J3KA==
+  dependencies:
+    "@react-native/normalize-colors" "0.74.85"
+    debug "^4.3.2"
 
 expo-updates-interface@~0.16.2:
   version "0.16.2"
