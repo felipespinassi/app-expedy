@@ -1,4 +1,3 @@
-import { Button, Spinner } from "tamagui";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import { useState } from "react";
 import ModalFilters from "./components/ModalFilters/ModalFilters";
@@ -9,7 +8,7 @@ import ListOrders from "./components/ListOrders/ListOrders";
 import TopBar from "./components/TopBar/TopBar";
 import { FiltersProps } from "../../@types/FiltersExpedirTypes";
 import ListEmptyComponent from "../../../../components/ListEmptyComponent/ListEmptyComponent";
-import { Plus } from "@tamagui/lucide-icons";
+import { LoaderCircle, Plus } from "lucide-react-native";
 
 export default function Expedir() {
   const [openModal, setOpenModal] = useState(false);
@@ -65,7 +64,7 @@ export default function Expedir() {
 
       {isLoading ? (
         <View style={{ marginTop: 20 }}>
-          <Spinner size="large" />
+          <LoaderCircle />
         </View>
       ) : (
         <FlatList

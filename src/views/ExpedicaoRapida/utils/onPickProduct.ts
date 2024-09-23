@@ -29,9 +29,7 @@ export async function onPickProduct(
     );
     navigation.goBack();
 
-    toast.show("Salvo com sucesso!", {
-      message: "Produto separado.",
-    });
+    toast("Salvo com sucesso!", "success");
   } catch (error) {
     console.log(error);
     return Alert.alert("Não foi possivel atualizar");

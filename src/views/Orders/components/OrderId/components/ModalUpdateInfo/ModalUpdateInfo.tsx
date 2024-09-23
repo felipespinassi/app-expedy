@@ -10,11 +10,12 @@ import {
 } from "react-native";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { X } from "@tamagui/lucide-icons";
-import { Button, Input } from "tamagui";
 import fetcher from "../../../../../../services/fetcher";
 import { config } from "../../../../../../services/apiConfig";
-import { useToastController } from "@tamagui/toast";
+import { X } from "lucide-react-native";
+import { Input } from "../../../../../../../components/Input";
+import { Button } from "../../../../../../../components/Button";
+import { useToast } from "../../../../../../../components/Toast";
 
 export default function ModalUpdateInfo({
   pedido,
@@ -22,7 +23,7 @@ export default function ModalUpdateInfo({
   openModal,
   refetch,
 }: any) {
-  const toast = useToastController();
+  const { toast } = useToast();
   const form = useForm({
     values: {
       name: pedido.Customer.name,
@@ -49,7 +50,7 @@ export default function ModalUpdateInfo({
         body: JSON.stringify(values),
       });
       setOpenModal(false);
-      toast.show("Informações Atualizadas.");
+      toast("Informações Atualizadas.", "success");
       refetch();
     } catch (error) {
       Alert.alert("Não foi possível atualizar.");
@@ -80,7 +81,7 @@ export default function ModalUpdateInfo({
               Atualizar Informações do cliente
             </Text>
             <TouchableOpacity onPress={() => setOpenModal(false)}>
-              <X size={26} color={"black"} />
+              <X size={26} />
             </TouchableOpacity>
           </View>
 
@@ -249,18 +250,17 @@ export default function ModalUpdateInfo({
         <TouchableOpacity
           style={{
             position: "absolute",
-            bottom: 30,
+            bottom: "5%",
             right: "1%",
             left: "1%",
           }}
         >
           <View style={{ alignItems: "center" }}>
             <Button
+              label="Confirmar"
+              size={"lg"}
+              className="w-full"
               onPress={form.handleSubmit(onUpdateCustomerInfo)}
-              width={"90%"}
-              fontSize={18}
-              color={"white"}
-              backgroundColor={"#1890ff"}
             >
               Confirmar
             </Button>

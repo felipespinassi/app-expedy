@@ -7,7 +7,7 @@ import { FiltersProps } from "../../../../../../@types/FiltersExpedirTypes";
 import { UseFormReturn } from "react-hook-form";
 import useSWR from "swr";
 import Checkbox from "../../../../../../../../components/Checkbox/Checkbox";
-import { Spinner } from "tamagui";
+import { LoaderCircle } from "lucide-react-native";
 
 interface Props {
   form: UseFormReturn<FiltersProps>;
@@ -32,7 +32,7 @@ export default function SelectIntegracoes({ form, filters }: Props) {
   const [value, setValue] = useState(filters?.integracao);
 
   if (isLoading) {
-    return <Spinner size="large" />;
+    return <LoaderCircle size="large" />;
   }
 
   return (

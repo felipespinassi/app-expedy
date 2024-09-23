@@ -1,19 +1,25 @@
-import { Text, TouchableOpacity, View } from "react-native";
+import {
+  ActivityIndicator,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { Button, ScrollView, Spinner, YStack } from "tamagui";
 import { Swipeable } from "react-native-gesture-handler";
 import { onPickTotalQuantity } from "../../utils/onPickTotalQuantity";
-import { useToastController } from "@tamagui/toast";
 
 import fetcher from "../../../../services/fetcher";
 import { config } from "../../../../services/apiConfig";
 import useSWR from "swr";
 import { PickingListProps, PickingProduct } from "../../@types/PickingProduct";
+import { Button } from "../../../../../components/Button";
+import { useToast } from "../../../../../components/Toast";
 
 export default function ListaSeparacao({ fileId }: { fileId: string }) {
   const navigation = useNavigation<any>();
-  const toast = useToastController();
+  const { toast } = useToast();
 
   const { data, isValidating, mutate } = useSWR<PickingListProps>(
     `${config.baseURL}orders/file/picking/${fileId}`,
@@ -21,11 +27,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
   );
 
   function RightAction() {
-    return (
-      <Button flex={1} height={"90%"} backgroundColor={"#e0fed7"}>
-        <Spinner />{" "}
-      </Button>
-    );
+    return <Button label="" className="flex-1 h-[90%] bg-[#e0fed7]" />;
   }
 
   async function onSwipeTotal(produto: PickingProduct) {
@@ -62,7 +64,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
   if (isValidating) {
     return (
       <View style={{ margin: 20 }}>
-        <Spinner size={"large"} />
+        <ActivityIndicator size={"large"} />
       </View>
     );
   }
@@ -71,7 +73,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
 
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView paddingTop={5}>
+      <ScrollView className="pt-1">
         {data?.produtos?.map((produto, index) => {
           return (
             <Swipeable
@@ -81,7 +83,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
             >
               <View>
                 {produto?.controle?.quantidadeRestante === 0 ? (
-                  <YStack paddingHorizontal={5}>
+                  <View className="px-1">
                     <View
                       style={{
                         height: 100,
@@ -109,7 +111,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
                         </Text>
                       </View>
                     </View>
-                  </YStack>
+                  </View>
                 ) : (
                   <TouchableOpacity
                     key={index}
@@ -117,7 +119,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
                       navigation.navigate("ItemsToPick", { produto, fileId });
                     }}
                   >
-                    <YStack paddingHorizontal={5}>
+                    <View className="py-1">
                       <View
                         style={{
                           height: 100,
@@ -145,7 +147,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
                           </Text>
                         </View>
                       </View>
-                    </YStack>
+                    </View>
                   </TouchableOpacity>
                 )}
               </View>

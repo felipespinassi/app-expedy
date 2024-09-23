@@ -1,8 +1,8 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
-import { Copy } from "@tamagui/lucide-icons";
 import * as Clipboard from "expo-clipboard";
 import { statusHub } from "../../../../../../objects/statusHub";
+import { Copy } from "lucide-react-native";
 
 export default function DataGeneral({ pedido }: any) {
   async function handleCopyToClipboard(text: string) {
@@ -28,7 +28,7 @@ export default function DataGeneral({ pedido }: any) {
           <Text style={{ color: "gray", fontSize: 16 }}>ID HUB:</Text>
           <Text style={{ fontSize: 16 }}>{pedido?.id} </Text>
           <TouchableOpacity onPress={() => handleCopyToClipboard(pedido?.id)}>
-            <Copy marginLeft={2} color={"black"} size={22} />
+            <Copy color={"black"} size={22} />
           </TouchableOpacity>
         </View>
         <View style={{ flexDirection: "row", gap: 2 }}>
@@ -37,7 +37,7 @@ export default function DataGeneral({ pedido }: any) {
           <TouchableOpacity
             onPress={() => handleCopyToClipboard(pedido?.orderid)}
           >
-            <Copy marginLeft={2} color={"black"} size={22} />
+            <Copy color={"black"} size={22} />
           </TouchableOpacity>
         </View>
         <View style={{ flexDirection: "row", gap: 2 }}>

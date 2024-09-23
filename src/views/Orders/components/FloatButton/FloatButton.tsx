@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   Alert,
   Modal,
   SafeAreaView,
@@ -7,13 +8,12 @@ import {
   View,
 } from "react-native";
 import React, { useRef, useState } from "react";
-import { Plus } from "@tamagui/lucide-icons";
-import { Spinner } from "tamagui";
 import axios from "axios";
 import { getAccess_token } from "../../../../storage/getAccess_token";
-import { useToastController } from "@tamagui/toast";
 import { config } from "../../../../services/apiConfig";
 import fetcher from "../../../../services/fetcher";
+import { Plus } from "lucide-react-native";
+import { useToast } from "../../../../../components/Toast";
 
 export default function FloatButton({
   selectedOrders,
@@ -21,7 +21,7 @@ export default function FloatButton({
   fetchOrders,
 }: any) {
   const [open, setOpen] = useState(false);
-  const toast = useToastController();
+  const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const successRef = useRef([] as any);
 
@@ -36,7 +36,7 @@ export default function FloatButton({
         }
       );
       setSelectedOrders([]);
-      toast.show("Notas sendo emitidas");
+      toast("Notas sendo emitidas", "info");
       fetchOrders();
     } catch (error) {
       alert(error);
@@ -60,8 +60,9 @@ export default function FloatButton({
         successRef.current.push(order);
       } catch (error) {}
     }
-    toast.show(
-      `${successRef.current.length} etiquetas preparadas de ${selectedOrders.length} processadas`
+    toast(
+      `${successRef.current.length} etiquetas preparadas de ${selectedOrders.length} processadas`,
+      "info"
     );
 
     setLoading(false);
@@ -102,7 +103,7 @@ export default function FloatButton({
             <View style={{ flexDirection: "row", gap: 5, padding: 20 }}>
               {loading && (
                 <Text>
-                  <Spinner />
+                  <ActivityIndicator />
                 </Text>
               )}
 

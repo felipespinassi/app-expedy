@@ -3,7 +3,6 @@ import React from "react";
 import moment from "moment";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { statusHub } from "../../../../objects/statusHub";
-import { YStack } from "tamagui";
 import { marketplaces } from "../../utils/marketplaces";
 import { OrdersTypes } from "../../../../@types/OrdersTypes";
 
@@ -33,7 +32,7 @@ export default function ListOrders({
         navigation.navigate("PedidoId", item.id);
       }}
     >
-      <YStack alignItems="center">
+      <View className="items-center">
         <View
           style={{
             backgroundColor: "white",
@@ -119,7 +118,7 @@ export default function ListOrders({
             </View>
           </View>
         </View>
-      </YStack>
+      </View>
     </TouchableOpacity>
   );
 }

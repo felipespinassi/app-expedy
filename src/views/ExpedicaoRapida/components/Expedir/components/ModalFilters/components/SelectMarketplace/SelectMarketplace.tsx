@@ -1,8 +1,6 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 
-import { Accordion, Paragraph, RadioGroup, Square } from "tamagui";
-import { FieldValues, UseFormReturn, UseFormSetValue } from "react-hook-form";
-import { ChevronDown } from "@tamagui/lucide-icons";
+import { UseFormReturn } from "react-hook-form";
 import { Text, TouchableOpacity, View } from "react-native";
 import { integracoesDisponiveis } from "../../../../../../../../objects/integracoesDisponiveis";
 import { FiltersProps } from "../../../../../../@types/FiltersExpedirTypes";

@@ -28,9 +28,7 @@ export async function onPickTotalQuantity(
       }
     );
     mutate();
-    toast.show("Salvo com sucesso!", {
-      message: "Produto separado.",
-    });
+    toast("Salvo com sucesso!", "success", 2000);
   } catch (error) {
     console.log(error);
     return Alert.alert("Não foi possivel atualizar");

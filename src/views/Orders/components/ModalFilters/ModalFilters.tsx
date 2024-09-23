@@ -7,11 +7,12 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { Dispatch, SetStateAction } from "react";
-import { Button, Form, Input } from "tamagui";
-import { X } from "@tamagui/lucide-icons";
 import { FieldValues, UseFormReturn } from "react-hook-form";
 import SelectStatusHub from "./components/SelectStatusHub/SelectStatusHub";
 import SelectIntegracoes from "./components/SelectIntegracoes/SelectIntegracoes";
+import { Input } from "../../../../../components/Input";
+import { Button } from "../../../../../components/Button";
+import { X } from "lucide-react-native";
 
 interface Props {
   setFilters: Dispatch<SetStateAction<{}>>;
@@ -89,14 +90,11 @@ export default function ModalFilters({
         >
           <View style={{ alignItems: "center" }}>
             <Button
+              label="Filtrar"
+              className="w-11/12"
               onPress={() => onFinish()}
-              width={"90%"}
-              fontSize={18}
-              color={"white"}
-              backgroundColor={"#1890ff"}
-            >
-              Filtrar
-            </Button>
+              size={"lg"}
+            />
           </View>
         </TouchableOpacity>
       </SafeAreaView>

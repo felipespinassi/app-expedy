@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import fetcher from "../../../../../../../../services/fetcher";
 import { config } from "../../../../../../../../services/apiConfig";
-import { Text, TouchableOpacity } from "react-native";
+import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import useSWR from "swr";
 import { UseFormReturn } from "react-hook-form";
 import { FiltersProps } from "../../../../../../@types/FiltersExpedirTypes";
 import { OrdersResponseTypes } from "../../../../../../@types/OrdersResponseTypes";
 import Checkbox from "../../../../../../../../components/Checkbox/Checkbox";
-import { Spinner, View } from "tamagui";
 
 export default function SelectMaisVendidos({
   form,
@@ -22,7 +21,7 @@ export default function SelectMaisVendidos({
   const [productSelected, setProductSelected] = useState("");
 
   if (isLoading) {
-    return <Spinner size="large" />;
+    return <ActivityIndicator />;
   }
 
   return (
@@ -37,11 +36,7 @@ export default function SelectMaisVendidos({
             }}
             key={produto.id_produto}
           >
-            <View
-              flexDirection="row"
-              justifyContent="space-between"
-              paddingRight={25}
-            >
+            <View className="flex-row justify-between pr-6">
               <Text>{produto.sku}</Text>
               <Checkbox value1={productSelected} value2={produto.sku} />
             </View>

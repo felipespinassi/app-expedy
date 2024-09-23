@@ -11,11 +11,11 @@ import {
 import FloatButton from "./components/FloatButton/FloatButton";
 import { OrdersTypes } from "../../@types/OrdersTypes";
 import { useForm } from "react-hook-form";
-import { ArrowUp, ChevronDown } from "@tamagui/lucide-icons";
 import ModalFilters from "./components/ModalFilters/ModalFilters";
 import ListEmptyComponent from "../../components/ListEmptyComponent/ListEmptyComponent";
 import { useGetOrders } from "./hooks/useGetOrders";
 import { MarketplacesHeader } from "./components/MarketplacesHeader/MarketplacesHeader";
+import { ArrowUp, ChevronDown } from "lucide-react-native";
 
 export default function Orders({ navigation }: any) {
   const [selectedOrders, setSelectedOrders] = useState([] as any);
