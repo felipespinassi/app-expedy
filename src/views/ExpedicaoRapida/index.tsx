@@ -1,16 +1,8 @@
-import { Text, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import React from "react";
-import Feather from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
 import { NavigationTypes } from "../../@types/NavigationTypes";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../../../components/Card";
+import { Card, CardHeader, CardTitle } from "../../../components/Card";
 import { Box, ScrollText } from "lucide-react-native";
 
 export default function ExpedicaoRapida() {
