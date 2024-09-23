@@ -35,7 +35,6 @@ export default function ListOrders({
       <View className="items-center">
         <View
           style={{
-            backgroundColor: "white",
             height: 100,
             alignItems: "center",
             justifyContent: "space-between",
@@ -44,6 +43,7 @@ export default function ListOrders({
             flexDirection: "row",
             borderRadius: 10,
           }}
+          className="bg-muted dark:bg-darkMuted"
         >
           <View
             style={{
@@ -61,8 +61,13 @@ export default function ListOrders({
               padding: 10,
               justifyContent: "space-evenly",
               height: "100%",
-              backgroundColor: `${selected ? "#e6f7ff" : "white"}`,
+              // backgroundColor: `${selected ? "#e6f7ff" : "white"}`,
             }}
+            className={` ${
+              selected
+                ? "bg-[#e6f7ff] dark:bg-[#555]"
+                : "bg-muted dark:bg-darkMuted"
+            }`}
           >
             <View
               style={{
@@ -81,10 +86,15 @@ export default function ListOrders({
                   width: "65%",
                 }}
               >
-                <Text>{item.orderid}</Text>
-
-                <Text>{item.integracao.name}</Text>
-                <Text>{item.Customer.name}</Text>
+                <Text className="text-foreground dark:text-darkForeground">
+                  {item.orderid}
+                </Text>
+                <Text className="text-foreground dark:text-darkForeground">
+                  {item.integracao.name}
+                </Text>
+                <Text className="text-foreground dark:text-darkForeground">
+                  {item.Customer.name}
+                </Text>
               </View>
 
               <View
@@ -94,7 +104,7 @@ export default function ListOrders({
                   height: "100%",
                 }}
               >
-                <Text>
+                <Text className="text-foreground dark:text-darkForeground">
                   {moment(item.date).utc(true).format("DD/MM")}-
                   {moment(item.date).utc(true).format("HH:mm")}
                 </Text>

@@ -6,9 +6,8 @@ export function ModeToggle() {
 
   return (
     <Button
-      className=" dark:bg-red-500  bg-blue-500"
+      variant={"secondary"}
       label="Mudar Tema"
-      variant="default"
       onPress={() => setColorScheme(colorScheme === "dark" ? "light" : "dark")}
     >
       Toggle mode

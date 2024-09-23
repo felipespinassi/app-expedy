@@ -6,15 +6,23 @@ import Mais from "../screens/Mais";
 import ExpedicaoRapida from "../screens/ExpedicaoRapida";
 import { Login } from "../screens/Login";
 import { useNavigation } from "@react-navigation/native";
+import { useColorScheme } from "nativewind";
 
 const Tab = createBottomTabNavigator();
 
 export default function TabRoutes() {
+  const { colorScheme } = useColorScheme();
+
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: "#1890ff",
+        tabBarStyle: {
+          backgroundColor: colorScheme === "dark" ? "#222" : "#fff",
+          borderTopWidth: 0,
+          elevation: 0,
+        },
       }}
     >
       {/* <Tab.Screen

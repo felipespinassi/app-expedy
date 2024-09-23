@@ -1,7 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: "class",
-
   content: [
     "./App.{js,jsx,ts,tsx}",
     "./src/screens/**/*.{js,jsx,ts,tsx}",
@@ -19,39 +17,15 @@ module.exports = {
         "blue-expedy-700": "#19223E",
         "orange-expedy-600": "#EA582C",
         "orange-expedy-700": "#c2410c",
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
+        background: "#f1f1f1", // hsl(0, 0%, 100%)
+        darkBackground: "#222", // hsl(222.2, 84%, 4.9%)
+        foreground: "#1e1e1e", // hsl(210, 40%, 98%)
+        darkForeground: "#e6f7ff", // hsl(222.2, 47.4%, 11.2%)
+        muted: "#fff", // hsl(0, 0%, 100%)
+        darkMuted: "#333", // hsl(222.2, 84%, 20%)
+        primary: "#3b82f6",
+        secondary: "#e6f7f5",
+        destructive: "#ff4d4d",
       },
     },
   },

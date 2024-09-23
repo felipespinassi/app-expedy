@@ -8,7 +8,12 @@ export function MarketplacesHeader({
 }: any) {
   return (
     <>
-      <Text style={{ color: "black", marginVertical: 10 }}>Marketplace</Text>
+      <Text
+        style={{ marginVertical: 10 }}
+        className="text-foreground dark:text-darkForeground"
+      >
+        Marketplace
+      </Text>
       <View style={{ justifyContent: "center", alignItems: "center" }}>
         <FlatList
           ref={flatListMarketplaceRef}
@@ -27,11 +32,12 @@ export function MarketplacesHeader({
                   alignItems: "center",
                   width: 60,
                   height: 60,
-                  backgroundColor: "white",
+
                   borderRadius: 50,
                   padding: 10,
                   marginRight: 10,
                 }}
+                className="bg-muted dark:bg-darkMuted"
               >
                 <Image
                   resizeMode="contain"

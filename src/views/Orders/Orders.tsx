@@ -82,7 +82,10 @@ export default function Orders({ navigation }: any) {
   }, []);
 
   return (
-    <SafeAreaView style={{ alignItems: "center", flex: 1 }}>
+    <SafeAreaView
+      style={{ alignItems: "center", flex: 1 }}
+      className="bg-background dark:bg-darkBackground"
+    >
       {filters.page >= 2 && (
         <TouchableOpacity
           onPress={() =>
@@ -108,7 +111,6 @@ export default function Orders({ navigation }: any) {
       <View
         style={{
           borderRadius: 10,
-          backgroundColor: "white",
           width: "100%",
           height: 40,
           justifyContent: "space-between",
@@ -120,9 +122,12 @@ export default function Orders({ navigation }: any) {
           shadowOpacity: 0.2,
           shadowOffset: { width: 0, height: 0 },
         }}
+        className="bg-muted dark:bg-darkMuted"
       >
         <TouchableOpacity onPress={onReset}>
-          <Text>Limpar Filtros</Text>
+          <Text className="text-foreground dark:text-darkForeground">
+            Limpar Filtros
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => setOpenModal(true)}
@@ -132,7 +137,9 @@ export default function Orders({ navigation }: any) {
             alignItems: "center",
           }}
         >
-          <Text>Filtros</Text>
+          <Text className="text-foreground dark:text-darkForeground">
+            Filtros
+          </Text>
           <ChevronDown />
         </TouchableOpacity>
       </View>
