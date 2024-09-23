@@ -1,11 +1,10 @@
-import { FlatList, Text, View } from "react-native";
+import { ActivityIndicator, FlatList, Text, View } from "react-native";
 import React from "react";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
 import { NavigationTypes } from "../../../../@types/NavigationTypes";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useGetFiles } from "../../hooks/useGetFiles";
-import { LoaderCircle } from "lucide-react-native";
 
 export default function ArquivosGerados() {
   const navigation = useNavigation<NavigationTypes>();
@@ -15,7 +14,7 @@ export default function ArquivosGerados() {
   if (isLoading) {
     return (
       <View className="justify-center items-center mt-16">
-        <LoaderCircle className=" animate-spin" />
+        <ActivityIndicator />
       </View>
     );
   }

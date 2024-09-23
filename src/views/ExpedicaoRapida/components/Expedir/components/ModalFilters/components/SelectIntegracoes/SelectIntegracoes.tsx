@@ -1,13 +1,11 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import React, { useState } from "react";
-import { UseQueryResult, useQuery } from "react-query";
 import fetcher from "../../../../../../../../services/fetcher";
 import { config } from "../../../../../../../../services/apiConfig";
 import { FiltersProps } from "../../../../../../@types/FiltersExpedirTypes";
 import { UseFormReturn } from "react-hook-form";
 import useSWR from "swr";
 import Checkbox from "../../../../../../../../components/Checkbox/Checkbox";
-import { LoaderCircle } from "lucide-react-native";
 
 interface Props {
   form: UseFormReturn<FiltersProps>;
@@ -32,7 +30,7 @@ export default function SelectIntegracoes({ form, filters }: Props) {
   const [value, setValue] = useState(filters?.integracao);
 
   if (isLoading) {
-    return <LoaderCircle size="large" />;
+    return <ActivityIndicator size="large" />;
   }
 
   return (
