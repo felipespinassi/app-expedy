@@ -9,7 +9,6 @@ export default function ListOrders({ item }: { item: Orders }) {
     <>
       <View
         style={{
-          backgroundColor: "#fff",
           borderRadius: 10,
           marginBottom: 5,
           flexDirection: "row",
@@ -18,6 +17,7 @@ export default function ListOrders({ item }: { item: Orders }) {
           marginTop: 5,
           height: 90,
         }}
+        className="bg-muted dark:bg-darkMuted"
       >
         <View
           style={{
@@ -28,17 +28,21 @@ export default function ListOrders({ item }: { item: Orders }) {
           }}
         />
         <View style={{ gap: 5, width: "60%" }}>
-          <Text>{item.cliente}</Text>
-          <Text>{item.integracao.name}</Text>
-          <Text>{item.orderid}</Text>
+          <Text className="text-foreground dark:text-darkForeground">
+            {item.cliente}
+          </Text>
+          <Text className="text-foreground dark:text-darkForeground">
+            {item.integracao.name}
+          </Text>
+          <Text className="text-foreground dark:text-darkForeground">
+            {item.orderid}
+          </Text>
         </View>
 
         <View style={{ width: "30%" }}>
-          <Text>
-            <Text>
-              {moment(item.dataCriacao).utc(true).format("DD/MM")}-
-              {moment(item.dataCriacao).utc(true).format("HH:mm")}
-            </Text>
+          <Text className="text-foreground dark:text-darkForeground">
+            {moment(item.dataCriacao).utc(true).format("DD/MM")}-
+            {moment(item.dataCriacao).utc(true).format("HH:mm")}
           </Text>
         </View>
       </View>

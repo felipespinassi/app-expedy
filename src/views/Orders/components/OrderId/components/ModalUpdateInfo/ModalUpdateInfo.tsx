@@ -68,6 +68,7 @@ export default function ModalUpdateInfo({
         style={{
           flex: 1,
         }}
+        className="bg-background dark:bg-darkBackground"
       >
         <View style={{ flex: 1 }}>
           <View

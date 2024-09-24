@@ -8,7 +8,12 @@ export default function DataProducts({ pedido }: any) {
         gap: 10,
       }}
     >
-      <Text style={{ fontWeight: "500", fontSize: 20 }}>Itens do Pedido</Text>
+      <Text
+        className="text-foreground dark:text-darkForeground"
+        style={{ fontWeight: "500", fontSize: 20 }}
+      >
+        Itens do Pedido
+      </Text>
       {pedido?.ProductsSold.map((element: any) => {
         const key = element.ProductsSold.product_id;
         return (
@@ -17,22 +22,23 @@ export default function DataProducts({ pedido }: any) {
             style={{
               gap: 5,
               marginBottom: 10,
-              backgroundColor: "white",
+
               padding: 20,
 
               borderRadius: 10,
             }}
+            className="bg-muted dark:bg-darkMuted"
           >
-            <Text>
+            <Text className="text-foreground dark:text-darkForeground">
               <Text style={{ color: "gray", fontSize: 16 }}>SKU:</Text>
               {element.ProductsSold.reference}
             </Text>
 
-            <Text>
+            <Text className="text-foreground dark:text-darkForeground">
               <Text style={{ color: "gray", fontSize: 16 }}>Descrição:</Text>
               {element.ProductsSold.original_name}
             </Text>
-            <Text>
+            <Text className="text-foreground dark:text-darkForeground">
               <Text style={{ color: "gray", fontSize: 16 }}>Quantidade:</Text>
               {element.ProductsSold.quantity}
             </Text>

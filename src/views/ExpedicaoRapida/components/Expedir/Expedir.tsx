@@ -29,7 +29,7 @@ export default function Expedir() {
   }
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1 }} className="bg-background dark:bg-darkBackground">
       <TopBar onResetFilters={onResetFilters} />
 
       <TouchableOpacity
@@ -39,7 +39,6 @@ export default function Expedir() {
             : setOpenModal(true)
         }
         style={{
-          backgroundColor: "#1890ff",
           height: 60,
           width: isFiltered ? 150 : 60,
           borderRadius: isFiltered ? 20 : 50,
@@ -50,6 +49,7 @@ export default function Expedir() {
           zIndex: 100,
           right: "10%",
         }}
+        className="bg-primary"
       >
         {isFiltered ? (
           <View

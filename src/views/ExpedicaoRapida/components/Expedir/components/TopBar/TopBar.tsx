@@ -9,7 +9,6 @@ export default function TopBar({ onResetFilters }: Props) {
   return (
     <View
       style={{
-        backgroundColor: "white",
         width: "100%",
         height: 40,
         justifyContent: "space-between",
@@ -24,9 +23,12 @@ export default function TopBar({ onResetFilters }: Props) {
         borderBottomRightRadius: 10,
         paddingRight: 15,
       }}
+      className="bg-muted dark:bg-darkMuted"
     >
       <TouchableOpacity onPress={onResetFilters}>
-        <Text>Limpar Filtros</Text>
+        <Text className="text-foreground dark:text-darkForeground">
+          Limpar Filtros
+        </Text>
       </TouchableOpacity>
       {/* <TouchableOpacity onPress={() => setOpenModal(true)}>
         <Text>Filtros</Text>

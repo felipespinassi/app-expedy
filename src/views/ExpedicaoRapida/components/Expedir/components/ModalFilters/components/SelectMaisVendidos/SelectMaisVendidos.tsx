@@ -26,7 +26,12 @@ export default function SelectMaisVendidos({
 
   return (
     <>
-      <Text style={{ fontSize: 18, fontWeight: "500" }}>Mais Vendidos</Text>
+      <Text
+        className="text-foreground dark:text-darkForeground"
+        style={{ fontSize: 18, fontWeight: "500" }}
+      >
+        Mais Vendidos
+      </Text>
       {data?.maisVendidos?.map((produto) => {
         return (
           <TouchableOpacity
@@ -37,7 +42,9 @@ export default function SelectMaisVendidos({
             key={produto.id_produto}
           >
             <View className="flex-row justify-between pr-6">
-              <Text>{produto.sku}</Text>
+              <Text className="text-foreground dark:text-darkForeground">
+                {produto.sku}
+              </Text>
               <Checkbox value1={productSelected} value2={produto.sku} />
             </View>
           </TouchableOpacity>

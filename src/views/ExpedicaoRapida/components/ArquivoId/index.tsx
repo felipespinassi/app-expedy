@@ -22,15 +22,18 @@ export default function ArquivoId({ fileId }: { fileId: string }) {
   }
   return (
     <>
-      <View style={{ paddingHorizontal: 5, gap: 20, marginTop: 10 }}>
+      <View
+        style={{ paddingHorizontal: 5, gap: 20, paddingTop: 10, flex: 1 }}
+        className="bg-background dark:bg-darkBackground"
+      >
         <TouchableOpacity
           className="w-11/12"
           onPress={() => navigation.navigate("ListaSeparacao", fileId)}
         >
           <View>
-            <Card className="bg-background h-28 justify-center">
+            <Card className=" h-28 justify-center">
               <CardHeader className="w-full px-10 flex flex-row gap-4 ">
-                <CardTitle className="text-foreground font-normal">
+                <CardTitle className="font-normal">
                   Lista de Separação
                 </CardTitle>
               </CardHeader>
@@ -40,11 +43,9 @@ export default function ArquivoId({ fileId }: { fileId: string }) {
 
         <TouchableOpacity className="w-11/12">
           <View>
-            <Card className="bg-background h-28 justify-center">
+            <Card className=" h-28 justify-center">
               <CardHeader className="w-full px-10 flex flex-row gap-4 ">
-                <CardTitle className="text-foreground font-normal">
-                  Pedidos
-                </CardTitle>
+                <CardTitle className=" font-normal">Pedidos</CardTitle>
               </CardHeader>
             </Card>
           </View>

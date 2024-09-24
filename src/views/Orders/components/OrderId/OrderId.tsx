@@ -39,6 +39,7 @@ export function OrderId({ route, navigation }: any) {
         style={{
           flex: 1,
         }}
+        className="bg-background dark:bg-darkBackground"
       >
         <ScrollView
           style={{ padding: 10 }}

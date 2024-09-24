@@ -55,8 +55,12 @@ export default function ModalFilters({
             paddingHorizontal: 20,
             paddingVertical: 10,
           }}
+          className="bg-background dark:bg-darkBackground"
         >
-          <Text style={{ fontSize: 22, fontWeight: "500" }}>
+          <Text
+            className="text-foreground dark:text-darkForeground"
+            style={{ fontSize: 22, fontWeight: "500" }}
+          >
             Filtrar Pedidos
           </Text>
           <TouchableOpacity onPress={() => setOpenModal(false)}>
@@ -64,29 +68,41 @@ export default function ModalFilters({
           </TouchableOpacity>
         </View>
 
-        <ScrollView>
+        <ScrollView className=" bg-background dark:bg-darkBackground">
           <View className="gap-5 p-5">
             <View style={{ gap: 10 }}>
-              <Text style={{ fontSize: 18, fontWeight: "500" }}>
+              <Text
+                className="text-foreground dark:text-darkForeground"
+                style={{ fontSize: 18, fontWeight: "500" }}
+              >
                 ID do Pedido na HUB
               </Text>
-              <Input onChangeText={(e) => form.setValue("id", e)} />
+              <Input
+                placeholder="Id Hub"
+                onChangeText={(e) => form.setValue("id", e)}
+              />
             </View>
             <View style={{ gap: 10 }}>
-              <Text style={{ fontSize: 18, fontWeight: "500" }}>
+              <Text
+                className="text-foreground dark:text-darkForeground"
+                style={{ fontSize: 18, fontWeight: "500" }}
+              >
                 ID do Pedido no Marketplace
               </Text>
               <Input
-                placeholderTextColor={"black"}
                 placeholder="ID Marketplace"
                 onChangeText={(e) => form.setValue("orderid", e)}
               />
             </View>
 
             <View style={{ gap: 10 }}>
-              <Text style={{ fontSize: 18, fontWeight: "500" }}>SKU</Text>
+              <Text
+                className="text-foreground dark:text-darkForeground"
+                style={{ fontSize: 18, fontWeight: "500" }}
+              >
+                SKU
+              </Text>
               <Input
-                placeholderTextColor={"black"}
                 placeholder=" SKU"
                 onChangeText={(e) => form.setValue("unico_sku", e)}
               />

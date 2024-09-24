@@ -20,7 +20,7 @@ export default function ArquivosGerados() {
   }
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1 }} className="bg-background dark:bg-darkBackground">
       <FlatList
         data={data?.files}
         renderItem={({ item }) => (
@@ -37,10 +37,15 @@ export default function ArquivosGerados() {
                 marginBottom: 10,
                 flexDirection: "row",
                 paddingHorizontal: 25,
-                backgroundColor: "white",
               }}
+              className="bg-muted dark:bg-darkMuted"
             >
-              <Text style={{ fontSize: 12 }}>{item.idERP_File}</Text>
+              <Text
+                className="text-foreground dark:text-darkForeground"
+                style={{ fontSize: 12 }}
+              >
+                {item.idERP_File}
+              </Text>
               <View>
                 {item.status === "impresso" && (
                   <View
@@ -87,10 +92,16 @@ export default function ArquivosGerados() {
                 )}
               </View>
 
-              <Text style={{ fontSize: 12, maxWidth: 140 }}>
+              <Text
+                className="text-foreground dark:text-darkForeground"
+                style={{ fontSize: 12, maxWidth: 140 }}
+              >
                 {item.usuario}
               </Text>
-              <Text style={{ fontSize: 12 }}>
+              <Text
+                className="text-foreground dark:text-darkForeground"
+                style={{ fontSize: 12 }}
+              >
                 {moment(item.createdAt).utc(true).format("DD/MM")}
               </Text>
             </View>

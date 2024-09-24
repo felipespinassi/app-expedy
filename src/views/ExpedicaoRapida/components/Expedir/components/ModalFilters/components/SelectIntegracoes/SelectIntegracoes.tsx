@@ -35,7 +35,12 @@ export default function SelectIntegracoes({ form, filters }: Props) {
 
   return (
     <>
-      <Text style={{ fontSize: 18, fontWeight: "500" }}>Integrações</Text>
+      <Text
+        className="text-foreground dark:text-darkForeground"
+        style={{ fontSize: 18, fontWeight: "500" }}
+      >
+        Integrações
+      </Text>
       {data?.integracoes.map((integracao: any) => {
         return (
           <TouchableOpacity
@@ -52,7 +57,9 @@ export default function SelectIntegracoes({ form, filters }: Props) {
                 paddingRight: 25,
               }}
             >
-              <Text>{integracao.descricao}</Text>
+              <Text className="text-foreground dark:text-darkForeground">
+                {integracao.descricao}
+              </Text>
               <Checkbox value1={value} value2={integracao.id} />
             </View>
           </TouchableOpacity>

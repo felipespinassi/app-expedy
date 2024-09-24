@@ -31,7 +31,7 @@ function CardTitle({
   return (
     <Text
       className={cn(
-        "text-2xl font-semibold tracking-tight text-primary",
+        "text-2xl font-semibold tracking-tight text-foreground dark:text-darkForeground",
         className
       )}
       {...props}
@@ -45,7 +45,10 @@ function CardDescription({
 }: React.ComponentPropsWithoutRef<typeof Text>) {
   return (
     <Text
-      className={cn("text-sm text-muted-foreground", className)}
+      className={cn(
+        "text-sm text-foreground dark:text-darkForeground",
+        className
+      )}
       {...props}
     />
   );
@@ -89,22 +92,28 @@ function SimpleCard({
     <Card className={className}>
       <CardHeader>
         {title && (
-          <Text className="text-2xl font-semibold tracking-tight text-primary">
+          <Text className="text-2xl font-semibold tracking-tight text-foreground dark:text-darkForeground">
             {title}
           </Text>
         )}
         {description && (
-          <Text className="text-sm text-foreground">{description}</Text>
+          <Text className="text-sm text-foreground dark:text-darkForeground">
+            {description}
+          </Text>
         )}
       </CardHeader>
       {content && (
         <CardContent>
-          <Text className="text-base text-primary">{content}</Text>
+          <Text className="text-base text-foreground dark:text-darkForeground">
+            {content}
+          </Text>
         </CardContent>
       )}
       {footer && (
         <CardFooter>
-          <Text className="text-sm text-foreground">{footer}</Text>
+          <Text className="text-sm text-foreground dark:text-darkForeground">
+            {footer}
+          </Text>
         </CardFooter>
       )}
     </Card>

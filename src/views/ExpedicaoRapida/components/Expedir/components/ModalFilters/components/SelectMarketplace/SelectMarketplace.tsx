@@ -14,7 +14,12 @@ export default function SelectMarkeplace({
   const [marketplaceSelected, setMarketplaceSelected] = useState("");
   return (
     <>
-      <Text style={{ fontSize: 18, fontWeight: "500" }}>Marketplace</Text>
+      <Text
+        className="text-foreground dark:text-darkForeground"
+        style={{ fontSize: 18, fontWeight: "500" }}
+      >
+        Marketplace
+      </Text>
       {integracoesDisponiveis?.map((marketplace) => {
         return (
           <TouchableOpacity
@@ -31,7 +36,9 @@ export default function SelectMarkeplace({
                 paddingRight: 25,
               }}
             >
-              <Text>{marketplace.label}</Text>
+              <Text className="text-foreground dark:text-darkForeground">
+                {marketplace.label}
+              </Text>
               <Checkbox
                 value1={marketplaceSelected}
                 value2={marketplace.label}
