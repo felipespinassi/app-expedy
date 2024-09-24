@@ -28,8 +28,8 @@ export function OrderId({ route, navigation }: any) {
 
   if (isFetching) {
     return (
-      <SafeAreaView style={{ marginTop: 20 }}>
-        <ActivityIndicator size={"large"} />
+      <SafeAreaView className=" h-screen bg-background dark:bg-darkBackground">
+        <ActivityIndicator style={{ paddingTop: 20 }} size={"large"} />
       </SafeAreaView>
     );
   }

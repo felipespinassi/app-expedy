@@ -1,5 +1,6 @@
 import {
   ActivityIndicator,
+  SafeAreaView,
   ScrollView,
   Text,
   TouchableOpacity,
@@ -63,16 +64,16 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
 
   if (isValidating) {
     return (
-      <View style={{ margin: 20 }}>
-        <ActivityIndicator size={"large"} />
-      </View>
+      <SafeAreaView className=" h-screen bg-background dark:bg-darkBackground">
+        <ActivityIndicator style={{ paddingTop: 20 }} size={"large"} />
+      </SafeAreaView>
     );
   }
 
   moveZerosToEnd();
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1 }} className="bg-background dark:bg-darkBackground">
       <ScrollView className="pt-1">
         {data?.produtos?.map((produto, index) => {
           return (
@@ -119,29 +120,37 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
                       navigation.navigate("ItemsToPick", { produto, fileId });
                     }}
                   >
-                    <View className="py-1">
+                    <View className="py-1 px-2">
                       <View
                         style={{
                           height: 100,
-                          backgroundColor: "white",
                           borderRadius: 5,
                           alignItems: "center",
                           justifyContent: "space-between",
-                          marginBottom: 10,
                           flexDirection: "row",
                           paddingHorizontal: 25,
                         }}
+                        className="bg-muted dark:bg-darkMuted"
                       >
-                        <Text style={{ width: "20%", fontSize: 18 }}>
+                        <Text
+                          className="text-foreground dark:text-darkForeground"
+                          style={{ width: "20%", fontSize: 18 }}
+                        >
                           {produto?.controle?.quantidadeRestante}
                         </Text>
 
                         <View style={{ width: "80%", gap: 7 }}>
-                          <Text style={{ fontSize: 14 }}>
+                          <Text
+                            className="text-foreground dark:text-darkForeground"
+                            style={{ fontSize: 14 }}
+                          >
                             <Text style={{ color: "gray" }}>SKU: </Text>
                             {produto.reference}
                           </Text>
-                          <Text style={{ fontSize: 14 }}>
+                          <Text
+                            className="text-foreground dark:text-darkForeground"
+                            style={{ fontSize: 14 }}
+                          >
                             <Text style={{ color: "gray" }}>Descricao: </Text>
                             {produto.database_name}
                           </Text>

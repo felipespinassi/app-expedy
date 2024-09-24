@@ -78,7 +78,10 @@ export default function ModalUpdateInfo({
               padding: 15,
             }}
           >
-            <Text style={{ fontSize: 22, fontWeight: "500" }}>
+            <Text
+              className="text-foreground dark:text-darkForeground"
+              style={{ fontSize: 22, fontWeight: "500" }}
+            >
               Atualizar Informações do cliente
             </Text>
             <TouchableOpacity onPress={() => setOpenModal(false)}>
@@ -88,7 +91,9 @@ export default function ModalUpdateInfo({
 
           <ScrollView style={{ padding: 10 }}>
             <View style={{ gap: 15, paddingBottom: 100 }}>
-              <Text>Cliente</Text>
+              <Text className="text-foreground dark:text-darkForeground">
+                Cliente
+              </Text>
 
               <Controller
                 control={form.control}
@@ -103,7 +108,9 @@ export default function ModalUpdateInfo({
                 )}
               />
 
-              <Text>Inscrição Estadual</Text>
+              <Text className="text-foreground dark:text-darkForeground">
+                Inscrição Estadual
+              </Text>
               <Controller
                 control={form.control}
                 name="state_inscription"
@@ -117,7 +124,9 @@ export default function ModalUpdateInfo({
                 )}
               />
 
-              <Text>CPF</Text>
+              <Text className="text-foreground dark:text-darkForeground">
+                CPF
+              </Text>
               <Controller
                 control={form.control}
                 name="cpf"
@@ -131,7 +140,9 @@ export default function ModalUpdateInfo({
                 )}
               />
 
-              <Text>CNPJ</Text>
+              <Text className="text-foreground dark:text-darkForeground">
+                CNPJ
+              </Text>
               <Controller
                 control={form.control}
                 name="cnpj"
@@ -145,7 +156,9 @@ export default function ModalUpdateInfo({
                 )}
               />
 
-              <Text>Endereço</Text>
+              <Text className="text-foreground dark:text-darkForeground">
+                Endereço
+              </Text>
               <Controller
                 control={form.control}
                 name="CustomerAddresses.address"
@@ -162,7 +175,9 @@ export default function ModalUpdateInfo({
                 )}
               />
 
-              <Text>Número</Text>
+              <Text className="text-foreground dark:text-darkForeground">
+                Número
+              </Text>
               <Controller
                 control={form.control}
                 name="CustomerAddresses.number"
@@ -179,7 +194,9 @@ export default function ModalUpdateInfo({
                 )}
               />
 
-              <Text>Bairro</Text>
+              <Text className="text-foreground dark:text-darkForeground">
+                Bairro
+              </Text>
               <Controller
                 control={form.control}
                 name="CustomerAddresses.neighborhood"
@@ -196,7 +213,9 @@ export default function ModalUpdateInfo({
                 )}
               />
 
-              <Text>Cidade</Text>
+              <Text className="text-foreground dark:text-darkForeground">
+                Cidade
+              </Text>
               <Controller
                 control={form.control}
                 name="CustomerAddresses.city"
@@ -212,7 +231,9 @@ export default function ModalUpdateInfo({
                 )}
               />
 
-              <Text>Estado</Text>
+              <Text className="text-foreground dark:text-darkForeground">
+                Estado
+              </Text>
               <Controller
                 control={form.control}
                 name="CustomerAddresses.state"
@@ -228,7 +249,9 @@ export default function ModalUpdateInfo({
                 )}
               />
 
-              <Text>CEP</Text>
+              <Text className="text-foreground dark:text-darkForeground">
+                CEP
+              </Text>
               <Controller
                 control={form.control}
                 name="CustomerAddresses.zip_code"

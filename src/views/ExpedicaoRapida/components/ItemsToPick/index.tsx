@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, Text } from "react-native";
+import { KeyboardAvoidingView, SafeAreaView, Text } from "react-native";
 
 import React, { useState } from "react";
 import { Platform } from "react-native";
@@ -27,43 +27,48 @@ export default function ItemsToPick({ params }: Props) {
   const navigation = useNavigation<any>();
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
-    >
-      <View
-        style={{ justifyContent: "space-around", height: "90%", padding: 5 }}
+    <SafeAreaView className="bg-background dark:bg-darkBackground h-full">
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
       >
-        <View style={{ alignItems: "center" }}>
-          <Text className="text-center text-2xl">
-            {params.produto.database_name}
-          </Text>
-        </View>
-        <View style={{ alignItems: "center" }}>
-          <Text className="text-xl">SKU: {params.produto.reference}</Text>
-        </View>
-        <View className="bg-white rounded items-center, justify-center h-56 gap-4">
-          <View style={{ alignItems: "center" }}>
-            <Text>
-              Quantidade Restante:{" "}
-              {params?.produto?.controle?.quantidadeRestante}
-            </Text>
-          </View>
-
-          <View className="items-center justify-center ">
-            <Input
-              onChangeText={(e) => setQuantity(e)}
-              keyboardType="numeric"
-            />
-          </View>
-        </View>
-        <TouchableOpacity
-          onPress={() => onPickProduct(params, quantity, toast, navigation)}
+        <View
+          style={{ justifyContent: "space-around", padding: 5, height: "90%" }}
         >
           <View style={{ alignItems: "center" }}>
-            <Button label="Confirmar" className="w-4/5" />
+            <Text className="text-center text-2xl text-foreground dark:text-darkForeground">
+              {params.produto.database_name}
+            </Text>
           </View>
-        </TouchableOpacity>
-      </View>
-    </KeyboardAvoidingView>
+          <View style={{ alignItems: "center" }}>
+            <Text className="text-xl text-foreground dark:text-darkForeground">
+              SKU: {params.produto.reference}
+            </Text>
+          </View>
+          <View className="bg-muted , dark:bg-darkMuted rounded items-center, justify-center h-56 gap-4">
+            <View style={{ alignItems: "center" }}>
+              <Text className="text-xl text-foreground dark:text-darkForeground">
+                Quantidade Restante:{" "}
+                {params?.produto?.controle?.quantidadeRestante}
+              </Text>
+            </View>
+
+            <View className="items-center justify-center ">
+              <Input
+                onChangeText={(e) => setQuantity(e)}
+                keyboardType="numeric"
+              />
+            </View>
+          </View>
+          <TouchableOpacity
+            onPress={() => onPickProduct(params, quantity, toast, navigation)}
+          >
+            <View style={{ alignItems: "center" }}>
+              <Button label="Confirmar" className="w-4/5" />
+            </View>
+          </TouchableOpacity>
+        </View>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }

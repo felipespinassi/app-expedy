@@ -1,4 +1,10 @@
-import { ActivityIndicator, FlatList, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  SafeAreaView,
+  Text,
+  View,
+} from "react-native";
 import React from "react";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
@@ -13,14 +19,14 @@ export default function ArquivosGerados() {
 
   if (isLoading) {
     return (
-      <View className="justify-center items-center mt-5">
-        <ActivityIndicator size="large" />
-      </View>
+      <SafeAreaView className=" h-screen bg-background dark:bg-darkBackground">
+        <ActivityIndicator style={{ paddingTop: 20 }} size={"large"} />
+      </SafeAreaView>
     );
   }
 
   return (
-    <View style={{ flex: 1 }} className="bg-background dark:bg-darkBackground">
+    <View style={{ flex: 1 }} className="bg-background dark:bg-darkBackground ">
       <FlatList
         data={data?.files}
         renderItem={({ item }) => (
