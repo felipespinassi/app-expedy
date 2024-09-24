@@ -55,37 +55,42 @@ export default function ModalErroNota({
       animationType="slide"
       visible={openModalErroNota}
     >
-      <View style={{ alignItems: "flex-end", padding: 10 }}>
-        <TouchableOpacity onPress={() => setOpenModalErroNota(false)}>
-          <X size={26} color={"black"} />
-        </TouchableOpacity>
-      </View>
-      <Text
-        style={{
-          textAlign: "center",
-          fontSize: 20,
-          padding: 20,
-          color: "#ec5353",
-        }}
-      >
-        {pedido.erroNota}
-      </Text>
+      <View className="bg-background dark:bg-darkBackground flex-1">
+        <View style={{ alignItems: "flex-end", padding: 10 }}>
+          <TouchableOpacity onPress={() => setOpenModalErroNota(false)}>
+            <X size={26} color={"black"} />
+          </TouchableOpacity>
+        </View>
+        <Text
+          style={{
+            textAlign: "center",
+            fontSize: 20,
+            padding: 20,
+            color: "#ec5353",
+          }}
+        >
+          {pedido.erroNota}
+        </Text>
 
-      <View style={{ gap: 10, padding: 20 }}>
-        <TouchableOpacity disabled={loading} onPress={handleUpdateandSendXML}>
-          {loading ? (
-            <Button label="Atualizando" />
-          ) : (
-            <Button label="Atualizar XML" />
-          )}
-        </TouchableOpacity>
-        <TouchableOpacity disabled={loading} onPress={handleSendToMarketplace}>
-          {loading ? (
-            <Button label="Enviando" />
-          ) : (
-            <Button label="EnviarPara o Marketplace" />
-          )}
-        </TouchableOpacity>
+        <View style={{ gap: 10, padding: 20 }}>
+          <TouchableOpacity disabled={loading} onPress={handleUpdateandSendXML}>
+            {loading ? (
+              <Button label="Atualizando" />
+            ) : (
+              <Button label="Atualizar XML" />
+            )}
+          </TouchableOpacity>
+          <TouchableOpacity
+            disabled={loading}
+            onPress={handleSendToMarketplace}
+          >
+            {loading ? (
+              <Button label="Enviando" />
+            ) : (
+              <Button label="EnviarPara o Marketplace" />
+            )}
+          </TouchableOpacity>
+        </View>
       </View>
     </Modal>
   );

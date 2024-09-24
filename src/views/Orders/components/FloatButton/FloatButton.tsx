@@ -3,6 +3,7 @@ import {
   Alert,
   Modal,
   SafeAreaView,
+  ScrollView,
   Text,
   TouchableOpacity,
   View,
@@ -12,8 +13,9 @@ import axios from "axios";
 import { getAccess_token } from "../../../../storage/getAccess_token";
 import { config } from "../../../../services/apiConfig";
 import fetcher from "../../../../services/fetcher";
-import { Plus } from "lucide-react-native";
+import { Plus, X } from "lucide-react-native";
 import { useToast } from "../../../../../components/Toast";
+import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 
 export default function FloatButton({
   selectedOrders,
@@ -24,6 +26,7 @@ export default function FloatButton({
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const successRef = useRef([] as any);
+  const bottomSheetRef = useRef<BottomSheet>(null);
 
   async function onSendInvoices() {
     const token = await getAccess_token();
@@ -70,63 +73,68 @@ export default function FloatButton({
     fetchOrders();
   }
   return (
-    <SafeAreaView
-      style={{
-        top: "80%",
-        right: "5%",
-        zIndex: 10,
-        position: "absolute",
-        padding: 20,
-      }}
-    >
+    <>
       {open && (
-        <View
-          style={{
-            borderRadius: 20,
-            width: 200,
-            position: "absolute",
-            top: -115,
-            right: 10,
-            shadowColor: "black",
-            shadowRadius: 2,
-            shadowOpacity: 0.2,
-            shadowOffset: { width: 0, height: 0 },
-            backgroundColor: "white",
+        <BottomSheet
+          ref={bottomSheetRef}
+          snapPoints={[250, 500]}
+          handleStyle={{
+            backgroundColor: "#222",
+            borderTopLeftRadius: 10,
+            borderTopRightRadius: 10,
           }}
         >
-          <TouchableOpacity onPress={() => onSendInvoices()}>
-            <View style={{ padding: 20 }}>
-              <Text>Emitir Nota Fiscal</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => onGetLabel()}>
-            <View style={{ flexDirection: "row", gap: 5, padding: 20 }}>
-              {loading && (
-                <Text>
-                  <ActivityIndicator />
-                </Text>
-              )}
+          <BottomSheetView className="bg-background dark:bg-darkBackground flex-1 ">
+            <TouchableOpacity
+              className="items-end pr-4"
+              onPress={() => setOpen(false)}
+            >
+              <X size={28} />
+            </TouchableOpacity>
+            <ScrollView>
+              <View className="gap-10 p-2">
+                <TouchableOpacity onPress={onSendInvoices}>
+                  <Text className="text-foreground dark:text-darkForeground">
+                    Emitir Nota Fiscal
+                  </Text>
+                </TouchableOpacity>
 
-              <Text>Preparar Etiqueta</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+                <TouchableOpacity onPress={onGetLabel}>
+                  <Text className="text-foreground dark:text-darkForeground">
+                    Preparar Etiquetas
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </ScrollView>
+          </BottomSheetView>
+        </BottomSheet>
       )}
 
-      <TouchableOpacity onPress={() => setOpen(!open)}>
-        <View
+      {!open && (
+        <TouchableOpacity
           style={{
-            width: 65,
-            backgroundColor: "#1890ff",
+            top: "80%",
+            right: "5%",
+            zIndex: 0,
+            position: "absolute",
             padding: 20,
-            shadowColor: "black",
-            shadowRadius: 1,
-            borderRadius: 50,
           }}
+          onPress={() => setOpen(!open)}
         >
-          <Plus color={"white"} />
-        </View>
-      </TouchableOpacity>
-    </SafeAreaView>
+          <View
+            style={{
+              width: 65,
+              backgroundColor: "#1890ff",
+              padding: 20,
+              shadowColor: "black",
+              shadowRadius: 1,
+              borderRadius: 50,
+            }}
+          >
+            <Plus color={"white"} />
+          </View>
+        </TouchableOpacity>
+      )}
+    </>
   );
 }

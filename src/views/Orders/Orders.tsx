@@ -4,6 +4,7 @@ import {
   ActivityIndicator,
   FlatList,
   SafeAreaView,
+  ScrollView,
   Text,
   TouchableOpacity,
   View,
@@ -143,13 +144,6 @@ export default function Orders({ navigation }: any) {
           <ChevronDown />
         </TouchableOpacity>
       </View>
-      {selectedOrders.length > 0 && (
-        <FloatButton
-          selectedOrders={selectedOrders}
-          setSelectedOrders={setSelectedOrders}
-          fetchOrders={mutate}
-        />
-      )}
 
       <FlatList
         ref={flatListRef}
@@ -190,6 +184,13 @@ export default function Orders({ navigation }: any) {
         openModal={openModal}
         setOpenModal={setOpenModal}
       />
+      {selectedOrders.length > 0 && (
+        <FloatButton
+          selectedOrders={selectedOrders}
+          setSelectedOrders={setSelectedOrders}
+          fetchOrders={mutate}
+        />
+      )}
     </SafeAreaView>
   );
 }
