@@ -111,7 +111,8 @@ export default function Orders({ navigation }: any) {
 
       <View
         style={{
-          borderRadius: 10,
+          borderBottomRightRadius: 10,
+          borderBottomLeftRadius: 10,
           width: "100%",
           height: 40,
           justifyContent: "space-between",
@@ -159,10 +160,9 @@ export default function Orders({ navigation }: any) {
         refreshing={filters.page == 1 ? isValidating : isLoading}
         onRefresh={onRefresh}
         showsVerticalScrollIndicator={false}
-        style={{ width: "95%" }}
         data={data}
         renderItem={({ item }) => (
-          <>
+          <View className="px-2">
             <ListOrders
               selectedOrders={selectedOrders}
               selected={getSelected(item)}
@@ -170,7 +170,7 @@ export default function Orders({ navigation }: any) {
               navigation={navigation}
               item={item}
             />
-          </>
+          </View>
         )}
         ListEmptyComponent={isLoading ? null : <ListEmptyComponent />}
         ListFooterComponent={
