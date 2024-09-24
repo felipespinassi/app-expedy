@@ -8,7 +8,12 @@ export default function SelectStatusHub({ form, filters }: any) {
 
   return (
     <>
-      <Text style={{ fontSize: 18, fontWeight: "500" }}>Status Hub</Text>
+      <Text
+        style={{ fontSize: 18, fontWeight: "500" }}
+        className="text-foreground dark:text-darkForeground"
+      >
+        Status Hub
+      </Text>
       {Object.values(statusHub).map((status: any) => {
         return (
           <TouchableOpacity
@@ -26,7 +31,12 @@ export default function SelectStatusHub({ form, filters }: any) {
                 justifyContent: "space-between",
               }}
             >
-              <Text style={{ padding: 5 }}>{status.name}</Text>
+              <Text
+                style={{ padding: 5 }}
+                className="text-foreground dark:text-darkForeground"
+              >
+                {status.name}
+              </Text>
               <Checkbox value1={value} value2={status.identifier} />
             </View>
           </TouchableOpacity>

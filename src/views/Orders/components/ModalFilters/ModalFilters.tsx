@@ -41,7 +41,10 @@ export default function ModalFilters({
       animationType="slide"
       visible={openModal}
     >
-      <SafeAreaView style={{ flex: 1, marginTop: 15 }}>
+      <SafeAreaView
+        style={{ flex: 1 }}
+        className="bg-background dark:bg-darkBackground"
+      >
         <View
           style={{
             flexDirection: "row",
@@ -50,7 +53,10 @@ export default function ModalFilters({
             paddingVertical: 10,
           }}
         >
-          <Text style={{ fontSize: 22, fontWeight: "500" }}>
+          <Text
+            style={{ fontSize: 22, fontWeight: "500" }}
+            className="text-foreground dark:text-darkForeground"
+          >
             Filtrar Pedidos
           </Text>
           <TouchableOpacity onPress={() => setOpenModal(false)}>
@@ -60,13 +66,21 @@ export default function ModalFilters({
 
         <ScrollView>
           <View style={{ padding: 10, gap: 20, paddingBottom: 60 }}>
-            <Text style={{ fontSize: 18, fontWeight: "500" }}>ID HUB</Text>
+            <Text
+              style={{ fontSize: 18, fontWeight: "500" }}
+              className="text-foreground dark:text-darkForeground"
+            >
+              ID HUB
+            </Text>
             <Input
               onChangeText={(e) => form.setValue("id", e)}
               placeholder="Digite o ID HUB"
             />
 
-            <Text style={{ fontSize: 18, fontWeight: "500" }}>
+            <Text
+              style={{ fontSize: 18, fontWeight: "500" }}
+              className="text-foreground dark:text-darkForeground"
+            >
               ID Marketplace
             </Text>
 

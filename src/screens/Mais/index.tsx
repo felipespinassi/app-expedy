@@ -90,7 +90,10 @@ export default function Mais({ navigation }: any) {
           </View>
         </View>
       </View>
-      <ScrollView style={{ paddingHorizontal: 15, gap: 20 }}>
+      <ScrollView
+        style={{ paddingHorizontal: 15, gap: 20 }}
+        className="bg-background dark:bg-darkBackground"
+      >
         {values.map((element) => {
           return (
             <TouchableOpacity
@@ -103,10 +106,14 @@ export default function Mais({ navigation }: any) {
             >
               <View
                 style={{ height: 40, width: "100%", justifyContent: "center" }}
+                className="text-foreground dark:text-darkForeground"
               >
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                   {element.icon}
-                  <Text style={{ fontSize: 20, paddingLeft: 10 }}>
+                  <Text
+                    style={{ fontSize: 20, paddingLeft: 10 }}
+                    className="text-foreground dark:text-darkForeground"
+                  >
                     {element.name}
                   </Text>
                 </View>

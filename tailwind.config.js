@@ -24,8 +24,10 @@ module.exports = {
         muted: "#fff", // hsl(0, 0%, 100%)
         darkMuted: "#333", // hsl(222.2, 84%, 20%)
         primary: "#3b82f6",
-        secondary: "#e6f7f5",
+        secondary: "#EA582C",
         destructive: "#ff4d4d",
+        border: "#d1d5db",
+        darkBorder: "#6b7280",
       },
     },
   },

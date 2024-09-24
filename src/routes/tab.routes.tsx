@@ -19,7 +19,7 @@ export default function TabRoutes() {
         headerShown: false,
         tabBarActiveTintColor: "#1890ff",
         tabBarStyle: {
-          backgroundColor: colorScheme === "dark" ? "#222" : "#fff",
+          backgroundColor: colorScheme === "dark" ? "#333" : "#fff",
           borderTopWidth: 0,
           elevation: 0,
         },

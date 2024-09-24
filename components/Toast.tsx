@@ -1,13 +1,13 @@
-import { createContext, useContext, useEffect, useRef, useState } from 'react';
-import { Animated, Text, View } from 'react-native';
+import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { Animated, Text, View } from "react-native";
 
-import { cn } from '../lib/utils';
+import { cn } from "../lib/utils";
 
 const toastVariants = {
-  default: 'bg-foreground',
-  destructive: 'bg-destructive',
-  success: 'bg-green-500',
-  info: 'bg-blue-500',
+  default: "bg-foreground",
+  destructive: "bg-destructive",
+  success: "bg-green-500",
+  info: "bg-blue-500",
 };
 
 interface ToastProps {
@@ -22,7 +22,7 @@ function Toast({
   id,
   message,
   onHide,
-  variant = 'default',
+  variant = "default",
   duration = 3000,
   showProgress = true,
 }: ToastProps) {
@@ -67,7 +67,9 @@ function Toast({
         ],
       }}
     >
-      <Text className="font-semibold text-left text-background">{message}</Text>
+      <Text className="font-semibold text-left text-background dark:text-darkBackground">
+        {message}
+      </Text>
       {showProgress && (
         <View className="mt-2 rounded">
           <Animated.View
@@ -75,7 +77,7 @@ function Toast({
             style={{
               width: progress.interpolate({
                 inputRange: [0, 1],
-                outputRange: ['0%', '100%'],
+                outputRange: ["0%", "100%"],
               }),
             }}
           />
@@ -100,7 +102,7 @@ interface ToastContextProps {
     message: string,
     variant?: keyof typeof toastVariants,
     duration?: number,
-    position?: 'top' | 'bottom',
+    position?: "top" | "bottom",
     showProgress?: boolean
   ) => void;
   removeToast: (id: number) => void;
@@ -110,21 +112,21 @@ const ToastContext = createContext<ToastContextProps | undefined>(undefined);
 // TODO: refactor to pass position to Toast instead of ToastProvider
 function ToastProvider({
   children,
-  position = 'top',
+  position = "top",
 }: {
   children: React.ReactNode;
-  position?: 'top' | 'bottom';
+  position?: "top" | "bottom";
 }) {
   const [messages, setMessages] = useState<ToastMessage[]>([]);
 
-  const toast: ToastContextProps['toast'] = (
+  const toast: ToastContextProps["toast"] = (
     message: string,
-    variant: ToastVariant = 'default',
+    variant: ToastVariant = "default",
     duration: number = 3000,
-    position: 'top' | 'bottom' = 'top',
+    position: "top" | "bottom" = "top",
     showProgress: boolean = true
   ) => {
-    setMessages(prev => [
+    setMessages((prev) => [
       ...prev,
       {
         id: Date.now(),
@@ -138,19 +140,19 @@ function ToastProvider({
   };
 
   const removeToast = (id: number) => {
-    setMessages(prev => prev.filter(message => message.id !== id));
+    setMessages((prev) => prev.filter((message) => message.id !== id));
   };
 
   return (
     <ToastContext.Provider value={{ toast, removeToast }}>
       {children}
       <View
-        className={cn('absolute left-0 right-0', {
-          'top-[45px]': position === 'top',
-          'bottom-0': position === 'bottom',
+        className={cn("absolute left-0 right-0", {
+          "top-[45px]": position === "top",
+          "bottom-0": position === "bottom",
         })}
       >
-        {messages.map(message => (
+        {messages.map((message) => (
           <Toast
             key={message.id}
             id={message.id}
@@ -169,7 +171,7 @@ function ToastProvider({
 function useToast() {
   const context = useContext(ToastContext);
   if (!context) {
-    throw new Error('useToast must be used within ToastProvider');
+    throw new Error("useToast must be used within ToastProvider");
   }
   return context;
 }
