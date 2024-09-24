@@ -6,8 +6,10 @@ export const statusHub: any = {
     identifier: "naocorrelacionado",
     name: "Sem vinculo",
     box: (
-      <View className="rounded-md bg-orange-200 px-2 py-1">
-        <Text className="text-orange-500">Sem vinculo</Text>
+      <View className="rounded-md bg-naocorrelacionado-light-background dark:bg-naocorrelacionado-dark-background px-2 py-1">
+        <Text className="text-naocorrelacionado-light-text dark:text-naocorrelacionado-dark-text">
+          Sem vinculo
+        </Text>
       </View>
     ),
   },
@@ -16,8 +18,10 @@ export const statusHub: any = {
     identifier: "aprovado",
     name: "Aprovado",
     box: (
-      <View className="rounded-md bg-cyan-200 px-2 py-1">
-        <Text className="text-cyan-700">Aprovado</Text>
+      <View className="rounded-md bg-aprovado-light-background dark:bg-aprovado-dark-background px-2 py-1">
+        <Text className="text-aprovado-light-text dark:text-aprovado-dark-text">
+          Aprovado
+        </Text>
       </View>
     ),
   },
@@ -26,8 +30,10 @@ export const statusHub: any = {
     identifier: "pendente",
     name: "Pendente",
     box: (
-      <View className="rounded-md bg-gray-300 px-2 py-1">
-        <Text className="text-gray-600">Pendente</Text>
+      <View className="rounded-md bg-pendente-light-background dark:bg-pendente-dark-background px-2 py-1">
+        <Text className="text-pendente-light-text dark:text-pendente-dark-text">
+          Pendente
+        </Text>
       </View>
     ),
   },
@@ -36,8 +42,10 @@ export const statusHub: any = {
     identifier: "faturado",
     name: "Faturado",
     box: (
-      <View className="rounded-md bg-blue-200 px-2 py-1">
-        <Text className="text-blue-700">Faturado</Text>
+      <View className="rounded-md bg-faturado-light-background dark:bg-faturado-dark-background px-2 py-1">
+        <Text className="text-faturado-light-text dark:text-faturado-dark-text">
+          Faturado
+        </Text>
       </View>
     ),
   },
@@ -46,8 +54,10 @@ export const statusHub: any = {
     identifier: "cancelado",
     name: "Cancelado",
     box: (
-      <View className="rounded-md bg-red-300 px-2 py-1">
-        <Text className="text-red-700">Cancelado</Text>
+      <View className="rounded-md bg-cancelado-light-background dark:bg-cancelado-dark-background px-2 py-1">
+        <Text className="text-cancelado-light-text dark:text-cancelado-dark-text">
+          Cancelado
+        </Text>
       </View>
     ),
   },
@@ -56,8 +66,10 @@ export const statusHub: any = {
     identifier: "emseparacao",
     name: "Em separação",
     box: (
-      <View className="rounded-md bg-yellow-200 px-2 py-1">
-        <Text className="text-yellow-600">Em Separação</Text>
+      <View className="rounded-md bg-emseparacao-light-background dark:bg-emseparacao-dark-background px-2 py-1">
+        <Text className="text-emseparacao-light-text dark:text-emseparacao-dark-text">
+          Em Separação
+        </Text>
       </View>
     ),
   },
@@ -66,8 +78,10 @@ export const statusHub: any = {
     identifier: "temmensagem",
     name: "Tem mensagem",
     box: (
-      <View className="rounded-md bg-green-200 px-2 py-1">
-        <Text className="text-green-600">Tem Mensagem</Text>
+      <View className="rounded-md bg-temmensagem-light-background dark:bg-temmensagem-dark-background px-2 py-1">
+        <Text className="text-temmensagem-light-text dark:text-temmensagem-dark-text">
+          Tem Mensagem
+        </Text>
       </View>
     ),
   },
@@ -76,8 +90,10 @@ export const statusHub: any = {
     identifier: "expedir",
     name: "Expedir",
     box: (
-      <View className="rounded-md bg-rose-200 px-2 py-1">
-        <Text className="text-rose-600">Expedir</Text>
+      <View className="rounded-md bg-expedir-light-background dark:bg-expedir-dark-background px-2 py-1">
+        <Text className="text-expedir-light-text dark:text-expedir-dark-text">
+          Expedir
+        </Text>
       </View>
     ),
   },
@@ -86,8 +102,10 @@ export const statusHub: any = {
     identifier: "completo",
     name: "Completo",
     box: (
-      <View className="rounded-md bg-lime-200 px-2 py-1">
-        <Text className="text-lime-700">Completo</Text>
+      <View className="rounded-md bg-completo-light-background dark:bg-completo-dark-background  px-2 py-1">
+        <Text className="text-completo-light-text dark:text-completo-dark-text">
+          Completo
+        </Text>
       </View>
     ),
   },
