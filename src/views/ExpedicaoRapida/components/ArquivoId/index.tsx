@@ -53,11 +53,9 @@ export default function ArquivoId({ fileId }: { fileId: string }) {
 
         <TouchableOpacity onPress={() => handlePrintFile(fileId)}>
           <View style={{ marginTop: 20 }}>
-            <Button
-              label="Imprimir Arquivo"
-              variant={"default"}
-              className="h-12"
-            ></Button>
+            <Button variant={"default"} className="h-12">
+              Imprimir Arquivo
+            </Button>
           </View>
         </TouchableOpacity>
       </View>

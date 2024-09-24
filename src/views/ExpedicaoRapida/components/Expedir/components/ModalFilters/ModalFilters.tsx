@@ -133,10 +133,11 @@ export default function ModalFilters({
               onPress={() => {
                 onFinish(), setOpenModal(false);
               }}
-              label="Filtrar"
               className="w-full  "
               size={"lg"}
-            />
+            >
+              Filtrar
+            </Button>
           </View>
         </TouchableOpacity>
       </KeyboardAvoidingView>

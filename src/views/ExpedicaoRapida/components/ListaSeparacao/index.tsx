@@ -28,7 +28,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
   );
 
   function RightAction() {
-    return <Button label="" className="flex-1 h-[90%] bg-[#e0fed7]" />;
+    return <Button className="flex-1 h-[90%] bg-[#e0fed7]" />;
   }
 
   async function onSwipeTotal(produto: PickingProduct) {

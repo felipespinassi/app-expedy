@@ -1,5 +1,5 @@
 import { type VariantProps, cva } from "class-variance-authority";
-import { Text, TouchableOpacity } from "react-native";
+import { ActivityIndicator, Text, TouchableOpacity } from "react-native";
 
 import { cn } from "../lib/utils";
 
@@ -51,19 +51,21 @@ const buttonTextVariants = cva("text-center font-medium", {
 interface ButtonProps
   extends React.ComponentPropsWithoutRef<typeof TouchableOpacity>,
     VariantProps<typeof buttonVariants> {
-  label: string;
   labelClasses?: string;
+  loading?: boolean;
 }
 function Button({
-  label,
   labelClasses,
   className,
   variant,
   size,
+  children,
+  loading,
   ...props
 }: ButtonProps) {
   return (
     <TouchableOpacity
+      disabled={loading}
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     >
@@ -72,7 +74,7 @@ function Button({
           buttonTextVariants({ variant, size, className: labelClasses })
         )}
       >
-        {label}
+        {loading ? <ActivityIndicator /> : children}
       </Text>
     </TouchableOpacity>
   );

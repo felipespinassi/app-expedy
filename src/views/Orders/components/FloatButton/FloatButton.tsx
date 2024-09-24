@@ -16,6 +16,7 @@ import fetcher from "../../../../services/fetcher";
 import { Plus, X } from "lucide-react-native";
 import { useToast } from "../../../../../components/Toast";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
+import { Button } from "../../../../../components/Button";
 
 export default function FloatButton({
   selectedOrders,
@@ -92,18 +93,12 @@ export default function FloatButton({
               <X size={28} />
             </TouchableOpacity>
             <ScrollView>
-              <View className="gap-10 p-2">
-                <TouchableOpacity onPress={onSendInvoices}>
-                  <Text className="text-foreground dark:text-darkForeground">
-                    Emitir Nota Fiscal
-                  </Text>
-                </TouchableOpacity>
+              <View className="gap-3 p-2">
+                <Button onPress={onSendInvoices}>Emitir Notas</Button>
 
-                <TouchableOpacity onPress={onGetLabel}>
-                  <Text className="text-foreground dark:text-darkForeground">
-                    Preparar Etiquetas
-                  </Text>
-                </TouchableOpacity>
+                <Button loading={loading} onPress={onGetLabel}>
+                  Preparar Etiqueta
+                </Button>
               </View>
             </ScrollView>
           </BottomSheetView>

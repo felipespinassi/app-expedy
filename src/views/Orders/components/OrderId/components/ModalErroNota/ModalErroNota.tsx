@@ -74,21 +74,13 @@ export default function ModalErroNota({
 
         <View style={{ gap: 10, padding: 20 }}>
           <TouchableOpacity disabled={loading} onPress={handleUpdateandSendXML}>
-            {loading ? (
-              <Button label="Atualizando" />
-            ) : (
-              <Button label="Atualizar XML" />
-            )}
+            <Button loading={loading}>Atualizar XML</Button>
           </TouchableOpacity>
           <TouchableOpacity
             disabled={loading}
             onPress={handleSendToMarketplace}
           >
-            {loading ? (
-              <Button label="Enviando" />
-            ) : (
-              <Button label="EnviarPara o Marketplace" />
-            )}
+            <Button loading={loading}>Enviar para o Marketplace</Button>
           </TouchableOpacity>
         </View>
       </View>

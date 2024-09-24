@@ -99,18 +99,13 @@ export default function Login({ navigation }: any) {
         </View>
       </View>
       <View className="items-center">
-        {loading ? (
-          <Button
-            className="border-10 mt-10 w-4/5 h-12 bg-[#EA582C] text-white"
-            label="Carregando..."
-          />
-        ) : (
-          <Button
-            className="border-10 mt-12 w-4/5 h-12 bg-[#c2410c] text-white"
-            label="Login"
-            onPress={handleSubmit(onSubmit)}
-          />
-        )}
+        <Button
+          className="border-10 mt-12 w-4/5 h-12 bg-secondary text-white"
+          onPress={handleSubmit(onSubmit)}
+          loading={loading}
+        >
+          Login
+        </Button>
       </View>
     </KeyboardAvoidingView>
   );

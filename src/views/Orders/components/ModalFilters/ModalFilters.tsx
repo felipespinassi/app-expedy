@@ -103,12 +103,9 @@ export default function ModalFilters({
           }}
         >
           <View style={{ alignItems: "center" }}>
-            <Button
-              label="Filtrar"
-              className="w-11/12"
-              onPress={() => onFinish()}
-              size={"lg"}
-            />
+            <Button className="w-11/12" onPress={() => onFinish()} size={"lg"}>
+              Filtrar
+            </Button>
           </View>
         </TouchableOpacity>
       </SafeAreaView>

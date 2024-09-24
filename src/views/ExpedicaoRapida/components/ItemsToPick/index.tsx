@@ -64,7 +64,7 @@ export default function ItemsToPick({ params }: Props) {
             onPress={() => onPickProduct(params, quantity, toast, navigation)}
           >
             <View style={{ alignItems: "center" }}>
-              <Button label="Confirmar" className="w-4/5" />
+              <Button className="w-4/5">Confirmar</Button>
             </View>
           </TouchableOpacity>
         </View>

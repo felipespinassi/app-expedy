@@ -52,10 +52,9 @@ export function OrderId({ route, navigation }: any) {
             />
             <DataGeneral pedido={pedido} />
             <DataCustomer pedido={pedido} />
-            <Button
-              label="Atualizar informações"
-              onPress={() => setOpenModal(true)}
-            />
+            <Button onPress={() => setOpenModal(true)}>
+              Atualizar Informações
+            </Button>
             <DataProducts pedido={pedido} />
           </View>
         </ScrollView>

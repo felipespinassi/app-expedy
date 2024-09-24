@@ -281,7 +281,6 @@ export default function ModalUpdateInfo({
         >
           <View style={{ alignItems: "center" }}>
             <Button
-              label="Confirmar"
               size={"lg"}
               className="w-full"
               onPress={form.handleSubmit(onUpdateCustomerInfo)}

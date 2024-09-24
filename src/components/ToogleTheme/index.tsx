@@ -6,10 +6,9 @@ export function ModeToggle() {
 
   return (
     <Button
-      label="Mudar Tema"
       onPress={() => setColorScheme(colorScheme === "dark" ? "light" : "dark")}
     >
-      Toggle mode
+      Mudar Tema
     </Button>
   );
 }
