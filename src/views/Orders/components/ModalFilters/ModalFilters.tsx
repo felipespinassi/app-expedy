@@ -43,7 +43,7 @@ export default function ModalFilters({
     >
       <SafeAreaView
         style={{ flex: 1 }}
-        className="bg-background dark:bg-darkBackground"
+        className="bg-background dark:bg-darkBackground  "
       >
         <View
           style={{
@@ -65,33 +65,46 @@ export default function ModalFilters({
         </View>
 
         <ScrollView>
-          <View style={{ padding: 10, gap: 20, paddingBottom: 60 }}>
-            <Text
-              style={{ fontSize: 18, fontWeight: "500" }}
-              className="text-foreground dark:text-darkForeground"
+          <View className="flex m-2 gap-4 pb-10">
+            <View
+              style={{ padding: 10, gap: 20, paddingBottom: 30 }}
+              className="bg-muted, bg-darkMuted rounded"
             >
-              ID HUB
-            </Text>
-            <Input
-              onChangeText={(e) => form.setValue("id", e)}
-              placeholder="Digite o ID HUB"
-            />
+              <Text
+                style={{ fontSize: 18, fontWeight: "500" }}
+                className="text-foreground dark:text-darkForeground"
+              >
+                ID HUB
+              </Text>
+              <Input
+                onChangeText={(e) => form.setValue("id", e)}
+                placeholder="Digite o ID HUB"
+              />
 
-            <Text
-              style={{ fontSize: 18, fontWeight: "500" }}
-              className="text-foreground dark:text-darkForeground"
+              <Text
+                style={{ fontSize: 18, fontWeight: "500" }}
+                className="text-foreground dark:text-darkForeground"
+              >
+                ID Marketplace
+              </Text>
+
+              <Input
+                onChangeText={(e) => form.setValue("orderid", e)}
+                placeholder="Digite o ID Marketplace"
+              />
+            </View>
+            <View
+              style={{ padding: 10, gap: 20, paddingBottom: 30 }}
+              className="bg-muted, bg-darkMuted rounded"
             >
-              ID Marketplace
-            </Text>
-
-            <Input
-              onChangeText={(e) => form.setValue("orderid", e)}
-              placeholder="Digite o ID Marketplace"
-            />
-
-            <SelectIntegracoes filters={filters} form={form} />
-
-            <SelectStatusHub filters={filters} form={form} />
+              <SelectIntegracoes filters={filters} form={form} />
+            </View>
+            <View
+              style={{ padding: 10, gap: 20, paddingBottom: 30 }}
+              className="bg-muted, bg-darkMuted rounded"
+            >
+              <SelectStatusHub filters={filters} form={form} />
+            </View>
           </View>
         </ScrollView>
         <TouchableOpacity
