@@ -69,8 +69,11 @@ export default function ModalFilters({
         </View>
 
         <ScrollView className=" bg-background dark:bg-darkBackground">
-          <View className="gap-5 p-5">
-            <View style={{ gap: 10 }}>
+          <View className="gap-5 px-3 pb-32 py4">
+            <View
+              style={{ padding: 10, gap: 20, paddingBottom: 30 }}
+              className="bg-muted dark:bg-darkMuted rounded-md"
+            >
               <Text
                 className="text-foreground dark:text-darkForeground"
                 style={{ fontSize: 18, fontWeight: "500" }}
@@ -81,8 +84,7 @@ export default function ModalFilters({
                 placeholder="Id Hub"
                 onChangeText={(e) => form.setValue("id", e)}
               />
-            </View>
-            <View style={{ gap: 10 }}>
+
               <Text
                 className="text-foreground dark:text-darkForeground"
                 style={{ fontSize: 18, fontWeight: "500" }}
@@ -93,9 +95,7 @@ export default function ModalFilters({
                 placeholder="ID Marketplace"
                 onChangeText={(e) => form.setValue("orderid", e)}
               />
-            </View>
 
-            <View style={{ gap: 10 }}>
               <Text
                 className="text-foreground dark:text-darkForeground"
                 style={{ fontSize: 18, fontWeight: "500" }}
@@ -107,15 +107,22 @@ export default function ModalFilters({
                 onChangeText={(e) => form.setValue("unico_sku", e)}
               />
             </View>
-
-            <View style={{ gap: 15, marginBottom: 10 }}>
+            <View
+              style={{ padding: 10, gap: 20, paddingBottom: 30 }}
+              className="bg-muted dark:bg-darkMuted rounded-md"
+            >
               <SelectIntegracoes form={form} filters={filters} />
             </View>
-            <View style={{ gap: 15, marginBottom: 10 }}>
+            <View
+              style={{ padding: 10, gap: 20, paddingBottom: 30 }}
+              className="bg-muted dark:bg-darkMuted rounded-md"
+            >
               <SelectMarkeplace form={form} />
             </View>
-
-            <View style={{ gap: 15, marginBottom: 80 }}>
+            <View
+              style={{ padding: 10, gap: 20, paddingBottom: 30 }}
+              className="bg-muted dark:bg-darkMuted rounded-md"
+            >
               <SelectMaisVendidos form={form} />
             </View>
           </View>

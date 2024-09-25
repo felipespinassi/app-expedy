@@ -65,7 +65,7 @@ export default function ModalFilters({
         </View>
 
         <ScrollView>
-          <View className="flex m-2 gap-4 pb-12">
+          <View className="flex my-4 mx-3 gap-4 pb-12">
             <View
               style={{ padding: 10, gap: 20, paddingBottom: 30 }}
               className="bg-muted dark:bg-darkMuted rounded-md"
