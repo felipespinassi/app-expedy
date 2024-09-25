@@ -65,10 +65,10 @@ export default function ModalFilters({
         </View>
 
         <ScrollView>
-          <View className="flex m-2 gap-4 pb-10">
+          <View className="flex m-2 gap-4 pb-12">
             <View
               style={{ padding: 10, gap: 20, paddingBottom: 30 }}
-              className="bg-muted, bg-darkMuted rounded"
+              className="bg-muted dark:bg-darkMuted rounded-md"
             >
               <Text
                 style={{ fontSize: 18, fontWeight: "500" }}
@@ -95,13 +95,13 @@ export default function ModalFilters({
             </View>
             <View
               style={{ padding: 10, gap: 20, paddingBottom: 30 }}
-              className="bg-muted, bg-darkMuted rounded"
+              className="bg-muted dark:bg-darkMuted rounded-md"
             >
               <SelectIntegracoes filters={filters} form={form} />
             </View>
             <View
               style={{ padding: 10, gap: 20, paddingBottom: 30 }}
-              className="bg-muted, bg-darkMuted rounded"
+              className="bg-muted dark:bg-darkMuted rounded-md"
             >
               <SelectStatusHub filters={filters} form={form} />
             </View>
