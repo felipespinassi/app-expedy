@@ -94,11 +94,25 @@ export default function FloatButton({
             </TouchableOpacity>
             <ScrollView>
               <View className="gap-3 p-2">
-                <Button onPress={onSendInvoices}>Emitir Notas</Button>
+                <TouchableOpacity
+                  className="bg-muted dark:bg-darkMuted p-4 rounded-lg flex flex-row items-center justify-center"
+                  onPress={onSendInvoices}
+                >
+                  <Text className="text-foreground dark:text-darkForeground">
+                    Emitir Notas
+                  </Text>
+                </TouchableOpacity>
 
-                <Button loading={loading} onPress={onGetLabel}>
-                  Preparar Etiqueta
-                </Button>
+                <TouchableOpacity
+                  disabled={loading}
+                  className="bg-muted dark:bg-darkMuted p-4 rounded-lg flex flex-row items-center justify-center gap-3"
+                  onPress={onGetLabel}
+                >
+                  {loading && <ActivityIndicator />}
+                  <Text className="text-foreground dark:text-darkForeground">
+                    Preparar etiquetas
+                  </Text>
+                </TouchableOpacity>
               </View>
             </ScrollView>
           </BottomSheetView>

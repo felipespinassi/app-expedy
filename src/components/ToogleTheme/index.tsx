@@ -1,14 +1,15 @@
 import { useColorScheme } from "nativewind";
-import { Button } from "../../../components/Button";
+import { Switch } from "../../../components/Switch";
 
 export function ModeToggle() {
   const { colorScheme, setColorScheme } = useColorScheme();
 
   return (
-    <Button
-      onPress={() => setColorScheme(colorScheme === "dark" ? "light" : "dark")}
-    >
-      Mudar Tema
-    </Button>
+    <Switch
+      onValueChange={() =>
+        setColorScheme(colorScheme === "dark" ? "light" : "dark")
+      }
+      value={colorScheme === "dark"}
+    />
   );
 }
