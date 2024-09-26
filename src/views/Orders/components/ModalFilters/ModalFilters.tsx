@@ -93,18 +93,10 @@ export default function ModalFilters({
                 placeholder="Digite o ID Marketplace"
               />
             </View>
-            <View
-              style={{ padding: 10, gap: 20, paddingBottom: 30 }}
-              className="bg-muted dark:bg-darkMuted rounded-md"
-            >
-              <SelectIntegracoes filters={filters} form={form} />
-            </View>
-            <View
-              style={{ padding: 10, gap: 20, paddingBottom: 30 }}
-              className="bg-muted dark:bg-darkMuted rounded-md"
-            >
-              <SelectStatusHub filters={filters} form={form} />
-            </View>
+
+            <SelectIntegracoes filters={filters} form={form} />
+
+            <SelectStatusHub filters={filters} form={form} />
           </View>
         </ScrollView>
         <TouchableOpacity

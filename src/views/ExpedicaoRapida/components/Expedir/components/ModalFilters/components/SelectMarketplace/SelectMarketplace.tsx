@@ -20,33 +20,38 @@ export default function SelectMarkeplace({
       >
         Marketplace
       </Text>
-      {integracoesDisponiveis?.map((marketplace) => {
-        return (
-          <TouchableOpacity
-            key={marketplace.key}
-            onPress={() => {
-              setMarketplaceSelected(marketplace.label),
-                form.setValue("marketplace", marketplace.key);
-            }}
-          >
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                paddingRight: 25,
+      <View
+        style={{ padding: 10, gap: 20, paddingBottom: 30 }}
+        className="bg-muted dark:bg-darkMuted rounded-md"
+      >
+        {integracoesDisponiveis?.map((marketplace) => {
+          return (
+            <TouchableOpacity
+              key={marketplace.key}
+              onPress={() => {
+                setMarketplaceSelected(marketplace.label),
+                  form.setValue("marketplace", marketplace.key);
               }}
             >
-              <Text className="text-foreground dark:text-darkForeground">
-                {marketplace.label}
-              </Text>
-              <Checkbox
-                value1={marketplaceSelected}
-                value2={marketplace.label}
-              />
-            </View>
-          </TouchableOpacity>
-        );
-      })}
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  paddingRight: 25,
+                }}
+              >
+                <Text className="text-foreground dark:text-darkForeground">
+                  {marketplace.label}
+                </Text>
+                <Checkbox
+                  value1={marketplaceSelected}
+                  value2={marketplace.label}
+                />
+              </View>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
     </>
   );
 }

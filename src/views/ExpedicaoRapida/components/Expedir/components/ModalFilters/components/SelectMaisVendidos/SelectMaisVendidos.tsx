@@ -32,24 +32,29 @@ export default function SelectMaisVendidos({
       >
         Mais Vendidos
       </Text>
-      {data?.maisVendidos?.map((produto) => {
-        return (
-          <TouchableOpacity
-            onPress={() => {
-              setProductSelected(produto.sku),
-                form.setValue("produto", produto.id_produto);
-            }}
-            key={produto.id_produto}
-          >
-            <View className="flex-row justify-between pr-6">
-              <Text className="text-foreground dark:text-darkForeground">
-                {produto.sku}
-              </Text>
-              <Checkbox value1={productSelected} value2={produto.sku} />
-            </View>
-          </TouchableOpacity>
-        );
-      })}
+      <View
+        style={{ padding: 10, gap: 20, paddingBottom: 30 }}
+        className="bg-muted dark:bg-darkMuted rounded-md"
+      >
+        {data?.maisVendidos?.map((produto) => {
+          return (
+            <TouchableOpacity
+              onPress={() => {
+                setProductSelected(produto.sku),
+                  form.setValue("produto", produto.id_produto);
+              }}
+              key={produto.id_produto}
+            >
+              <View className="flex-row justify-between pr-6">
+                <Text className="text-foreground dark:text-darkForeground">
+                  {produto.sku}
+                </Text>
+                <Checkbox value1={productSelected} value2={produto.sku} />
+              </View>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
     </>
   );
 }

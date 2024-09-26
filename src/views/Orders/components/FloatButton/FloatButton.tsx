@@ -4,6 +4,7 @@ import {
   Modal,
   SafeAreaView,
   ScrollView,
+  StyleSheet,
   Text,
   TouchableOpacity,
   View,
@@ -16,7 +17,7 @@ import fetcher from "../../../../services/fetcher";
 import { Plus, X } from "lucide-react-native";
 import { useToast } from "../../../../../components/Toast";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
-import { Button } from "../../../../../components/Button";
+import { useColorScheme } from "nativewind";
 
 export default function FloatButton({
   selectedOrders,
@@ -24,10 +25,12 @@ export default function FloatButton({
   fetchOrders,
 }: any) {
   const [open, setOpen] = useState(false);
-  const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+
+  const { toast } = useToast();
   const successRef = useRef([] as any);
   const bottomSheetRef = useRef<BottomSheet>(null);
+  const { colorScheme } = useColorScheme();
 
   async function onSendInvoices() {
     const token = await getAccess_token();
@@ -73,51 +76,77 @@ export default function FloatButton({
     setSelectedOrders([]);
     fetchOrders();
   }
+
+  const onOpenBottomSheet = () => {
+    bottomSheetRef.current?.snapToIndex(0);
+    setOpen(true);
+  };
+
+  const onCloseBottomSheet = () => {
+    bottomSheetRef.current?.close();
+    setOpen(false);
+  };
+
+  const styles = StyleSheet.create({
+    overlay: {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+    },
+  });
   return (
     <>
       {open && (
-        <BottomSheet
-          ref={bottomSheetRef}
-          snapPoints={[250, 500]}
-          handleStyle={{
-            backgroundColor: "#222",
-            borderTopLeftRadius: 10,
-            borderTopRightRadius: 10,
-          }}
-        >
-          <BottomSheetView className="bg-background dark:bg-darkBackground flex-1 ">
-            <TouchableOpacity
-              className="items-end pr-4"
-              onPress={() => setOpen(false)}
-            >
-              <X size={28} />
-            </TouchableOpacity>
-            <ScrollView>
-              <View className="gap-3 p-2">
-                <TouchableOpacity
-                  className="bg-muted dark:bg-darkMuted p-4 rounded-lg flex flex-row items-center justify-center"
-                  onPress={onSendInvoices}
-                >
-                  <Text className="text-foreground dark:text-darkForeground">
-                    Emitir Notas
-                  </Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  disabled={loading}
-                  className="bg-muted dark:bg-darkMuted p-4 rounded-lg flex flex-row items-center justify-center gap-3"
-                  onPress={onGetLabel}
-                >
-                  {loading && <ActivityIndicator />}
-                  <Text className="text-foreground dark:text-darkForeground">
-                    Preparar etiquetas
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </ScrollView>
-          </BottomSheetView>
-        </BottomSheet>
+        <TouchableOpacity style={styles.overlay} onPress={onCloseBottomSheet} />
       )}
+
+      <BottomSheet
+        enablePanDownToClose={true}
+        onClose={() => setOpen(false)}
+        ref={bottomSheetRef}
+        snapPoints={[150, 150]}
+        index={-1}
+        backgroundStyle={{
+          backgroundColor: colorScheme === "dark" ? "#222" : "#f1f1f1",
+        }}
+        handleStyle={{
+          backgroundColor: colorScheme === "dark" ? "#222" : "#f1f1f1",
+          borderTopLeftRadius: 10,
+          borderTopRightRadius: 10,
+        }}
+        handleIndicatorStyle={{
+          backgroundColor: colorScheme === "dark" ? "#f1f1f1" : "#222",
+        }}
+      >
+        <BottomSheetView className=" flex-1   ">
+          <ScrollView>
+            <View className="gap-3 p-2">
+              <TouchableOpacity
+                className="bg-muted dark:bg-darkMuted p-4 rounded-lg flex flex-row items-center justify-center"
+                onPress={onSendInvoices}
+              >
+                <Text className="text-foreground dark:text-darkForeground">
+                  Emitir Notas
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                disabled={loading}
+                className="bg-muted dark:bg-darkMuted p-4 rounded-lg flex flex-row items-center justify-center gap-3"
+                onPress={onGetLabel}
+              >
+                {loading && <ActivityIndicator />}
+                <Text className="text-foreground dark:text-darkForeground">
+                  Preparar etiquetas
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
+        </BottomSheetView>
+      </BottomSheet>
 
       {!open && (
         <TouchableOpacity
@@ -128,7 +157,7 @@ export default function FloatButton({
             position: "absolute",
             padding: 20,
           }}
-          onPress={() => setOpen(!open)}
+          onPress={() => onOpenBottomSheet()}
         >
           <View
             style={{

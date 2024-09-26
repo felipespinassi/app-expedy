@@ -107,24 +107,12 @@ export default function ModalFilters({
                 onChangeText={(e) => form.setValue("unico_sku", e)}
               />
             </View>
-            <View
-              style={{ padding: 10, gap: 20, paddingBottom: 30 }}
-              className="bg-muted dark:bg-darkMuted rounded-md"
-            >
-              <SelectIntegracoes form={form} filters={filters} />
-            </View>
-            <View
-              style={{ padding: 10, gap: 20, paddingBottom: 30 }}
-              className="bg-muted dark:bg-darkMuted rounded-md"
-            >
-              <SelectMarkeplace form={form} />
-            </View>
-            <View
-              style={{ padding: 10, gap: 20, paddingBottom: 30 }}
-              className="bg-muted dark:bg-darkMuted rounded-md"
-            >
-              <SelectMaisVendidos form={form} />
-            </View>
+
+            <SelectIntegracoes form={form} filters={filters} />
+
+            <SelectMarkeplace form={form} />
+
+            <SelectMaisVendidos form={form} />
           </View>
         </ScrollView>
         <TouchableOpacity

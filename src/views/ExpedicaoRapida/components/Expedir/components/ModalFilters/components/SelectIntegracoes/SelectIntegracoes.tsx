@@ -41,30 +41,35 @@ export default function SelectIntegracoes({ form, filters }: Props) {
       >
         Integrações
       </Text>
-      {data?.integracoes.map((integracao: any) => {
-        return (
-          <TouchableOpacity
-            key={integracao.descricao}
-            onPress={() => {
-              form.setValue("integracao", integracao.id);
-              setValue(integracao.id);
-            }}
-          >
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                paddingRight: 25,
+      <View
+        style={{ padding: 10, gap: 20, paddingBottom: 30 }}
+        className="bg-muted dark:bg-darkMuted rounded-md"
+      >
+        {data?.integracoes.map((integracao: any) => {
+          return (
+            <TouchableOpacity
+              key={integracao.descricao}
+              onPress={() => {
+                form.setValue("integracao", integracao.id);
+                setValue(integracao.id);
               }}
             >
-              <Text className="text-foreground dark:text-darkForeground">
-                {integracao.descricao}
-              </Text>
-              <Checkbox value1={value} value2={integracao.id} />
-            </View>
-          </TouchableOpacity>
-        );
-      })}
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  paddingRight: 25,
+                }}
+              >
+                <Text className="text-foreground dark:text-darkForeground">
+                  {integracao.descricao}
+                </Text>
+                <Checkbox value1={value} value2={integracao.id} />
+              </View>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
     </>
   );
 }
