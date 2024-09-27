@@ -71,9 +71,10 @@ export default function Login({ navigation }: any) {
     >
       <View className=" gap-8 items-center ">
         <Image
-          className="w-3/5 h-12 object-cover "
+          className="w-3/5 h-18  "
           alt="Logo Expedy"
           source={require("../../../assets/expedy-logo.png")}
+          style={{ resizeMode: "contain" }}
         />
 
         <View className="gap-8 w-10/12">

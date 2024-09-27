@@ -16,7 +16,7 @@ import ModalFilters from "./components/ModalFilters/ModalFilters";
 import ListEmptyComponent from "../../components/ListEmptyComponent/ListEmptyComponent";
 import { useGetOrders } from "./hooks/useGetOrders";
 import { MarketplacesHeader } from "./components/MarketplacesHeader/MarketplacesHeader";
-import { ArrowUp, ChevronDown } from "lucide-react-native";
+import AntDesign from "react-native-vector-icons/AntDesign";
 
 export default function Orders({ navigation }: any) {
   const [selectedOrders, setSelectedOrders] = useState([] as any);
@@ -105,7 +105,7 @@ export default function Orders({ navigation }: any) {
             alignItems: "center",
           }}
         >
-          <ArrowUp />
+          <AntDesign name="arrowup" size={22} />
         </TouchableOpacity>
       )}
 
@@ -142,7 +142,7 @@ export default function Orders({ navigation }: any) {
           <Text className="text-foreground dark:text-darkForeground">
             Filtros
           </Text>
-          <ChevronDown />
+          <AntDesign name="filter" size={22} />
         </TouchableOpacity>
       </View>
 

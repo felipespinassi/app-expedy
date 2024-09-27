@@ -13,7 +13,8 @@ import { UseFormReturn } from "react-hook-form";
 import SelectMarkeplace from "./components/SelectMarketplace/SelectMarketplace";
 import SelectIntegracoes from "./components/SelectIntegracoes/SelectIntegracoes";
 import { FiltersProps } from "../../../../@types/FiltersExpedirTypes";
-import { X } from "lucide-react-native";
+import AntDesign from "react-native-vector-icons/AntDesign";
+
 import { Input } from "../../../../../../../components/Input";
 import { Button } from "../../../../../../../components/Button";
 
@@ -64,7 +65,7 @@ export default function ModalFilters({
             Filtrar Pedidos
           </Text>
           <TouchableOpacity onPress={() => setOpenModal(false)}>
-            <X />
+            <AntDesign name="close" size={22} />
           </TouchableOpacity>
         </View>
 
