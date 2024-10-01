@@ -14,6 +14,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { config } from "../../services/apiConfig";
 import { Button } from "../../../components/Button";
 import { Input } from "../../../components/Input";
+import { createRefreshToken } from "../../storage/createRefreshToken";
 
 export default function Login({ navigation }: any) {
   const { register, setValue, handleSubmit } = useForm<Dataprops>();
@@ -33,7 +34,7 @@ export default function Login({ navigation }: any) {
     const login = data.login;
     const password = data.password;
     try {
-      const response = await fetch(`${config.baseURL}auth`, {
+      const response = await fetch(`${config.baseURL}auth?refresh`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -47,6 +48,7 @@ export default function Login({ navigation }: any) {
       await Promise.all([
         createAccess_token(data.access_token),
         createCompanyName(data.usuario.companyName),
+        createRefreshToken(data.refresh_token),
       ]);
 
       setIsLogged(true);
