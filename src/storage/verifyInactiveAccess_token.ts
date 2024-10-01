@@ -8,8 +8,11 @@ import { Alert } from "react-native";
 import { config } from "../services/apiConfig";
 import { createAccess_token } from "./createAccess_token";
 import { createRefreshToken } from "./createRefreshToken";
+import { Dispatch, SetStateAction } from "react";
 
-export async function verifyInactiveAccess_token(setIsLogged: any) {
+export async function verifyInactiveAccess_token(
+  setIsLogged: Dispatch<SetStateAction<boolean>>
+) {
   const refreshToken = await AsyncStorage.getItem(REFRESH_TOKEN);
   const tokenExpireTime = await AsyncStorage.getItem(TOKEN_EXPIRE_TIME);
 

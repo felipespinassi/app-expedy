@@ -89,9 +89,10 @@ export default function Orders({ navigation }: any) {
     >
       {filters.page >= 2 && (
         <TouchableOpacity
-          onPress={() =>
-            flatListRef.current?.scrollToOffset({ offset: 0, animated: true })
-          }
+          onPress={() => {
+            flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
+            onReset();
+          }}
           style={{
             position: "absolute",
             top: "80%",
@@ -157,7 +158,7 @@ export default function Orders({ navigation }: any) {
         onEndReachedThreshold={0.5}
         keyExtractor={(item) => item.id}
         onEndReached={onScrollScreen}
-        refreshing={filters.page == 1 ? isValidating : isLoading}
+        refreshing={isValidating && filters.page === 1}
         onRefresh={onRefresh}
         showsVerticalScrollIndicator={false}
         data={data}
