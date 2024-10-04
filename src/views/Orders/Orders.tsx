@@ -81,7 +81,7 @@ export default function Orders({ navigation }: any) {
     setSelectedOrders([]);
   }, []);
 
-  if (isLoading) {
+  if (isLoading && filters.page === 1) {
     return (
       <View className=" bg-background dark:bg-darkBackground flex-1">
         <SkeletonLoading />
