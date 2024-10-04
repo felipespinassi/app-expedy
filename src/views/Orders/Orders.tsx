@@ -81,129 +81,125 @@ export default function Orders({ navigation }: any) {
     setSelectedOrders([]);
   }, []);
 
-  if (isLoading && filters.page === 1) {
-    return (
-      <View className=" bg-background dark:bg-darkBackground flex-1">
-        <SkeletonLoading />
-      </View>
-    );
-  }
-
   return (
     <>
-      <SafeAreaView
-        style={{ alignItems: "center", flex: 1 }}
-        className="bg-background dark:bg-darkBackground"
-      >
-        {filters.page >= 2 && (
-          <TouchableOpacity
-            onPress={() => {
-              flatListRef.current?.scrollToOffset({
-                offset: 0,
-                animated: true,
-              });
-              onReset();
-            }}
-            style={{
-              position: "absolute",
-              top: "80%",
-              left: "5%",
-              zIndex: 10,
-              backgroundColor: "#e1e1e1",
-              width: 60,
-              height: 60,
-              borderRadius: 50,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <AntDesign name="arrowup" size={22} />
-          </TouchableOpacity>
-        )}
-
-        <View
-          style={{
-            borderBottomRightRadius: 10,
-            borderBottomLeftRadius: 10,
-            width: "100%",
-            height: 40,
-            justifyContent: "space-between",
-            flexDirection: "row",
-            alignItems: "center",
-            paddingHorizontal: 5,
-            shadowColor: "black",
-            shadowRadius: 2,
-            shadowOpacity: 0.2,
-            shadowOffset: { width: 0, height: 0 },
-          }}
-          className="bg-muted dark:bg-darkMuted"
+      {isLoading && filters.page === 1 ? (
+        <SkeletonLoading />
+      ) : (
+        <SafeAreaView
+          style={{ alignItems: "center", flex: 1 }}
+          className="bg-background dark:bg-darkBackground"
         >
-          <TouchableOpacity onPress={onReset}>
-            <Text className="text-foreground dark:text-darkForeground">
-              Limpar Filtros
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => setOpenModal(true)}
-            style={{
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Text className="text-foreground dark:text-darkForeground">
-              Filtros
-            </Text>
-            <AntDesign name="filter" size={22} />
-          </TouchableOpacity>
-        </View>
-
-        <FlatList
-          ref={flatListRef}
-          ListHeaderComponent={
-            <MarketplacesHeader
-              onSelectMarketplace={onSelectMarketplace}
-              flatListMarketplaceRef={flatListMarketplaceRef}
-            />
-          }
-          onEndReachedThreshold={0.5}
-          keyExtractor={(item) => item.id}
-          onEndReached={onScrollScreen}
-          refreshing={isValidating && filters.page === 1}
-          onRefresh={onRefresh}
-          showsVerticalScrollIndicator={false}
-          data={data}
-          renderItem={({ item }) => (
-            <View className="px-2">
-              <ListOrders
-                selectedOrders={selectedOrders}
-                selected={getSelected(item)}
-                onLongPress={onLongPress}
-                navigation={navigation}
-                item={item}
-              />
-            </View>
+          {filters.page >= 2 && (
+            <TouchableOpacity
+              onPress={() => {
+                flatListRef.current?.scrollToOffset({
+                  offset: 0,
+                  animated: true,
+                });
+                onReset();
+              }}
+              style={{
+                position: "absolute",
+                top: "80%",
+                left: "5%",
+                zIndex: 10,
+                backgroundColor: "#e1e1e1",
+                width: 60,
+                height: 60,
+                borderRadius: 50,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <AntDesign name="arrowup" size={22} />
+            </TouchableOpacity>
           )}
-          ListEmptyComponent={isLoading ? null : <ListEmptyComponent />}
-          ListFooterComponent={
-            filters.page != 1 ? <ActivityIndicator size={"large"} /> : null
-          }
-        />
-        <ModalFilters
-          setFilters={setFilters}
-          form={form}
-          filters={filters}
-          openModal={openModal}
-          setOpenModal={setOpenModal}
-        />
-        {selectedOrders.length > 0 && (
-          <FloatButton
-            selectedOrders={selectedOrders}
-            setSelectedOrders={setSelectedOrders}
-            fetchOrders={mutate}
+
+          <View
+            style={{
+              borderBottomRightRadius: 10,
+              borderBottomLeftRadius: 10,
+              width: "100%",
+              height: 40,
+              justifyContent: "space-between",
+              flexDirection: "row",
+              alignItems: "center",
+              paddingHorizontal: 5,
+              shadowColor: "black",
+              shadowRadius: 2,
+              shadowOpacity: 0.2,
+              shadowOffset: { width: 0, height: 0 },
+            }}
+            className="bg-muted dark:bg-darkMuted"
+          >
+            <TouchableOpacity onPress={onReset}>
+              <Text className="text-foreground dark:text-darkForeground">
+                Limpar Filtros
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => setOpenModal(true)}
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text className="text-foreground dark:text-darkForeground">
+                Filtros
+              </Text>
+              <AntDesign name="filter" size={22} />
+            </TouchableOpacity>
+          </View>
+
+          <FlatList
+            ref={flatListRef}
+            ListHeaderComponent={
+              <MarketplacesHeader
+                onSelectMarketplace={onSelectMarketplace}
+                flatListMarketplaceRef={flatListMarketplaceRef}
+              />
+            }
+            onEndReachedThreshold={0.5}
+            keyExtractor={(item) => item.id}
+            onEndReached={onScrollScreen}
+            refreshing={isValidating && filters.page === 1}
+            onRefresh={onRefresh}
+            showsVerticalScrollIndicator={false}
+            data={data}
+            renderItem={({ item }) => (
+              <View className="px-2">
+                <ListOrders
+                  selectedOrders={selectedOrders}
+                  selected={getSelected(item)}
+                  onLongPress={onLongPress}
+                  navigation={navigation}
+                  item={item}
+                />
+              </View>
+            )}
+            ListEmptyComponent={isLoading ? null : <ListEmptyComponent />}
+            ListFooterComponent={
+              filters.page != 1 ? <ActivityIndicator size={"large"} /> : null
+            }
           />
-        )}
-      </SafeAreaView>
+          <ModalFilters
+            setFilters={setFilters}
+            form={form}
+            filters={filters}
+            openModal={openModal}
+            setOpenModal={setOpenModal}
+          />
+          {selectedOrders.length > 0 && (
+            <FloatButton
+              selectedOrders={selectedOrders}
+              setSelectedOrders={setSelectedOrders}
+              fetchOrders={mutate}
+            />
+          )}
+        </SafeAreaView>
+      )}
     </>
   );
 }

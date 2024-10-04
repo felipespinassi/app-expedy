@@ -4,7 +4,7 @@ import { Skeleton } from "../../../../../components/Skeleton";
 
 export default function SkeletonLoading() {
   return (
-    <View className="p-2 w-screen gap-2 ">
+    <View className="p-2 w-screen gap-2 bg-background dark:bg-darkBackground ">
       <View>
         <Skeleton className="w-full h-8 bg-muted dark:bg-darkMuted" />
       </View>
