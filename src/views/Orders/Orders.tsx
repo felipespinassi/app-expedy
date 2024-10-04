@@ -145,22 +145,30 @@ export default function Orders({ navigation }: any) {
                 flexDirection: "row",
                 justifyContent: "center",
                 alignItems: "center",
+                gap: 2,
               }}
             >
               <Text className="text-foreground dark:text-darkForeground">
                 Filtros
               </Text>
-              <FilterIcon color={"#3b82f6"} size={22} />
+              <FilterIcon color={"#3b82f6"} size={18} />
             </TouchableOpacity>
           </View>
 
           <FlatList
             ref={flatListRef}
             ListHeaderComponent={
-              <MarketplacesHeader
-                onSelectMarketplace={onSelectMarketplace}
-                flatListMarketplaceRef={flatListMarketplaceRef}
-              />
+              <>
+                <MarketplacesHeader
+                  onSelectMarketplace={onSelectMarketplace}
+                  flatListMarketplaceRef={flatListMarketplaceRef}
+                />
+                {Object.keys(filters).length > 1 && (
+                  <Text className="text-foreground dark:text-darkForeground px-2 mb-1">
+                    {Object.keys(filters).length - 1} Filtro(s) Aplicados
+                  </Text>
+                )}
+              </>
             }
             onEndReachedThreshold={0.5}
             keyExtractor={(item) => item.id}

@@ -10,7 +10,7 @@ export function MarketplacesHeader({
     <>
       <Text
         style={{ marginVertical: 10 }}
-        className="text-foreground dark:text-darkForeground"
+        className="text-foreground dark:text-darkForeground px-2"
       >
         Marketplace
       </Text>

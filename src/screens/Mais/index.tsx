@@ -10,7 +10,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { View } from "react-native";
 import { Avatar } from "../../../components/Avatar";
 import { ModeToggle } from "../../components/ToogleTheme";
-import { Box, Home, LogOut, ShoppingCart } from "lucide-react-native";
+import { Box, Home, LogOut, ShoppingCart, SunMoon } from "lucide-react-native";
 
 export default function Mais({ navigation }: any) {
   const [companyName, setCompanyName] = useState("");
@@ -50,8 +50,8 @@ export default function Mais({ navigation }: any) {
       },
     },
     {
-      name: "",
-      icon: <ModeToggle />,
+      name: <ModeToggle />,
+      icon: <SunMoon size={30} />,
     },
   ];
   return (
@@ -92,13 +92,13 @@ export default function Mais({ navigation }: any) {
         </View>
       </View>
       <ScrollView
-        style={{ paddingHorizontal: 15, gap: 20 }}
+        style={{ paddingHorizontal: 15, gap: 30 }}
         className="bg-background dark:bg-darkBackground"
       >
-        {values.map((element) => {
+        {values.map((element, index) => {
           return (
             <TouchableOpacity
-              key={element.name}
+              key={index}
               onPress={element.action}
               style={{
                 flexDirection: "row",
@@ -109,10 +109,16 @@ export default function Mais({ navigation }: any) {
                 style={{ height: 40, width: "100%", justifyContent: "center" }}
                 className="text-foreground dark:text-darkForeground"
               >
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 20,
+                  }}
+                >
                   {element.icon}
                   <Text
-                    style={{ fontSize: 20, paddingLeft: 10 }}
+                    style={{ fontSize: 20 }}
                     className="text-foreground dark:text-darkForeground"
                   >
                     {element.name}
