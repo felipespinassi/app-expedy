@@ -2,10 +2,9 @@ import { Card, CardHeader, CardTitle } from "../../../components/Card";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { NavigationTypes } from "../../@types/NavigationTypes";
 import { useNavigation } from "@react-navigation/native";
-import { Box, ScrollText } from "lucide-react-native";
+import { Box, List } from "lucide-react-native";
 import React from "react";
 import { View } from "react-native";
-import Feather from "react-native-vector-icons/Feather";
 
 export default function ExpedicaoRapida() {
   const navigation = useNavigation<NavigationTypes>();
@@ -17,7 +16,7 @@ export default function ExpedicaoRapida() {
       <TouchableOpacity onPress={() => navigation.navigate("Expedir")}>
         <Card className="  h-28 justify-center  ">
           <CardHeader className="w-full flex-row px-10 flex gap-4 ">
-            <Feather name="box" size={28} />
+            <Box color="#3b82f6" size={28} />
             <CardTitle className=" font-normal">Expedição Rápida</CardTitle>
           </CardHeader>
         </Card>
@@ -30,7 +29,7 @@ export default function ExpedicaoRapida() {
         <View>
           <Card className=" h-28 justify-center">
             <CardHeader className="w-full px-10 flex flex-row gap-4 ">
-              <Feather name="list" size={28} />
+              <List color="#3b82f6" size={28} />
               <CardTitle className=" font-normal">Arquivos Gerados</CardTitle>
             </CardHeader>
           </Card>

@@ -17,6 +17,7 @@ import { useGetOrders } from "./hooks/useGetOrders";
 import { MarketplacesHeader } from "./components/MarketplacesHeader/MarketplacesHeader";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import SkeletonLoading from "./components/SkeletonLoading/SkeletonLoading";
+import { ArrowUp, Filter, FilterIcon } from "lucide-react-native";
 export default function Orders({ navigation }: any) {
   const [selectedOrders, setSelectedOrders] = useState([] as any);
   const [filters, setFilters] = useState<any>({ page: 1 });
@@ -112,7 +113,7 @@ export default function Orders({ navigation }: any) {
                 alignItems: "center",
               }}
             >
-              <AntDesign name="arrowup" size={22} />
+              <ArrowUp color="#3b82f6" size={22} />
             </TouchableOpacity>
           )}
 
@@ -149,7 +150,7 @@ export default function Orders({ navigation }: any) {
               <Text className="text-foreground dark:text-darkForeground">
                 Filtros
               </Text>
-              <AntDesign name="filter" size={22} />
+              <FilterIcon color={"#3b82f6"} size={22} />
             </TouchableOpacity>
           </View>
 

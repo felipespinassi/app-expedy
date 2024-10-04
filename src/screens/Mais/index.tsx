@@ -10,6 +10,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { View } from "react-native";
 import { Avatar } from "../../../components/Avatar";
 import { ModeToggle } from "../../components/ToogleTheme";
+import { Box, Home, LogOut, ShoppingCart } from "lucide-react-native";
 
 export default function Mais({ navigation }: any) {
   const [companyName, setCompanyName] = useState("");
@@ -28,22 +29,22 @@ export default function Mais({ navigation }: any) {
   const values = [
     {
       name: "Início",
-      icon: <Ionicons name="home-outline" size={26} />,
+      icon: <Home color="#3b82f6" size={26} />,
       action: () => navigation.navigate("Home"),
     },
     {
       name: "Pedidos",
-      icon: <Ionicons name="cart-outline" size={26} />,
+      icon: <ShoppingCart color="#3b82f6" size={26} />,
       action: () => navigation.navigate("Pedidos"),
     },
     {
       name: "Expedição",
-      icon: <Ionicons name="cube-outline" size={26} />,
+      icon: <Box color="#3b82f6" size={26} />,
       action: () => navigation.navigate("Expedição"),
     },
     {
       name: "Sair",
-      icon: <Ionicons name="log-out-outline" size={26} />,
+      icon: <LogOut color="#3b82f6" size={26} />,
       action: () => {
         removeAccess_token(), removeCompanyName(), setIsLogged(false);
       },

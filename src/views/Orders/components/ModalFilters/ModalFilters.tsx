@@ -13,6 +13,7 @@ import SelectIntegracoes from "./components/SelectIntegracoes/SelectIntegracoes"
 import { Input } from "../../../../../components/Input";
 import { Button } from "../../../../../components/Button";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import { X } from "lucide-react-native";
 
 interface Props {
   setFilters: Dispatch<SetStateAction<{}>>;
@@ -60,7 +61,7 @@ export default function ModalFilters({
             Filtrar Pedidos
           </Text>
           <TouchableOpacity onPress={() => setOpenModal(false)}>
-            <AntDesign name="close" size={22} />
+            <X color={"#3b82f6"} />
           </TouchableOpacity>
         </View>
 
