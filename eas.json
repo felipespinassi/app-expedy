@@ -5,11 +5,17 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "android": {
+        "gradleCommand": ":app:assembleDebug"
+      },
+      "ios": {
+        "buildConfiguration": "Debug"
+      }
     },
     "preview": {
+      "channel": "staging",
       "distribution": "internal",
-      "channel": "preview",
       "android": {
         "buildType": "apk"
       }
@@ -18,10 +24,15 @@
       "channel": "production"
     }
   },
-  "submit": {
-    "production": {}
-  }
-  
-  
+"submit": {
+    "production": {
+      "ios": {
+        "appleId": "desenvolvimento@expedy.com.br",
+        "ascAppId": "6737234477",
+        "appleTeamId": "465AGMM87M"
+      }
+    }
+  } 
+
   
 }

@@ -19,8 +19,9 @@
       "**/*"
     ],
     "ios": {
+      "buildNumber": "1",
       "supportsTablet": true,
-      "bundleIdentifier": "io.app.expedy"
+      "bundleIdentifier": "com.expedy.expedyapp"
     },
     "android": {
       "adaptiveIcon": {
@@ -37,9 +38,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "4ab2adb7-da63-47b6-8c4e-7d15fcbf9f37"
+        "projectId": "e066e555-e52e-4d2c-8314-188194853548"
       }
     },
-    "owner": "spinassi"
+    "owner": "expedy_dev"
   }
 }
