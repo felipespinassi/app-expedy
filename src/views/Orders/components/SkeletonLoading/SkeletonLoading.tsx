@@ -14,6 +14,9 @@ export default function SkeletonLoading() {
         <Skeleton className="w-20 h-20 rounded-full mb-3 bg-muted dark:bg-darkMuted " />
         <Skeleton className="w-20 h-20 rounded-full mb-3 bg-muted dark:bg-darkMuted " />
         <Skeleton className="w-20 h-20 rounded-full mb-3 bg-muted dark:bg-darkMuted " />
+        <Skeleton className="w-20 h-20 rounded-full mb-3 bg-muted dark:bg-darkMuted " />
+        <Skeleton className="w-20 h-20 rounded-full mb-3 bg-muted dark:bg-darkMuted " />
+        <Skeleton className="w-20 h-20 rounded-full mb-3 bg-muted dark:bg-darkMuted " />
       </View>
       <Skeleton className="w-full h-24  bg-muted dark:bg-darkMuted mb-2" />
       <Skeleton className="w-full h-24  bg-muted dark:bg-darkMuted mb-2" />

@@ -51,7 +51,7 @@ export default function Mais({ navigation }: any) {
     },
     {
       name: <ModeToggle />,
-      icon: <SunMoon size={30} />,
+      icon: <SunMoon color="#3b82f6" size={30} />,
     },
   ];
   return (

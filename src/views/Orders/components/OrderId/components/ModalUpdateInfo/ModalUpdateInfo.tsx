@@ -85,7 +85,7 @@ export default function ModalUpdateInfo({
               Atualizar Informações do cliente
             </Text>
             <TouchableOpacity onPress={() => setOpenModal(false)}>
-              <X size={26} />
+              <X color="#3b82f6" size={26} />
             </TouchableOpacity>
           </View>
 
