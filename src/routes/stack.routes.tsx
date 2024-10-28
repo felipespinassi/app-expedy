@@ -6,8 +6,9 @@ import ArquivoId from "../screens/ExpedicaoRapida/ArquivoId";
 import ItemsToPick from "../screens/ExpedicaoRapida/ItemsToPick";
 import Expedir from "../screens/ExpedicaoRapida/Expedir";
 import TabRoutes from "./tab.routes";
+import { RootStackParamList } from "../@types/StackRoutesTypes";
 
-const { Navigator, Screen } = createNativeStackNavigator();
+const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>();
 
 export function StackRoutes() {
   return (

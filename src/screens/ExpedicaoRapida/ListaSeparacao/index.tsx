@@ -4,7 +4,7 @@ import Header from "../../../components/Header/Header";
 
 export default function ListaSeparacao(props: any) {
   const file = props.route.params;
-  const navigation: any = useNavigation();
+  const navigation = useNavigation();
 
   return (
     <>

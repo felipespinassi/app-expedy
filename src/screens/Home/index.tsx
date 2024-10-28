@@ -8,7 +8,7 @@ export function Home() {
       <View className="flex-1 justify-center items-center bg-background dark:bg-darkBackground">
         <Pressable
           onPress={() => Linking.openURL("https://wa.me/16999758383")}
-          className="border w-full h-full items-center justify-center "
+          className="  w-full h-full items-center justify-center "
         >
           <Image
             style={{

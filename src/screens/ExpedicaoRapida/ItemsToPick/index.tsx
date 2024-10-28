@@ -3,11 +3,13 @@ import { useNavigation } from "@react-navigation/native";
 
 import ItemsToPickComponent from "../../../views/ExpedicaoRapida/components/ItemsToPick";
 import Header from "../../../components/Header/Header";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../../@types/StackRoutesTypes";
 
-export default function ItemsToPick(props: any) {
-  const navigation: any = useNavigation();
+type Props = NativeStackScreenProps<RootStackParamList, "ItemsToPick">;
 
-  const params = props.route.params;
+export default function ItemsToPick({ navigation, route }: Props) {
+  const params = route.params;
 
   return (
     <>
