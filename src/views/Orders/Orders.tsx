@@ -15,9 +15,9 @@ import ModalFilters from "./components/ModalFilters/ModalFilters";
 import ListEmptyComponent from "../../components/ListEmptyComponent/ListEmptyComponent";
 import { useGetOrders } from "./hooks/useGetOrders";
 import { MarketplacesHeader } from "./components/MarketplacesHeader/MarketplacesHeader";
-import AntDesign from "react-native-vector-icons/AntDesign";
 import SkeletonLoading from "./components/SkeletonLoading/SkeletonLoading";
 import { ArrowUp, Filter, FilterIcon } from "lucide-react-native";
+
 export default function Orders({ navigation }: any) {
   const [selectedOrders, setSelectedOrders] = useState([] as any);
   const [filters, setFilters] = useState<any>({ page: 1 });

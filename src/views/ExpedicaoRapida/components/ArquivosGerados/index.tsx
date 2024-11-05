@@ -48,11 +48,11 @@ export default function ArquivosGerados() {
             >
               <Text
                 className="text-foreground dark:text-darkForeground"
-                style={{ fontSize: 12 }}
+                style={{ fontSize: 12, width: "15%" }}
               >
                 {item.idERP_File}
               </Text>
-              <View>
+              <View style={{ width: "25%", alignItems: "center" }}>
                 {item.status === "impresso" && (
                   <View
                     style={{
@@ -100,7 +100,11 @@ export default function ArquivosGerados() {
 
               <Text
                 className="text-foreground dark:text-darkForeground"
-                style={{ fontSize: 12, maxWidth: 140 }}
+                style={{
+                  fontSize: 12,
+                  maxWidth: 140,
+                  width: "30%",
+                }}
               >
                 {item.usuario}
               </Text>

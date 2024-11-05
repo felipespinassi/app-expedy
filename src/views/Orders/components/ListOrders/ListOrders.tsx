@@ -42,6 +42,7 @@ export default function ListOrders({
             paddingLeft: selected ? 20 : 0,
             flexDirection: "row",
             borderRadius: 10,
+            maxWidth: "100%",
           }}
           className="bg-muted dark:bg-darkMuted"
         >
@@ -49,7 +50,7 @@ export default function ListOrders({
             style={{
               borderBottomLeftRadius: 10,
               borderTopLeftRadius: 10,
-              width: 5,
+              width: "1%",
               height: "100%",
               backgroundColor: marketplaces[item?.integracao?.tipo]?.color,
             }}
@@ -58,10 +59,10 @@ export default function ListOrders({
             style={{
               borderTopRightRadius: 10,
               borderBottomRightRadius: 10,
+              width: "99%",
               padding: 10,
               justifyContent: "space-evenly",
               height: "100%",
-              // backgroundColor: `${selected ? "#e6f7ff" : "white"}`,
             }}
             className={` ${
               selected
@@ -72,10 +73,9 @@ export default function ListOrders({
             <View
               style={{
                 flexDirection: "row",
-                justifyContent: "space-around",
+                justifyContent: "space-between",
                 alignItems: "center",
                 width: "100%",
-                paddingRight: 20,
                 height: 90,
               }}
             >
@@ -83,7 +83,7 @@ export default function ListOrders({
                 style={{
                   justifyContent: "space-around",
                   height: "100%",
-                  width: "65%",
+                  width: "60%",
                 }}
               >
                 <Text className="text-foreground dark:text-darkForeground">
@@ -102,6 +102,7 @@ export default function ListOrders({
                   alignItems: "center",
                   justifyContent: "space-around",
                   height: "100%",
+                  width: "40%",
                 }}
               >
                 <Text className="text-foreground dark:text-darkForeground">
