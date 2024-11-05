@@ -154,7 +154,7 @@ export default function ListaSeparacao({ fileId }: { fileId: string }) {
             );
           })
         ) : (
-          <ListEmptyComponent>asasasasasas</ListEmptyComponent>
+          <ListEmptyComponent />
         )}
       </ScrollView>
     </View>
