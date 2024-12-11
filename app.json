@@ -28,7 +28,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "io.app.expedy"
+      "package": "com.app.expedy"
     },
     "web": {
       "favicon": "./assets/favicon.png"
