@@ -96,7 +96,7 @@ export default function Login({ navigation }: any) {
           <Input
             className="w-full "
             placeholder="Senha"
-            keyboardType="visible-password"
+            secureTextEntry={true}
             onChangeText={(text) => setValue("password", text)}
           />
         </View>
